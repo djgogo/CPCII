@@ -61,8 +61,8 @@ class PersonTest extends PHPUnit_Framework_TestCase
     public function testSetZipcode()
     {
         $zipcode = 8064;
-        $this->person->setZipcode($zipcode);
-        $this->assertEquals($zipcode, $this->person->getZipcode());
+        $this->person->setZipCode($zipcode);
+        $this->assertEquals($zipcode, $this->person->getZipCode());
     }
 
     public function testSetResidence()
@@ -84,6 +84,13 @@ class PersonTest extends PHPUnit_Framework_TestCase
         $favouriteColor = 'blue';
         $this->person->setFavouriteColor($favouriteColor);
         $this->assertEquals($favouriteColor, $this->person->getFavouriteColor());
+    }
+
+    public function testZipCodeValidation()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $zipcode = 123456;
+        $this->person->setZipCode($zipcode);
     }
 
 }

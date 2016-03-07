@@ -2,24 +2,42 @@
 
 class Person
 {
+
     /**
-     * @var string name
-     * @var string surname
-     * @var string address
-     * @var int zipcode
-     * @var string residence
-     * @var string birthday
-     * @var string phoneNumber
-     * @var string favouriteColor
+     * @var string
      */
     private $name;
+    /**
+     * @var string
+     */
     private $surname;
+    /**
+     * @var string
+     */
     private $address;
-    private $zipcode;
+    /**
+     * @var int
+     */
+    private $zipCode;
+    /**
+     * @var string
+     */
     private $residence;
+    /**
+     * @var string
+     */
     private $birthday;
+    /**
+     * @var string
+     */
     private $phoneNumber;
+    /**
+     * @var string
+     */
     private $favouriteColor;
+    /**
+     * @var bool
+     */
     private $hasCalled = false;
 
     /**
@@ -43,6 +61,9 @@ class Person
         return $this->name;
     }
 
+    /**
+     * @return string
+     */
     public function getSurname()
     {
         return $this->surname;
@@ -67,17 +88,21 @@ class Person
     /**
      * @return int
      */
-    public function getZipcode()
+    public function getZipCode()
     {
-        return $this->zipcode;
+        return $this->zipCode;
     }
 
     /**
-     * @param int $zipcode
+     * @param int $zipCode
+     * @throws Exception
      */
-    public function setZipcode($zipcode)
+    public function setZipCode($zipCode)
     {
-        $this->zipcode = $zipcode;
+        if (!$this->zipValidationOk($zipCode)) {
+            throw new \InvalidArgumentException("invalid zip code");
+        }
+        $this->zipCode = $zipCode;
     }
 
     /**
@@ -97,7 +122,7 @@ class Person
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getBirthday()
     {
@@ -137,10 +162,20 @@ class Person
         $this->favouriteColor = $favouriteColor;
     }
 
+    /**
+     * @return bool
+     */
     public function askedForTelNumber()
     {
-        if ($this->hasCalled) {
+        return $this->hasCalled;
+    }
+
+    public function zipValidationOk($zipCode)
+    {
+        if(preg_match('/^[0-9]{4}$/', $zipCode) > 0){
             return true;
+        }else{
+            return false;
         }
     }
 }
