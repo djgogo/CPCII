@@ -1,7 +1,6 @@
 <?php
 
-require_once '../src/Book.php';
-require_once '../src/Author.php';
+require_once 'autoload.php';
 
 class BookTest extends PHPUnit_Framework_TestCase
 {
