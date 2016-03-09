@@ -31,9 +31,9 @@ class Author
 
         if (!$this->emailValidationOk($email)) {
             throw new \InvalidArgumentException("invalid email address");
-        }else {
-        $this->email = $email;
         }
+        $this->email = $email;
+
     }
 
     /**
