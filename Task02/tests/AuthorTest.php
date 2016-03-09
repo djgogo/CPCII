@@ -41,4 +41,42 @@ class AuthorTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals($this->email, $this->author->getEmail());
     }
+
+    /**
+     * @dataProvider provideInvalidEMailAdresses
+     */
+    public function testInvalidEMailAdressThrowsException($email)
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new Author('any', 'name', $email);
+    }
+
+    public function provideInvalidEMailAdresses()
+    {
+        return array(
+            array('invalid@'),
+            array('test@dsfdsf'),
+            array(''),
+            array(213),
+        );
+    }
+
+    /**
+     * @dataProvider provideValidEmailAdresses
+     */
+    public function testValidEmailAdressesCanBePassed($email)
+    {
+        $author = new Author('any', 'name', $email);
+        $this->assertEquals($email, $author->getEmail());
+    }
+
+    public function provideValidEmailAdresses()
+    {
+        return array(
+            array('peter.sacco@competec.ch'),
+            array('foo.bar@competec.ch'),
+        );
+    }
+
+
 }
