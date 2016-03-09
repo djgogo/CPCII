@@ -39,27 +39,27 @@ class Book
         $this->genre = $genre;
     }
 
-    public function getTitel()
+    public function getTitel():string
     {
         return $this->titel;
     }
 
-    public function getAuthor()
+    public function getAuthor():Author
     {
         return $this->author;
     }
 
-    public function getReleaseDate()
+    public function getReleaseDate():int
     {
         return $this->releaseDate;
     }
 
-    public function getNumPages()
+    public function getNumPages():int
     {
         return $this->numPages;
     }
 
-    public function getGenre()
+    public function getGenre():string
     {
         return $this->genre;
     }

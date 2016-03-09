@@ -31,7 +31,7 @@ class Author
     /**
      * @return string
      */
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
@@ -39,7 +39,7 @@ class Author
     /**
      * @return string
      */
-    public function getSurname()
+    public function getSurname():string
     {
         return $this->surname;
     }
@@ -47,7 +47,7 @@ class Author
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail():string
     {
         return $this->email;
     }
