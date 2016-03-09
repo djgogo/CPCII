@@ -24,13 +24,13 @@ class Book
 
     /**
      * Book constructor.
-     * @param $titel
+     * @param string $titel
      * @param Author $author
-     * @param $releaseDate
-     * @param $numPages
-     * @param $genre
+     * @param int $releaseDate
+     * @param int $numPages
+     * @param string $genre
      */
-    public function __construct($titel, Author $author, int $releaseDate, int $numPages, $genre)
+    public function __construct(string $titel, Author $author, int $releaseDate, int $numPages, string $genre)
     {
         $this->titel = $titel;
         $this->author = $author;

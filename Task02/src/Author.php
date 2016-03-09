@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Author
+ */
 class Author
 {
     /**
@@ -17,15 +20,20 @@ class Author
 
     /**
      * Author constructor.
-     * @param $name
-     * @param $surname
-     * @param $email
+     * @param string $name
+     * @param string $surname
+     * @param string $email
      */
-    public function __construct($name, $surname, $email)
+    public function __construct(string $name, string $surname, string $email)
     {
         $this->name = $name;
         $this->surname = $surname;
+
+        if (!$this->emailValidationOk($email)) {
+            throw new \InvalidArgumentException("invalid email address");
+        }else {
         $this->email = $email;
+        }
     }
 
     /**
@@ -50,5 +58,18 @@ class Author
     public function getEmail():string
     {
         return $this->email;
+    }
+
+    /**
+     * @param $email
+     * @return bool
+     */
+    public function emailValidationOk($email)
+    {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return false;
+        }else{
+            return true;
+        }
     }
 }
