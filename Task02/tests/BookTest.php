@@ -31,7 +31,9 @@ class BookTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->titel = 'Der blaue Elephpant auf Reisen';
-        $this->author = new Author('Hans', 'Muster', 'hans@muster.ch');
+        $this->author = $this->getMockBuilder(Author::class)
+            ->disableOriginalConstructor()
+            ->getMock();
         $this->releaseDate = 2016;
         $this->numPages = 160;
         $this->genre = 'Science Fiction';
