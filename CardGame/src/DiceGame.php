@@ -39,9 +39,9 @@ class DiceGame
                 $player->rollDiceAndTurnMatchingCard();
 
                 if ($player->hasAllCardsTurned()) {
-                    $this->logger->log("**************************************", "red");
+                    $this->logger->log("*************************************", "red");
                     $this->logger->log("******> $player hat gewonnen! <******", "red");
-                    $this->logger->log("**************************************", "red");
+                    $this->logger->log("*************************************", "red");
                     $gameOver = true;
                     break;
                 }

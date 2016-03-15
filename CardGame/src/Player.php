@@ -51,7 +51,7 @@ class Player
     public function rollDiceAndTurnMatchingCard()
     {
         $dicedColor = $this->dice->roll();
-        $this->logger->log("$this->name hat die Farbe $dicedColor gewürfelt", 'blue');
+        $this->logger->log("$this->name hat die Farbe $dicedColor gewürfelt", 'green');
 
         foreach($this->cards as $cardNumber => $card) {
 

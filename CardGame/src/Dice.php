@@ -19,9 +19,23 @@ class Dice
     /**
      * @return Color
      */
-    public function roll()
+    public function roll():Color
+    {
+        $this->shuffleColors();
+        return $this->colors[0];
+    }
+
+    /**
+     * @param $i
+     * @return Color
+     */
+    public function getColor($i):Color
+    {
+        return $this->colors[$i];
+    }
+
+    public function shuffleColors()
     {
         shuffle($this->colors);
-        return $this->colors[0];
     }
 }
