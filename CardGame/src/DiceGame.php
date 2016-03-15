@@ -6,33 +6,27 @@ class DiceGame
      * @var Player[]
      */
     private $players;
-
-    public function __construct()
-    {
-        $this->gameSetup();
-        $this->playGame();
-    }
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     /**
-     * Setup the Game
+     * DiceGame constructor.
+     * @param LoggerInterface $logger
      */
-    public function gameSetup()
+    public function __construct(LoggerInterface $logger)
     {
-        $this->players = array(
-            new Player('Alice'),
-            new Player('Bob'),
-            new Player('Carol')
-        );
-
-        foreach ($this->players as $player) {
-            $spieler = $player->getName();
-            Logger::log(" * Spieler $spieler ist dem Spiel beigetreten");
-        }
+        $this->logger = $logger;
     }
 
-    /**
-     * Play the Game
-     */
+
+    public function addPlayer(Player $player)
+    {
+        $this->players[] = $player;
+        $this->logger->log(" * Spieler $player ist dem Spiel beigetreten", 'yellow');
+    }
+
     public function playGame()
     {
         $gameOver = false;
@@ -41,12 +35,13 @@ class DiceGame
 
             foreach ($this->players as $player) {
 
-                $spieler = $player->getName();
-                Logger::log("-> $spieler ist am Zug");
-                $player->makeMove();
+                $this->logger->log("-> $player ist am Zug", 'white');
+                $player->rollDiceAndTurnMatchingCard();
 
                 if ($player->hasAllCardsTurned()) {
-                    Logger::log("******> $spieler hat gewonnen! <******");
+                    $this->logger->log("**************************************", "red");
+                    $this->logger->log("******> $player hat gewonnen! <******", "red");
+                    $this->logger->log("**************************************", "red");
                     $gameOver = true;
                     break;
                 }

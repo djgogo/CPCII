@@ -9,21 +9,15 @@ class Dice
 
     /**
      * Dice constructor.
+     * @param array $colors
      */
-    public function __construct()
+    public function __construct(array $colors)
     {
-        $this->colors = array(
-            new Color('Red'),
-            new Color('Blue'),
-            new Color('Green'),
-            new Color('Yellow'),
-            new Color('Black'),
-            new Color('White')
-        );
+        $this->colors = $colors;
     }
 
     /**
-     * @return string
+     * @return Color
      */
     public function roll()
     {

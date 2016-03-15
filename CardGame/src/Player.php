@@ -13,21 +13,31 @@ class Player
     private $name;
 
     /**
+     * @var Dice[]
+     */
+    private $dice;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * Player constructor.
      * @param string $name
+     * @param Dice $dice
+     * @param LoggerInterface $logger
      */
-    public function __construct(string $name)
+    public function __construct(string $name, Dice $dice, LoggerInterface $logger)
     {
         $this->name = $name;
+        $this->dice = $dice;
+        $this->logger = $logger;
+    }
 
-        $dice = new Dice();
-        $this->cards = array(
-            new Card($dice->roll()),
-            new Card($dice->roll()),
-            new Card($dice->roll()),
-            new Card($dice->roll()),
-            new Card($dice->roll())
-        );
+    public function addCard(Card $card)
+    {
+        $this->cards[] = $card;
     }
 
     /**
@@ -38,30 +48,24 @@ class Player
         return $this->name;
     }
 
-    /**
-     * roll the dice and check if diced color matches one of the cards
-     * if yes turn the card
-     */
-    public function makeMove()
+    public function rollDiceAndTurnMatchingCard()
     {
-        $dice = new Dice();
-        $dicedColor = $dice->roll();
-        Logger::log("$this->name hat die Farbe $dicedColor gewürfelt");
+        $dicedColor = $this->dice->roll();
+        $this->logger->log("$this->name hat die Farbe $dicedColor gewürfelt", 'blue');
 
-        for ($i=0; $i<5; $i++) {
+        foreach($this->cards as $cardNumber => $card) {
 
-            if ($this->cards[$i]->getColor() == $dicedColor) {
+            $cardNumber = $cardNumber + 1;
+            if ($card->getColor() === $dicedColor) {
 
-                $this->cards[$i]->turn();
-                $cardNumber = $i+1;
-                Logger::log("Yipieee! $this->name's Karte $cardNumber hat die Farbe $dicedColor");
-                Logger::log("--> Karte $cardNumber wurde umgedreht");
+                $card->turn();
+                $this->logger->log("Yipieee! $this->name's Karte $cardNumber hat die Farbe $dicedColor", 'yellow');
+                $this->logger->log("--> Karte $cardNumber wurde umgedreht", 'blue');
 
             }else {
 
-                if (!$this->cards[$i]->isRevealed()) {
-                    $cardNumber = $i + 1;
-                    Logger::log("--> Karte $cardNumber ist nicht $dicedColor");
+                if (!$card->isRevealed()) {
+                    $this->logger->log("--> Karte $cardNumber ist nicht $dicedColor", 'blue');
                 }
             }
         }
@@ -79,10 +83,11 @@ class Player
             }
         }
 
-        if ($count == 5) {
-            return true;
-        }else {
-            return false;
-        }
+        return $count === 5;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

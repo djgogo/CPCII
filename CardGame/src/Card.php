@@ -3,7 +3,7 @@
 class Card {
 
     /**
-     * @var string
+     * @var Color
      */
     private $color;
 
@@ -14,24 +14,21 @@ class Card {
 
     /**
      * Card constructor.
-     * @param string $color
+     * @param Color $color
      */
-    public function __construct(string $color)
+    public function __construct(Color $color)
     {
         $this->color = $color;
     }
 
     /**
-     * @return string
+     * @return Color
      */
-    public function getColor():string
+    public function getColor():Color
     {
         return $this->color;
     }
 
-    /**
-     *  turn card
-     */
     public function turn()
     {
         $this->turned = true;
