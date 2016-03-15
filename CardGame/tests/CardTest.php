@@ -1,17 +1,34 @@
 <?php
 
-/**
- * Class CardTest - NOT working - because logger isn't anymore in the class
- */
+require_once '../src/Card.php';
+
 class CardTest extends PHPUnit_Framework_TestCase
+
 {
-    public function testTurned()
+    /**
+     * @var Color
+     */
+    private $color;
+
+    /**
+     * @var Card
+     */
+    private $card;
+
+    public function setUp()
     {
-        $logger = $this->getMockBuilder(Logger::class)->disableOriginalConstructor()->getMock();
+        $this->color = $this->getMockBuilder(Color::class)->disableOriginalConstructor()->getMock();
+        $this->card = new Card($this->color);
+    }
 
-        $logger->expects($this->once())->method('log')->with('Die Karte Blue wurde gedreht');
+    public function testGetColor()
+    {
+        $this->assertEquals($this->color,$this->card->getColor());
+    }
 
-        $card = new Card('Blue', $logger);
+    public function testTurnedAndIsRevealed()
+    {
+        $card = new Card($this->color);
         $this->assertFalse($card->isRevealed());
         $card->turn();
         $this->assertTrue($card->isRevealed());
