@@ -20,7 +20,6 @@ class DiceGame
         $this->logger = $logger;
     }
 
-
     public function addPlayer(Player $player)
     {
         $this->players[] = $player;

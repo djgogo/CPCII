@@ -1,8 +1,9 @@
 <?php
 
-require_once '../src/Card.php';
-
-class CardTest extends PHPUnit_Framework_TestCase
+/**
+ * @covers Card
+ */
+    class CardTest extends PHPUnit_Framework_TestCase
 
 {
     /**

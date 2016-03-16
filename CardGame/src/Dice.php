@@ -34,6 +34,9 @@ class Dice
         return $this->colors[$i];
     }
 
+    /**
+     * @codeCoverageIgnore Weil der Zufall lässt sich so schlecht vorhersehen
+     */
     public function shuffleColors()
     {
         shuffle($this->colors);

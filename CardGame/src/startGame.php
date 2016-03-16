@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 include_once 'autoload.php';
 
 $configuration = new Configuration();
@@ -53,3 +54,4 @@ $game->addPlayer($player3);
 
 /** Play the Game */
 $game->playGame();
+// @codeCoverageIgnoreEnd
