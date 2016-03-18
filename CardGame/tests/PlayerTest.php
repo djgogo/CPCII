@@ -101,11 +101,23 @@ class PlayerTest extends PHPUnit_Framework_TestCase
 
     public function testHasAllCardsTurnedWorks()
     {
-        // TODO this last test!!!
+        // Card is not Revealed
+        $this->card->expects($this->once())
+            ->method('isRevealed')
+            ->will($this->returnValue(false));
+
+        // Card is Revealed
         $this->card->expects($this->once())
             ->method('isRevealed')
             ->will($this->returnValue(true));
 
+        // Execute method
+        $this->player->hasAllCardsTurned();
+    }
+
+    public function testPlayerNameConvertionToStringWorks()
+    {
+        $this->assertSame('Alice', (string)$this->player);
     }
 
 }
