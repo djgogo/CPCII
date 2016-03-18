@@ -18,7 +18,7 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase
         $this->configuration = new Configuration();
     }
 
-    public function testgetNumberOfCardsWorks()
+    public function testGetNumberOfCardsWorks()
     {
         $this->assertSame($this->numberOfCards, $this->configuration->getNumberOfCards());
     }
