@@ -1,0 +1,5 @@
+src/a/autoload.php
+src/b/autoload.php
+src/c/autoload.php
+tests/autoload.php
+build/*
