@@ -23,7 +23,6 @@ sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam');
 $blog1->addPost($post01);
-$blog1->postMessage();
 
 /* create post for Alice's blog */
 $post02 = new Post($author2);
@@ -32,14 +31,12 @@ $post02->addBody('Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
 sed diam voluptua.');
 $blog2->addPost($post02);
-$blog2->postMessage();
 
-/* create post for Alice's blog */
+/* create post for Bob's blog and try to post it on Alices Blog */
 $post03 = new Post($author1);
-$post03->addHeading('MY GORGEOUS NEW PANTIES');
+$post03->addHeading('SPAM POST');
 $post03->addBody('Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
 sed diam voluptua.');
-$blog1->addPost($post03);
-$blog1->postMessage();
+$blog2->addPost($post03);
 

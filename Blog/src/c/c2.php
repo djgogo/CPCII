@@ -32,10 +32,16 @@ class Blog
 
     public function addPost(Post $post)
     {
-        $this->post = $post;
+        // only owner can post on the blog
+        if ($this->author === $post->getAuthor()){
+            $this->post = $post;
+            $this->printPost();
+        }else {
+            printf("\n******** %s is not the owner of this blog - post rejected!!\n", $this->author->getName());
+        }
     }
 
-    public function postMessage()
+    public function printPost()
     {
         printf ("\n-- %s : posted from %s", $this->post->getHeading(), $this->author->getName());
         printf ("\n%s\n", $this->post->getBody());

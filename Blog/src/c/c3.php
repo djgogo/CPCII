@@ -44,4 +44,9 @@ class Post
     {
         return $this->body;
     }
+
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 }
