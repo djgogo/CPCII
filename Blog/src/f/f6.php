@@ -55,12 +55,12 @@ $blog1->removeAuthorFromPermissionList($author1);
 
 /* add a comment to the blogpost */
 $comment01 = new Comment($author3);
-$comment01->addCommentText('This is a Comment to the Blog1');
-$blog1->addComment($comment01);
+$comment01->addCommentText('This is a Comment to the Post01');
+$post01->addComment($comment01);
 
 /* add a comment from Alice who actually can't post on the blog but comment posts */
 $comment02 = new Comment($author2);
-$comment02->addCommentText('Hi this is Alice, Nice Post. Would like to post something on this blog');
-$blog1->addComment($comment02);
+$comment02->addCommentText('Hi this is Alice, Nice Post01. Would like to post something on this blog');
+$post01->addComment($comment02);
 
 

@@ -15,6 +15,10 @@ class Post
      * @var string
      */
     private $body;
+    /**
+     * @var Comment
+     */
+    private $comment;
 
     /**
      * Post constructor.
@@ -48,5 +52,17 @@ class Post
     public function getAuthor():Author
     {
         return $this->author;
+    }
+
+    public function addComment(Comment $comment)
+    {
+        $this->comment = $comment;
+        $this->printComment();
+    }
+
+    public function printComment()
+    {
+        printf ("\n==========> Comment from %s", $this->comment->getAuthor()->getName());
+        printf ("\n            %s\n", $this->comment->getCommentText());
     }
 }

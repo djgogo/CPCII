@@ -15,10 +15,6 @@ class Blog
      */
     private $post;
     /**
-     * @var Comment
-     */
-    private $comment;
-    /**
      * @var array
      */
     public $permissions;
@@ -54,18 +50,6 @@ class Blog
     {
         printf ("\n-- %s : posted from %s", $this->post->getHeading(), $this->post->getAuthor()->getName());
         printf ("\n%s\n", $this->post->getBody());
-    }
-
-    public function addComment(Comment $comment)
-    {
-        $this->comment = $comment;
-        $this->printComment();
-    }
-
-    public function printComment()
-    {
-        printf ("\n==========> Comment from %s", $this->comment->getAuthor()->getName());
-        printf ("\n            %s\n", $this->comment->getCommentText());
     }
 
     public function addAuthorToPermissionList(Author $author)
