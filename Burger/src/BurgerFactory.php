@@ -3,13 +3,13 @@
 class BurgerFactory
 {
     /**
-     * @param Ingredient[] ...$ingredients
+     * @param Recipe $recipe
      * @return Burger
      */
-    public function createBurger(Ingredient ...$ingredients)
+    public function createBurger(Recipe $recipe)
     {
         $burger = new Burger();
-        foreach ($ingredients as $ingredient) {
+        foreach ($recipe as $ingredient) {
             $burger->addIngredient($ingredient);
         }
 

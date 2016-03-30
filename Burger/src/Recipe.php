@@ -1,7 +1,7 @@
 <?php
 
 
-abstract class Recipe
+abstract class Recipe implements Iterator
 {
     /**
      * @var Ingredient[]
@@ -16,11 +16,28 @@ abstract class Recipe
         $this->ingredients = $ingredients;
     }
 
-    /**
-     * @return Ingredient[]
-     */
-    public function getIngredients()
+    public function current():Ingredient
     {
-        return $this->ingredients;
+        return current($this->ingredients);
+    }
+
+    public function next()
+    {
+        return next($this->ingredients);
+    }
+
+    public function key()
+    {
+        return key($this->ingredients);
+    }
+
+    public function valid()
+    {
+        return current($this->ingredients) instanceof Ingredient;
+    }
+
+    public function rewind()
+    {
+        return reset($this->ingredients);
     }
 }
