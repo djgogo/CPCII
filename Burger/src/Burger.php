@@ -3,6 +3,8 @@
 
 class Burger
 {
+    /** @todo hier weiter */
+
     /**
      * @var Ingredient[]
      */

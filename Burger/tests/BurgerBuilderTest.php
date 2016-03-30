@@ -58,7 +58,7 @@ class BurgerFactoryTest extends PHPUnit_Framework_TestCase
             ->expects($this->at(6))
             ->method('next');
 
-        $burgerFactory = new BurgerFactory();
+        $burgerFactory = new BurgerBuilder();
         $burger = $burgerFactory->createBurger($this->recipe);
 
         $this->assertEquals(

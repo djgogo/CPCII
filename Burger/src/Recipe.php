@@ -1,43 +1,38 @@
 <?php
 
-
-abstract class Recipe implements Iterator
+abstract class Recipe
 {
     /**
-     * @var Ingredient[]
+     * @var string[]
      */
     private $ingredients;
 
     /**
-     * @param Ingredient[] ...$ingredients
+     * @var IngredientCollection
      */
-    public function __construct(Ingredient ...$ingredients)
+    private $ingredientCollection;
+
+    /**
+     * @param string[] $ingredients
+     */
+    public function __construct(array $ingredients)
     {
         $this->ingredients = $ingredients;
     }
 
-    public function current() : Ingredient
+    /**
+     * @return IngredientCollection
+     */
+    public function getIngredientCollection()
     {
-        return current($this->ingredients);
-    }
+        if ($this->ingredientCollection === null) {
+            $this->ingredientCollection = new IngredientCollection();
 
-    public function next()
-    {
-        return next($this->ingredients);
-    }
+            foreach ($this->ingredients as $ingredient) {
+                $this->ingredientCollection->add($ingredient);
+            }
+        }
 
-    public function key()
-    {
-        return key($this->ingredients);
-    }
-
-    public function valid()
-    {
-        return current($this->ingredients) instanceof Ingredient;
-    }
-
-    public function rewind()
-    {
-        return reset($this->ingredients);
+        return $this->ingredientCollection;
     }
 }
