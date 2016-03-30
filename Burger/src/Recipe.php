@@ -16,7 +16,7 @@ abstract class Recipe implements Iterator
         $this->ingredients = $ingredients;
     }
 
-    public function current():Ingredient
+    public function current() : Ingredient
     {
         return current($this->ingredients);
     }
