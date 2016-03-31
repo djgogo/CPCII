@@ -11,4 +11,12 @@ class LowerBread implements Ingredient
     {
         return 'LowerBread';
     }
+
+    /**
+     * @return Price
+     */
+    public function getPrice() : Price
+    {
+        return new Price(300);
+    }
 }

@@ -23,4 +23,18 @@ class Burger
     {
         return $this->ingredients;
     }
+
+    /**
+     * @return Price
+     */
+    public function getPrice()
+    {
+        $totalPrice = 0;
+
+        foreach ($this->ingredients as $ingredient) {
+            $totalPrice += (int) ((string) $ingredient->getPrice());
+        }
+
+        return new Price($totalPrice);
+    }
 }

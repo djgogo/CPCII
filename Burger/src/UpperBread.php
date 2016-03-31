@@ -10,4 +10,12 @@ class UpperBread implements Ingredient
     {
         return 'UpperBread';
     }
+
+    /**
+     * @return Price
+     */
+    public function getPrice() : Price
+    {
+        return new Price(300);
+    }
 }

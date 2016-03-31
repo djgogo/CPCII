@@ -10,4 +10,12 @@ class Salad implements Ingredient
     {
         return 'Salad';
     }
+
+    /**
+     * @return Price
+     */
+    public function getPrice() : Price
+    {
+        return new Price(80);
+    }
 }

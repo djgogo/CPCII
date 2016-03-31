@@ -10,4 +10,12 @@ class Patty implements Ingredient
     {
         return 'Patty';
     }
+
+    /**
+     * @return Price
+     */
+    public function getPrice() : Price
+    {
+        return new Price(500);
+    }
 }

@@ -10,4 +10,12 @@ class Cheese implements Ingredient
     {
         return 'Cheese';
     }
+
+    /**
+     * @return Price
+     */
+    public function getPrice() : Price
+    {
+        return new Price(100);
+    }
 }

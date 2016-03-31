@@ -10,4 +10,12 @@ class Sauce implements Ingredient
     {
         return 'Sauce';
     }
+
+    /**
+     * @return Price
+     */
+    public function getPrice() : Price
+    {
+        return new Price(50);
+    }
 }
