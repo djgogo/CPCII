@@ -1,16 +1,16 @@
 <?php
 
-class IngredientCollection implements Iterator
+class IngredientNameCollection implements Iterator
 {
     /**
-     * @var Ingredient[]
+     * @var array
      */
     private $ingredients = array();
 
     /**
-     * @param Ingredient $ingredient
+     * @param string $ingredient
      */
-    public function add(Ingredient $ingredient)
+    public function add($ingredient)
     {
         $this->ingredients[] = $ingredient;
     }
@@ -23,7 +23,7 @@ class IngredientCollection implements Iterator
         return count($this->ingredients) > 0;
     }
 
-    public function current() : Ingredient
+    public function current() : string
     {
         return current($this->ingredients);
     }
@@ -40,7 +40,7 @@ class IngredientCollection implements Iterator
 
     public function valid()
     {
-        return current($this->ingredients) instanceof Ingredient;
+        return is_string(current($this->ingredients));
     }
 
     public function rewind()

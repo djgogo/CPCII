@@ -8,7 +8,7 @@ class BurgerBuilderTest extends PHPUnit_Framework_TestCase
      */
     private $recipe;
     /**
-     * @var IngredientCollection
+     * @var IngredientNameCollection
      */
     private $ingredientCollection;
     /**
@@ -26,7 +26,7 @@ class BurgerBuilderTest extends PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->ingredientCollection = new IngredientCollection();
+        $this->ingredientCollection = new IngredientNameCollection();
     }
 
     public function testBuildBurgerFromRecipe()

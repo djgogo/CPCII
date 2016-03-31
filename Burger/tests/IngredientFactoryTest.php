@@ -30,14 +30,16 @@ class IngredientFactoryTest extends PHPUnit_Framework_TestCase
 
     public function provideInstance()
     {
+        $price = new Price(new Amount(5), new Currency('foo'));
+
         return [
-            [Cheese::class],
-            [Salad::class],
-            [Sauce::class],
-            [Tomato::class],
-            [Patty::class],
-            [LowerBread::class],
-            [UpperBread::class]
+            [Cheese::class, array($price)],
+            [Salad::class, array($price)],
+            [Sauce::class, array($price)],
+            [Tomato::class, array($price)],
+            [Patty::class, array($price)],
+            [LowerBread::class, array($price)],
+            [UpperBread::class, array($price)]
         ];
     }
 

@@ -1,31 +1,54 @@
 <?php
 
-
 class Price
 {
     /**
-     * @var int
+     * @var Amount
      */
-    private $price;
+    private $amount;
 
     /**
-     * @param int $price
+     * @var Currency
      */
-    public function __construct($price)
+    private $currency;
+
+    /**
+     * @param Amount $amount
+     * @param Currency $currency
+     */
+    public function __construct(Amount $amount, Currency $currency)
     {
-        $this->setPrice($price);
+        $this->amount = $amount;
+        $this->currency = $currency;
     }
 
     /**
-     * @param int $price
+     * @param Price $price
+     * @return Price
      */
-    private function setPrice($price)
+    public function add(Price $price)
     {
-        if (!is_integer($price) || $price < 0) {
-            throw new \InvalidArgumentException('invalid price "' . $price . '"');
+        if (!$this->currency->equals($price->getCurrency())) {
+            return new InvalidArgumentException('Can not add price of different currency');
         }
 
-        $this->price = (int) $price;
+        return new Price($this->amount->add($price->getAmount()), $this->currency);
+    }
+
+    /**
+     * @return Amount
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @return Currency
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
     }
 
     /**
@@ -33,6 +56,6 @@ class Price
      */
     public function __toString()
     {
-        return (string) $this->price;
+        return sprintf('%s %s', number_format($this->amount->getAmountValue() / 100, 2, '.', ''),  $this->currency->getSign());
     }
 }

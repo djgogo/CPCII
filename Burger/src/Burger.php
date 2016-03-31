@@ -4,24 +4,16 @@
 class Burger
 {
     /**
-     * @var Ingredient[]
+     * @var IngredientCollection
      */
-    private $ingredients;
+    private $ingredientCollection;
 
     /**
-     * @param array $ingredients
+     * @param IngredientCollection $ingredientCollection
      */
-    public function __construct(array $ingredients)
+    public function __construct(IngredientCollection $ingredientCollection)
     {
-        $this->ingredients = $ingredients;
-    }
-
-    /**
-     * @return Ingredient[]
-     */
-    public function getIngredients() : array
-    {
-        return $this->ingredients;
+        $this->ingredientCollection = $ingredientCollection;
     }
 
     /**
@@ -29,12 +21,20 @@ class Burger
      */
     public function getPrice()
     {
-        $totalPrice = 0;
+        $first = true;
 
-        foreach ($this->ingredients as $ingredient) {
-            $totalPrice += (int) ((string) $ingredient->getPrice());
+        $totalPrice = null;
+
+        foreach ($this->ingredientCollection as $ingredient) {
+            if ($first) {
+                $totalPrice = $ingredient->getPrice();
+                $first = false;
+                continue;
+            }
+
+            $totalPrice = $totalPrice->add($ingredient->getPrice());
         }
 
-        return new Price($totalPrice);
+        return $totalPrice;
     }
 }

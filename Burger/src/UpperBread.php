@@ -1,7 +1,6 @@
 <?php
 
-
-class UpperBread implements Ingredient
+class UpperBread extends Ingredient
 {
     /**
      * @return string
@@ -9,13 +8,5 @@ class UpperBread implements Ingredient
     public function getName() : string
     {
         return 'UpperBread';
-    }
-
-    /**
-     * @return Price
-     */
-    public function getPrice() : Price
-    {
-        return new Price(300);
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
-
-class IngredientCollectionTest extends PHPUnit_Framework_TestCase
+class IngredientNameCollectionTest extends PHPUnit_Framework_TestCase
 {
     private $ingredient1;
     private $ingredient2;
@@ -15,7 +14,7 @@ class IngredientCollectionTest extends PHPUnit_Framework_TestCase
 
     public function testAddAndRetrieveIngredients()
     {
-        $collection = new IngredientCollection();
+        $collection = new IngredientNameCollection();
 
         $collection->add($this->ingredient1);
         $collection->add($this->ingredient2);
@@ -29,7 +28,7 @@ class IngredientCollectionTest extends PHPUnit_Framework_TestCase
 
     public function testHasIngredients()
     {
-        $collection = new IngredientCollection();
+        $collection = new IngredientNameCollection();
 
         $this->assertFalse($collection->hasIngredients());
 

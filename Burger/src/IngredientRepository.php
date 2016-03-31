@@ -5,21 +5,24 @@ class IngredientRepository
     /**
      * @var array
      */
-    private $ingredients = array();
+    private $ingredients = [];
+
 
     /**
-     * @param string $ingredientClassName
+     * @param string $ingredientName
+     * @return Ingredient
      */
-    public function getIngredient($ingredientClassName)
+    public function getIngredient($ingredientName) : Ingredient
     {
-        foreach ($this->ingredients as $key => $ingredient) {
-            if ($ingredient instanceof $ingredientClassName) {
-                unset($this->ingredients[$key]);
-                return $ingredient;
-            }
+        if (!isset($this->ingredients[$ingredientName])) {
+            throw new RuntimeException(sprintf('No ingredients of type "%s" available.', $ingredientName));
         }
 
-        throw new RuntimeException(sprintf('No more ingredients of type "%s" available.', $ingredientClassName));
+        if (count($this->ingredients[$ingredientName]) === 0) {
+            throw new RuntimeException(sprintf('No more ingredients of type "%s" available.', $ingredientName));
+        }
+
+        return array_pop($this->ingredients[$ingredientName]);
     }
 
     /**
@@ -27,6 +30,6 @@ class IngredientRepository
      */
     public function addIngredient(Ingredient $ingredient)
     {
-        $this->ingredients[] = $ingredient;
+        $this->ingredients[$ingredient->getName()][] = $ingredient;
     }
 }

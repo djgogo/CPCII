@@ -3,9 +3,12 @@
 
 class CheeseburgerRecipe extends Recipe
 {
-    public function __construct()
+    /**
+     * @return array
+     */
+    protected function getIngredients() : array
     {
-        parent::__construct([
+        return [
             'LowerBread',
             'Sauce',
             'Salad',
@@ -13,6 +16,6 @@ class CheeseburgerRecipe extends Recipe
             'Cheese',
             'Tomato',
             'UpperBread'
-        ]);
+        ];
     }
 }

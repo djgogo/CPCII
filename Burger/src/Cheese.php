@@ -1,7 +1,6 @@
 <?php
 
-
-class Cheese implements Ingredient
+class Cheese extends Ingredient
 {
     /**
      * @return string
@@ -9,13 +8,5 @@ class Cheese implements Ingredient
     public function getName() : string
     {
         return 'Cheese';
-    }
-
-    /**
-     * @return Price
-     */
-    public function getPrice() : Price
-    {
-        return new Price(100);
     }
 }

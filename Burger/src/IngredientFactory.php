@@ -3,39 +3,67 @@
 
 class IngredientFactory
 {
-    public function createCheese()
+    /**
+     * @param Price $price
+     * @return Cheese
+     */
+    public function createCheese(Price $price) : Cheese
     {
-        return new Cheese;
+        return new Cheese($price);
     }
 
-    public function createSalad()
+    /**
+     * @param Price $price
+     * @return Salad
+     */
+    public function createSalad(Price $price) : Salad
     {
-        return new Salad();
+        return new Salad($price);
     }
 
-    public function createTomato()
+    /**
+     * @param Price $price
+     * @return Tomato
+     */
+    public function createTomato(Price $price) : Tomato
     {
-        return new Tomato();
+        return new Tomato($price);
     }
 
-    public function createLowerBread()
+    /**
+     * @param Price $price
+     * @return LowerBread
+     */
+    public function createLowerBread(Price $price) : LowerBread
     {
-        return new LowerBread();
+        return new LowerBread($price);
     }
 
-    public function createUpperBread()
+    /**
+     * @param Price $price
+     * @return UpperBread
+     */
+    public function createUpperBread(Price $price) : UpperBread
     {
-        return new UpperBread();
+        return new UpperBread($price);
     }
 
-    public function createPatty()
+    /**
+     * @param Price $price
+     * @return Patty
+     */
+    public function createPatty(Price $price) : Patty
     {
-        return new Patty();
+        return new Patty($price);
     }
 
-    public function createSauce()
+    /**
+     * @param Price $price
+     * @return Sauce
+     */
+    public function createSauce(Price $price) : Sauce
     {
-        return new Sauce();
+        return new Sauce($price);
     }
 
 }

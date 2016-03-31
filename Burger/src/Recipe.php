@@ -3,36 +3,32 @@
 abstract class Recipe
 {
     /**
-     * @var string[]
+     * @var IngredientNameCollection
      */
-    private $ingredients;
+    private $ingredientNameCollection;
 
     /**
-     * @var IngredientCollection
+     * @param IngredientNameCollection $ingredientNameCollection
      */
-    private $ingredientCollection;
-
-    /**
-     * @param string[] $ingredients
-     */
-    public function __construct(array $ingredients)
+    public function __construct(IngredientNameCollection $ingredientNameCollection)
     {
-        $this->ingredients = $ingredients;
+        $this->ingredientNameCollection = $ingredientNameCollection;
     }
 
     /**
-     * @return IngredientCollection
+     * @return IngredientNameCollection
      */
-    public function getIngredientCollection()
+    public function getIngredientNameCollection()
     {
-        if ($this->ingredientCollection === null) {
-            $this->ingredientCollection = new IngredientCollection();
-
-            foreach ($this->ingredients as $ingredient) {
-                $this->ingredientCollection->add($ingredient);
-            }
+        foreach ($this->getIngredients() as $ingredient) {
+            $this->ingredientNameCollection->add($ingredient);
         }
 
-        return $this->ingredientCollection;
+        return $this->ingredientNameCollection;
     }
+
+    /**
+     * @return array
+     */
+    abstract protected function getIngredients() : array;
 }

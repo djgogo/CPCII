@@ -3,15 +3,18 @@
 
 class HamburgerRecipe extends Recipe
 {
-    public function __construct()
+    /**
+     * @return array
+     */
+    protected function getIngredients() : array
     {
-        parent::__construct([
+        return [
             'LowerBread',
             'Sauce',
             'Salad',
             'Patty',
             'Tomato',
             'UpperBread'
-        ]);
+        ];
     }
 }

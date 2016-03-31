@@ -1,51 +1,41 @@
 <?php
 require_once 'autoload.php';
 
+$collectionFactory = new CollectionFactory();
 $ingredientFactory = new IngredientFactory();
 $ingredientRepository = new IngredientRepository();
-$ingredientLocator = new IngredientLocator($ingredientRepository);
 
-$ingredientRepository->addIngredient($ingredientFactory->createSalad());
-$ingredientRepository->addIngredient($ingredientFactory->createSalad());
-$ingredientRepository->addIngredient($ingredientFactory->createSauce());
-$ingredientRepository->addIngredient($ingredientFactory->createSauce());
-$ingredientRepository->addIngredient($ingredientFactory->createLowerBread());
-$ingredientRepository->addIngredient($ingredientFactory->createLowerBread());
-$ingredientRepository->addIngredient($ingredientFactory->createUpperBread());
-$ingredientRepository->addIngredient($ingredientFactory->createUpperBread());
-$ingredientRepository->addIngredient($ingredientFactory->createTomato());
-$ingredientRepository->addIngredient($ingredientFactory->createTomato());
-$ingredientRepository->addIngredient($ingredientFactory->createPatty());
-$ingredientRepository->addIngredient($ingredientFactory->createPatty());
-$ingredientRepository->addIngredient($ingredientFactory->createCheese());
+$euro = new Currency('€');
 
-$burgerBuilder = new BurgerBuilder($ingredientLocator);
-$priceFormatter = new PriceFormatter();
+$ingredientRepository->addIngredient($ingredientFactory->createSalad(new Price(new Amount(80), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createSalad(new Price(new Amount(80), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createSauce(new Price(new Amount(50), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createSauce(new Price(new Amount(50), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createLowerBread(new Price(new Amount(300), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createLowerBread(new Price(new Amount(300), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createUpperBread(new Price(new Amount(300), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createUpperBread(new Price(new Amount(300), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createTomato(new Price(new Amount(50), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createTomato(new Price(new Amount(50), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createPatty(new Price(new Amount(500), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createPatty(new Price(new Amount(500), $euro)));
+$ingredientRepository->addIngredient($ingredientFactory->createCheese(new Price(new Amount(100), $euro)));
 
-$hamburger = $burgerBuilder->build(new HamburgerRecipe());
-$cheeseburger = $burgerBuilder->build(new CheeseburgerRecipe());
+$burgerBuilder = new BurgerBuilder($ingredientRepository, $collectionFactory);
 
-echo "Hamburger:\n" . burgerStringRepresentation($hamburger, $priceFormatter);
-echo "Cheeseburger:\n" . burgerStringRepresentation($cheeseburger, $priceFormatter);
+$hamburger = $burgerBuilder->build(new HamburgerRecipe($collectionFactory->createIngredientNameCollection()));
+$cheeseburger = $burgerBuilder->build(new CheeseburgerRecipe($collectionFactory->createIngredientNameCollection()));
+
+echo "Hamburger:\n" . burgerStringRepresentation($hamburger);
+echo "Cheeseburger:\n" . burgerStringRepresentation($cheeseburger);
 
 /**
  * @param Burger $burger
- * @param PriceFormatter $priceFormatter
  * @return string
  */
-function burgerStringRepresentation(Burger $burger, PriceFormatter $priceFormatter)
+function burgerStringRepresentation(Burger $burger)
 {
-    $representation = "-- Zutaten: \n";
-
-    foreach ($burger->getIngredients() as $ingredient) {
-        $representation .= sprintf(
-            "-- -- %s: %s\n",
-            $ingredient->getName(),
-            $priceFormatter->format((string)$ingredient->getPrice())
-        );
-    }
-
-    $representation .= sprintf("-- Totalpreis: %s\n", $priceFormatter->format((string)$burger->getPrice()));
+    $representation = sprintf("-- Preis: %s\n", (string) $burger->getPrice());
 
     return $representation;
 }
