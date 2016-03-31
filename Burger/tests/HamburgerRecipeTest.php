@@ -8,16 +8,16 @@ class HamburgerRecipeTest extends PHPUnit_Framework_TestCase
         $recipe = new HamburgerRecipe();
 
         $expected = [
-            LowerBread::class,
-            Sauce::class,
-            Salad::class,
-            Patty::class,
-            Tomato::class,
-            UpperBread::class
+            'LowerBread',
+            'Sauce',
+            'Salad',
+            'Patty',
+            'Tomato',
+            'UpperBread'
         ];
 
-        foreach ($recipe as $i => $ingredient) {
-            $this->assertEquals(get_class($ingredient), $expected[$i]);
+        foreach ($recipe->getIngredientCollection() as $key => $ingredient) {
+            $this->assertEquals($expected[$key], $ingredient);
         }
     }
 }

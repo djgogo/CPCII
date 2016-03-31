@@ -3,19 +3,17 @@
 
 class Burger
 {
-    /** @todo hier weiter */
-
     /**
      * @var Ingredient[]
      */
     private $ingredients;
 
     /**
-     * @param Ingredient $ingredient
+     * @param array $ingredients
      */
-    public function addIngredient(Ingredient $ingredient)
+    public function __construct(array $ingredients)
     {
-        $this->ingredients[] = $ingredient;
+        $this->ingredients = $ingredients;
     }
 
     /**

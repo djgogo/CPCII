@@ -19,9 +19,7 @@ class BurgerTest extends PHPUnit_Framework_TestCase
 
     public function testAddIngredientAndGetIngredients()
     {
-        $burger = new Burger();
-        $burger->addIngredient($this->ingredient1);
-        $burger->addIngredient($this->ingredient2);
+        $burger = new Burger([$this->ingredient1, $this->ingredient2]);
 
         $this->assertEquals(
             [$this->ingredient1, $this->ingredient2],

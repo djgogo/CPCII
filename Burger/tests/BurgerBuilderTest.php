@@ -1,69 +1,84 @@
 <?php
 
 
-class BurgerFactoryTest extends PHPUnit_Framework_TestCase
+class BurgerBuilderTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var Recipe
      */
     private $recipe;
+    /**
+     * @var IngredientCollection
+     */
+    private $ingredientCollection;
+    /**
+     * @var IngredientLocator
+     */
+    private $ingredientLocator;
 
     public function setUp()
     {
         $this->recipe = $this->getMockBuilder(Recipe::class)
             ->disableOriginalConstructor()
             ->getMock();
+
+        $this->ingredientLocator = $this->getMockBuilder(IngredientLocator::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->ingredientCollection = new IngredientCollection();
     }
 
-    public function testCreateBurger()
+    public function testBuildBurgerFromRecipe()
     {
-        $ingredients = [
-            $this->getMockBuilder(Ingredient::class)->disableOriginalConstructor()->getMock(),
-            $this->getMockBuilder(Ingredient::class)->disableOriginalConstructor()->getMock()
-        ];
+        $this->ingredientCollection->add('LowerBread');
+        $this->ingredientCollection->add('Cheese');
+        $this->ingredientCollection->add('UpperBread');
 
-        $this->recipe
+        $lowerBread = new LowerBread();
+        $cheese = new Cheese();
+        $upperBread = new UpperBread();
+
+        $this->ingredientLocator
             ->expects($this->at(0))
-            ->method('rewind');
+            ->method('getIngredient')
+            ->will($this->returnValue($lowerBread));
 
-        // Ingredient 1
-
-        $this->recipe
+        $this->ingredientLocator
             ->expects($this->at(1))
-            ->method('valid')
-            ->will($this->returnValue(true));
+            ->method('getIngredient')
+            ->will($this->returnValue($cheese));
 
-        $this->recipe
+        $this->ingredientLocator
             ->expects($this->at(2))
-            ->method('current')
-            ->will($this->returnValue($ingredients[0]));
+            ->method('getIngredient')
+            ->will($this->returnValue($upperBread));
 
         $this->recipe
-            ->expects($this->at(3))
-            ->method('next');
+            ->expects($this->once())
+            ->method('getIngredientCollection')
+            ->will($this->returnValue($this->ingredientCollection));
 
-        // Ingredient 2
-
-        $this->recipe
-            ->expects($this->at(4))
-            ->method('valid')
-            ->will($this->returnValue(true));
-
-        $this->recipe
-            ->expects($this->at(5))
-            ->method('current')
-            ->will($this->returnValue($ingredients[1]));
-
-        $this->recipe
-            ->expects($this->at(6))
-            ->method('next');
-
-        $burgerFactory = new BurgerBuilder();
-        $burger = $burgerFactory->createBurger($this->recipe);
+        $burgerBuilder = new BurgerBuilder($this->ingredientLocator);
+        $burger = $burgerBuilder->build($this->recipe);
 
         $this->assertEquals(
-            $ingredients,
+            [$lowerBread, $cheese, $upperBread],
             $burger->getIngredients()
         );
+    }
+
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testBuildBurgerFromEmptyRecipe()
+    {
+        $this->recipe
+            ->expects($this->once())
+            ->method('getIngredientCollection')
+            ->will($this->returnValue($this->ingredientCollection));
+
+        $burgerBuilder = new BurgerBuilder($this->ingredientLocator);
+        $burgerBuilder->build($this->recipe);
     }
 }

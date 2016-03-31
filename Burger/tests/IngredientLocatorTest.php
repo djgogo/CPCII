@@ -2,12 +2,12 @@
 
 class IngredientLocatorTest extends PHPUnit_Framework_TestCase
 {
-    private $ingredientFactory;
+    private $ingredientRepository;
     private $ingredientLocator;
 
     public function setUp()
     {
-        $this->ingredientFactory = $this->getMockBuilder(IngredientFactory::class)
+        $this->ingredientRepository = $this->getMockBuilder(IngredientRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
     }
@@ -19,16 +19,30 @@ class IngredientLocatorTest extends PHPUnit_Framework_TestCase
      */
     public function testGetIngredient($className, $ingredientName)
     {
-        $this->ingredientFactory
+        $this->ingredientRepository
             ->expects($this->once())
-            ->method('create' . $ingredientName)
+            ->method('getIngredient')
+            ->with($className)
             ->will($this->returnValue(new $className));
 
-        $this->ingredientLocator = new IngredientLocator($this->ingredientFactory);
+        $this->ingredientLocator = new IngredientLocator($this->ingredientRepository);
 
         $ingredient = $this->ingredientLocator->getIngredient($ingredientName);
 
         $this->assertInstanceOf($className, $ingredient);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testGetIngredientWithInvalidIngredientName()
+    {
+        $this->ingredientRepository
+            ->expects($this->never())
+            ->method('getIngredient');
+
+        $this->ingredientLocator = new IngredientLocator($this->ingredientRepository);
+        $this->ingredientLocator->getIngredient('FooBar');
     }
 
     public function provideInstance()

@@ -23,21 +23,21 @@ class IngredientLocator
     {
         switch ($name) {
             case 'Cheese':
-                return $this->ingredientRepository->getCheese();
+                return $this->ingredientRepository->getIngredient(Cheese::class);
             case 'Salad':
-                return $this->ingredientRepository->getSalad();
+                return $this->ingredientRepository->getIngredient(Salad::class);
             case 'Tomato':
-                return $this->ingredientRepository->getTomato();
+                return $this->ingredientRepository->getIngredient(Tomato::class);
             case 'LowerBread':
-                return $this->ingredientRepository->getLowerBread();
+                return $this->ingredientRepository->getIngredient(LowerBread::class);
             case 'UpperBread':
-                return $this->ingredientRepository->getUpperBread();
+                return $this->ingredientRepository->getIngredient(UpperBread::class);
             case 'Patty':
-                return $this->ingredientRepository->getPatty();
+                return $this->ingredientRepository->getIngredient(Patty::class);
             case 'Sauce':
-                return $this->ingredientRepository->getSauce();
+                return $this->ingredientRepository->getIngredient(Sauce::class);
             default:
-                throw new \InvalidArgumentException('Unknown ingredient type');
+                throw new InvalidArgumentException('Unknown ingredient type');
         }
     }
 }

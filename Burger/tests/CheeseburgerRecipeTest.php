@@ -8,17 +8,17 @@ class CheeseburgerRecipeTest extends PHPUnit_Framework_TestCase
         $recipe = new CheeseburgerRecipe();
 
         $expected = [
-            LowerBread::class,
-            Sauce::class,
-            Salad::class,
-            Patty::class,
-            Cheese::class,
-            Tomato::class,
-            UpperBread::class,
+            'LowerBread',
+            'Sauce',
+            'Salad',
+            'Patty',
+            'Cheese',
+            'Tomato',
+            'UpperBread'
         ];
 
-        foreach ($recipe as $key => $ingredient) {
-            $this->assertEquals($expected[$key], get_class($ingredient));
+        foreach ($recipe->getIngredientCollection() as $key => $ingredient) {
+            $this->assertEquals($expected[$key], $ingredient);
         }
     }
 
