@@ -32,7 +32,7 @@ class Price
             return new InvalidArgumentException('Can not add price of different currency');
         }
 
-        return new Price($this->amount->add($price->getAmount()), $this->currency);
+        return new static($this->amount->add($price->getAmount()), $this->currency);
     }
 
     /**

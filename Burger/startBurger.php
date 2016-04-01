@@ -1,7 +1,6 @@
 <?php
 require_once 'autoload.php';
 
-$collectionFactory = new CollectionFactory();
 $ingredientFactory = new IngredientFactory();
 $ingredientRepository = new IngredientRepository();
 
@@ -21,21 +20,14 @@ $ingredientRepository->addIngredient($ingredientFactory->createPatty(new Price(n
 $ingredientRepository->addIngredient($ingredientFactory->createPatty(new Price(new Amount(500), $euro)));
 $ingredientRepository->addIngredient($ingredientFactory->createCheese(new Price(new Amount(100), $euro)));
 
-$burgerBuilder = new BurgerBuilder($ingredientRepository, $collectionFactory);
+$burgerBuilder = new BurgerBuilder($ingredientRepository);
 
-$hamburger = $burgerBuilder->build(new HamburgerRecipe($collectionFactory->createIngredientNameCollection()));
-$cheeseburger = $burgerBuilder->build(new CheeseburgerRecipe($collectionFactory->createIngredientNameCollection()));
+$hamburger = $burgerBuilder->build(new HamburgerRecipe(new IngredientNameCollection));
+$cheeseburger = $burgerBuilder->build(new CheeseburgerRecipe(new IngredientNameCollection));
 
-echo "Hamburger:\n" . burgerStringRepresentation($hamburger);
-echo "Cheeseburger:\n" . burgerStringRepresentation($cheeseburger);
+$hamburgerViewModel = new BurgerViewModel('Hamburger', (string) $hamburger->getPrice($euro));
+$cheeseburgerViewModel = new BurgerViewModel('Cheeseburger', (string) $cheeseburger->getPrice($euro));
+$burgerConsoleRenderer = new BurgerConsoleRenderer();
 
-/**
- * @param Burger $burger
- * @return string
- */
-function burgerStringRepresentation(Burger $burger)
-{
-    $representation = sprintf("-- Preis: %s\n", (string) $burger->getPrice());
-
-    return $representation;
-}
+echo $burgerConsoleRenderer->render($hamburgerViewModel);
+echo $burgerConsoleRenderer->render($cheeseburgerViewModel);

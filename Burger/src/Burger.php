@@ -1,37 +1,29 @@
 <?php
 
-
 class Burger
 {
     /**
-     * @var IngredientCollection
+     * @var Ingredient[]
      */
-    private $ingredientCollection;
+    private $ingredients;
 
     /**
-     * @param IngredientCollection $ingredientCollection
+     * @param Ingredient[] $ingredients
      */
-    public function __construct(IngredientCollection $ingredientCollection)
+    public function __construct(Ingredient ...$ingredients)
     {
-        $this->ingredientCollection = $ingredientCollection;
+        $this->ingredients = $ingredients;
     }
 
     /**
+     * @param Currency $currency
      * @return Price
      */
-    public function getPrice()
+    public function getPrice(Currency $currency)
     {
-        $first = true;
+        $totalPrice = new Price(new Amount(0), $currency);
 
-        $totalPrice = null;
-
-        foreach ($this->ingredientCollection as $ingredient) {
-            if ($first) {
-                $totalPrice = $ingredient->getPrice();
-                $first = false;
-                continue;
-            }
-
+        foreach ($this->ingredients as $ingredient) {
             $totalPrice = $totalPrice->add($ingredient->getPrice());
         }
 

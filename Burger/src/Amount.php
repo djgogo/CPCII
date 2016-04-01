@@ -40,12 +40,12 @@ class Amount
     }
 
     /**
-     * @param Amount $amount
+     * @param Amount $amount-
      * @return Amount
      */
     public function add(Amount $amount)
     {
-        return new Amount($this->amount + $amount->getAmountValue());
+        return new static($this->amount + $amount->getAmountValue());
     }
 
     /**

@@ -8,19 +8,12 @@ class BurgerBuilder
     private $ingredientRepository;
 
     /**
-     * @var CollectionFactory
-     */
-    private $collectionFactory;
-
-    /**
      * BurgerBuilder constructor.
      * @param IngredientRepository $ingredientRepository
-     * @param CollectionFactory $collectionFactory
      */
-    public function __construct(IngredientRepository $ingredientRepository, CollectionFactory $collectionFactory)
+    public function __construct(IngredientRepository $ingredientRepository)
     {
         $this->ingredientRepository = $ingredientRepository;
-        $this->collectionFactory    = $collectionFactory;
     }
 
     /**
@@ -35,12 +28,12 @@ class BurgerBuilder
             throw new RuntimeException('No ingredients in collection, cannot build a burger');
         }
 
-        $ingredientCollection = $this->collectionFactory->createIngredientCollection();
+        $ingredients = [];
 
         foreach ($ingredientNameCollection as $ingredient) {
-            $ingredientCollection->add($this->ingredientRepository->getIngredient($ingredient));
+            $ingredients[] = $this->ingredientRepository->getIngredient($ingredient);
         }
 
-        return new Burger($ingredientCollection);
+        return new Burger(...$ingredients);
     }
 }
