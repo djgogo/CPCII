@@ -1,5 +1,5 @@
 <?php
-require_once 'autoload.php';
+require_once __DIR__ . '/bootstrap.php';
 
 $ingredientFactory = new IngredientFactory();
 $ingredientRepository = new IngredientRepository();
@@ -28,9 +28,25 @@ $cheeseburger = $burgerBuilder->build(new CheeseburgerRecipe);
 
 $hamburgerViewModel = new BurgerViewModel($hamburger->getName(), $priceTextRepresentationBuilder->build($hamburger->getPrice($euro)));
 $cheeseburgerViewModel = new BurgerViewModel($cheeseburger->getName(), $priceTextRepresentationBuilder->build($cheeseburger->getPrice($euro)));
-$burgerConsoleRenderer = new BurgerTextRenderer();
 
-echo $burgerConsoleRenderer->render($hamburgerViewModel);
-echo $burgerConsoleRenderer->render($cheeseburgerViewModel);
+//xml renderer creates burger-xml from burger view model
+$burgerXmlRenderer = new BurgerXmlRenderer();
 
+//xsl template to transform from burger-xml to html
+$burgerDetailPageTemplate = new \TheSeer\fDOM\fDOMDocument();
+$burgerDetailPageTemplate->loadXML(file_get_contents(__DIR__ . '/templates/burgerDetailPage.xsl'));
 
+//the actual class that uses the template and a xsl processor to create the html
+$xslRenderer = new XslRenderer($burgerDetailPageTemplate, new \TheSeer\fXSL\fXSLTProcessor());
+
+$hamburgerDom = new \TheSeer\fDOM\fDOMDocument();
+$hamburgerDom->loadXML($burgerXmlRenderer->render($hamburgerViewModel));
+
+$cheeseburgerDom = new \TheSeer\fDOM\fDOMDocument();
+$cheeseburgerDom->loadXML($burgerXmlRenderer->render($cheeseburgerViewModel));
+
+$hamburgerDetailPageHtml = $xslRenderer->render($hamburgerDom);
+$cheeseburgerDetailPageHtml = $xslRenderer->render($cheeseburgerDom);
+
+echo $hamburgerDetailPageHtml->saveHTML();
+echo $cheeseburgerDetailPageHtml->saveHTML();
