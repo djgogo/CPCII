@@ -17,4 +17,9 @@ class HamburgerRecipe extends Recipe
             'UpperBread'
         ];
     }
+
+    public function getBurgerName() : string
+    {
+        return 'Hamburger';
+    }
 }

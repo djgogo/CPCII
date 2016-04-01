@@ -1,7 +1,7 @@
 <?php
 
 
-class BurgerConsoleRenderer implements BurgerRendererInterface
+class BurgerTextRenderer implements BurgerRendererInterface
 {
     /**
      * @param BurgerViewModel $viewModel

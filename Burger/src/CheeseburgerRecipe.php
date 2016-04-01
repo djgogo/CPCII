@@ -19,5 +19,9 @@ class CheeseburgerRecipe extends Recipe
         ];
     }
 
+    public function getBurgerName() : string
+    {
+        return 'Cheeseburger';
+    }
 
 }

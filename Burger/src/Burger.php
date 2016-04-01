@@ -6,13 +6,19 @@ class Burger
      * @var Ingredient[]
      */
     private $ingredients;
+    /**
+     * @var string
+     */
+    private $name;
 
     /**
+     * @param string $name
      * @param Ingredient[] $ingredients
      */
-    public function __construct(Ingredient ...$ingredients)
+    public function __construct(string $name, Ingredient ...$ingredients)
     {
         $this->ingredients = $ingredients;
+        $this->name = $name;
     }
 
     /**
@@ -28,5 +34,10 @@ class Burger
         }
 
         return $totalPrice;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 }

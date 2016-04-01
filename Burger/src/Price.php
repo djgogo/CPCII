@@ -50,12 +50,4 @@ class Price
     {
         return $this->currency;
     }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return sprintf('%s %s', number_format($this->amount->getAmountValue() / 100, 2, '.', ''),  $this->currency->getSign());
-    }
 }

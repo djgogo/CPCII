@@ -22,7 +22,7 @@ class BurgerBuilder
      */
     public function build(Recipe $recipe)
     {
-        $ingredientNameCollection = $recipe->getIngredientNameCollection();
+        $ingredientNameCollection = $recipe->getIngredientNames();
 
         if (!$ingredientNameCollection->hasIngredients()) {
             throw new RuntimeException('No ingredients in collection, cannot build a burger');
@@ -34,6 +34,6 @@ class BurgerBuilder
             $ingredients[] = $this->ingredientRepository->getIngredient($ingredient);
         }
 
-        return new Burger(...$ingredients);
+        return new Burger($recipe->getBurgerName(), ...$ingredients);
     }
 }

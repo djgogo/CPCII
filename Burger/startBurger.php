@@ -21,13 +21,16 @@ $ingredientRepository->addIngredient($ingredientFactory->createPatty(new Price(n
 $ingredientRepository->addIngredient($ingredientFactory->createCheese(new Price(new Amount(100), $euro)));
 
 $burgerBuilder = new BurgerBuilder($ingredientRepository);
+$priceTextRepresentationBuilder = new PriceTextRepresentationBuilder(new PriceFormatter());
 
-$hamburger = $burgerBuilder->build(new HamburgerRecipe(new IngredientNameCollection));
-$cheeseburger = $burgerBuilder->build(new CheeseburgerRecipe(new IngredientNameCollection));
+$hamburger = $burgerBuilder->build(new HamburgerRecipe);
+$cheeseburger = $burgerBuilder->build(new CheeseburgerRecipe);
 
-$hamburgerViewModel = new BurgerViewModel('Hamburger', (string) $hamburger->getPrice($euro));
-$cheeseburgerViewModel = new BurgerViewModel('Cheeseburger', (string) $cheeseburger->getPrice($euro));
-$burgerConsoleRenderer = new BurgerConsoleRenderer();
+$hamburgerViewModel = new BurgerViewModel($hamburger->getName(), $priceTextRepresentationBuilder->build($hamburger->getPrice($euro)));
+$cheeseburgerViewModel = new BurgerViewModel($cheeseburger->getName(), $priceTextRepresentationBuilder->build($cheeseburger->getPrice($euro)));
+$burgerConsoleRenderer = new BurgerTextRenderer();
 
 echo $burgerConsoleRenderer->render($hamburgerViewModel);
 echo $burgerConsoleRenderer->render($cheeseburgerViewModel);
+
+

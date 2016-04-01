@@ -17,7 +17,7 @@ class CheeseburgerRecipeTest extends PHPUnit_Framework_TestCase
             'UpperBread'
         ];
 
-        foreach ($recipe->getIngredientNameCollection() as $key => $ingredient) {
+        foreach ($recipe->getIngredientNames() as $key => $ingredient) {
             $this->assertEquals($expected[$key], $ingredient);
         }
     }
