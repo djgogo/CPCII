@@ -6,7 +6,7 @@
     <xsl:output encoding="UTF-8" indent="yes" method="xml"/>
 
     <xsl:template match="burger:burger">
-        <html xsl:version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <html>
             <body>
                 <h1>Burger Detail Seite</h1>
 

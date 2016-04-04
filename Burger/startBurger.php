@@ -40,9 +40,8 @@ $burgerDetailPageTemplate->loadXML(file_get_contents(__DIR__ . '/templates/burge
 $xslRenderer = new XslRenderer($burgerDetailPageTemplate, new \TheSeer\fXSL\fXSLTProcessor());
 
 $hamburgerDom = new \TheSeer\fDOM\fDOMDocument();
-$hamburgerDom->loadXML($burgerXmlRenderer->render($hamburgerViewModel));
-
 $cheeseburgerDom = new \TheSeer\fDOM\fDOMDocument();
+$hamburgerDom->loadXML($burgerXmlRenderer->render($hamburgerViewModel));
 $cheeseburgerDom->loadXML($burgerXmlRenderer->render($cheeseburgerViewModel));
 
 $hamburgerDetailPageHtml = $xslRenderer->render($hamburgerDom);

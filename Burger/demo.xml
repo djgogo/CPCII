@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<burger xmlns="http://burger.com/burger">
+    <name>Hamburger</name>
+    <price>12.80 €</price>
+</burger>
