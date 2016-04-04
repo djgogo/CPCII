@@ -1,5 +1,9 @@
 src/a/autoload.php
 src/b/autoload.php
 src/c/autoload.php
+src/d/autoload.php
+src/e/autoload.php
+src/f/autoload.php
+src/g/autoload.php
 tests/autoload.php
 build/*

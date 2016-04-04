@@ -19,6 +19,10 @@ class Blog
      */
     public $permissions;
 
+    /**
+     * Blog constructor.
+     * @param Author $author
+     */
     public function __construct(Author $author)
     {
         $this->author = $author;

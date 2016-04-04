@@ -16,6 +16,10 @@ class Comment
      */
     private $commentComment;
 
+    /**
+     * Comment constructor.
+     * @param Author $author
+     */
     public function __construct(Author $author)
     {
         $this->author = $author;
