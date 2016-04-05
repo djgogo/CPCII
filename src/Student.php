@@ -23,4 +23,12 @@ class Student
     {
         return $this->enrollmentNumber;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->enrollmentNumber;
+    }
 }

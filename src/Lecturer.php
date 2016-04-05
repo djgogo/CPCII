@@ -24,4 +24,12 @@ class Lecturer
     {
         return $this->staffId;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->staffId;
+    }
 }

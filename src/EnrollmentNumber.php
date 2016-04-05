@@ -4,38 +4,33 @@
 class EnrollmentNumber
 {
     /**
-     * @var int
+     * @var string
      */
     private $enrollmentNumber;
 
     /**
-     * @param int $enrollmentNumber
+     * @param string $enrollmentNumber
      */
-    public function __construct($enrollmentNumber)
+    public function __construct($enrollmentNumber = null)
     {
-        $this->ensureEnrollmentNumberIsInteger($enrollmentNumber);
-        $this->ensureEnrollmentNumberIsBiggerThanZero($enrollmentNumber);
-
-        $this->enrollmentNumber = $enrollmentNumber;
-    }
-
-    /**
-     * @param $enrollmentNumber
-     */
-    private function ensureEnrollmentNumberIsInteger($enrollmentNumber)
-    {
-        if (!is_integer($enrollmentNumber)) {
-            throw new \InvalidArgumentException('Enrollment Number was not integer: ' . $enrollmentNumber);
+        if ($enrollmentNumber !== null) {
+            $this->enrollmentNumber = $enrollmentNumber;
+        } else {
+            $this->setUniqueEnrollmentNumberValue();
         }
     }
 
-    /**
-     * @param int $enrollmentNumber
-     */
-    private function ensureEnrollmentNumberIsBiggerThanZero($enrollmentNumber)
+    private function setUniqueEnrollmentNumberValue()
     {
-        if ($enrollmentNumber < 0) {
-            throw new \InvalidArgumentException('Enrollment Number was lower than zero: ' . $enrollmentNumber);
-        }
+        $source = uniqid(mt_rand(0, PHP_INT_MAX), true);
+        $this->enrollmentNumber = sha1(hash('sha512', $source, true));
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->enrollmentNumber;
     }
 }

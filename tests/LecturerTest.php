@@ -1,12 +1,33 @@
 <?php
 
-
+/**
+ * @covers Lecturer
+ * @uses StuffId
+ */
 class LecturerTest extends PHPUnit_Framework_TestCase
 {
-    public function testGetGetStuffIdWorks()
+    /**
+     * @var Lecturer
+     */
+    private $lecturer;
+    /**
+     * @var StuffId
+     */
+    private $stuffId;
+
+    public function setUp()
     {
-        $newId = new StuffId(1);
-        $lecturer = new Lecturer($newId);
-        $this->assertEquals($newId, $lecturer->getStuffId());
+        $this->stuffId = new StuffId(12345);
+        $this->lecturer = new Lecturer($this->stuffId);
+    }
+
+    public function testGetStuffIdWorks()
+    {
+        $this->assertEquals($this->stuffId, $this->lecturer->getStuffId());
+    }
+
+    public function testLecturerConvertionToStringWorks()
+    {
+        $this->assertSame('12345', (string)$this->stuffId);
     }
 }

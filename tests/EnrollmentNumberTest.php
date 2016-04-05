@@ -1,20 +1,23 @@
 <?php
 
+/**
+ * @covers EnrollmentNumber
+ */
 class EnrollmentNumberTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testEnrollmentNumberIsNotIntegerThrowsException()
+    public function testConstructorCallsInternalMethod()
     {
-        new EnrollmentNumber('a7');
+        $enrollmentNumber = new EnrollmentNumber('123456g');
+
+        $this->assertEquals('123456g', (string)$enrollmentNumber);
+
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testEnrollmentNumberIsNotBiggerThanZeroThrowsException()
+    public function testConstructorIfEnrollmentNumberIsNullWorks()
     {
-        new EnrollmentNumber(-2);
+        $enrollmentNumber = new EnrollmentNumber();
+
+        $this->assertNotNull((string)$enrollmentNumber);
+
     }
 }
