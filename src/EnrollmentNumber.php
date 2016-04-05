@@ -11,7 +11,7 @@ class EnrollmentNumber
     /**
      * @param string $enrollmentNumber
      */
-    public function __construct($enrollmentNumber = null)
+    public function __construct(string $enrollmentNumber = null)
     {
         if ($enrollmentNumber !== null) {
             $this->enrollmentNumber = $enrollmentNumber;

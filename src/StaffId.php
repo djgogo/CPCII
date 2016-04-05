@@ -11,23 +11,12 @@ class StaffId
     /**
      * @param int $staffId
      */
-    public function __construct($staffId)
+    public function __construct(int $staffId)
     {
-        $this->ensureStuffIdIsInteger($staffId);
         $this->ensureStuffIdNumberIsBiggerThanZero($staffId);
         $this->ensureStuffIdHasTheRightLength($staffId);
 
         $this->staffId = $staffId;
-    }
-
-    /**
-     * @param $staffId
-     */
-    private function ensureStuffIdIsInteger($staffId)
-    {
-        if (!is_integer($staffId)) {
-            throw new \InvalidArgumentException('Stuff Id was not integer: ' . $staffId);
-        }
     }
 
     /**

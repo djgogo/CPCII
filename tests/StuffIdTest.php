@@ -19,14 +19,6 @@ class StuffIdTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testStaffIdIsNotIntegerThrowsException()
-    {
-        new StaffId('ae47');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testStaffIdIsNotBiggerThanZeroThrowsException()
     {
         new StaffId(-10);

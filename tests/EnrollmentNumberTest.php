@@ -5,7 +5,7 @@
  */
 class EnrollmentNumberTest extends PHPUnit_Framework_TestCase
 {
-    public function testConstructorCallsInternalMethod()
+    public function testConstructorWithGivenEnrollmentNumber()
     {
         $enrollmentNumber = new EnrollmentNumber('123456g');
 
