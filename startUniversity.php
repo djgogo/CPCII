@@ -2,10 +2,10 @@
 require_once __DIR__ . '/bootstrap.php';
 
 $university = new University('Cambridge');
-$stuffId = $university->generateRandomNumericFiveCharacterStuffId();
+$stuffId = $university->generateRandomNumericFiveCharacterStaffId();
 $lecturer = New Lecturer($stuffId);
 
-printf ("\nLecturer: %s got his Stuff-Id: %s and starts to teach the students", $lecturer, $lecturer->getStuffId());
+printf ("\nLecturer: %s got his Stuff-Id: %s and starts to teach the students", $lecturer, $lecturer->getStaffId());
 
 $enrollmentNumber = new EnrollmentNumber();
 $student = new Student($enrollmentNumber);

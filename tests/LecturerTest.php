@@ -2,7 +2,7 @@
 
 /**
  * @covers Lecturer
- * @uses StuffId
+ * @uses StaffId
  */
 class LecturerTest extends PHPUnit_Framework_TestCase
 {
@@ -11,23 +11,23 @@ class LecturerTest extends PHPUnit_Framework_TestCase
      */
     private $lecturer;
     /**
-     * @var StuffId
+     * @var StaffId
      */
-    private $stuffId;
+    private $staffId;
 
     public function setUp()
     {
-        $this->stuffId = new StuffId(12345);
-        $this->lecturer = new Lecturer($this->stuffId);
+        $this->staffId = new StaffId(12345);
+        $this->lecturer = new Lecturer($this->staffId);
     }
 
-    public function testGetStuffIdWorks()
+    public function testGetStaffIdWorks()
     {
-        $this->assertEquals($this->stuffId, $this->lecturer->getStuffId());
+        $this->assertEquals($this->staffId, $this->lecturer->getStaffId());
     }
 
     public function testLecturerConvertionToStringWorks()
     {
-        $this->assertSame('12345', (string)$this->stuffId);
+        $this->assertSame('12345', (string)$this->staffId);
     }
 }

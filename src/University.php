@@ -22,13 +22,13 @@ class University
     }
 
     /**
-     * @return StuffId
+     * @return StaffId
      */
-    public function generateRandomNumericFiveCharacterStuffId() : StuffId
+    public function generateRandomNumericFiveCharacterStaffId() : StaffId
     {
         $rnd_id = uniqid(rand(),1);
         $rnd_id = substr($rnd_id,0,5);
 
-        return new StuffId((int)$rnd_id);
+        return new StaffId((int)$rnd_id);
     }
 }

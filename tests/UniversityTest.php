@@ -2,7 +2,7 @@
 
 /**
  * @covers University
- * @uses StuffId
+ * @uses StaffId
  */
 class UniversityTest extends PHPUnit_Framework_TestCase
 {
@@ -12,9 +12,9 @@ class UniversityTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Cambridge', $university->getName());
     }
 
-    public function testGenerateRandomNumericFiveCharacterStuffIdWorks()
+    public function testGenerateRandomNumericFiveCharacterStaffIdWorks()
     {
         $university = new University('Cambridge');
-        $this->assertInstanceOf('StuffId', $university->generateRandomNumericFiveCharacterStuffId());
+        $this->assertInstanceOf('StaffId', $university->generateRandomNumericFiveCharacterStaffId());
     }
 }
