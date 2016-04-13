@@ -24,11 +24,13 @@ class University
     /**
      * @return StaffId
      */
-    public function generateRandomNumericFiveCharacterStaffId() : StaffId
+    public function generateRandomNumericFiveDigitsStaffId() : StaffId
     {
         $rnd_id = uniqid(rand(),1);
         $rnd_id = substr($rnd_id,0,5);
 
         return new StaffId((int)$rnd_id);
     }
+
+
 }

@@ -7,14 +7,19 @@ class Lecturer
      * @var StaffId
      */
     private $staffId;
+    /**
+     * @var string
+     */
+    private $name;
 
     /**
-     * Lecturer constructor.
      * @param StaffId $staffId
+     * @param string $name
      */
-    public function __construct(StaffId $staffId)
+    public function __construct(StaffId $staffId, string $name)
     {
         $this->staffId = $staffId;
+        $this->name = $name;
     }
 
     /**
@@ -23,6 +28,14 @@ class Lecturer
     public function getStaffId() : StaffId
     {
         return $this->staffId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName() : string
+    {
+        return $this->name;
     }
 
     /**

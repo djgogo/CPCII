@@ -32,7 +32,7 @@ class StuffIdTest extends PHPUnit_Framework_TestCase
         new StaffId(123456);
     }
 
-    public function testStaffIdConvertionToStringWorks()
+    public function testStaffIdConversionToStringWorks()
     {
         $this->assertEquals('12345', (string)$this->staffId);
     }

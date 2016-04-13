@@ -15,6 +15,6 @@ class UniversityTest extends PHPUnit_Framework_TestCase
     public function testGenerateRandomNumericFiveCharacterStaffIdWorks()
     {
         $university = new University('Cambridge');
-        $this->assertInstanceOf('StaffId', $university->generateRandomNumericFiveCharacterStaffId());
+        $this->assertInstanceOf('StaffId', $university->generateRandomNumericFiveDigitsStaffId());
     }
 }
