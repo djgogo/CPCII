@@ -53,6 +53,7 @@ class Course
     {
         return $this->students;
     }
+
     /**
      * @return Module[]
      */

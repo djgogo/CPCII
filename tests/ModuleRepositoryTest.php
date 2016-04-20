@@ -13,20 +13,45 @@ class ModuleRepositoryTest extends PHPUnit_Framework_TestCase
         $this->repository = new ModuleRepository();
     }
 
-//    /**
-//     * @expectedException RuntimeException
-//     */
-//    public function testGetModuleFromEmptyRepository()
-//    {
-//        $this->repository->getModule(WebDevelopment::class);
-//    }
+    public function testGetModuleFromEmptyRepository()
+    {
+        $this->expectException(RuntimeException::class);
+        $this->repository->getModule('Web Development');
+    }
 
-//    /**
-//     * @expectedException RuntimeException
-//     */
-//    public function testGetModuleFromRepositoryFilledWithOtherModules()
-//    {
-//        $this->repository->addModule(new PensionFinance());
-//        $this->repository->getModule(WebDevelopment::class);
-//    }
+    public function testGetModuleFromRepositoryFilledWithOtherModules()
+    {
+        $this->expectException(RuntimeException::class);
+
+        $this->repository->addModule(new PensionFinance());
+        $this->repository->getModule('Web Development');
+    }
+
+    public function testAddAndGetModule()
+    {
+        $this->repository->addModule(new WebDevelopment());
+        $webDevelopment = $this->repository->getModule('Web Development');
+
+        $this->assertInstanceOf(WebDevelopment::class, $webDevelopment);
+    }
+
+    public function testGetMoreModulesThanAdded()
+    {
+        $this->expectException(RuntimeException::class);
+
+        $this->repository->addModule(new WebDevelopment());
+        $this->repository->getModule('Web Development');
+        $this->repository->getModule('Web Development');
+    }
+
+    public function testAddAndGetMultipleModules()
+    {
+        $this->repository->addModule(new WebDevelopment());
+        $this->repository->addModule(new WebDevelopment());
+        $webDevelopment1 = $this->repository->getModule('Web Development');
+        $webDevelopment2 = $this->repository->getModule('Web Development');
+
+        $this->assertNotSame($webDevelopment1, $webDevelopment2);
+    }
+
 }

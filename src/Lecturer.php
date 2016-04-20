@@ -37,12 +37,4 @@ class Lecturer
     {
         return $this->name;
     }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string)$this->staffId;
-    }
 }

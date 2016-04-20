@@ -2,9 +2,9 @@
 
 /**
  * @covers Course
+ * @covers AbstractCourse
  * @uses ModuleRepository
  * @uses ModuleFactory
- * @uses AbstractCourse
  * @uses ComputingCourse
  * @uses CourseBuilder
  * @uses ModuleNameCollection
@@ -45,29 +45,31 @@ class CourseTest extends PHPUnit_Framework_TestCase
             ->getMock();
 
         $this->moduleRepository->addModule($this->moduleFactory->createWebDevelopmentModule());
-
         $this->courseBuilder = new CourseBuilder($this->moduleRepository);
-        $this->student = new Student(new EnrollmentNumber(), 'Test Student');
-
         $this->computingCourse = $this->courseBuilder->build(new ComputingCourse());
+
+        $this->student = new Student(new EnrollmentNumber(), 'Test Student');
     }
 
-    public function testGetNameWorks()
+    public function testGetName()
     {
         $computingCourse = $this->courseBuilder->build(new ComputingCourse());
 
         $this->assertEquals('Computing programmes', $computingCourse->getName());
     }
 
-    public function testEnrolStudentAndGetEnrolledStudentsWorks()
+    public function testEnrolStudentAndGetEnrolledStudents()
     {
         $computingCourse = $this->courseBuilder->build(new ComputingCourse());
         $computingCourse->enrolStudent($this->student);
 
         $this->assertContains($this->student, $computingCourse->getEnrolledStudents());
     }
-// TODO testGetModulesWorks
-//    public function testGetModulesWorks()
+
+    /**
+     * TODO testGetModules() - check complete CourseTest and REFACTOR!
+     */
+//    public function testGetModules()
 //    {
 //        $webDevelopment = new WebDevelopment();
 //

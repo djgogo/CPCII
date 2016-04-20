@@ -25,7 +25,7 @@ class CourseBuilder
         $moduleNameCollection = $abstractCourse->getModuleNames();
 
         if (!$moduleNameCollection->hasModules()) {
-            throw new RuntimeException('No Modules in Collection List, can not build the Course');
+            throw new RuntimeException('No Modules in the Collection List, can not build the Course');
         }
 
         $modules = [];
