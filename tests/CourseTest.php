@@ -2,78 +2,65 @@
 
 /**
  * @covers Course
- * @covers AbstractCourse
- * @uses ModuleRepository
- * @uses ModuleFactory
- * @uses ComputingCourse
- * @uses CourseBuilder
- * @uses ModuleNameCollection
- * @uses EnrollmentNumber
  * @uses Student
+ * @uses Module
  */
 class CourseTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var ModuleRepository
+     * @var Course
      */
-    private $moduleRepository;
-    /**
-     * @var ModuleFactory
-     */
-    private $moduleFactory;
-    /**
-     * @var CourseBuilder
-     */
-    private $courseBuilder;
+    private $course;
     /**
      * @var Student
      */
     private $student;
     /**
-     * @var ComputingCourse
+     * @var WebDevelopment
      */
-    private $computingCourse;
+    private $webDevelopment;
+    /**
+     * @var DatabaseSystems
+     */
+    private $databaseSystems;
+    /**
+     * @var FirstLevelSupport
+     */
+    private $firstLevelSupport;
 
     public function setUp()
     {
-        $this->moduleFactory = $this->getMockBuilder(Modulefactory::class)
+        $this->webDevelopment = new WebDevelopment();
+        $this->databaseSystems = new DatabaseSystems();
+        $this->firstLevelSupport = new FirstLevelSupport();
+
+        $this->course = new Course('Computing programmes',
+            $this->webDevelopment,
+            $this->databaseSystems,
+            $this->firstLevelSupport
+        );
+
+        $this->student = $this->getMockBuilder(Student::class)
             ->disableOriginalConstructor()
             ->getMock();
-
-        $this->moduleRepository = $this->getMockBuilder(ModuleRepository::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->moduleRepository->addModule($this->moduleFactory->createWebDevelopmentModule());
-        $this->courseBuilder = new CourseBuilder($this->moduleRepository);
-        $this->computingCourse = $this->courseBuilder->build(new ComputingCourse());
-
-        $this->student = new Student(new EnrollmentNumber(), 'Test Student');
     }
 
     public function testGetName()
     {
-        $computingCourse = $this->courseBuilder->build(new ComputingCourse());
-
-        $this->assertEquals('Computing programmes', $computingCourse->getName());
+        $this->assertEquals('Computing programmes', $this->course->getName());
     }
 
     public function testEnrolStudentAndGetEnrolledStudents()
     {
-        $computingCourse = $this->courseBuilder->build(new ComputingCourse());
-        $computingCourse->enrolStudent($this->student);
-
-        $this->assertContains($this->student, $computingCourse->getEnrolledStudents());
+        $this->course->enrolStudent($this->student);
+        $this->assertContains($this->student, $this->course->getEnrolledStudents());
     }
 
-    /**
-     * TODO testGetModules() - check complete CourseTest and REFACTOR!
-     */
-//    public function testGetModules()
-//    {
-//        $webDevelopment = new WebDevelopment();
-//
-//        $this->assertContains($webDevelopment, $this->computingCourse->getModules());
-//
-//    }
+    public function testGetModules()
+    {
+        $this->assertEquals(
+            [$this->webDevelopment, $this->databaseSystems, $this->firstLevelSupport],
+            $this->course->getModules()
+        );
+    }
 }

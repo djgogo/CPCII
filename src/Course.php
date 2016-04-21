@@ -49,7 +49,7 @@ class Course
     /**
      * @return Student[]
      */
-    public function getEnrolledStudents()
+    public function getEnrolledStudents() : array
     {
         return $this->students;
     }
