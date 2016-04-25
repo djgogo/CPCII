@@ -8,6 +8,16 @@ abstract class Module
      */
     private $course;
     /**
+     * @var Lecturer
+     */
+    private $lecturer;
+
+    public function __construct(Lecturer $lecturer)
+    {
+        $this->lecturer = $lecturer;
+    }
+
+    /**
      * @return string
      */
     abstract public function getName() : string;
@@ -19,5 +29,18 @@ abstract class Module
     public function setCourse(Course $course)
     {
         $this->course = $course;
+    }
+
+    /**
+     * @param Lecturer $lecturer
+     */
+    public function setLecturer(Lecturer $lecturer)
+    {
+        $this->lecturer = $lecturer;
+    }
+
+    public function getLecturer() : Lecturer
+    {
+        return $this->lecturer;
     }
 }

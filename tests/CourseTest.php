@@ -2,8 +2,9 @@
 
 /**
  * @covers Course
+ * @covers Module
  * @uses Student
- * @uses Module
+ * @uses Lecturer
  */
 class CourseTest extends PHPUnit_Framework_TestCase
 {
@@ -27,12 +28,20 @@ class CourseTest extends PHPUnit_Framework_TestCase
      * @var FirstLevelSupport
      */
     private $firstLevelSupport;
+    /**
+     * @var Lecturer
+     */
+    private $lecturer;
 
     public function setUp()
     {
-        $this->webDevelopment = new WebDevelopment();
-        $this->databaseSystems = new DatabaseSystems();
-        $this->firstLevelSupport = new FirstLevelSupport();
+        $this->lecturer = $this->getMockBuilder(Lecturer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->webDevelopment = new WebDevelopment($this->lecturer);
+        $this->databaseSystems = new DatabaseSystems($this->lecturer);
+        $this->firstLevelSupport = new FirstLevelSupport($this->lecturer);
 
         $this->course = new Course('Computing programmes',
             $this->webDevelopment,

@@ -1,15 +1,27 @@
 <?php
 
-
+/**
+ * @covers ModuleFactory
+ * @uses Lecturer
+ * @uses Module
+ */
 class ModuleFactoryTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var ModuleFactory
      */
     private $factory;
+    /**
+     * @var Lecturer
+     */
+    private $lecturer;
 
     public function setUp()
     {
+        $this->lecturer = $this->getMockBuilder(Lecturer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->factory = new ModuleFactory();
     }
 
@@ -23,7 +35,7 @@ class ModuleFactoryTest extends PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             $className,
-            call_user_func(array($this->factory, $method))
+            call_user_func_array(array($this->factory, $method), array($this->lecturer))
         );
     }
 

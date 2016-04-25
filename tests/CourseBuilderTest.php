@@ -7,6 +7,7 @@
  * @uses ModuleNameCollection
  * @uses Course
  * @uses Module
+ * @uses Lecturer
  */
 class CourseBuilderTest extends PHPUnit_Framework_TestCase
 {
@@ -22,6 +23,10 @@ class CourseBuilderTest extends PHPUnit_Framework_TestCase
      * @var ModuleNameCollection
      */
     private $moduleNameCollection;
+    /**
+     * @var Lecturer
+     */
+    private $lecturer;
 
     public function setUp()
     {
@@ -30,6 +35,10 @@ class CourseBuilderTest extends PHPUnit_Framework_TestCase
             ->getMock();
 
         $this->abstractCourse = $this->getMockBuilder(AbstractCourse::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->lecturer = $this->getMockBuilder(Lecturer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -50,9 +59,9 @@ class CourseBuilderTest extends PHPUnit_Framework_TestCase
         $this->moduleNameCollection->add('Database Systems');
         $this->moduleNameCollection->add('First Level Support');
 
-        $webDevelopment = new WebDevelopment();
-        $databaseSystems = new DatabaseSystems();
-        $firstLevelSupport = new FirstLevelSupport();
+        $webDevelopment = new WebDevelopment($this->lecturer);
+        $databaseSystems = new DatabaseSystems($this->lecturer);
+        $firstLevelSupport = new FirstLevelSupport($this->lecturer);
 
         $this->moduleRepository
             ->expects($this->at(0))

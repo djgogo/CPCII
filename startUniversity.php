@@ -5,31 +5,35 @@ require_once __DIR__ . '/bootstrap.php';
 $university = new University('Cambridge');
 
 /* Lecturers */
-$stuffId = $university->generateRandomNumericFiveDigitsStaffId();
-$lecturer01 = New Lecturer($stuffId, 'John Doe');
-printf ("\nLecturer %s with Stuff-Id %s starts to teach the students",
-    $lecturer01->getName(), $lecturer01->getStaffId());
-$stuffId = $university->generateRandomNumericFiveDigitsStaffId();
-$lecturer02 = New Lecturer($stuffId, 'Lisa Millet');
-printf ("\nLecturer %s with Stuff-Id %s starts to teach the students",
-    $lecturer02->getName(), $lecturer02->getStaffId());
+$staffId = $university->generateRandomNumericFiveDigitsStaffId();
+$lecturer01 = New Lecturer($staffId, 'John Doe');
+printf ("\nLecturer %s with Stuff-Id %s starts at University of %s",
+    $lecturer01->getName(), $lecturer01->getStaffId(), $university->getName());
+$staffId = $university->generateRandomNumericFiveDigitsStaffId();
+$lecturer02 = New Lecturer($staffId, 'Lisa Millet');
+printf ("\nLecturer %s with Stuff-Id %s starts at University of %s",
+    $lecturer02->getName(), $lecturer02->getStaffId(), $university->getName());
+$staffId = $university->generateRandomNumericFiveDigitsStaffId();
+$lecturer03 = New Lecturer($staffId, 'Arnold Schwarzenegger');
+printf ("\nLecturer %s with Stuff-Id %s starts at University of %s",
+    $lecturer03->getName(), $lecturer03->getStaffId(), $university->getName());
 
 /* Create Courses and their Modules  */
 $moduleFactory = new ModuleFactory();
 $moduleRepository = new ModuleRepository();
 
-$moduleRepository->addModule($moduleFactory->createEntityRelationshipModellingModule());
-$moduleRepository->addModule($moduleFactory->createWebDevelopmentModule());
-$moduleRepository->addModule($moduleFactory->createDatabaseSystemsModule());
-$moduleRepository->addModule($moduleFactory->createFirstLevelSupportModule());
-$moduleRepository->addModule($moduleFactory->createNetworkInfrastructureModule());
-$moduleRepository->addModule($moduleFactory->createCreditRiskManagementModule());
-$moduleRepository->addModule($moduleFactory->createEnergyMarketsModule());
-$moduleRepository->addModule($moduleFactory->createForeignExchangeModule());
-$moduleRepository->addModule($moduleFactory->createPensionFinanceModule());
-$moduleRepository->addModule($moduleFactory->createBehaviouralFinanceModule());
-$moduleRepository->addModule($moduleFactory->createColloquialEnglishModule());
-$moduleRepository->addModule($moduleFactory->createColloquialEnglishModule());
+$moduleRepository->addModule($moduleFactory->createEntityRelationshipModellingModule($lecturer02));
+$moduleRepository->addModule($moduleFactory->createWebDevelopmentModule($lecturer01));
+$moduleRepository->addModule($moduleFactory->createDatabaseSystemsModule($lecturer03));
+$moduleRepository->addModule($moduleFactory->createFirstLevelSupportModule($lecturer03));
+$moduleRepository->addModule($moduleFactory->createNetworkInfrastructureModule($lecturer02));
+$moduleRepository->addModule($moduleFactory->createCreditRiskManagementModule($lecturer02));
+$moduleRepository->addModule($moduleFactory->createEnergyMarketsModule($lecturer01));
+$moduleRepository->addModule($moduleFactory->createForeignExchangeModule($lecturer01));
+$moduleRepository->addModule($moduleFactory->createPensionFinanceModule($lecturer01));
+$moduleRepository->addModule($moduleFactory->createBehaviouralFinanceModule($lecturer03));
+$moduleRepository->addModule($moduleFactory->createColloquialEnglishModule($lecturer02));
+$moduleRepository->addModule($moduleFactory->createColloquialEnglishModule($lecturer01));
 
 $courseBuilder = new CourseBuilder($moduleRepository);
 $computingCourse = $courseBuilder->build(new ComputingCourse());
@@ -40,12 +44,12 @@ printf ("\nCourse %s created", $financeAndInvestmentCourse->getName());
 printf ("\n");
 printf ("\nCourse %s includes following Modules:", $computingCourse->getName());
 foreach ($computingCourse->getModules() as $module) {
-    printf ("\n - %s", $module->getName());
+    printf ("\n - %s :: Lecturer: %s", $module->getName(), $module->getLecturer()->getName());
 }
 printf ("\n");
 printf ("\nCourse %s includes following Modules:", $financeAndInvestmentCourse->getName());
 foreach ($financeAndInvestmentCourse->getModules() as $module) {
-    printf ("\n - %s", $module->getName());
+    printf ("\n - %s :: Lecturer: %s", $module->getName(), $module->getLecturer()->getName());
 }
 printf ("\n");
 
@@ -75,3 +79,5 @@ foreach ($financeAndInvestmentCourse->getEnrolledStudents() as $student) {
     printf ("\n - %s", $student->getName());
 }
 printf ("\n");
+
+/* change Lecturer for a Module */

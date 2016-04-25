@@ -2,7 +2,7 @@
 
 /**
  * @covers ComputingCourse
- * @uses AbstractCourse
+ * @covers AbstractCourse
  * @uses ModuleNameCollection
  */
 class ComputingCourseTest extends PHPUnit_Framework_TestCase
