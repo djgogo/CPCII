@@ -2,4 +2,4 @@ src/autoload.php
 tests/autoload.php
 build/*
 build.xml
-phpunit.xml.dist
+phpunit.xml
