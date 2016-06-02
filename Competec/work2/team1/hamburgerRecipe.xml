@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<h:recipe xmlns:h="urn:burger-ingredients" xmlns="urn:bar">
+    <h:ingredients>
+        <h:ingredient name="lowerBread" />
+        <h:ingredient name="sauce" />
+        <h:ingredient name="salad" />
+        <h:ingredient name="patty" />
+        <h:ingredient name="cheese" />
+        <h:ingredient name="tomato" />
+        <h:ingredient name="cheese" />
+        <h:ingredient name="upperBread" />
+    </h:ingredients>
+</h:recipe>

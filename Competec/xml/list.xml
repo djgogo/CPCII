@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<root demo="hallo welt">
+    <entry id="2">
+        <child>
+            text mit
+            Zeilenumbrüchen
+        </child>
+    </entry>
+    <entry id="3">
+        <sample>hallo welt</sample>
+    </entry>
+    <entry id="1" />
+</root>

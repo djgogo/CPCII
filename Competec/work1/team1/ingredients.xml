@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ingredients>
+    <ingredient>
+        <name>lowerbread</name>
+        <price>EUR 1.00</price>
+    </ingredient>
+    <ingredient>
+        <name>sauce</name>
+        <price>EUR 0.50</price>
+    </ingredient>
+    <ingredient>
+        <name>salad</name>
+        <price>EUR 0.50</price>
+    </ingredient>
+    <ingredient>
+        <name>patty</name>
+        <price>EUR 1.00</price>
+    </ingredient>
+    <ingredient>
+        <name>tomato</name>
+        <price>EUR 1.00</price>
+    </ingredient>
+    <ingredient>
+        <name>cheese</name>
+        <price>EUR 1.50</price>
+    </ingredient>
+    <ingredient>
+        <name>middleBread</name>
+        <price>EUR 1.00</price>
+    </ingredient>
+</ingredients>

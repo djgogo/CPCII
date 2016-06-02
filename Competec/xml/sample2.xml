@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<other attribute="value1" xmlns="urn:other">
+    <child>i'm number One</child>
+    <child attribute="some" />
+    <child />
+</other>

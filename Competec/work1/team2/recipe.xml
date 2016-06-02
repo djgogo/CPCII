@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<b:recipe name="double cheeseburger" xmlns:b="urn:burger-recipe" xmlns:v="urn:burger-ingredient">
+    <b:ingredients>
+        <v:ingredient name="breadTopSide" />
+        <v:ingredient name="cheese" />
+        <v:ingredient name="tomato" />
+        <v:ingredient name="patty" />
+        <v:ingredient name="cheese" />
+        <v:ingredient name="breadBottomSide" />
+    </b:ingredients>
+<!--
+    <x:shoppinglist>
+        <x:cost total="123" currency="EUR" />
+        <x:buy name="cheese" amount="2">
+            <x:price .... />
+        </x:buy>
+    </x:shoppinglist> -->
+</b:recipe>

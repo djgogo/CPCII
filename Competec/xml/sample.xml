@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root attribute="value1" xmlns="urn:root">
+    <text>root-text</text>
+    <child>
+        <sub>text</sub>
+    </child>
+</root>

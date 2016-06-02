@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<b:recipe name="double cheeseburger" xmlns:b="urn:burger-recipe" xmlns:i="urn:burger-ingredient">
+    <b:ingredients>
+        <i:ingredient name="breadTopSide" />
+        <i:ingredient name="cheese" />
+        <i:ingredient name="tomato" />
+        <i:ingredient name="patty" />
+        <i:ingredient name="cheese" />
+        <i:ingredient name="breadBottomSide" />
+    </b:ingredients>
+</b:recipe>

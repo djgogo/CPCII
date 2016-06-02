@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<i:ingredients xmlns:i="urn:burger-ingredient">
+    <i:ingredient name="breadTopSide" price="100" />
+    <i:ingredient name="cheese" price="100" />
+    <i:ingredient name="tomato" price="100" />
+    <i:ingredient name="patty" price="100" />
+    <i:ingredient name="cheese" price="100" />
+    <i:ingredient name="breadBottomSide" price="100" />
+</i:ingredients>
