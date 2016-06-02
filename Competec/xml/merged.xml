@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<r:root attribute="value1" xmlns:r="urn:root" xmlns:o="urn:other">
+    <r:child>
+        <r:sub>
+            <o:other attribute="value1">
+                <o:child/>
+            </o:other>
+        </r:sub>
+    </r:child>
+</r:root>
+
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<burgers>
+    <burger name="Hamburger" >
+        <ingredients>
+            <lowerBread amount="1" />
+            <sauce amount="1" />
+            <salad amount="1" />
+            <patty amount="1" />
+            <tomato amount="1" />
+            <upperBread amount="1" />
+        </ingredients>
+    </burger>
+    <burger name="Cheeseburger" >
+        <ingredients>
+            <lowerBread amount="1" />
+            <sauce amount="1" />
+            <salad amount="1" />
+            <patty amount="1" />
+            <cheese amount="1" />
+            <tomato amount="1" />
+            <upperBread amount="1" />
+        </ingredients>
+    </burger>
+    <burger name="Big Mac" >
+        <ingredients>
+            <lowerBread amount="1" />
+            <sauce amount="2" />
+            <salad amount="2" />
+            <patty amount="2" />
+            <middleBread amount="1" />
+            <cheese amount="1" />
+            <tomato amount="1" />
+            <upperBread amount="1" />
+        </ingredients>
+    </burger>
+</burgers>

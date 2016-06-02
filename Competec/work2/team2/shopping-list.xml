@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:recipe xmlns:b="urn:burger-recipe" xmlns:i="urn:burger-ingredient" name="double cheeseburger">
+  <b:ingredients>
+    <i:breadTopSide/>
+    <i:cheese/>
+    <i:tomato/>
+    <i:patty/>
+    <i:cheese/>
+    <i:breadBottomSide/>
+  </b:ingredients>
+
+  <bsl:shoppingList xmlns:bsl="urn:burger-shopping-list">
+    <bsl:shoppingItems>
+      <bsl:buy name="breadTopSide" amount="1"/>
+      <bsl:buy name="cheese" amount="2"/>
+      <bsl:buy name="tomato" amount="1"/>
+      <bsl:buy name="patty" amount="1"/>
+      <bsl:buy name="breadBottomSide" amount="1"/>
+    </bsl:shoppingItems>
+    <bsl:cost total="600" currency="EUR"/>
+  </bsl:shoppingList>
+
+</b:recipe>
+

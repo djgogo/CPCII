@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<x:ingredients currency="EUR" xmlns:x="urn:burger-ingredients">
+    <x:ingredient name="lowerBread" price="050" />
+    <x:ingredient name="sauce" price="100" />
+    <x:ingredient name="salad" price="100" />
+    <x:ingredient name="patty" price="150" />
+    <x:ingredient name="tomato" price="100" />
+    <x:ingredient name="cheese" price="100" />
+    <x:ingredient name="upperBread" price="100" />
+</x:ingredients>

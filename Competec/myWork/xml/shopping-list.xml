@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<h:recipe xmlns:h="urn:burger-ingredients">
+  <h:ingredients>
+    <h:ingredient name="lowerBread"/>
+    <h:ingredient name="sauce"/>
+    <h:ingredient name="salad"/>
+    <h:ingredient name="patty"/>
+    <h:ingredient name="cheese"/>
+    <h:ingredient name="tomato"/>
+    <h:ingredient name="cheese"/>
+    <h:ingredient name="upperBread"/>
+  </h:ingredients>
+  <bsl:shoppingList xmlns:bsl="urn:burger-shopping-list" costs="800" currency="EUR">
+    <bsl:buy price="050" amount="1">lowerBread</bsl:buy>
+    <bsl:buy price="100" amount="1">sauce</bsl:buy>
+    <bsl:buy price="100" amount="1">salad</bsl:buy>
+    <bsl:buy price="150" amount="1">patty</bsl:buy>
+    <bsl:buy price="100" amount="2">cheese</bsl:buy>
+    <bsl:buy price="100" amount="1">tomato</bsl:buy>
+    <bsl:buy price="100" amount="1">upperBread</bsl:buy>
+  </bsl:shoppingList>
+</h:recipe>
