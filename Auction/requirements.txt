@@ -1,0 +1,10 @@
+* The users of an online auction have a nickname and an email address.
+
+* The email address must be unique for all users.
+
+* Each auction has a description text, a start date, an end date, and
+  an initial price.
+
+* Each user can bid on other user's auctions.
+
+* Each bid must be at least one EUR higher than the previous bid.
