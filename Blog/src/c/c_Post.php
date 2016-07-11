@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 
 class Post
 {
@@ -15,16 +15,12 @@ class Post
      * @var string
      */
     private $body;
-    /**
-     * @var Comment
-     */
-    private $comment;
 
     /**
      * Post constructor.
      * @param Author $author
      */
-    public function __construct(Author $author  )
+    public function __construct(Author $author)
     {
         $this->author = $author;
     }
@@ -39,30 +35,18 @@ class Post
         $this->body = $body;
     }
 
-    public function getHeading():string
+    public function getHeading() : string
     {
         return $this->heading;
     }
 
-    public function getBody():string
+    public function getBody() : string
     {
         return $this->body;
     }
 
-    public function getAuthor():Author
+    public function getAuthor() : Author
     {
         return $this->author;
-    }
-
-    public function addComment(Comment $comment)
-    {
-        $this->comment = $comment;
-        $this->printComment();
-    }
-
-    public function printComment()
-    {
-        printf ("\n==========> Comment from %s", $this->comment->getAuthor()->getName());
-        printf ("\n            %s\n", $this->comment->getCommentText());
     }
 }

@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 
 class Author
 {
@@ -9,7 +9,6 @@ class Author
     private $name;
 
     /**
-     * Author constructor.
      * @param string $name
      */
     public function __construct(string $name)
@@ -17,7 +16,7 @@ class Author
         $this->name = $name;
     }
 
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }

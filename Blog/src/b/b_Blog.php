@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 class Blog
 {
@@ -11,6 +12,9 @@ class Blog
      */
     private $title;
 
+    /**
+     * @param Author $author
+     */
     public function __construct(Author $author)
     {
         $this->author = $author;
@@ -21,7 +25,7 @@ class Blog
         $this->title = $title;
     }
 
-    public function getTitle()
+    public function getTitle() : string
     {
         return $this->title;
     }

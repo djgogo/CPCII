@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 class Blog
 {
@@ -19,10 +20,6 @@ class Blog
      */
     public $permissions;
 
-    /**
-     * Blog constructor.
-     * @param Author $author
-     */
     public function __construct(Author $author)
     {
         $this->author = $author;
@@ -34,7 +31,7 @@ class Blog
         $this->title = $title;
     }
 
-    public function getTitle():string
+    public function getTitle() : string
     {
         return $this->title;
     }

@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 
 class Post
 {
@@ -35,13 +35,18 @@ class Post
         $this->body = $body;
     }
 
-    public function getHeading()
+    public function getHeading() : string
     {
         return $this->heading;
     }
 
-    public function getBody()
+    public function getBody() : string
     {
         return $this->body;
+    }
+
+    public function getAuthor() : Author
+    {
+        return $this->author;
     }
 }

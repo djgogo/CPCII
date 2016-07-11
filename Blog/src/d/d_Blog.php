@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 class Blog
 {
@@ -30,7 +31,7 @@ class Blog
         $this->title = $title;
     }
 
-    public function getTitle():string
+    public function getTitle() : string
     {
         return $this->title;
     }
@@ -42,7 +43,7 @@ class Blog
             $this->post = $post;
             $this->printPost();
         }else {
-            printf("\n****> %s is not the owner of this blog - post rejected!!\n", $this->post->getAuthor()->getName());
+            printf("\n****> %s is not authorized to post on this blog - post rejected!!\n", $this->post->getAuthor()->getName());
         }
     }
 

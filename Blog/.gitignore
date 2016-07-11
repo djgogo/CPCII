@@ -5,5 +5,5 @@ src/d/autoload.php
 src/e/autoload.php
 src/f/autoload.php
 src/g/autoload.php
-tests/autoload.php
+build.xml
 build/*

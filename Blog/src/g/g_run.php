@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 require_once 'autoload.php';
 
@@ -53,5 +54,23 @@ $blog1->addPost($post04);
 /* try to remove Bob the owner from permission list */
 $blog1->removeAuthorFromPermissionList($author1);
 
+/* add a comment to the blogpost */
+$comment01 = new Comment($author3);
+$comment01->addCommentText('This is a Comment to the Post01');
+$post01->addComment($comment01);
 
+/* add a comment to post01 from Alice who actually can't post on the blog but comment posts */
+$comment02 = new Comment($author2);
+$comment02->addCommentText('Hi this is Alice, Nice Post01. Would like to post something on this blog');
+$post01->addComment($comment02);
+
+/* add a comment to the post03 */
+$comment03 = new Comment($author1);
+$comment03->addCommentText('Hi George, this is Bob - I do not agree with this post');
+$post03->addComment($comment03);
+
+/* add comment to the comment03 of Bob */
+$comment04 = new Comment($author3);
+$comment04->addCommentText('Hi Bob this is George - not my problem if you not agree with it');
+$comment03->addComment($comment04);
 

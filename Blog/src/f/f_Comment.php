@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 
 class Comment
 {
@@ -22,12 +22,12 @@ class Comment
         $this->comment = $comment;
     }
 
-    public function getCommentText()
+    public function getCommentText() : string
     {
         return $this->comment;
     }
 
-    public function getAuthor():Author
+    public function getAuthor() : Author
     {
         return $this->author;
     }
