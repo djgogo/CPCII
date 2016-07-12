@@ -17,6 +17,7 @@ class ISBN
     {
         $this->ensureRightPrefix($isbn);
         $this->ensureRightGroupNumber($isbn);
+        $this->ensureRightCheckSum($isbn);
         $this->isbn = $isbn;
     }
 
@@ -30,7 +31,7 @@ class ISBN
 
     private function ensureRightGroupNumber($isbn)
     {
-       $splittedIsbn = $this->splitIsbn($isbn);
+        $splittedIsbn = $this->splitIsbn($isbn);
 
         if ($splittedIsbn[0] === '978') {
 
@@ -71,9 +72,25 @@ class ISBN
             }
 
         } elseif ($splittedIsbn[0] === '979') {
-          if ($splittedIsbn[1] <10 || $splittedIsbn[1] > 12) {
-              throw new InvalidIsbnException("Ungültige Gruppen Nummer: $splittedIsbn[1] übergeben");
-          }
+            if ($splittedIsbn[1] <10 || $splittedIsbn[1] > 12) {
+                throw new InvalidIsbnException("Ungültige Gruppen Nummer: $splittedIsbn[1] übergeben");
+            }
+        }
+    }
+
+    private function ensureRightCheckSum(string $isbn)
+    {
+        $cleanIsbn = $this->cleanIsbn($isbn);
+        $checkSum = substr($cleanIsbn, -1);
+        $c = substr($cleanIsbn, 0, -1);
+
+        $sum = (($c[1] + $c[3] + $c[5] + $c[7] + $c[9] + $c[11]) * 3) + ($c[0] + $c[2] + $c[4] + $c[6] + $c[8] + $c[10]);
+        $sum = (10 - ($sum % 10)) % 10;
+
+        $check = (string)$sum;
+
+        if ($checkSum !== $check) {
+            throw new InvalidIsbnException("Ungültige Prüfziffer: $check ");
         }
     }
 
@@ -96,6 +113,11 @@ class ISBN
     private function addHyphens(string $isbn) : string
     {
         return str_replace(' ', '-', $isbn);
+    }
+
+    private function cleanIsbn(string $isbn) : string
+    {
+        return str_replace(['-', ' '], '', $isbn);
     }
 
     public function __toString() : string

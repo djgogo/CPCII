@@ -1,5 +1,7 @@
 src/a/autoload.php
 src/b/autoload.php
 src/c/autoload.php
+src/d/autoload.php
+src/g/autoload.php
 build.xml
 build/*
