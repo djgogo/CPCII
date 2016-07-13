@@ -17,7 +17,7 @@ abstract class Request
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             return new GetRequest($_SERVER['REQUEST_URI'], $_GET);
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            return new PostRequest($_SERVER['REQUEST_URI'], $_POST);
+            return new PostRequest($_SERVER['REQUEST_URI'], $post);
         } else {
             // ...
         }
