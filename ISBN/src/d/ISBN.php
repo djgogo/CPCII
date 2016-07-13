@@ -90,7 +90,7 @@ class ISBN
         $check = (string)$sum;
 
         if ($checkSum !== $check) {
-            throw new InvalidIsbnException("Ungültige Prüfziffer: $check ");
+            throw new InvalidIsbnException("Ungültige Prüfziffer: $checkSum ");
         }
     }
 

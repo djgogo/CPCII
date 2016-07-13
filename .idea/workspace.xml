@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="527ea7c2-261d-4c00-a99c-b0586c98581a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/d/ISBN.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/d/InvalidIsbnException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/d/autoload.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/d/run.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/g/ISBN.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/g/InvalidIsbnException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/g/autoload.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/g/run.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/f/ISBN.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/f/InvalidIsbnException.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/f/autoload.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ISBN/src/f/run.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ISBN/.gitignore" afterPath="$PROJECT_DIR$/ISBN/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ISBN/src/b/run.php" afterPath="$PROJECT_DIR$/ISBN/src/b/run.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ISBN/src/c/ISBN.php" afterPath="$PROJECT_DIR$/ISBN/src/c/ISBN.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ISBN/src/c/run.php" afterPath="$PROJECT_DIR$/ISBN/src/c/run.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ISBN/src/d/ISBN.php" afterPath="$PROJECT_DIR$/ISBN/src/d/ISBN.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ISBN/src/g/ISBN.php" afterPath="$PROJECT_DIR$/ISBN/src/g/ISBN.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ISBN/src/g/run.php" afterPath="$PROJECT_DIR$/ISBN/src/g/run.php" />
     </list>
     <ignored path="Exercises.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,28 +31,7 @@
     <favorites_list name="Exercises" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="run.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ISBN/src/g/run.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.333333">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ISBN.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ISBN/src/g/ISBN.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,9 +39,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Blog/src/b/b1_Author.php" />
-        <option value="$PROJECT_DIR$/Blog/src/b/b3_Post.php" />
-        <option value="$PROJECT_DIR$/Blog/src/b/b2_Blog.php" />
         <option value="$PROJECT_DIR$/Blog/src/b/run.php" />
         <option value="$PROJECT_DIR$/Blog/build.xml" />
         <option value="$PROJECT_DIR$/Blog/src/autoload.php" />
@@ -111,10 +83,13 @@
         <option value="$PROJECT_DIR$/ISBN/src/d/run.php" />
         <option value="$PROJECT_DIR$/ISBN/src/b/run.php" />
         <option value="$PROJECT_DIR$/ISBN/src/c/ISBN.php" />
-        <option value="$PROJECT_DIR$/ISBN/src/d/ISBN.php" />
         <option value="$PROJECT_DIR$/ISBN/src/c/run.php" />
-        <option value="$PROJECT_DIR$/ISBN/.gitignore" />
         <option value="$PROJECT_DIR$/ISBN/src/g/run.php" />
+        <option value="$PROJECT_DIR$/ISBN/.gitignore" />
+        <option value="$PROJECT_DIR$/ISBN/src/f/ISBN.php" />
+        <option value="$PROJECT_DIR$/ISBN/src/f/run.php" />
+        <option value="$PROJECT_DIR$/ISBN/src/g/ISBN.php" />
+        <option value="$PROJECT_DIR$/ISBN/src/d/ISBN.php" />
       </list>
     </option>
   </component>
@@ -122,6 +97,9 @@
   <component name="JsBuildToolPackageJson" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7" />
   <component name="ProjectFrameBounds">
@@ -205,6 +183,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="g" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Exercises" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Exercises" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ISBN" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="f" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -374,7 +374,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1030" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2524013" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -395,6 +395,14 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -403,22 +411,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Blog/src/b/b_run.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.333333">
-          <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Blog/src/a/autoload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6666665">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Blog/src/b/autoload.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24058323">
@@ -763,22 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISBN/src/c/ISBN.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.148149">
-          <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ISBN/src/d/ISBN.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08140948">
-          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ISBN/src/c/run.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.54678005">
@@ -790,23 +766,55 @@
     <entry file="file://$PROJECT_DIR$/ISBN/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10762332">
-          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ISBN/src/g/run.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.333333">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state vertical-scroll-proportion="-14.148149">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ISBN/src/f/run.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3333335">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ISBN/src/f/ISBN.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.814815">
+          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ISBN/src/g/ISBN.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-1.2222222">
+          <caret line="92" column="75" selection-start-line="92" selection-start-column="75" selection-end-line="92" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ISBN/src/d/ISBN.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.592592">
+          <caret line="92" column="75" selection-start-line="92" selection-start-column="75" selection-end-line="92" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ISBN/src/c/ISBN.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.015795868">
+          <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
           <folding />
         </state>
       </provider>
