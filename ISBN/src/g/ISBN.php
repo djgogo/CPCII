@@ -72,7 +72,7 @@ class ISBN
             }
 
         } elseif ($splittedIsbn[0] === '979') {
-            if ($splittedIsbn[1] <10 || $splittedIsbn[1] > 12) {
+            if ($splittedIsbn[1] < 10 || $splittedIsbn[1] > 12) {
                 throw new InvalidIsbnException("Ungültige Gruppen Nummer: $splittedIsbn[1] übergeben");
             }
         }
@@ -128,9 +128,8 @@ class ISBN
     public function __toString() : string
     {
         if (!strpos($this->isbn, ' ') === false) {
-        return $this->addHyphens($this->isbn);
+            return $this->addHyphens($this->isbn);
         }
         return $this->isbn;
     }
-
 }
