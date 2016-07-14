@@ -13,7 +13,7 @@ class ISBN
         $this->ensureValid($isbn);
     }
 
-    private function ensureValid($isbn)
+    private function ensureValid(string $isbn)
     {
         $this->ensureRightPrefix($isbn);
         $this->ensureRightGroupNumber($isbn);
@@ -88,7 +88,7 @@ class ISBN
      *    [4] => checkSum(1)    9
      *    }
      */
-    private function splitIsbn($isbn) : array
+    private function splitIsbn(string $isbn) : array
     {
         return preg_split("/[-\040]+/", $isbn);
     }

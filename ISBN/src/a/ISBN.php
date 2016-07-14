@@ -13,12 +13,12 @@ class ISBN
         $this->ensureValid($isbn);
     }
 
-    private function ensureValid($isbn)
+    private function ensureValid(string $isbn)
     {
         $this->isbn = $isbn;
     }
 
-    public function addHyphens($isbn) : string
+    public function addHyphens(string $isbn) : string
     {
         return str_replace(' ', '-', $isbn);
     }
