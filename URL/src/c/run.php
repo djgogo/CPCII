@@ -4,8 +4,8 @@ require_once 'autoload.php';
 
 // A valid Subpath
 
-$url1 = new URL('http://example.com/path/sub/directory');
-$url2 = new URL('http://example.com/path');
+$url1 = new URL('HTTP://example.com/path/sub/directory');
+$url2 = new URL('HTTP://example.com/path');
 
 // Compare two URL Path's
 if ($url1->isSubPathOf($url2)) {
@@ -23,8 +23,8 @@ try {
 
 // Invalid Subpath
 
-$url1 = new URL('http://example.com/path/sub/directory');
-$url2 = new URL('http://example.com/anotherPath');
+$url1 = new URL('HTTP://example.com/path/sub/directory');
+$url2 = new URL('HTTP://example.com/anotherPath');
 
 // Compare two URL Path's
 if ($url1->isSubPathOf($url2)) {

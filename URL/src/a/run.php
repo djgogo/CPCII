@@ -5,60 +5,60 @@ require_once 'autoload.php';
 // Invalid URL's
 
 /* URL with ftp */
-$invalidUrl = 'ftp://max:muster@ftp.example.com';
+$invalidUrl = 'FTP://max:muster@ftp.example.com';
 try {
-    $invalidUrl = new URL('ftp://max:muster@ftp.example.com');
+    $invalidUrl = new URL($invalidUrl);
 } catch (InvalidUrlException $e) {
     printf ("\nInvalid URL: %s \n", $invalidUrl);
 }
 /* URL with User and Password */
-$invalidUrl = 'https://max:muster@www.example.com';
+$invalidUrl = 'HTTPS://max:muster@www.example.com';
 try {
-    $invalidUrl = new URL('https://max:muster@www.example.com');
+    $invalidUrl = new URL($invalidUrl);
 } catch (InvalidUrlException $e) {
     printf ("\nInvalid URL: %s \n", $invalidUrl);
 }
 /* URL with Port */
-$invalidUrl = 'https://www.example.com:8080';
+$invalidUrl = 'HTTPS://www.example.com:8080';
 try {
-    $invalidUrl = new URL('https://www.example.com:8080');
+    $invalidUrl = new URL($invalidUrl);
 } catch (InvalidUrlException $e) {
     printf ("\nInvalid URL: %s \n", $invalidUrl);
 }
 /* URL with Query */
-$invalidUrl = 'https://www.example.com/index.php?p1=foo';
+$invalidUrl = 'HTTPS://www.example.com/index.php?p1=foo';
 try {
-    $invalidUrl = new URL('https://www.example.com/index.php?p1=foo');
+    $invalidUrl = new URL($invalidUrl);
 } catch (InvalidUrlException $e) {
     printf ("\nInvalid URL: %s \n", $invalidUrl);
 }
 /* URL with Fragment */
-$invalidUrl = 'https://www.example.com/index.php?p1=foo#ressource';
+$invalidUrl = 'HTTPS://www.example.com/index.php?p1=foo#ressource';
 try {
-    $invalidUrl = new URL('https://www.example.com/index.php?p1=foo#ressource');
+    $invalidUrl = new URL($invalidUrl);
 } catch (InvalidUrlException $e) {
     printf ("\nInvalid URL: %s \n", $invalidUrl);
 }
 
-$invalidUrl = 'ftp://example.com';
+$invalidUrl = 'FTP://example.com';
 try {
-    $invalidUrl = new URL('ftp://example.com');
+    $invalidUrl = new URL($invalidUrl);
 } catch (InvalidUrlException $e) {
     printf ("\nInvalid URL: %s \n", $invalidUrl);
 }
 
 // Valid URL's
 
-$invalidUrl = 'http://example.com';
+$invalidUrl = 'HTTP://example.com';
 try {
-    $invalidUrl = new URL('http://example.com');
+    $invalidUrl = new URL($invalidUrl);
 } catch (InvalidUrlException $e) {
     printf ("\nInvalid URL: %s \n", $invalidUrl);
 }
 
-$invalidUrl = 'https://example.com';
+$invalidUrl = 'HTTPS://example.com';
 try {
-    $invalidUrl = new URL('https://example.com');
+    $invalidUrl = new URL($invalidUrl);
 } catch (InvalidUrlException $e) {
     printf ("\nInvalid URL: %s \n", $invalidUrl);
 }

@@ -2,9 +2,9 @@
 declare(strict_types = 1);
 require_once 'autoload.php';
 
-$url1 = new URL('https://www.example.com');
-$url2 = new URL('https://www.example.com');
-$url3 = new URL('http://www.other.com');
+$url1 = new URL('HTTPS://www.example.com');
+$url2 = new URL('HTTPS://www.example.com');
+$url3 = new URL('HTTP://www.other.com');
 
 if ($url1->equalsTo($url2)) {
     printf ("\nURL1: %s is equal URL2: %s \n", $url1, $url2);

@@ -39,7 +39,7 @@ class URL
 
     private function ensureScheme(string $url)
     {
-        $validUrlSchemes = ['http', 'https'];
+        $validUrlSchemes = ['HTTP', 'HTTPS'];
 
         if (!in_array($this->splittedUrl['scheme'], $validUrlSchemes)) {
             throw new \InvalidUrlException("Die übergebene URL hat ein ungültiges Schema: $url");

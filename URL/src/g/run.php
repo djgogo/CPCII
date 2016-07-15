@@ -2,32 +2,16 @@
 declare(strict_types = 1);
 require_once 'autoload.php';
 
-/* Valid Headers */
-$headerStatus = 200;
 try {
-    $header = new OkStatusHeader($headerStatus);
-    //header((string)$header);
-    echo $header;
+    $header = new OkStatusHeader();
+    printf ("\nHeader Status: %s ", $header);
 } catch (InvalidHTTPStatusHeaderException $e) {
-    printf ("\nInvalid Header Status: %s \n", $headerStatus);
-}
-$headerStatus = 404;
-try {
-    $header = new OkStatusHeader($headerStatus);
-    //header((string)$header);
-    echo $header;
-} catch (InvalidHTTPStatusHeaderException $e) {
-    printf ("\nInvalid Header Status: %s \n", $headerStatus);
+    printf ("\nInvalid Header Status: %s ", $header);
 }
 
-/* Invalid Headers */
-$headerStatus = 999;
 try {
-    $header = new NotFoundStatusHeader($headerStatus);
-    echo $header;
+    $header = new NotFoundStatusHeader();
+    printf ("\nHeader Status: %s \n", $header);
 } catch (InvalidHTTPStatusHeaderException $e) {
-    printf ("\nInvalid Header Status: %s \n", $headerStatus);
+    printf ("\nInvalid Header Status: %s \n", $header);
 }
-
-// TODO Lösung implementieren welche nur die Subklassen Instanzen erlaubt! nicht aber mit die Hauptklasse!!
-
