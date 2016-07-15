@@ -13,7 +13,7 @@ class ISBN
         $this->ensureValid($isbn);
     }
 
-    private function ensureValid($isbn)
+    private function ensureValid(string $isbn)
     {
         $this->ensureRightPrefix($isbn);
         $this->isbn = $isbn;
