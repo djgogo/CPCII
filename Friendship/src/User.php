@@ -21,10 +21,15 @@ class User
         $this->name = $name;
     }
 
+    public function getName() : string
+    {
+        return $this->name;
+    }
+
     public function addFriendRequest(FriendRequest $friendRequest)
     {
         if (in_array($friendRequest->getFrom(), $this->friendRequests)) {
-            printf ("\n%s got already a Request from %s\n", $this->name, $friendRequest->getFrom());
+            printf ("\n **> %s got already a Request from %s - Request rejected!\n", $this->name, $friendRequest->getFrom());
         } else {
             $this->friendRequests[] = $friendRequest->getFrom();
             printf("\nFriend Request from %s to %s added", $friendRequest->getFrom(), $this->name);
@@ -33,21 +38,20 @@ class User
 
     public function confirm(FriendRequest $friendRequest)
     {
-        if (in_array($friendRequest->getFrom(), $this->requestStatus)) {
-            printf ("\nFriend Request from %s is already confirmed\n", $friendRequest->getFrom());
+        if (in_array($friendRequest->getFrom()->getName(), $this->requestStatus)) {
+            printf ("\n **> Friend Request from %s is already confirmed!\n", $friendRequest->getFrom());
         } else {
-            $this->requestStatus[] = $friendRequest->getFrom();
-            printf("\nFriend Request from %s confirmed :-)\n", $friendRequest->getFrom());
+            $this->requestStatus[] = $friendRequest->getFrom()->getName();
+            printf("\n%s confirmed %s's Friend Request :-)\n", $this->name , $friendRequest->getFrom());
         }
     }
 
     public function decline(FriendRequest $friendRequest)
     {
-        // todo : Not working!!!!
-        if ($key = array_search($friendRequest->getFrom(), $this->requestStatus) === false) {
-            printf ("\n%s not found! Could not be declined\n", $friendRequest->getFrom());
+        if (($key = array_search($friendRequest->getFrom(), $this->friendRequests)) === false) {
+            printf ("\n **> %s not found! Could not be declined!\n", $friendRequest->getFrom());
         } else {
-            unset($this->requestStatus[$key]);
+            unset($this->friendRequests[$key]);
             printf("\nFriend Request from %s has been declined :-(\n", $friendRequest->getFrom());
         }
     }
@@ -55,6 +59,11 @@ class User
     public function removeFriend(User $from, User $to)
     {
 
+    }
+
+    private function isFriend(User $user) : bool
+    {
+        // todo for easyer check in the other methods
     }
 
     public function __toString()
