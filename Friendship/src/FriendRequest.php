@@ -11,6 +11,10 @@ class FriendRequest
      * @var User
      */
     private $to;
+    /**
+     * @var string
+     */
+    private $status = '';
 
     public function __construct(User $from, User $to)
     {
@@ -26,5 +30,21 @@ class FriendRequest
     public function getTo() : User
     {
         return $this->to;
+    }
+
+    /**
+     * - pending
+     * - accepted
+     * - declined
+     * - blocked (not implemented!)
+     */
+    public function setStatus(string $status)
+    {
+        $this->status = $status;
+    }
+
+    public function getStatus() : string
+    {
+        return $this->status;
     }
 }
