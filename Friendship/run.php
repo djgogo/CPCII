@@ -6,22 +6,32 @@ $peter = new User('Peter');
 $anna = new User('Anna');
 $stefan = new User('Stefan');
 
+// Friend Request from Anna to Peter
 $friendRequest1 = new FriendRequest($anna, $peter);
 $peter->addFriendRequest($friendRequest1);
 
 // already added - error
 $peter->addFriendRequest($friendRequest1);
+// Peter confirms Anna's Request
+$peter->confirm($friendRequest1);
+// try to confirm again! Error!
 $peter->confirm($friendRequest1);
 
+// Friend Request from Peter to Anna
 $friendRequest2 = new FriendRequest($peter, $anna);
+// Peter is already Friend of Anna - Error!
 $anna->addFriendRequest($friendRequest2);
-$anna->decline($friendRequest2);
 
-// Confirmation without a previous request - error
-$friendRequest3 = new FriendRequest($peter, $anna);
-$anna->confirm($friendRequest3);
+// Friend Request from Anna to Stefan
+$friendRequest3 = new FriendRequest($anna, $stefan);
+// There's no Request added from Anna - Error!
+$anna->decline($friendRequest3);
 
-// try to remove a friend which is not one - error
-$peter->removeFriend($stefan);
-// remove a friend
-$peter->removeFriend($anna);
+// Confirmation without a previous request - Error!
+$friendRequest4 = new FriendRequest($stefan, $peter);
+$peter->confirm($friendRequest4);
+
+// try to remove a friend which is not one - Error!
+$peter->removeFriendship($stefan);
+// remove a friend (cancel friendship on both sides!)
+$peter->removeFriendship($anna);

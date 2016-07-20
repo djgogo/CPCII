@@ -33,10 +33,10 @@ class FriendRequest
     }
 
     /**
-     * - pending
-     * - accepted
-     * - declined
-     * - blocked (not implemented!)
+     * pending
+     * accepted
+     * declined
+     * removed
      */
     public function setStatus(string $status)
     {

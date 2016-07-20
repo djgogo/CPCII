@@ -20,9 +20,13 @@ class User
 
     public function addFriendRequest(FriendRequest $friendRequest)
     {
-        if ($friendRequest->getStatus() === 'pending' || $friendRequest->getStatus() === 'accepted') {
-            printf ("\n **> %s got already a Request from %s - Request rejected!\n", $this->name, $friendRequest->getFrom());
-        } elseif ($friendRequest->getStatus() === 'declined') {
+        if (in_array($friendRequest->getFrom(), $this->friends)) {
+            printf ("\n **> User %s is already friend of %s - No Friend Request added\n", $friendRequest->getFrom(), $this->name);
+        }
+        elseif ($friendRequest->getStatus() === 'pending') {
+            printf ("\n **> %s got already a Request from %s - Request is pending!\n", $this->name, $friendRequest->getFrom());
+        }
+        elseif ($friendRequest->getStatus() === 'declined') {
             printf ("\n **> %s got already a Request from %s - Request was declined!\n", $this->name, $friendRequest->getFrom());
         } else {
             $friendRequest->setStatus('pending');
@@ -32,15 +36,14 @@ class User
 
     public function confirm(FriendRequest $friendRequest)
     {
-        if ($friendRequest->getStatus() === ''){
-            printf ("\n **> There's no Friend Request from %s - Confirmation declined!\n", $friendRequest->getFrom());
+        if (in_array($friendRequest->getFrom(), $this->friends)) {
+            printf ("\n **> User %s is already friend of %s - Confirmation declined!\n", $friendRequest->getFrom(), $this->name);
         }
-        elseif ($friendRequest->getStatus() === 'confirmed') {
-            printf ("\n **> Friend Request from %s is already confirmed!\n", $friendRequest->getFrom());
+        elseif ($friendRequest->getStatus() === ''){
+            printf ("\n **> There's no Friend Request from %s - Confirmation declined!\n", $friendRequest->getFrom());
         } else {
             $this->addFriend($friendRequest->getFrom());
             $friendRequest->getFrom()->addFriend($this);
-            $friendRequest->setStatus('accepted');
             printf("\n%s confirmed %s's Friend Request :-)\n", $this->name , $friendRequest->getFrom());
         }
     }
@@ -48,8 +51,9 @@ class User
     public function decline(FriendRequest $friendRequest)
     {
         if ($friendRequest->getStatus() === '') {
-            printf ("\n **> %s not found! Could not be declined!\n", $friendRequest->getFrom());
-        } elseif ($friendRequest->getStatus() === 'declined') {
+            printf ("\n **> There's no Friend Request from %s - Could not be declined!\n", $friendRequest->getFrom());
+        }
+        elseif ($friendRequest->getStatus() === 'declined') {
             printf ("\n **> %s is already declined!\n", $friendRequest->getFrom());
         } else {
             $friendRequest->setStatus('declined');
@@ -57,19 +61,34 @@ class User
         }
     }
 
-    public function removeFriend(User $user)
+    public function removeFriendship(User $user)
     {
-        if (($key = array_search($user, $this->friends)) === false) {
-            printf ("\n **> %s is not a friend! Could not be removed!\n", $user);
+        if ($key = array_search($user, $this->friends) === false) {
+            printf ("\n **> %s is not a friend of %s! Could not be removed!\n", $user, $this->name);
         } else {
             unset($this->friends[$key]);
-            printf ("\n %s has been removed from $this->name's friends list!\n", $user);
+            printf ("\n %s has been removed from %s's friends list!\n", $user, $this->name);
+
+            // remove the opposite-Friendship Relation!
+            $user->removeFriend($this);
         }
     }
 
-    public function addFriend(User $user)
+    private function removeFriend(User $user)
     {
-        if (!in_array($user, $this->friends)) {
+        if ($key = array_search($user, $this->friends) === false) {
+            printf ("\n **> %s is not a friend of %s! Could not be removed!\n", $user, $this->name);
+        } else {
+            unset($this->friends[$key]);
+            printf ("\n %s has been removed from %s's friends list!\n", $user, $this->name);
+        }
+    }
+
+    private function addFriend(User $user)
+    {
+        if (in_array($user, $this->friends)) {
+            printf ("\n **> %s has been added already before!\n", $user);
+        } else {
             $this->friends[] = $user;
         }
     }
