@@ -3,19 +3,49 @@ declare(strict_types = 1);
 
 class Account implements AccountInterface
 {
+    /**
+     * @var array
+     */
+    private $debits = [];
+
+    /**
+     * @var array
+     */
+    private $credits = [];
+
+    /**
+     * @var int
+     */
+    private $accountNumber;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    public function __construct(string $name, int $accountNumber)
+    {
+        $this->name = $name;
+        $this->accountNumber = $accountNumber;
+    }
 
     public function addCredit(Transaction $transaction)
     {
-        // TODO: Implement addCredit() method.
+       $this->credits[] = $transaction->getAmount();
     }
 
     public function addDebit(Transaction $transaction)
     {
-        // TODO: Implement addDebit() method.
+        $this->debits[] = $transaction->getAmount();
     }
 
-    public function getBalance()
+    public function getBalance() : float
     {
-        // TODO: Implement getBalance() method.
+        return array_sum($this->debits) - array_sum($this->credits);
+    }
+
+    public function __toString() : string
+    {
+        return $this->name;
     }
 }
