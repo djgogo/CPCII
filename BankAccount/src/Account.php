@@ -29,11 +29,13 @@ class Account implements AccountInterface
         $this->accountNumber = $accountNumber;
     }
 
+    //todo money objekt! money->add
     public function addCredit(Transaction $transaction)
     {
        $this->credits[] = $transaction->getAmount();
     }
 
+    //todo money objekt! money->subtract
     public function addDebit(Transaction $transaction)
     {
         $this->debits[] = $transaction->getAmount();

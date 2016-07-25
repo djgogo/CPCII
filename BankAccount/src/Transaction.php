@@ -14,15 +14,15 @@ class Transaction
     private $receiver;
 
     /**
-     * @var float
+     * @var Money
      */
-    private $amount;
+    private $money;
 
-    public function __construct(float $amount, Account $sender, Account $receiver)
+    public function __construct(Money $money, Account $sender, Account $receiver)
     {
         $this->sender = $sender;
         $this->receiver = $receiver;
-        $this->amount = $amount;
+        $this->money = $money;
         $this->executeTransaction();
     }
 
@@ -34,6 +34,6 @@ class Transaction
 
     public function getAmount() : float
     {
-        return $this->amount;
+        return $this->money->getAmount();
     }
 }
