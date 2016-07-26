@@ -40,6 +40,12 @@ class Transaction
         $this->receiver->addDebit($this);
     }
 
+    public function reverse()
+    {
+        $this->sender->addDebit($this);
+        $this->receiver->addCredit($this);
+    }
+
     public function getAmount() : float
     {
         return $this->money->getAmount();
@@ -48,6 +54,11 @@ class Transaction
     public function getAccountingDate() : DateTimeImmutable
     {
         return $this->accountingDate;
+    }
+
+    public function getFormattedAccountingDate() : string
+    {
+        return $this->accountingDate->format('Y-m-d');
     }
 
     private function ensureSameAccountCurrency()
@@ -62,10 +73,5 @@ class Transaction
         if ($this->money->getCurrency() !== $this->receiver->getCurrency()) {
             throw new InvalidTransactionException('Receivers Account-Currency needs to be the same as the senders Amount-Currency');
         }
-    }
-
-    public function getFormattedAccountingDate() : string
-    {
-        return $this->accountingDate->format('Y-m-d');
     }
 }

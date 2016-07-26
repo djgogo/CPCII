@@ -13,6 +13,7 @@ $accountValerie = new Account('Valerie', 345334, $usd);
 $eur10050 = new Money(100.50, $eur);
 $eur1000000 = new Money(1000.00, $eur);
 $eur9950 = new Money(99.50, $eur);
+$eur9050 = new Money(90.50, $eur);
 $eur1080 = new Money(10.80, $eur);
 $usd1000 = new Money(10.00, $usd);
 $usd2000 = new Money(20.00, $usd);
@@ -66,8 +67,22 @@ printf("\n%s Account-Balance until %s: %.2f %s", $accountPeter, $selectedAccount
 printf("\n%s Account-Balance until %s: %.2f %s", $accountAnna, $selectedAccountDate->format('Y-m-d'),
     $accountAnna->getBalance($selectedAccountDate), $accountAnna->getCurrency()->getSign());
 
+/* Balance till date between Transaction1 and Transaction2 */
 $selectedAccountDate = new DateTimeImmutable('2016-06-27');
 printf("\n%s Account-Balance until %s: %.2f %s", $accountPeter, $selectedAccountDate->format('Y-m-d'),
     $accountPeter->getBalance($selectedAccountDate), $accountPeter->getCurrency()->getSign());
 printf("\n%s Account-Balance until %s: %.2f %s\n", $accountAnna, $selectedAccountDate->format('Y-m-d'),
     $accountAnna->getBalance($selectedAccountDate), $accountAnna->getCurrency()->getSign());
+
+/* Correction of Transaction2 (reverse booking) - new Transaction Correction with 90.50 */
+$transaction2->reverse();
+printf("\n%s : Transaction of %.2f from %s to %s REVERSED!", $transaction2->getFormattedAccountingDate(),
+    $transaction2->getAmount(), $accountPeter, $accountAnna);
+
+$transactionCorrection1 = new TransactionCorrection($eur9050, $accountPeter, $accountAnna, new DateTimeImmutable());
+printf("\n%s : Transaction-Correction of %.2f from %s to %s\n", $transactionCorrection1->getFormattedAccountingDate(),
+    $transactionCorrection1->getAmount(), $accountPeter, $accountAnna);
+
+/* Total actual Balance till today */
+printf("\n%s Account-Balance: %.2f %s", $accountPeter, $accountPeter->getBalance(), $accountPeter->getCurrency()->getSign());
+printf("\n%s Account-Balance: %.2f %s\n", $accountAnna, $accountAnna->getBalance(), $accountAnna->getCurrency()->getSign());

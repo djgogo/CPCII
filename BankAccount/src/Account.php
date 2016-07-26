@@ -37,12 +37,18 @@ class Account implements AccountInterface
 
     public function addCredit(Transaction $transaction)
     {
-        $this->credits[] = [$transaction->getAccountingDate(), $transaction->getAmount()];
+        $this->credits[] = [
+            'accountingDate' => $transaction->getAccountingDate(),
+            'amount' => $transaction->getAmount()
+        ];
     }
 
     public function addDebit(Transaction $transaction)
     {
-        $this->debits[] = [$transaction->getAccountingDate(), $transaction->getAmount()];
+        $this->debits[] = [
+            'accountingDate' => $transaction->getAccountingDate(),
+            'amount' => $transaction->getAmount()
+        ];
     }
 
     public function getBalance(DateTimeImmutable $accountingDate = null) : float
@@ -53,15 +59,15 @@ class Account implements AccountInterface
 
         $debitSum = 0;
         for ($i = 0; $i < count($this->debits); $i++) {
-            if ($this->debits[$i][0] <= $accountingDate){
-                $debitSum += $this->debits[$i][1];
+            if ($this->debits[$i]['accountingDate'] <= $accountingDate){
+                $debitSum += $this->debits[$i]['amount'];
             }
         }
 
         $creditSum = 0;
         for ($i = 0; $i < count($this->credits); $i++) {
-            if ($this->credits[$i][0] <= $accountingDate) {
-                $creditSum += $this->credits[$i][1];
+            if ($this->credits[$i]['accountingDate'] <= $accountingDate) {
+                $creditSum += $this->credits[$i]['amount'];
             }
         }
 
