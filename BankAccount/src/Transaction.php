@@ -18,11 +18,17 @@ class Transaction
      */
     private $money;
 
-    public function __construct(Money $money, Account $sender, Account $receiver)
+    /**
+     * @var DateTimeImmutable
+     */
+    private $accountingDate;
+
+    public function __construct(Money $money, Account $sender, Account $receiver, \DateTimeImmutable $accountingDate)
     {
         $this->sender = $sender;
         $this->receiver = $receiver;
         $this->money = $money;
+        $this->accountingDate = $accountingDate;
         $this->ensureSameAccountCurrency();
         $this->ensureRightTransactionCurrency();
         $this->executeTransaction();
@@ -39,6 +45,11 @@ class Transaction
         return $this->money->getAmount();
     }
 
+    public function getAccountingDate() : DateTimeImmutable
+    {
+        return $this->accountingDate;
+    }
+
     private function ensureSameAccountCurrency()
     {
         if ($this->sender->getCurrency() !== $this->receiver->getCurrency()) {
@@ -51,5 +62,10 @@ class Transaction
         if ($this->money->getCurrency() !== $this->receiver->getCurrency()) {
             throw new InvalidTransactionException('Receivers Account-Currency needs to be the same as the senders Amount-Currency');
         }
+    }
+
+    public function getFormattedAccountingDate() : string
+    {
+        return $this->accountingDate->format('Y-m-d');
     }
 }
