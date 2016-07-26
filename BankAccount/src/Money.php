@@ -4,7 +4,7 @@ declare(strict_types = 1);
 class Money
 {
     /**
-     * @var int
+     * @var float
      */
     private $amount;
 
@@ -13,17 +13,17 @@ class Money
      */
     private $currency;
 
-    public function __construct(int $amount, Currency $currency)
+    public function __construct(float $amount, Currency $currency)
     {
-        if (!is_int($amount)) {
-            throw new InvalidMoneyException("$amount must be an integer");
+        if (!is_float($amount)) {
+            throw new InvalidMoneyException("$amount must be a floating number");
         }
 
         $this->amount = $amount;
         $this->currency = $currency;
     }
 
-    public function getAmount() : int
+    public function getAmount() : float
     {
         return $this->amount;
     }
@@ -37,7 +37,7 @@ class Money
     {
         $this->ensureSameCurrency($this, $other);
         $value = $this->amount + $other->getAmount();
-        $this->ensureIsInteger($value);
+        $this->ensureIsFloat($value);
         return new self($value, $this->currency);
     }
 
@@ -45,7 +45,7 @@ class Money
     {
         $this->ensureSameCurrency($this, $other);
         $value = $this->amount - $other->getAmount();
-        $this->ensureIsInteger($value);
+        $this->ensureIsFloat($value);
         return new self($value, $this->currency);
     }
 
@@ -56,10 +56,10 @@ class Money
         }
     }
 
-    private function ensureIsInteger($amount)
+    private function ensureIsFloat($amount)
     {
-        if (!is_int($amount)) {
-            throw new InvalidMoneyException("$amount is not an integer");
+        if (!is_float($amount)) {
+            throw new InvalidMoneyException("$amount is not a floating number");
         }
     }
 }

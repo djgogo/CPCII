@@ -23,19 +23,23 @@ class Account implements AccountInterface
      */
     private $name;
 
-    public function __construct(string $name, int $accountNumber)
+    /**
+     * @var Currency
+     */
+    private $currency;
+
+    public function __construct(string $name, int $accountNumber, Currency $currency)
     {
         $this->name = $name;
         $this->accountNumber = $accountNumber;
+        $this->currency = $currency;
     }
 
-    //todo money objekt! money->add
     public function addCredit(Transaction $transaction)
     {
        $this->credits[] = $transaction->getAmount();
     }
 
-    //todo money objekt! money->subtract
     public function addDebit(Transaction $transaction)
     {
         $this->debits[] = $transaction->getAmount();
@@ -44,6 +48,11 @@ class Account implements AccountInterface
     public function getBalance() : float
     {
         return array_sum($this->debits) - array_sum($this->credits);
+    }
+
+    public function getCurrency() : Currency
+    {
+        return $this->currency;
     }
 
     public function __toString() : string
