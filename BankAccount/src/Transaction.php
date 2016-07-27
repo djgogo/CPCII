@@ -28,20 +28,33 @@ class Transaction
      */
     private $valueDate;
 
+    /**
+     * @var CurrencyConverter
+     */
+    private $converter;
+
+    /**
+     * @var float
+     */
+    private $convertedMoney;
+
     public function __construct(
         Money $money,
         Account $sender,
         Account $receiver,
         \DateTimeImmutable $accountingDate,
-        \DateTimeImmutable $valueDate)
+        \DateTimeImmutable $valueDate,
+        CurrencyConverter $converter)
     {
         $this->sender = $sender;
         $this->receiver = $receiver;
         $this->money = $money;
         $this->accountingDate = $accountingDate;
         $this->valueDate = $valueDate;
-        $this->ensureSameAccountCurrency();
-        $this->ensureRightTransactionCurrency();
+        $this->converter = $converter;
+//        $this->ensureSameAccountCurrency();
+//        $this->ensureRightTransactionCurrency();
+        $this->handleCurrencyConversion();
         $this->executeTransaction();
     }
 
@@ -62,6 +75,11 @@ class Transaction
         return $this->money->getAmount();
     }
 
+    public function getConvertedAmount() : Money
+    {
+        return $this->convertedMoney;
+    }
+
     public function getAccountingDate() : DateTimeImmutable
     {
         return $this->accountingDate;
@@ -77,17 +95,32 @@ class Transaction
         return $this->accountingDate->format('Y-m-d');
     }
 
-    private function ensureSameAccountCurrency()
-    {
-        if ($this->sender->getCurrency() != $this->receiver->getCurrency()) {
-            throw new InvalidTransactionException('Currency of the receiver Account needs to be the same as the sender Account');
-        }
-    }
+//    private function ensureSameAccountCurrency()
+//    {
+//        if ($this->sender->getCurrency() != $this->receiver->getCurrency()) {
+//            throw new InvalidTransactionException('Currency of the receiver Account needs to be the same as the sender Account');
+//        }
+//    }
 
-    private function ensureRightTransactionCurrency()
+    private function isReceiverAccountCurrencyEqualSenderAmountCurrency() : bool
     {
         if ($this->money->getCurrency() != $this->receiver->getCurrency()) {
-            throw new InvalidTransactionException('Receivers Account-Currency needs to be the same as the senders Amount-Currency');
+            //throw new InvalidTransactionException('Receivers Account-Currency needs to be the same as the senders Amount-Currency');
+            return false;
+        }
+        return true;
+    }
+
+    private function handleCurrencyConversion()
+    {
+        if (!$this->isReceiverAccountCurrencyEqualSenderAmountCurrency() && $this->receiver->getCurrency()->getCurrencyCode() == 'EUR') {
+            $this->convertedMoney = $this->converter->convert($this->money->getCurrency()->getCurrencyCode(),
+                $this->receiver->getCurrency()->getCurrencyCode(), $this->getAmount());
+        }
+
+        if (!$this->isReceiverAccountCurrencyEqualSenderAmountCurrency() && $this->receiver->getCurrency()->getCurrencyCode() == 'USD') {
+            $this->convertedMoney = $this->converter->convert($this->receiver->getCurrency()->getCurrencyCode(),
+                $this->receiver->getCurrency()->getCurrencyCode(), $this->getAmount());
         }
     }
 }

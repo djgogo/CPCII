@@ -48,11 +48,13 @@ class Currency
     public static function addCurrency(
         string $code,
         string $displayName,
+        string $sign,
         int $defaultFractionDigits,
         int $subUnit)
     {
         self::$currencies[$code] = [
             'displayName' => $displayName,
+            'sign' => $sign,
             'defaultFractionDigits' => $defaultFractionDigits,
             'sub_unit' => $subUnit,
         ];

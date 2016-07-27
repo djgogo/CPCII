@@ -14,9 +14,10 @@ class TransactionCorrection extends Transaction
         Account $receiver,
         \DateTimeImmutable $accountingDate,
         \DateTimeImmutable $valueDate,
+        CurrencyConverter $converter,
         Transaction $reversedTransaction)
     {
-        parent::__construct($money, $sender, $receiver, $accountingDate, $valueDate);
+        parent::__construct($money, $sender, $receiver, $accountingDate, $valueDate, $converter);
         $this->reversedTransaction = $reversedTransaction;
     }
 
