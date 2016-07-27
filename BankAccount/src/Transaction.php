@@ -23,12 +23,23 @@ class Transaction
      */
     private $accountingDate;
 
-    public function __construct(Money $money, Account $sender, Account $receiver, \DateTimeImmutable $accountingDate)
+    /**
+     * @var DateTimeImmutable
+     */
+    private $valueDate;
+
+    public function __construct(
+        Money $money,
+        Account $sender,
+        Account $receiver,
+        \DateTimeImmutable $accountingDate,
+        \DateTimeImmutable $valueDate)
     {
         $this->sender = $sender;
         $this->receiver = $receiver;
         $this->money = $money;
         $this->accountingDate = $accountingDate;
+        $this->valueDate = $valueDate;
         $this->ensureSameAccountCurrency();
         $this->ensureRightTransactionCurrency();
         $this->executeTransaction();
@@ -54,6 +65,11 @@ class Transaction
     public function getAccountingDate() : DateTimeImmutable
     {
         return $this->accountingDate;
+    }
+
+    public function getValueDate() : DateTimeImmutable
+    {
+        return $this->valueDate;
     }
 
     public function getFormattedAccountingDate() : string

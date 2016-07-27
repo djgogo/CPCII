@@ -19,39 +19,39 @@ $usd1000 = new Money(10.00, $usd);
 $usd2000 = new Money(20.00, $usd);
 
 /* Transactions in EUR */
-$transaction1 = new Transaction($eur10050, $accountPeter, $accountAnna, new DateTimeImmutable('2016-06-19'));
+$transaction1 = new Transaction($eur10050, $accountPeter, $accountAnna, new DateTimeImmutable('2016-06-19'), new DateTimeImmutable('2016-06-19'));
 printf("\n%s : Transaction of %.2f from %s to %s", $transaction1->getFormattedAccountingDate(),
     $transaction1->getAmount(), $accountPeter, $accountAnna);
 
-$transaction2 = new Transaction($eur9950, $accountPeter, $accountAnna, new DateTimeImmutable('2016-06-19'));
+$transaction2 = new Transaction($eur9950, $accountPeter, $accountAnna, new DateTimeImmutable('2016-06-19'), new DateTimeImmutable('2016-06-19'));
 printf("\n%s : Transaction of %.2f from %s to %s", $transaction2->getFormattedAccountingDate(),
     $transaction2->getAmount(), $accountPeter, $accountAnna);
 
-$transaction3 = new Transaction($eur1080, $accountAnna, $accountPeter, new DateTimeImmutable('2016-06-25'));
+$transaction3 = new Transaction($eur1080, $accountAnna, $accountPeter, new DateTimeImmutable('2016-06-25'), new DateTimeImmutable('2016-06-25'));
 printf("\n%s : Transaction of %.2f from %s to %s", $transaction3->getFormattedAccountingDate(),
     $transaction3->getAmount(), $accountAnna, $accountPeter);
 
-$transaction7 = new Transaction($eur1000000, $accountPeter, $accountAnna, new DateTimeImmutable('2016-06-29'));
+$transaction7 = new Transaction($eur1000000, $accountPeter, $accountAnna, new DateTimeImmutable('2016-06-29'), new DateTimeImmutable('2016-06-29'));
 printf("\n%s : Transaction of %.2f from %s to %s", $transaction7->getFormattedAccountingDate(),
     $transaction7->getAmount(), $accountPeter, $accountAnna);
 
 /* Transactions in USD */
-$transaction4 = new Transaction($usd1000, $accountSteven, $accountValerie, new DateTimeImmutable('2016-06-30'));
+$transaction4 = new Transaction($usd1000, $accountSteven, $accountValerie, new DateTimeImmutable('2016-06-30'), new DateTimeImmutable('2016-06-30'));
 printf("\n%s : Transaction of %.2f from %s to %s\n", $transaction4->getFormattedAccountingDate(),
     $transaction4->getAmount(), $accountSteven, $accountValerie);
 
 /* Transaction from EUR to USD Account - Error! */
 try {
-    $transaction5 = new Transaction($eur10050, $accountPeter, $accountSteven, new DateTimeImmutable('2016-07-10'));
+    $transaction5 = new Transaction($eur10050, $accountPeter, $accountSteven, new DateTimeImmutable('2016-07-10'), new DateTimeImmutable('2016-07-10'));
 } catch (InvalidTransactionException $e) {
     printf("\n **> Currency of the receiver Account needs to be the same as the sender Account\n");
 }
 
 /* Transaction with an amount in USD from EUR to EUR Account - Error! */
 try {
-    $transaction6 = new Transaction($usd1000, $accountPeter, $accountAnna, new DateTimeImmutable('2016-07-20'));
+    $transaction6 = new Transaction($usd1000, $accountPeter, $accountAnna, new DateTimeImmutable('2016-07-20'), new DateTimeImmutable('2016-07-20'));
 } catch (InvalidTransactionException $e) {
-    printf("\n **> Receivers Account-Currency needs to be the same as the senders Transaction Amount-Currency\n");
+    printf("\n **> Receivers Account-Currency needs to be the same as the Senders Transaction Amount-Currency\n");
 }
 
 /* Total Balance till today */
@@ -60,29 +60,29 @@ printf("\n%s Account-Balance: %.2f %s", $accountAnna, $accountAnna->getBalance()
 printf("\n%s Account-Balance: %.2f %s", $accountSteven, $accountSteven->getBalance(), $accountSteven->getCurrency()->getSign());
 printf("\n%s Account-Balance: %.2f %s\n", $accountValerie, $accountValerie->getBalance(), $accountValerie->getCurrency()->getSign());
 
-/* Balance till date between Transaction1 and Transaction2 */
-$selectedAccountDate = new DateTimeImmutable('2016-06-21');
-printf("\n%s Account-Balance until %s: %.2f %s", $accountPeter, $selectedAccountDate->format('Y-m-d'),
-    $accountPeter->getBalance($selectedAccountDate), $accountPeter->getCurrency()->getSign());
-printf("\n%s Account-Balance until %s: %.2f %s", $accountAnna, $selectedAccountDate->format('Y-m-d'),
-    $accountAnna->getBalance($selectedAccountDate), $accountAnna->getCurrency()->getSign());
-
-/* Balance till date between Transaction1 and Transaction2 */
-$selectedAccountDate = new DateTimeImmutable('2016-06-27');
-printf("\n%s Account-Balance until %s: %.2f %s", $accountPeter, $selectedAccountDate->format('Y-m-d'),
-    $accountPeter->getBalance($selectedAccountDate), $accountPeter->getCurrency()->getSign());
-printf("\n%s Account-Balance until %s: %.2f %s\n", $accountAnna, $selectedAccountDate->format('Y-m-d'),
-    $accountAnna->getBalance($selectedAccountDate), $accountAnna->getCurrency()->getSign());
-
 /* Correction of Transaction2 (reverse booking) - new Transaction Correction with 90.50 */
 $transaction2->reverse();
-printf("\n%s : Transaction of %.2f from %s to %s REVERSED!", $transaction2->getFormattedAccountingDate(),
+printf("\n%s : Transaction 2 of %.2f from %s to %s REVERSED!", $transaction2->getFormattedAccountingDate(),
     $transaction2->getAmount(), $accountPeter, $accountAnna);
 
-$transactionCorrection1 = new TransactionCorrection($eur9050, $accountPeter, $accountAnna, new DateTimeImmutable());
-printf("\n%s : Transaction-Correction of %.2f from %s to %s\n", $transactionCorrection1->getFormattedAccountingDate(),
-    $transactionCorrection1->getAmount(), $accountPeter, $accountAnna);
+$transactionCorrection1 = new TransactionCorrection($eur9050, $accountPeter, $accountAnna, new DateTimeImmutable(), new DateTimeImmutable('2016-06-19'), $transaction2);
+printf("\n%s : Transaction-Correction of %.2f from %s to %s : replacing Transaction2 from %s\n", $transactionCorrection1->getFormattedAccountingDate(),
+    $transactionCorrection1->getAmount(), $accountPeter, $accountAnna, $transaction2->getFormattedAccountingDate());
 
 /* Total actual Balance till today */
 printf("\n%s Account-Balance: %.2f %s", $accountPeter, $accountPeter->getBalance(), $accountPeter->getCurrency()->getSign());
 printf("\n%s Account-Balance: %.2f %s\n", $accountAnna, $accountAnna->getBalance(), $accountAnna->getCurrency()->getSign());
+
+/* Balance till date between Transaction1 and Transaction2 */
+$selectedValueDate = new DateTimeImmutable('2016-06-21');
+printf("\n%s Account-Balance until %s: %.2f %s", $accountPeter, $selectedValueDate->format('Y-m-d'),
+    $accountPeter->getBalance($selectedValueDate), $accountPeter->getCurrency()->getSign());
+printf("\n%s Account-Balance until %s: %.2f %s", $accountAnna, $selectedValueDate->format('Y-m-d'),
+    $accountAnna->getBalance($selectedValueDate), $accountAnna->getCurrency()->getSign());
+
+/* Balance till date between Transaction3 and Transaction4 */
+$selectedValueDate = new DateTimeImmutable('2016-06-27');
+printf("\n%s Account-Balance until %s: %.2f %s", $accountPeter, $selectedValueDate->format('Y-m-d'),
+    $accountPeter->getBalance($selectedValueDate), $accountPeter->getCurrency()->getSign());
+printf("\n%s Account-Balance until %s: %.2f %s\n", $accountAnna, $selectedValueDate->format('Y-m-d'),
+    $accountAnna->getBalance($selectedValueDate), $accountAnna->getCurrency()->getSign());
