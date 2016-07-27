@@ -4,7 +4,7 @@ declare(strict_types = 1);
 class Money
 {
     /**
-     * @var float
+     * @var int
      */
     private $amount;
 
@@ -13,10 +13,10 @@ class Money
      */
     private $currency;
 
-    public function __construct(float $amount, Currency $currency)
+    public function __construct(int $amount, Currency $currency)
     {
-        if (!is_float($amount)) {
-            throw new InvalidMoneyException("$amount must be a floating number");
+        if (!is_int($amount)) {
+            throw new InvalidMoneyException("$amount must be an integer");
         }
 
         $this->amount = $amount;
@@ -25,7 +25,7 @@ class Money
 
     public function getAmount() : float
     {
-        return $this->amount;
+        return round($this->amount / $this->currency->getSubUnit(), $this->currency->getDefaultFractionDigits());
     }
 
     public function getCurrency() : Currency
@@ -58,8 +58,8 @@ class Money
 
     private function ensureIsFloat($amount)
     {
-        if (!is_float($amount)) {
-            throw new InvalidMoneyException("$amount is not a floating number");
+        if (!is_int($amount)) {
+            throw new InvalidMoneyException("$amount is not an integer");
         }
     }
 }
