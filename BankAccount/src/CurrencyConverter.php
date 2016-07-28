@@ -1,49 +1,35 @@
 <?php
 declare(strict_types = 1);
 
-class CurrencyConverter
-{
-    /**
-     * @var EzbCurrencyXmlParser
-     */
-    private $currencyRates = [];
+namespace BankAccount {
 
-    public function __construct(EzbCurrencyXmlParser $parser)
+    use BankAccount\Currencies\Currency;
+    use BankAccount\Currencies\EUR;
+
+    class CurrencyConverter
     {
-        //$this->currencyRates = json_decode(json_encode((array)$parser), TRUE);
-        $this->currencyRates = (array) $parser;
-    }
+        /**
+         * @var array
+         */
+        private $currencyRates = [];
 
-    public function convert(string $from, string $to, float $amount)
-    {
-        $from = strtoupper($from);
-        $to = strtoupper($to);
-
-        if ($from === $to) {
-            return $amount;
+        public function __construct(EcbCurrencyXmlParser $parser)
+        {
+            $this->currencyRates = $parser->getCurrencies();
         }
 
-        $this->ensureCurrencyExists($from);
-        $this->ensureCurrencyExists($to);
+        public function convert(Currency $from, Currency $to, float $amount) : Money
+        {
+            if ($from instanceof EUR) {
+                return new Money(round($this->currencyRates[(string) $to] * $amount, 2), $to);
+            }
 
-        if ($from == 'EUR') {
-            return round($this->currencyRates[$to] * $amount, 2);
-        }
+            if ($to instanceof EUR) {
+                return new Money(round($amount / $this->currencyRates[(string) $from], 2), $to);
+            }
 
-        if ($to == 'EUR') {
-            return round($amount / $this->currencyRates[$from], 2);
-        }
-
-        $amountEur = $this->convert($from, 'EUR', $amount);
-
-        return $this->convert('EUR', $to, $amountEur);
-    }
-
-    private function ensureCurrencyExists(string $currency)
-    {
-        if ($currency !== 'EUR' && !isset($this->currencyRates[$currency])) {
-            throw new \InvalidArgumentException("Unrecognised currency $currency, available currencies: ");
-                //. implode(',',$this->currencyRates->getAvailableCurrencies()));
+            $amountEuro = $this->convert($from, new EUR, $amount);
+            return $this->convert(new EUR, $to, $amountEuro->getAmount());
         }
     }
 }

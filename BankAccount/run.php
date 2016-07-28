@@ -1,73 +1,184 @@
 <?php
 declare(strict_types = 1);
+
+use BankAccount\Account;
+use BankAccount\Currencies\USD;
+use BankAccount\Currencies\EUR;
+use BankAccount\CurrencyConverter;
+use BankAccount\EcbCurrencyXmlParser;
+use BankAccount\Handlers\TransactionHandler;
+use BankAccount\Money;
+use BankAccount\TransactionCorrection;
+
 require_once __DIR__ . '/bootstrap.php';
 
-$eur = new Currency('EUR');
-$usd = new Currency('USD');
+$eur = new EUR;
+$usd = new USD;
 
 $accountPeter = new Account('Peter', 123456, $eur);
 $accountAnna = new Account('Anna', 234567, $eur);
 $accountSteven = new Account('Steven', 584938, $usd);
 $accountValerie = new Account('Valerie', 345334, $usd);
 
-$eur10050 = new EUR(10050);
-$eur1000000 = new Money(100000, $eur);
-$eur9950 = new Money(9950, $eur);
-$eur9050 = new Money(9050, $eur);
-$eur1080 = new Money(1080, $eur);
-$usd1000 = new USD(1000);
-$usd2000 = new Money(2000, $usd);
+$eur10050 = new Money(100.50, $eur);
+$eur1000000 = new Money(1000.00, $eur);
+$eur9950 = new Money(99.50, $eur);
+$eur9050 = new Money(90.50, $eur);
+$eur1080 = new Money(10.80, $eur);
+$usd1000 = new Money(10.00, $usd);
+$usd2000 = new Money(20.00, $usd);
 
-$parser = new EzbCurrencyXmlParser('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml');
+$parser = new EcbCurrencyXmlParser('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml');
 $converter = new CurrencyConverter($parser);
 
 /**
-/* Transactions in EUR
+/* Transactions in EUR to EUR Account
  */
-$transaction1 = new Transaction($eur10050, $accountPeter, $accountAnna, new DateTimeImmutable('2016-06-19'), new DateTimeImmutable('2016-06-19'), $converter);
-printf("\n%s : Transaction of %.2f %s from %s to %s", $transaction1->getFormattedAccountingDate(), $transaction1->getAmount(),
-    $eur10050->getCurrency()->getSign(), $accountPeter, $accountAnna);
+$transaction1 = new TransactionHandler(
+    $eur10050,
+    $accountPeter,
+    $accountAnna,
+    new DateTimeImmutable('2016-06-19'),
+    new DateTimeImmutable('2016-06-19'),
+    $converter
+);
+$transaction1->execute();
+$transaction01 = $transaction1->getTransaction();
 
-$transaction2 = new Transaction($eur9950, $accountPeter, $accountAnna, new DateTimeImmutable('2016-06-19'), new DateTimeImmutable('2016-06-19'), $converter);
-printf("\n%s : Transaction of %.2f %s from %s to %s", $transaction2->getFormattedAccountingDate(), $transaction2->getAmount(),
-    $eur9950->getCurrency()->getSign(), $accountPeter, $accountAnna);
+printf("\n%s : Transaction of %.2f %s from %s to %s",
+    $transaction01->getFormattedAccountingDate(),
+    $transaction01->getAmount(),
+    $eur10050->getCurrency()->getSign(),
+    $accountPeter,
+    $accountAnna
+);
 
-$transaction3 = new Transaction($eur1080, $accountAnna, $accountPeter, new DateTimeImmutable('2016-06-25'), new DateTimeImmutable('2016-06-25'), $converter);
-printf("\n%s : Transaction of %.2f %s from %s to %s", $transaction3->getFormattedAccountingDate(), $transaction3->getAmount(),
-    $eur1080->getCurrency()->getSign(), $accountAnna, $accountPeter);
+$transaction2 = new TransactionHandler(
+    $eur9950,
+    $accountPeter,
+    $accountAnna,
+    new DateTimeImmutable('2016-06-19'),
+    new DateTimeImmutable('2016-06-19'),
+    $converter
+);
+$transaction2->execute();
+$transaction02 = $transaction2->getTransaction();
 
-$transaction7 = new Transaction($eur1000000, $accountPeter, $accountAnna, new DateTimeImmutable('2016-06-29'), new DateTimeImmutable('2016-06-29'), $converter);
-printf("\n%s : Transaction of %.2f %s from %s to %s", $transaction7->getFormattedAccountingDate(), $transaction7->getAmount(),
-    $eur1000000->getCurrency()->getSign(), $accountPeter, $accountAnna);
+printf("\n%s : Transaction of %.2f %s from %s to %s",
+    $transaction02->getFormattedAccountingDate(),
+    $transaction02->getAmount(),
+    $eur9950->getCurrency()->getSign(),
+    $accountPeter,
+    $accountAnna
+);
+
+$transaction3 = new TransactionHandler(
+    $eur1080,
+    $accountAnna,
+    $accountPeter,
+    new DateTimeImmutable('2016-06-25'),
+    new DateTimeImmutable('2016-06-25'),
+    $converter
+);
+$transaction3->execute();
+$transaction03 = $transaction3->getTransaction();
+
+printf("\n%s : Transaction of %.2f %s from %s to %s",
+    $transaction03->getFormattedAccountingDate(),
+    $transaction03->getAmount(),
+    $eur1080->getCurrency()->getSign(),
+    $accountAnna,
+    $accountPeter
+);
+
+$transaction7 = new TransactionHandler(
+    $eur1000000,
+    $accountPeter,
+    $accountAnna,
+    new DateTimeImmutable('2016-06-29'),
+    new DateTimeImmutable('2016-06-29'),
+    $converter
+);
+$transaction7->execute();
+$transaction07 = $transaction7->getTransaction();
+
+printf("\n%s : Transaction of %.2f %s from %s to %s",
+    $transaction07->getFormattedAccountingDate(),
+    $transaction07->getAmount(),
+    $eur1000000->getCurrency()->getSign(),
+    $accountPeter,
+    $accountAnna
+);
 
 /**
- * Transaction in USD
+ * Transaction in USD to USD Account
  */
-$transaction4 = new Transaction($usd1000, $accountSteven, $accountValerie, new DateTimeImmutable('2016-06-30'), new DateTimeImmutable('2016-06-30'), $converter);
-printf("\n%s : Transaction of %.2f %s from %s to %s\n", $transaction4->getFormattedAccountingDate(), $transaction4->getAmount(),
-    $usd1000->getCurrency()->getSign(), $accountSteven, $accountValerie);
+$transaction4 = new TransactionHandler(
+    $usd1000,
+    $accountSteven,
+    $accountValerie,
+    new DateTimeImmutable('2016-06-30'),
+    new DateTimeImmutable('2016-06-30'),
+    $converter
+);
+$transaction4->execute();
+$transaction04 = $transaction4->getTransaction();
+
+printf("\n%s : Transaction of %.2f %s from %s to %s\n",
+    $transaction04->getFormattedAccountingDate(),
+    $transaction04->getAmount(),
+    $usd1000->getCurrency()->getSign(),
+    $accountSteven,
+    $accountValerie
+);
 
 /**
- * Transaction from EUR to USD Account - Error!
+ * Transaction from EUR to USD Account - Conversion!
  */
-try {
-    $transaction5 = new Transaction($eur10050, $accountPeter, $accountSteven, new DateTimeImmutable('2016-07-10'), new DateTimeImmutable('2016-07-10'), $converter);
-    printf("\n%s : Transaction of %.2f %s from %s to %s\n", $transaction5->getFormattedAccountingDate(), $transaction5->getAmount(),
-        $eur10050->getCurrency()->getSign(), $accountPeter, $accountSteven);
-} catch (InvalidTransactionException $e) {
-    printf("\n **> Currency of the receiver Account needs to be the same as the sender Account\n");
-}
+$transaction5 = new TransactionHandler(
+    $eur10050,
+    $accountPeter,
+    $accountSteven,
+    new DateTimeImmutable('2016-07-10'),
+    new DateTimeImmutable('2016-07-10'),
+    $converter
+);
+$transaction5->execute();
+$transaction05 = $transaction5->getTransaction();
+
+printf("\n%s : Transaction of %.2f %s converted to %.2f %s from %s to %s\n",
+    $transaction05->getFormattedAccountingDate(),
+    $eur10050->getAmount(),
+    $eur10050->getCurrency()->getSign(),
+    $transaction05->getAmount(),
+    $transaction05->getMoney()->getCurrency()->getSign(),
+    $accountPeter,
+    $accountSteven
+);
 
 /**
- * Transaction from USD to EUR Account - Error!
+ * Transaction from USD to EUR Account - Conversion!
  */
-try {
-    $transaction6 = new Transaction($usd1000, $accountValerie, $accountAnna, new DateTimeImmutable('2016-07-20'), new DateTimeImmutable('2016-07-20'), $converter);
-    printf("\n%s : Transaction of %.2f %s from %s to %s\n", $transaction6->getFormattedAccountingDate(), $transaction6->getAmount(),
-        $usd1000->getCurrency()->getSign(), $accountValerie, $accountAnna);
-} catch (InvalidTransactionException $e) {
-    printf("\n **> Receivers Account-Currency needs to be the same as the Senders Transaction Amount-Currency\n");
-}
+$transaction6 = new TransactionHandler(
+    $usd1000,
+    $accountValerie,
+    $accountAnna,
+    new DateTimeImmutable('2016-07-20'),
+    new DateTimeImmutable('2016-07-20'),
+    $converter
+);
+$transaction6->execute();
+$transaction06 = $transaction6->getTransaction();
+
+printf("\n%s : Transaction of %.2f %s converted to %.2f %s from %s to %s\n",
+    $transaction06->getFormattedAccountingDate(),
+    $usd1000->getAmount(),
+    $usd1000->getCurrency()->getSign(),
+    $transaction06->getAmount(),
+    $transaction06->getMoney()->getCurrency()->getSign(),     //todo wrong sign??!!
+    $accountValerie,
+    $accountAnna
+);
 
 /**
  * Total Balance till today
@@ -79,15 +190,32 @@ printf("\n%s Account-Balance: %.2f %s\n", $accountValerie, $accountValerie->getB
 
 /**
  * Correction of Transaction2 (reverse booking) - new Transaction Correction with 90.50
+ * Converted Transaction's not implemented for Correction yet!!!
  */
-$transaction2->reverse();
-printf("\n%s : Transaction 2 of %.2f from %s to %s REVERSED!", $transaction2->getFormattedAccountingDate(),
-    $transaction2->getAmount(), $accountPeter, $accountAnna);
+$transaction02->reverse();
+printf("\n%s : Transaction 2 of %.2f from %s to %s REVERSED!",
+    $transaction02->getFormattedAccountingDate(),
+    $transaction02->getAmount(),
+    $accountPeter,
+    $accountAnna
+);
 
-$transactionCorrection1 = new TransactionCorrection($eur9050, $accountPeter, $accountAnna, new DateTimeImmutable(),
-    new DateTimeImmutable('2016-06-19'), $converter ,$transaction2);
-printf("\n%s : Transaction-Correction of %.2f from %s to %s : replacing Transaction2 from %s\n", $transactionCorrection1->getFormattedAccountingDate(),
-    $transactionCorrection1->getAmount(), $accountPeter, $accountAnna, $transaction2->getFormattedAccountingDate());
+$transactionCorrection1 = new TransactionCorrection(
+    $eur9050,
+    $accountPeter,
+    $accountAnna,
+    new DateTimeImmutable(),
+    new DateTimeImmutable('2016-06-19'),
+    $transaction02
+);
+$transactionCorrection1->execute();
+
+printf("\n%s : Transaction-Correction of %.2f from %s to %s : replacing Transaction2 from %s\n",
+    $transactionCorrection1->getFormattedAccountingDate(),
+    $transactionCorrection1->getAmount(),
+    $accountPeter, $accountAnna,
+    $transaction02->getFormattedAccountingDate()
+);
 
 /**
  * Total actual Balance till today
