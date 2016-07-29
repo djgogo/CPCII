@@ -3,19 +3,18 @@ declare(strict_types = 1);
 
 namespace BankAccount\Currencies
 {
-    abstract class Currency
+    interface Currency
     {
-        abstract public function getCurrencyCode() : string;
+        public function getCurrencyCode() : string;
 
-        abstract public function getDefaultFractionDigits() : int;
+        public function getDefaultFractionDigits() : int;
 
-        abstract public function getDisplayName() : string;
+        public function getDisplayName() : string;
 
-        abstract public function getSign() : string;
+        public function getSign() : string;
 
-        abstract public function getSubUnit() : int;
+        public function getSubUnit() : int;
 
-        abstract public function __toString() : string;
-
+        public function __toString() : string;
     }
 }
