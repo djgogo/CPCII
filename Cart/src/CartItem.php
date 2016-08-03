@@ -43,6 +43,11 @@ namespace Cart
             return $this->price;
         }
 
+        public function setPrice(Money $newPrice)
+        {
+            $this->price = $newPrice;
+        }
+
         public function getUnitPrice() : Money
         {
             return $this->unitPrice;
@@ -51,6 +56,11 @@ namespace Cart
         public function getQuantity() : int
         {
             return $this->quantity;
+        }
+
+        public function setQuantity(int $newQuantity)
+        {
+            $this->quantity = $newQuantity;
         }
     }
 }

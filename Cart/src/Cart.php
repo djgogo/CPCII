@@ -60,7 +60,7 @@ namespace Cart
             while ($storage->valid()) {
                 $object = $storage->current();
                 if ($item->getName() === $object->getName()) {
-                    //TODO: missing the right setter for this!!!!!!!!!!!!!!!!!!!!!!
+                    $object->setQuantity($newQuantity);
                     $storage->rewind();
                 }
                 $storage->next();
