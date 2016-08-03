@@ -12,14 +12,19 @@ namespace Cart\Renderers
             return $this->html;
         }
 
-        public function startTable()
+        public function addDocType()
         {
-            $this->html .= '<table>';
+            $this->html .= '<!DOCTYPE html>';
         }
 
-        public function endTable()
+        public function startHtml()
         {
-            $this->html .= '</table>';
+            $this->html .= '<html lang="de">';
+        }
+
+        public function endHtml()
+        {
+            $this->html .= '</html>';
         }
 
         public function startHead()
@@ -32,6 +37,16 @@ namespace Cart\Renderers
             $this->html .= '</head>';
         }
 
+        public function addMetaTag()
+        {
+            $this->html .= '<meta charset="UTF-8">';
+        }
+
+        public function addTitle(string $title = '')
+        {
+            $this->html .= '<title>' . $title . '</title>';
+        }
+
         public function startBody()
         {
             $this->html .= '<body>';
@@ -40,6 +55,21 @@ namespace Cart\Renderers
         public function endBody()
         {
             $this->html .= '</body>';
+        }
+
+        public function startTable()
+        {
+            $this->html .= '<table>';
+        }
+
+        public function endTable()
+        {
+            $this->html .= '</table>';
+        }
+
+        public function addTableHeader(string $header = '')
+        {
+            $this->html .= '<th>' . $header . '</th>';
         }
 
         public function startRow()
@@ -52,7 +82,7 @@ namespace Cart\Renderers
             $this->html .= '</tr>';
         }
 
-        public function addCell($content = '')
+        public function addCell(string $content = '')
         {
             $this->html .= '<td>' . $content . '</td>';
         }

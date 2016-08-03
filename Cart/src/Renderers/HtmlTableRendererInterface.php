@@ -19,6 +19,6 @@ namespace Cart\Renderers
         public function startRow();
         public function endRow();
 
-        public function addCell($content = '');
+        public function addCell(string $content = '');
     }
 }
