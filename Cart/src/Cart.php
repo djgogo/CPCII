@@ -12,6 +12,16 @@ namespace Cart
          */
         private $storage;
 
+        /**
+         * @var Voucher
+         */
+        private $voucher;
+
+        /**
+         * @var array
+         */
+        private $reducedArticles;
+
         public function __construct()
         {
             $this->storage = new \SplObjectStorage();
@@ -46,10 +56,24 @@ namespace Cart
         public function getTotal() : Money
         {
             $totalAmount = 0;
+            static $taken = null;
+
             foreach ($this->storage as $item) {
                 $totalAmount += $item->getPrice()->getAmount();
             }
-            return new Money($totalAmount, Money::CURRENCY_EUR);
+
+            if (!empty($this->reducedArticles && $taken === null)) {
+                foreach ($this->voucher->getReducedArticles() as $reducedArticle) {
+                    if ($this->containsArticle($reducedArticle)) {
+                        $reduction = round($totalAmount / 100 * $this->voucher->getReduction(), 0);
+                        $totalAmount -= $reduction;
+                        $taken = 'already used';
+                        break;
+                    }
+                }
+            }
+
+            return new Money((int) $totalAmount, Money::CURRENCY_EUR);
         }
 
         public function changeQuantity(CartItemInterface $item, int $newQuantity)
@@ -64,6 +88,14 @@ namespace Cart
                     $storage->rewind();
                 }
                 $storage->next();
+            }
+        }
+
+        public function addVoucher(Voucher $voucher)
+        {
+            $this->voucher = $voucher;
+            if ($voucher->getReducedArticles() != null) {
+                $this->reducedArticles = $voucher->getReducedArticles();
             }
         }
 
