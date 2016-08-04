@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace BankAccount\Currencies
 {
-    class EUR extends Currency
+    class EUR implements Currency
     {
         public function getCurrencyCode() : string
         {
