@@ -23,7 +23,7 @@ namespace Cart\Repositories
 
         public function addVoucher(Voucher $voucher)
         {
-            $this->vouchers[] = $voucher;
+            $this->vouchers[$voucher->getId()] = $voucher;
         }
     }
 }

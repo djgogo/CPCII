@@ -111,6 +111,7 @@ namespace Cart
 
         public function addVoucher(Voucher $voucher)
         {
+            // Todo: add Voucher to SPLObjectStorage!!!!!!
             $this->voucher = $voucher;
             if ($voucher->getReducedArticles() != null) {
                 $this->reducedArticles = $voucher->getReducedArticles();
