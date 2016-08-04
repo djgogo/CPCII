@@ -58,9 +58,9 @@ namespace Cart
             return $this->quantity;
         }
 
-        public function setQuantity(int $newQuantity)
+        public function setQuantity(int $quantity)
         {
-            $this->quantity = $newQuantity;
+            $this->quantity = $quantity;
         }
     }
 }

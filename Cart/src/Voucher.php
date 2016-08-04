@@ -15,14 +15,36 @@ namespace Cart
          */
         private $reducedArticles;
 
-        public function __construct(int $reduction)
+        /**
+         * @var string
+         */
+        private $name;
+
+        /**
+         * @var int
+         */
+        private $id;
+
+        public function __construct(int $id, string $name, int $reduction)
         {
             $this->reduction = $reduction;
+            $this->name = $name;
+            $this->id = $id;
         }
 
         public function getReduction() : int
         {
             return $this->reduction;
+        }
+
+        public function getId() : int
+        {
+            return $this->id;
+        }
+
+        public function getName() : string
+        {
+            return $this->name;
         }
 
         public function setReducedArticle(Article $article)

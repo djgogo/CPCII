@@ -10,8 +10,8 @@ use Cart\Repositories\ArticleRepository;
 require_once __DIR__ . '/bootstrap.php';
 
 $euroFormatter = new EuroFormatter();
-$cart = new Cart();
 $articleRepo = new ArticleRepository();
+$cart = new Cart($articleRepo);
 
 /* articles */
 $articleA = $articleRepo->findArticleById(0);
@@ -20,14 +20,16 @@ $articleD = $articleRepo->findArticleById(3);
 $articleG = $articleRepo->findArticleById(6);
 
 /* create cart-item instance and add some articles to cart */
-$cartItem1 = new CartItem('A', new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 2);
+$cartItem1 = new CartItem('A', new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
+$cartItem11 = new CartItem('A', new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
+$cartItem12 = new CartItem('A', new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
+$cartItem13 = new CartItem('A', new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
 $cart->addItem($cartItem1);
-if ($cart->containsArticle($articleA)) {
-    $cart->changeQuantity($cartItem1, 4);
-    $cartItem1->setPrice(new Money($articleA->getPrice()->getAmount() * 4, 'EUR'));
-} else {
-    $cart->addItem($cartItem1);
-}
+/* add more Items of the same Article - Merge this Items in Cart!!!! */
+$cart->addItem($cartItem11);
+$cart->addItem($cartItem12);
+$cart->addItem($cartItem13);
+
 printf("\n--> added to Cart: %s : %d x %s Total: %s",
     $cartItem1->getName(),
     $cartItem1->getQuantity(),
@@ -55,3 +57,4 @@ printf("\n--> added to Cart: %s : %d x %s Total: %s\n",
 
 /* Print out Total-Amount in Cart */
 printf("\n                             Total Cart: %s\n", $euroFormatter->format($cart->getTotal()));
+

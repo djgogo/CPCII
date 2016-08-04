@@ -3,48 +3,82 @@ declare(strict_types = 1);
 
 namespace Cart\Renderers
 {
-    class CartAsHtmlTableRenderer extends HtmlTableRenderer
+    use Cart\Cart;
+    use Cart\EuroFormatter;
+
+    class CartAsHtmlTableRenderer
     {
-        public function renderHtmlTop()
+        /**
+         * @var HtmlTableRenderer
+         */
+        private $renderer;
+
+        /**
+         * @var EuroFormatter
+         */
+        private $euroFormatter;
+
+        public function __construct(HtmlTableRenderer $htmlTableRenderer, EuroFormatter $euroFormatter)
         {
-            $this->addDocType();
-            $this->startHtml();
-            $this->startHead();
-            $this->addMetaTag();
-            $this->addTitle('Cart');
-            $this->endHead();
-            $this->startBody();
-            $this->startTable();
-            $this->startRow();
-            $this->addTableHeader('Name');
-            $this->addTableHeader('Anzahl');
-            $this->addTableHeader('Einzel-Preis');
-            $this->addTableHeader('Gesamt-Preis');
-            $this->endRow();
+            $this->renderer = $htmlTableRenderer;
+            $this->euroFormatter = $euroFormatter;
         }
 
-        public function renderHTMLBottom()
+        public function render(Cart $cart)
         {
-            $this->endTable();
-            $this->endBody();
-            $this->endHtml();
+            $this->renderHtmlTop();
+            foreach ($cart->getIterator() as $item) {
+                 $this->renderRow(
+                     $item->getName(),
+                     (string) $item->getQuantity(),
+                     $this->euroFormatter->format($item->getUnitPrice()),
+                     $this->euroFormatter->format($item->getPrice())
+                 );
+            }
+            $this->renderHTMLBottom();
+            $this->renderTotal($this->euroFormatter->format($cart->getTotal()));
         }
 
-        public function renderRow(string $name, string $quantity, string $unitPrice, string $price)
+        private function renderHtmlTop()
         {
-            $this->startRow();
-                $this->addCell($name);
-                $this->addCell($quantity);
-                $this->addCell($unitPrice);
-                $this->addCell($price);
-            $this->endRow();
+            $this->renderer->addDocType();
+            $this->renderer->startHtml();
+            $this->renderer->startHead();
+                $this->renderer->addMetaTag();
+                $this->renderer->addTitle('Cart');
+            $this->renderer->endHead();
+            $this->renderer->startBody();
+                $this->renderer->startTable();
+                $this->renderer->startRow();
+                    $this->renderer->addTableHeader('Name');
+                    $this->renderer->addTableHeader('Anzahl');
+                    $this->renderer->addTableHeader('Einzel-Preis');
+                    $this->renderer->addTableHeader('Gesamt-Preis');
+                $this->renderer->endRow();
         }
 
-        public function renderTotal(string $total)
+        private function renderHTMLBottom()
         {
-            $this->startRow();
-                $this->addCell($total);
-            $this->endRow();
+                $this->renderer->endTable();
+            $this->renderer->endBody();
+            $this->renderer->endHtml();
+        }
+
+        private function renderRow(string $name, string $quantity, string $unitPrice, string $price)
+        {
+            $this->renderer->startRow();
+                $this->renderer->addCell($name);
+                $this->renderer->addCell($quantity);
+                $this->renderer->addCell($unitPrice);
+                $this->renderer->addCell($price);
+            $this->renderer->endRow();
+        }
+
+        private function renderTotal(string $total)
+        {
+            $this->renderer->startRow();
+                $this->renderer->addCell($total);
+            $this->renderer->endRow();
         }
     }
 }

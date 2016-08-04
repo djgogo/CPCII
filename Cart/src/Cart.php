@@ -3,6 +3,8 @@ declare(strict_types = 1);
 
 namespace Cart
 {
+
+    use Cart\Repositories\ArticleRepository;
     use Traversable;
 
     class Cart implements \IteratorAggregate
@@ -22,13 +24,23 @@ namespace Cart
          */
         private $reducedArticles;
 
-        public function __construct()
+        /**
+         * @var ArticleRepository
+         */
+        private $articleRepository;
+
+        public function __construct(ArticleRepository $articleRepository)
         {
             $this->storage = new \SplObjectStorage();
+            $this->articleRepository = $articleRepository;
         }
 
         public function addItem(CartItemInterface $item)
         {
+            if ($this->containsArticle($this->articleRepository->findArticleByName($item->getName()))) {
+                $this->changeQuantity($item, $item->getQuantity());
+                return;
+            }
             $this->storage->attach($item);
         }
 
@@ -56,18 +68,16 @@ namespace Cart
         public function getTotal() : Money
         {
             $totalAmount = 0;
-            static $taken = null;
 
             foreach ($this->storage as $item) {
                 $totalAmount += $item->getPrice()->getAmount();
             }
 
-            if (!empty($this->reducedArticles && $taken === null)) {
+            if (!empty($this->reducedArticles)) {
                 foreach ($this->voucher->getReducedArticles() as $reducedArticle) {
                     if ($this->containsArticle($reducedArticle)) {
                         $reduction = round($totalAmount / 100 * $this->voucher->getReduction(), 0);
                         $totalAmount -= $reduction;
-                        $taken = 'already used';
                         break;
                     }
                 }
@@ -76,7 +86,7 @@ namespace Cart
             return new Money((int) $totalAmount, Money::CURRENCY_EUR);
         }
 
-        public function changeQuantity(CartItemInterface $item, int $newQuantity)
+        private function changeQuantity(CartItemInterface $item, int $quantity)
         {
             $storage = $this->storage;
 
@@ -84,11 +94,19 @@ namespace Cart
             while ($storage->valid()) {
                 $object = $storage->current();
                 if ($item->getName() === $object->getName()) {
-                    $object->setQuantity($newQuantity);
+                    $object->setQuantity($object->getQuantity() + $quantity);
+                    $this->calculateNewPrice($object);
                     $storage->rewind();
                 }
                 $storage->next();
             }
+        }
+
+        private function calculateNewPrice($object)
+        {
+            $object->setPrice(
+                new Money($object->getUnitPrice()->getAmount() * $object->getQuantity(), 'EUR')
+            );
         }
 
         public function addVoucher(Voucher $voucher)
@@ -102,13 +120,13 @@ namespace Cart
         /**
          * Retrieve an external iterator
          * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
-         * @return Traversable An instance of an object implementing <b>Iterator</b> or
+         * @return \ArrayIterator
          * <b>Traversable</b>
          * @since 5.0.0
          */
         public function getIterator()
         {
-            return new \ArrayIterator($this->storage);
+            return $this->storage;
         }
     }
 }
