@@ -25,6 +25,11 @@ namespace Cart
          */
         private $id;
 
+        /**
+         * @var bool
+         */
+        private $used = false;
+
         public function __construct(int $id, string $name, int $reduction)
         {
             $this->reduction = $reduction;
@@ -55,6 +60,16 @@ namespace Cart
         public function getReducedArticles() : array
         {
             return $this->reducedArticles;
+        }
+
+        public function setStatus(bool $status)
+        {
+            $this->used = $status;
+        }
+
+        public function getStatus() : bool
+        {
+            return $this->used;
         }
     }
 }

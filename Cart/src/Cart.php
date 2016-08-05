@@ -3,9 +3,7 @@ declare(strict_types = 1);
 
 namespace Cart
 {
-
     use Cart\Repositories\ArticleRepository;
-    use Traversable;
 
     class Cart implements \IteratorAggregate
     {
@@ -111,17 +109,25 @@ namespace Cart
 
         public function addVoucher(Voucher $voucher)
         {
-            // Todo: add Voucher to SPLObjectStorage!!!!!!
-            $this->voucher = $voucher;
-            if ($voucher->getReducedArticles() != null) {
-                $this->reducedArticles = $voucher->getReducedArticles();
+            if ($voucher->getStatus() === false) {
+                $this->voucher = $voucher;
+                if ($voucher->getReducedArticles() != null) {
+                    $this->reducedArticles = $voucher->getReducedArticles();
+                }
+                $this->voucher->setStatus(true);
             }
+        }
+
+        public function getVoucher()
+        {
+            return $this->voucher;
         }
 
         /**
          * Retrieve an external iterator
          * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
-         * @return \ArrayIterator
+         * @return \ArrayIterator --> not needed to use an external Iterator with SPLObjectStorage
+         *                            because it extends already Iterator!
          * <b>Traversable</b>
          * @since 5.0.0
          */

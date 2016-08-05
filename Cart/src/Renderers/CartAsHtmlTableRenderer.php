@@ -27,6 +27,7 @@ namespace Cart\Renderers
         public function render(Cart $cart)
         {
             $this->renderHtmlTop();
+
             foreach ($cart->getIterator() as $item) {
                  $this->renderRow(
                      $item->getName(),
@@ -35,8 +36,21 @@ namespace Cart\Renderers
                      $this->euroFormatter->format($item->getPrice())
                  );
             }
+
+            if ($cart->getVoucher() !== null) {
+                $this->renderVoucher(
+                    $cart->getVoucher()->getName(),
+                    '1',
+                    sprintf("%d%%", $cart->getVoucher()->getReduction())
+                    );
+            }
+
             $this->renderHTMLBottom();
-            $this->renderTotal($this->euroFormatter->format($cart->getTotal()));
+
+            $this->renderTotal(
+                'Total: ______________________',
+                $this->euroFormatter->format($cart->getTotal())
+            );
         }
 
         private function renderHtmlTop()
@@ -74,9 +88,19 @@ namespace Cart\Renderers
             $this->renderer->endRow();
         }
 
-        private function renderTotal(string $total)
+        private function renderVoucher(string $name, string $quantity, string $reduction)
         {
             $this->renderer->startRow();
+                $this->renderer->addCell($name);
+                $this->renderer->addCell($quantity);
+                $this->renderer->addCell($reduction);
+            $this->renderer->endRow();
+        }
+
+        private function renderTotal(string $name, string $total)
+        {
+            $this->renderer->startRow();
+                $this->renderer->addCell($name);
                 $this->renderer->addCell($total);
             $this->renderer->endRow();
         }
