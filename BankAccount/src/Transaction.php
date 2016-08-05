@@ -57,9 +57,9 @@ namespace BankAccount {
             $this->receiver->addCredit($this);
         }
 
-        public function getAmount() : float
+        public function getAmount() : Money
         {
-            return $this->money->getAmount();
+            return $this->money;
         }
 
         public function getAccountingDate() : \DateTimeImmutable
@@ -75,11 +75,6 @@ namespace BankAccount {
         public function getFormattedAccountingDate() : string
         {
             return $this->accountingDate->format('Y-m-d');
-        }
-
-        public function getMoney() : Money
-        {
-            return $this->money;
         }
     }
 }

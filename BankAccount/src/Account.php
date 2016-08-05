@@ -57,7 +57,7 @@ namespace BankAccount {
             ];
         }
 
-        public function getBalance(\DateTimeImmutable $valueDate = null) : float
+        public function getBalance(\DateTimeImmutable $valueDate = null) : Money
         {
             if ($valueDate === null) {
                 $valueDate = new \DateTimeImmutable();
@@ -66,18 +66,26 @@ namespace BankAccount {
             $debitSum = 0;
             for ($i = 0; $i < count($this->debits); $i++) {
                 if ($this->debits[$i]['valueDate'] <= $valueDate) {
-                    $debitSum += $this->debits[$i]['amount'];
+                    $money = $this->debits[$i]['amount'];
+                    /**
+                     * @var $money Money
+                     */
+                    $debitSum += $money->getAmount();
                 }
             }
 
             $creditSum = 0;
             for ($i = 0; $i < count($this->credits); $i++) {
                 if ($this->credits[$i]['valueDate'] <= $valueDate) {
-                    $creditSum += $this->credits[$i]['amount'];
+                    $money = $this->credits[$i]['amount'];
+                    /**
+                     * @var $money Money
+                     */
+                    $creditSum += $money->getAmount();
                 }
             }
 
-            return $debitSum - $creditSum;
+            return new Money($debitSum - $creditSum, $this->getCurrency());
         }
 
         public function getCurrency() : Currency
