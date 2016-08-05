@@ -47,4 +47,19 @@ class FriendRequest
     {
         return $this->status;
     }
+
+    public function add()
+    {
+        if ($this->getStatus() === 'accepted') {
+            throw new \InvalidFriendRequestException('User '. $this->getFrom() .' is already friend of '. $this->getTo());
+        }
+        elseif ($this->getStatus() === 'pending') {
+            throw new \InvalidFriendRequestException($this->getTo() .' got already a Request from '. $this->getFrom());
+        }
+        elseif ($this->getStatus() === 'declined') {
+            throw new \InvalidFriendRequestException($this->getTo() .' got already a Request from '. $this->getFrom());
+        } else {
+            $this->setStatus('pending');
+        }
+    }
 }
