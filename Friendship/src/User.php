@@ -20,16 +20,28 @@ class User
 
     public function addFriendRequest(FriendRequest $friendRequest)
     {
-        if (in_array($friendRequest->getFrom(), $this->friends)) {
-            throw new \InvalidFriendRequestException('User '. $friendRequest->getFrom() .' is already friend of '. $this->name);
-        }
-        elseif ($friendRequest->getStatus() === 'pending') {
-            throw new \InvalidFriendRequestException($this->name .' got already a Request from '. $friendRequest->getFrom());
-        }
-        elseif ($friendRequest->getStatus() === 'declined') {
-            throw new \InvalidFriendRequestException($this->name .' got already a Request from '. $friendRequest->getFrom());
+        if (in_array($friendRequest->getFrom(), $this->friends) && $friendRequest->getStatus() === '') {
+            $friendRequest->setStatus('accepted');
+            printf ("\n --> User %s is already friend of %s - No Friend Request added!\n",
+                $friendRequest->getFrom(),
+                $friendRequest->getTo()
+            );
         } else {
-            $friendRequest->setStatus('pending');
+            $this->addRequest($friendRequest);
+        }
+    }
+
+    private function addRequest(FriendRequest $friendRequest)
+    {
+        try {
+            $friendRequest->add();
+            printf("\nFriend Request from %s to %s added", $friendRequest->getFrom(), $friendRequest->getTo());
+        } catch (InvalidFriendRequestException $e) {
+            printf("\n--> %s got already a Request from %s - Request is %s!\n",
+                $friendRequest->getTo(),
+                $friendRequest->getFrom(),
+                $friendRequest->getStatus()
+            );
         }
     }
 
@@ -43,7 +55,7 @@ class User
         } else {
             $this->addFriend($friendRequest->getFrom());
             $friendRequest->getFrom()->addFriend($this);
-
+            $friendRequest->setStatus('accepted');
         }
     }
 
