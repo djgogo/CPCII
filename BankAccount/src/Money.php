@@ -9,7 +9,7 @@ namespace BankAccount
     class Money
     {
         /**
-         * @var float
+         * @var int
          */
         private $amount;
 
@@ -18,21 +18,24 @@ namespace BankAccount
          */
         private $currency;
 
-        public function __construct(float $amount, Currency $currency)
+        public function __construct(int $amount, Currency $currency)
         {
-            if (!is_float($amount)) {
-                throw new InvalidMoneyException($amount . 'must be a floating number');
+            if (!is_int($amount)) {
+                throw new InvalidMoneyException($amount . 'must be an integer');
             }
 
             $this->amount = $amount;
             $this->currency = $currency;
         }
 
-        public function getAmount() : float
+        public function getAmount() : int
         {
-            // if the money-object will be consequently in integer format! the following would be getFormattedAmount()
-            // return round($this->amount / $this->currency->getSubUnit(), $this->currency->getDefaultFractionDigits());
             return $this->amount;
+        }
+
+        public function getFormattedAmount() : float
+        {
+            return round($this->amount / $this->currency->getSubUnit(), $this->currency->getDefaultFractionDigits());
         }
 
         public function getCurrency() : Currency
@@ -44,7 +47,7 @@ namespace BankAccount
         {
             $this->ensureSameCurrency($this, $other);
             $value = $this->amount + $other->getAmount();
-            $this->ensureIsFloat($value);
+            $this->ensureIsInt($value);
             return new self($value, $this->currency);
         }
 
@@ -52,7 +55,7 @@ namespace BankAccount
         {
             $this->ensureSameCurrency($this, $other);
             $value = $this->amount - $other->getAmount();
-            $this->ensureIsFloat($value);
+            $this->ensureIsInt($value);
             return new self($value, $this->currency);
         }
 
@@ -63,10 +66,10 @@ namespace BankAccount
             }
         }
 
-        private function ensureIsFloat($amount)
+        private function ensureIsInt($amount)
         {
-            if (!is_float($amount)) {
-                throw new InvalidMoneyException($amount . 'must be a floating number');
+            if (!is_int($amount)) {
+                throw new InvalidMoneyException($amount . 'must be an integer');
             }
         }
     }
