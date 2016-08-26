@@ -23,23 +23,23 @@ class UserPersistenceIntegrationTest extends \PHPUnit_Framework_TestCase
 //        $this->assertInstanceOf('User', $user);
 //        $this->assertEquals(1, $user->getId());
 //    }
-//
-//    public function testUserCanBePersisted()
-//    {
-//        $user = new User(2, "Reiner'o'Zufall", 'Reiner@Zufall.net');
-//        $user->setScreenName('Willi "der Böse" Wichtig');
-//        $this->repository->addUser($user);
-//        $this->repository->commit();
-//        $user2 = $this->repository->getUserById(2);
-//        $this->assertEquals($user, $user2);
-//    }
 
-    public function testCallingGetUserByIdWithInvalidId()
+    public function testUserCanBePersisted()
     {
-        $this->repository->getUserById('Invalid');
-        $this->markTestIncomplete();
+        $user = new User(2, "Reiner'o'Zufall", 'Reiner@Zufall.net');
+        $user->setScreenName('Willi "der Böse" Wichtig');
+        $this->repository->addUser($user);
+        $this->repository->commit();
+        $user2 = $this->repository->getUserById(2);
+        $this->assertEquals($user, $user2);
     }
 
+//    public function testCallingGetUserByIdWithInvalidId()
+//    {
+//        $this->repository->getUserById('Invaid');
+//        $this->markTestIncomplete();
+//    }
+//
 //    public function testUserCanBeFoundByScreenName()
 //    {
 //        /** @var User $user */
