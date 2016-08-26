@@ -5,4 +5,4 @@ var statistics = {
     trackUserMail: function(payload) {
         alert( 'trackUserMail: ' + JSON.stringify(payload));
     }
-}
+};

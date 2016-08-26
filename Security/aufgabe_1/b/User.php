@@ -1,6 +1,5 @@
 <?php
-class User
-{
+class User {
 
     /**
      * @var int
@@ -22,43 +21,36 @@ class User
      */
     private $screenName;
 
-    public function __construct($id, $realName, $email)
-    {
+    public function __construct($id, $realName, $email) {
         $this->id = $id;
         $this->realName = $realName;
         $this->email = $email;
     }
 
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
     }
 
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
-    public function getRealName()
-    {
+    public function getRealName() {
         return $this->realName;
     }
 
     /**
      * @param string $screenName
      */
-    public function setScreenName($screenName)
-    {
+    public function setScreenName($screenName) {
         $this->screenName = $screenName;
     }
 
-    public function getScreenName()
-    {
+    public function getScreenName() {
         if ($this->screenName == NULL) {
             return $this->realName;
         }

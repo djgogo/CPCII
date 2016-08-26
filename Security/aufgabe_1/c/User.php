@@ -49,6 +49,11 @@ class User
         return $this->realName;
     }
 
+    public function setRealName($realName)
+    {
+        $this->realName = $realName;
+    }
+
     /**
      * @param string $screenName
      */

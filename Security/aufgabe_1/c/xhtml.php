@@ -8,7 +8,8 @@
     <body>
         <script type="text/javascript">statistics.trackUserView({'screen':'<?php echo $user->getScreenName(); ?>'});</script>
         <p>Name: <em><?php echo $user->getRealName(); ?></em></p>
-        <p>Mail: <em><a href="mailto:<?php echo $user->getEmail(); ?>" onclick="statistics.trackUserMail({'screen':'<?php echo $user->getScreenName(); ?>'});"><?php echo $user->getEmail(); ?></a></em></p>
+        <p>Mail: <em><a href="mailto:<?php echo $user->getEmail(); ?>"
+                        onclick="statistics.trackUserMail({'screen':'<?php echo $user->getScreenName(); ?>'});"><?php echo $user->getEmail(); ?></a></em></p>
         <hr/>
         <p><a href="/report?user=<?php echo $user->getScreenName(); ?>">Benutzer melden</a></p>
     </body>
