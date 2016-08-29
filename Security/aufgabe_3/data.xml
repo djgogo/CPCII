@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<userlist>
+    <user id="1" screenname="Administrator" realname="Root User" email="root@localhost" />
+    <user id="2" screenname="Willi &amp; Co" realname="Reiner Zufall" email="reiner@zufall.net" />
+    <user id="3" screenname="5.25&quot; Floopy" realname="Herman &quot;I'm legend&quot; User" email="history@computer" />
+</userlist>
