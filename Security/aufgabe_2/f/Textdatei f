@@ -1,0 +1,2 @@
+Die Abrage findUserByKey war gar nicht schön. Bei der Abfrage nach der Email war im SQL-Query Statement immer noch der letzte SQL vom Screenname. Ich habe die beiden
+Separiert und für jedes Feld eine neue Funktion erstellt die so mehr Sinn machen und auch ohne Schmerzen funktionieren.
