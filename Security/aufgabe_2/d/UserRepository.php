@@ -1,5 +1,6 @@
 <?php
-class UserRepository {
+class UserRepository
+{
 
     /**
      * @var UserTableDataGateway
@@ -27,7 +28,7 @@ class UserRepository {
      *
      * @return User
      */
-    public function getUserById($id)
+    public function getUserById($id) : User
     {
         if (!isset($this->users[$id])) {
             $data = $this->gateway->findById($id);
@@ -45,10 +46,11 @@ class UserRepository {
     }
 
     /**
-     * @param string $key   Key to use for searching, valid keys are screenname or eMail
+     * @param string $key Key to use for searching, valid keys are screenname or eMail
      * @param string $value Value to use in search
+     * @return User
      */
-    public function findUserByKey($key, $value)
+    public function findUserByKey($key, $value) : User
     {
         $data = $this->gateway->findByKey($key, $value);
         return $this->mapper->create($data);
@@ -56,7 +58,7 @@ class UserRepository {
 
     public function commit()
     {
-        foreach($this->users as $user) {
+        foreach ($this->users as $user) {
             $this->mapper->save($user);
         }
     }

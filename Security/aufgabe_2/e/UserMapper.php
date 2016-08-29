@@ -1,5 +1,6 @@
 <?php
-class UserMapper {
+class UserMapper
+{
 
     /**
      * @var UserTableDataGateway

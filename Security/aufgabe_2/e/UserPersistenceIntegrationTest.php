@@ -2,7 +2,8 @@
 
 require 'autoload.php';
 
-class UserPersistenceIntegrationTest extends \PHPUnit_Framework_TestCase {
+class UserPersistenceIntegrationTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * @var UserRepository
@@ -35,14 +36,14 @@ class UserPersistenceIntegrationTest extends \PHPUnit_Framework_TestCase {
 
     public function testCallingGetUserByIdWithInvalidId()
     {
-        $this->repository->getUserById('Invaid');
-        $this->markTestIncomplete();
+        $this->expectException(PDOException::class);
+        $this->repository->getUserById('Invalid');
     }
 
     public function testUserCanBeFoundByScreenName()
     {
         /** @var User $user */
-        $user = $this->repository->findUserByKey('screenname', 'Administrator');
+        $user = $this->repository->findUserByScreenName('Administrator');
         $this->assertInstanceOf('User', $user);
         $this->assertEquals('Administrator', $user->getScreenName());
     }
@@ -50,7 +51,7 @@ class UserPersistenceIntegrationTest extends \PHPUnit_Framework_TestCase {
     public function testUserCanBeFoundByEmail()
     {
         /** @var User $user */
-        $user = $this->repository->findUserByKey('email', 'root@localhost');
+        $user = $this->repository->findUserByEmail('root@localhost');
         $this->assertInstanceOf('User', $user);
         $this->assertEquals('root@localhost', $user->getEmail());
     }
