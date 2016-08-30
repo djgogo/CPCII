@@ -1,0 +1,15 @@
+The Magic Frame Busting Code unterbindet die Ausgabe der Seite wenn sie in einem Frame angezeigt wird, also falls ein Clickjacking angriff erfolgt. Dabei muss jedoch
+beachtet werden, dass die Seite vor Ausführung des JavaScripts versteckt ist und erst bei einer erfolgreichen Frame-Ueberprüfung angezeigt wird. Sonst lässt sich der
+Frame-Killer selbst umgehen.
+
+So ein Framebuster setzt zuerst einmal voraus, dass JavaScript im Browser der Benutzer eingeschaltet ist, was heutzutage meist der Fall ist. Es gibt aber verschiedene
+Möglichkeiten, den Framebuster zu umgehen. 2010 haben Gustav Rydstedt, Elie Bursztein und Dan Boneh von der Stanford University und Collin Jackson von der Carnegie
+Mellon University die Framebuster der Alexa Top-500 Websites auf ihre Wirksamkeit getestet. Das Ergebnis: Alle Framebuster lassen sich auf die eine oder andere
+Art und in mehr oder weniger vielen Browsern umgehen ("Busting Frame Busting - a Study of Clickjacking Vulnerabilities on Popular Sites" als PDF).
+
+An diesem grundsätzlichen Problem hat sich seitdem nichts geändert, ganz im Gegenteil ist eine weitere Möglichkeit hinzu gekommen, die Framebuster zu umgehen:
+Mit dem in HTML5 eingeführten sandbox-Attribut für iframes lässt sich der Zugriff auf die Top-Level-Navigation verbieten, während JavaScript-Code ansonsten weiterhin
+ausgeführt werden kann. Dadurch versagt der Framebuster und die in den iframe mit sandbox-Attribut geladene Seite kann über Clickjacking angegriffen werden.
+
+Trotzdem sollte man weiterhin einen Framebuster einsetzen, er schadet ja nicht. Er bietet nur keinen wirklich zuverlässigen Schutz mehr. Daher muss ein zusätzlicher
+Schutz her, und den bietet ein HTTP-Header.

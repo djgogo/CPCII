@@ -16,13 +16,13 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->repository = new UserRepository($dom);
     }
 
-//    public function testSearchingForAdministratorReturnsCorrectUser()
-//    {
-//        /** @var User $user  */
-//        $user = $this->repository->getUserByScreenName('Administrator');
-//        $this->assertInstanceOf('User', $user);
-//        $this->assertEquals('Administrator', $user->getScreenName());
-//    }
+    public function testSearchingForAdministratorReturnsCorrectUser()
+    {
+        /** @var User $user  */
+        $user = $this->repository->getUserByScreenName('Administrator');
+        $this->assertInstanceOf('User', $user);
+        $this->assertEquals('Administrator', $user->getScreenName());
+    }
 
     public function testSearchingByScreenNameReturnsCorrectUser()
     {

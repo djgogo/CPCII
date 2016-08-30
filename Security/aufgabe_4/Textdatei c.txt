@@ -1,0 +1,12 @@
+Fast alle Browser haben die Möglichkeit eingeführt, dass Webanwendungen einen Header "X-Frame-Options" senden, der dem Browser anzeigt, ob die Webseite in einem Frame
+angezeigt werden darf oder nicht. Mögliche Werte sind:
+
+DENY = Seite darf nicht in Frame angezeigt werden
+SAMEORIGIN = Seite darf nur von Frames auf derselben Domain angezeigt werden
+ALLOW-FROM = Seite darf von spezifizierter Domäne und URL angezeigt werden
+
+Weitere Möglichkeit:
+Die User Interface Security Directives for Content Security Policy nutzen die CSP (Content Security Policy von W3C) zur Abwehr von Clickjacking-Angriffen. Über die darin
+definierte Anweisung frame-options kann der Server festlegen, ob die ausgelieferten Daten in einem iframe, frame oder ähnlichem dargestellt werden dürfen oder nicht.
+
+Für kritische Aktionen sollte man einen zusätzlichen Schutz implementieren. Z.B. mit CAPTCHA Abfragen.

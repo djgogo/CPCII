@@ -1,0 +1,9 @@
+Die Seite wurde gehackt mit dem sogenannten Clickjacking. Clickjackintg ist eine Technik, bei der ein Computerhacker die Darstellung einer Internetseite
+überlagert und dann deren Nutzer dazu veranlasst, scheinbar harmlose Mausklicks und/oder Tastatureingaben durchzuführen.
+
+Angreifer lassen die ahnungslosen Anwender – scheinbar – auf die überlagerten Objekte klicken. Tatsächlich jedoch wird der ursprüngliche Inhalt (Button/Link)
+der Internetseite ausgelöst. So geschieht es, dass der User – anstatt lediglich auf die ihm vorgegaukelten Links an einer Stelle zu klicken – eine vom Hacker
+definierte, beliebige Aktion auslöst.
+
+Beispielsweise kann so auch eine Website-Schaltfläche, die zum Absenden von Anmeldedaten dient, mit einem für den User unsichtbaren Button überlagert werden.
+Über diesen lassen sich die Informationen an den Angreifer übermitteln.
