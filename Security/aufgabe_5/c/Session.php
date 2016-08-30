@@ -18,7 +18,7 @@ class Session
         } else if ($request->hasCookie('SID')) {
             $this->sid = $request->getCookie('SID');
         } else {
-            $this->sid = md5(time());
+            $this->sid = $this->generateSessionId();
         }
         $this->data = $this->store->load($this->sid);
     }
@@ -49,5 +49,10 @@ class Session
             throw new RuntimeException($key . ' net set');
         }
         return $this->data[$key];
+    }
+
+    private function generateSessionId() : Token
+    {
+        return new Token();
     }
 }

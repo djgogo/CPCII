@@ -1,0 +1,9 @@
+Da die Session-Id meistens über ein Cookie übermittelt wird sollte sichregestellt werden ,dass die entsprechende Webanwendung nicht anfällig für XSS ist, da dies
+vermutlich eine der Hauptmethoden von Angreifern ist, um per JavaScript das Objekt document.cookie auszulesen und somit die Sitzung zu kapern.
+
+Es ist von hoher Wichtigkeit, dass Session IDs nicht erraten werden können. Dies wird in der Regel dadurch erreicht, dass die Session ID zufällig aus einem Wertebereich
+ausgewählt wird.
+
+Angreifer können versuchen zwei Zugriffe zeitgleich auf die Generierung der SID ausüben zu lassen. Gelingt dies (in der selben Sekunde), sollten die gleichen Werte für zwei
+vermeintlich unterschiedliche SIDs generiert werden. Als Angreifer erschliessen sich SIDs auf der Basis von time() als Vorteil, da die Ausgangswerte stets die gleiche Struktur haben
+(10 Stellen und nur numerische zeichen). Eine Bruteforce-Attakce auf die SID kann daher mit einem vorhersehbaren, linearen und endlichen Aufwand geschehen.

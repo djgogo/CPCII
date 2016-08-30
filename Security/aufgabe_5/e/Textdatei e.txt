@@ -1,0 +1,5 @@
+- Verschlüsselte Uebertragung der Daten zum Server über HTTPS.
+- Schutzmassnahmen gegen XSS mindern auch die Gefahr von Session Hijacking
+- Keine Session-Ids in der URL
+- mit session_regenerate_id(true) gibt es die Möglichkeit die Daten einer Session auf eine neue Session zu übertragen und dabei die alte Session-ID inkl.
+  aller dazugehörigen Daten zu löschen.
