@@ -5,6 +5,7 @@ class UserTableDataGateway
      * @var PDO
      */
     private $pdo;
+    private $userRow;
 
     public function __construct(PDO $pdo)
     {
@@ -13,18 +14,20 @@ class UserTableDataGateway
 
     public function findIdByCredentials($username, $password)
     {
+        var_dump($password);
         try {
-            $stmt = $this->pdo->prepare("id FROM user where username==:uname AND passwd=:pass LIMIT 1");
+            $stmt = $this->pdo->prepare("SELECT id FROM user WHERE username=:uname AND passwd=:pass LIMIT 1");
             $stmt->execute(array(':uname' => $username, ':pass' => $password));
-            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->userRow = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($stmt->rowCount() > 0) {
-                if (password_verify($password, $userRow['username'])) {
+                if (password_verify($password, $this->userRow['passwd'])) {
                     return $stmt->fetchColumn(0);
                 } else {
                     return false;
                 }
             }
         } catch (PDOException $e) {
+            //var_dump($this->userRow['passwd']); exit;
             printf("%s, Benutzer: %s ist nicht in der Datenbank", $e->getMessage(), $username);
         }
     }
@@ -44,15 +47,11 @@ class UserTableDataGateway
 
     public function updatePassword($id, $password)
     {
-        $sql = sprintf(
-            "UPDATE user SET passswd=%s WHERE id=%d",
-            $this->pdo->quote($password, PDO::PARAM_STR),
-            $this->pdo->quote($id, PDO::PARAM_INT)
-        );
-        $rc = $this->pdo->exec($sql);
-        if ($rc != 1) {
+        $stmt = $this->pdo->prepare("UPDATE user SET passswd=:pass WHERE id=:id");
+        $result = $stmt->execute(array(':id' => $id, ':pass' => $password));
+
+        if ($result === false) {
             throw new RuntimeException("No record was updated");
         }
     }
-
 }
