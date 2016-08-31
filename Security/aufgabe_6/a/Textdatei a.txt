@@ -1,0 +1,16 @@
+Der Umgang mit Passwörtern ist im Moment nicht ganz fertig gelöst, eigentlich noch gar nicht. Das Passwort wird als Plain Text gespeichert, kein Hash, kein Salt... nichts!
+Die gesamte Anmelde Funktion (Register) fehlt.
+
+Bei der Validierung des Passwortes wird es auf eine maximal Länge von 8 Zeichen beschränkt und nur 3 Zeichgen sollten genügen! Wieso? Die Länge eines Passwortes
+spielt keine rolle wenn es gehasht wird. Und ein langes Passwort ist sicherer als ein kürzeres. Ein nur 3 Zeichen langes Passwort ist extrem unsicher. Hier sollte ein
+minimun von 6 Zeichen sein. Besser 8.
+
+Dann sind die Umlaute und Sonderzeichen nicht erlaubt! Wieso nicht? Das macht ein Passwort erst richtig komplex und schwierig zu knacken. Die sollten unbedingt erlaubt sein.
+
+Dann sollte man ein Passwort ausser der länge nicht limitieren, Der Benutzer sollte frei sein in der Wahl seinens Passwortes oder Passphrase!
+
+In der App sollte folgende Implementiert werden um ein sicheres Passwort Handling zu erreichen:
+
+- Anzahl Login-Versuche limitieren
+- Kryptografisch starke Hashin Funktion verwenden wie bcrypt (password_hash)
+- Validierung mit php's password_verify
