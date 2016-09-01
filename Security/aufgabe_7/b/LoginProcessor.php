@@ -41,9 +41,8 @@ class LoginProcessor implements ProcessorInterface
         $username = $request->getParameter('USERNAME');
         $password = $request->getParameter('PASSWORD');
 
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $userId = $this->authenticator->authenticate($username, $password);
 
-        $userId = $this->authenticator->authenticate($username, $hashedPassword);
         if ($userId !== false) {
             $this->session->setKey('userId', $userId);
             return new Url('/secure');

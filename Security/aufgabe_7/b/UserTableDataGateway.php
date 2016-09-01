@@ -5,7 +5,6 @@ class UserTableDataGateway
      * @var PDO
      */
     private $pdo;
-    private $userRow;
 
     public function __construct(PDO $pdo)
     {
@@ -14,21 +13,21 @@ class UserTableDataGateway
 
     public function findIdByCredentials($username, $password)
     {
-        var_dump($password);
         try {
-            $stmt = $this->pdo->prepare("SELECT id FROM user WHERE username=:uname AND passwd=:pass LIMIT 1");
-            $stmt->execute(array(':uname' => $username, ':pass' => $password));
-            $this->userRow = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($stmt->rowCount() > 0) {
-                if (password_verify($password, $this->userRow['passwd'])) {
-                    return $stmt->fetchColumn(0);
+
+            $stmt = $this->pdo->prepare("SELECT id, username, passwd FROM user WHERE username=:username LIMIT 1");
+            $stmt->execute(array(':username' => $username));
+            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($userRow !== false) {
+                if (password_verify($password, $userRow['passwd'])) {
+                    return (int) $userRow['id'];
                 } else {
                     return false;
                 }
             }
         } catch (PDOException $e) {
-            //var_dump($this->userRow['passwd']); exit;
-            printf("%s, Benutzer: %s ist nicht in der Datenbank", $e->getMessage(), $username);
+            printf("%s, User: %s was not found in the Database", $e->getMessage(), $username);
         }
     }
 

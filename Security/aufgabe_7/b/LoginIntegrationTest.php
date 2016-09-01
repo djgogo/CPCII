@@ -59,17 +59,23 @@ class LoginIntegrationTest extends PHPUnit_Framework_TestCase
             )'
         );
 
-        $sql = sprintf(
-            'INSERT INTO user VALUES(1, "%s", "%s")',
-            'Administrator',
-            password_hash('secure', PASSWORD_DEFAULT)
-        );
+        $id = 1;
+        $username = 'Administrator';
+        $hashedPassword = password_hash("secure", PASSWORD_DEFAULT);
 
-        $result = $pdo->exec($sql);
-        var_dump($result);
-        if ($result != 1) {
-            var_dump('Fehler beim Datenbank Initialisieren');
+        $stmt = $pdo->prepare("INSERT INTO USER (id, username, passwd) VALUES (:id, :username, :passwd)");
+        $stmt->execute(array(':id' => $id, ':username' => $username, ':passwd' => $hashedPassword));
+
+        if ($stmt->rowCount() != 1) {
+            var_dump('Database could not be initialized!');
         }
+
+//        $stmt = $pdo->prepare("SELECT id, username, passwd FROM user WHERE username=:username AND passwd=:passwd LIMIT 1");
+//        $stmt->execute(array(':username' => $username, ':passwd' => $hashedPassword));
+//        $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+//
+//        var_dump($userRow);
+
         return $pdo;
     }
 }

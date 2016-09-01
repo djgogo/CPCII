@@ -39,6 +39,7 @@ class Session
 
     public function setKey($key, $value)
     {
+        $this->data[$key] = $value;
     }
 
     public function getKey($key)
