@@ -2,7 +2,7 @@
 
 require 'autoload.php';
 
-class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
+class LoginIntegrationTest extends PHPUnit_Framework_TestCase
 {
     private $session;
     private $factory;
@@ -13,28 +13,11 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
         $this->session = $this->factory->getSession();
     }
 
-    public function testUserCanEditPassword()
-    {
-        $data = array(
-            'ID' => 1,
-            'PASSWORD' => 'newPassword'
-        );
-        $request = new HttpRequest('/password/change/check', array(), $data);
-        $this->session->init($request);
-
-        $processor = $this->factory->getRouter()->route($request);
-        $result = $processor->execute($request);
-
-        $this->assertInstanceOf('Url', $result);
-        $this->assertEquals('/password/change/success', $result->getUri());
-        $this->testUserCanLoginWithNewValidCredentials();
-    }
-
-    private function testUserCanLoginWithNewValidCredentials()
+    public function testUserCanLoginWithValidCredentials()
     {
         $data = array(
             'USERNAME' => 'Administrator',
-            'PASSWORD' => 'newPassword'
+            'PASSWORD' => 'secure'
         );
         $request = new HttpRequest('/login/check', array(), $data);
         $this->session->init($request);
@@ -47,11 +30,27 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('/secure', $result->getUri());
     }
 
+    public function testUserCanNotLoginWithInValidCredentials()
+    {
+        $data = array(
+            'USERNAME' => 'Administrator',
+            'PASSWORD' => 'Wrong'
+        );
+        $request = new HttpRequest('/login/check', array(), $data);
+        $this->session->init($request);
+
+        $processor = $this->factory->getRouter()->route($request);
+        $result = $processor->execute($request);
+
+        $this->assertFalse($this->session->hasKey('userId'));
+        $this->assertInstanceOf('Url', $result);
+        $this->assertEquals('/login/failed', $result->getUri());
+    }
+
     private function initDatabase()
     {
         $pdo = new \PDO('sqlite::memory:');
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         $pdo->query(
             'CREATE TABLE user (
                 id INTEGER PRIMARY KEY,
@@ -65,10 +64,7 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
         $hashedPassword = password_hash("secure", PASSWORD_DEFAULT);
 
         $stmt = $pdo->prepare("INSERT INTO USER (id, username, passwd) VALUES (:id, :username, :passwd)");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-        $stmt->bindParam(':passwd', $hashedPassword, PDO::PARAM_STR);
-        $stmt->execute();
+        $stmt->execute(array(':id' => $id, ':username' => $username, ':passwd' => $hashedPassword));
 
         if ($stmt->rowCount() != 1) {
             var_dump('Database could not be initialized!');

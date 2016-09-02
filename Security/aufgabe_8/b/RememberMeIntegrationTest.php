@@ -2,7 +2,7 @@
 
 require 'autoload.php';
 
-class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
+class RememberMeIntegrationTest extends PHPUnit_Framework_TestCase
 {
     private $session;
     private $factory;
@@ -13,28 +13,12 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
         $this->session = $this->factory->getSession();
     }
 
-    public function testUserCanEditPassword()
-    {
-        $data = array(
-            'ID' => 1,
-            'PASSWORD' => 'newPassword'
-        );
-        $request = new HttpRequest('/password/change/check', array(), $data);
-        $this->session->init($request);
-
-        $processor = $this->factory->getRouter()->route($request);
-        $result = $processor->execute($request);
-
-        $this->assertInstanceOf('Url', $result);
-        $this->assertEquals('/password/change/success', $result->getUri());
-        $this->testUserCanLoginWithNewValidCredentials();
-    }
-
-    private function testUserCanLoginWithNewValidCredentials()
+    public function testUserCanLoginWithRememberMeFeature()
     {
         $data = array(
             'USERNAME' => 'Administrator',
-            'PASSWORD' => 'newPassword'
+            'PASSWORD' => 'secure',
+            'REMEMBERME' => '1'
         );
         $request = new HttpRequest('/login/check', array(), $data);
         $this->session->init($request);
