@@ -14,6 +14,7 @@ spl_autoload_register(
                 'loginprocessor' => '/LoginProcessor.php',
                 'mailer' => '/Mailer.php',
                 'passwordlostprocessor' => '/PasswordLostProcessor.php',
+                'passwordchangeprocessor' => '/PasswordChangeProcessor.php',
                 'processorinterface' => '/ProcessorInterface.php',
                 'redirectprocessor' => '/RedirectProcessor.php',
                 'router' => '/Router.php',

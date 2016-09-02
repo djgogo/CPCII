@@ -11,7 +11,7 @@ class UserTableDataGateway
         $this->pdo = $pdo;
     }
 
-    public function findIdByCredentials($username, $password)
+    public function findIdByCredentials(string $username, string $password)
     {
         try {
 
@@ -21,7 +21,7 @@ class UserTableDataGateway
 
             if ($userRow !== false) {
                 if (password_verify($password, $userRow['passwd'])) {
-                    return (int) $userRow['id'];
+                    return (int)$userRow['id'];
                 } else {
                     return false;
                 }
@@ -31,10 +31,10 @@ class UserTableDataGateway
         }
     }
 
-    public function findUserByUserName($username)
+    public function findUserByUserName(string $username)
     {
         $sql = sprintf(
-            "SELECT id, username, realname, email FROM user where username=%s",
+            "SELECT id, username, realname, email FROM user WHERE username=%s",
             $this->pdo->quote($username, PDO::PARAM_STR)
         );
         $result = $this->pdo->query($sql);
@@ -44,13 +44,18 @@ class UserTableDataGateway
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updatePassword($id, $password)
+    public function updatePassword(int $id, string $password)
     {
-        $stmt = $this->pdo->prepare("UPDATE user SET passswd=:pass WHERE id=:id");
-        $result = $stmt->execute(array(':id' => $id, ':pass' => $password));
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $this->pdo->prepare("UPDATE user SET passwd=:pass WHERE id=:id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':pass', $hashedPassword, PDO::PARAM_STR);
+        $result = $stmt->execute();
 
         if ($result === false) {
             throw new RuntimeException("No record was updated");
         }
     }
+
 }

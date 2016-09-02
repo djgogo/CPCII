@@ -53,7 +53,6 @@ class Factory
      */
     public function getPasswordChangeProcessor()
     {
-
         return new PasswordChangeProcessor($this->getUserTableGateway());
     }
 

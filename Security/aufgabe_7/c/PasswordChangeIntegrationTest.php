@@ -1,8 +1,7 @@
 <?php
+declare(strict_types = 1);
 
-require 'autoload.php';
-
-class LoginIntegrationTest extends PHPUnit_Framework_TestCase
+class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
 {
     private $session;
     private $factory;
@@ -13,13 +12,13 @@ class LoginIntegrationTest extends PHPUnit_Framework_TestCase
         $this->session = $this->factory->getSession();
     }
 
-    public function testUserCanLoginWithValidCredentials()
+    public function testUserCanEditPassword()
     {
         $data = array(
-            'USERNAME' => 'Administrator',
-            'PASSWORD' => 'secure'
+            'ID' => 1,
+            'PASSWORD' => 'newPassword'
         );
-        $request = new HttpRequest('/login/check', array(), $data);
+        $request = new HttpRequest('/password/change/check', array(), $data);
         $this->session->init($request);
 
         $processor = $this->factory->getRouter()->route($request);
@@ -30,11 +29,11 @@ class LoginIntegrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('/secure', $result->getUri());
     }
 
-    public function testUserCanNotLoginWithInValidCredentials()
+    public function testUserCanLoginWithNewValidCredentials()
     {
         $data = array(
             'USERNAME' => 'Administrator',
-            'PASSWORD' => 'Wrong'
+            'PASSWORD' => 'newPassword'
         );
         $request = new HttpRequest('/login/check', array(), $data);
         $this->session->init($request);
@@ -42,9 +41,9 @@ class LoginIntegrationTest extends PHPUnit_Framework_TestCase
         $processor = $this->factory->getRouter()->route($request);
         $result = $processor->execute($request);
 
-        $this->assertFalse($this->session->hasKey('userId'));
+        $this->assertTrue($this->session->hasKey('userId'));
         $this->assertInstanceOf('Url', $result);
-        $this->assertEquals('/login/failed', $result->getUri());
+        $this->assertEquals('/secure', $result->getUri());
     }
 
     private function initDatabase()
