@@ -40,10 +40,10 @@ class LoginProcessor implements ProcessorInterface
         if ($userId !== false) {
             $this->session->setKey('userId', $userId);
 
-            if ($rememberMe === 1) {
+            if ($rememberMe === true) {
                 $this->authenticator->rememberMe($userId);
+                $this->session->commit();
             }
-
             return new Url('/secure');
         }
         return new Url('/login/failed');

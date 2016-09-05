@@ -24,7 +24,8 @@ spl_autoload_register(
                 'sessionstorestub' => '/SessionStoreStub.php',
                 'url' => '/Url.php',
                 'usertabledatagateway' => '/UserTableDataGateway.php',
-                'securitytokenstabledatagateway' => '/SecurityTokensDataGateway.php'
+                'securitytokenstabledatagateway' => '/SecurityTokensTableDataGateway.php',
+                'cookie' => '/Cookie.php'
             );
         }
         $cn = strtolower($class);

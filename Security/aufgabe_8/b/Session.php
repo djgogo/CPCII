@@ -45,7 +45,7 @@ class Session
     public function getKey($key)
     {
         if (!$this->hasKey($key)) {
-            throw new RuntimeException($key . ' net set');
+            throw new RuntimeException($key . ' not set');
         }
         return $this->data[$key];
     }

@@ -22,12 +22,9 @@ class Authenticator
     }
 
     /**
-     * @param string $username
-     * @param string $password
-     *
      * @return int
      */
-    public function authenticate($username, $password)
+    public function authenticate(string $username, string $password)
     {
         return $this->userGateway->findIdByCredentials($username, $password);
     }
@@ -35,10 +32,21 @@ class Authenticator
     public function rememberMe(int $userId)
     {
         $identifier = new Token();
-        $securityToken = file_get_contents('/dev/urandom', NULL, NULL, NULL, 1024);
+        $securityToken = sha1(file_get_contents('/dev/urandom', NULL, NULL, NULL, 1024));
 
         $this->securityTokensGateway->setRememberMeTokens($userId, $identifier, $securityToken);
         $this->securityTokensGateway->setCookie($identifier, $securityToken);
+        return $securityToken;
+    }
+
+    public function checkRememberMeTokens(string $identifier, string $securityToken) : bool
+    {
+        return $this->securityTokensGateway->checkSecurityToken($identifier, $securityToken);
+    }
+
+    public function findIdByIdentifier($identifier) : int
+    {
+        return $this->securityTokensGateway->getId($identifier);
     }
 
 }

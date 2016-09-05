@@ -17,7 +17,8 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
     {
         $data = array(
             'ID' => 1,
-            'PASSWORD' => 'newPassword'
+            'PASSWORD' => 'newPassword',
+            'REMEMBERME' => 'false'
         );
         $request = new HttpRequest('/password/change/check', array(), $data);
         $this->session->init($request);
@@ -34,7 +35,8 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
     {
         $data = array(
             'USERNAME' => 'Administrator',
-            'PASSWORD' => 'newPassword'
+            'PASSWORD' => 'newPassword',
+            'REMEMBERME' => 'false'
         );
         $request = new HttpRequest('/login/check', array(), $data);
         $this->session->init($request);
@@ -45,6 +47,28 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->session->hasKey('userId'));
         $this->assertInstanceOf('Url', $result);
         $this->assertEquals('/secure', $result->getUri());
+    }
+
+    public function testUserCanNotEditPasswordWithRememberStatusTrue()
+    {
+        $data = array(
+            'ID' => 1,
+            'PASSWORD' => 'newPassword',
+            'REMEMBERME' => 'true'
+        );
+
+        $cookie = array(
+            'rememberme' => 'true',
+        );
+
+        $request = new HttpRequest('/password/change/check', $cookie, $data);
+        $this->session->init($request);
+
+        $processor = $this->factory->getRouter()->route($request);
+        $result = $processor->execute($request);
+
+        $this->assertInstanceOf('Url', $result);
+        $this->assertEquals('/login', $result->getUri());
     }
 
     private function initDatabase()

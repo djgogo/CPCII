@@ -7,14 +7,14 @@ class HttpRequest
     private $cookies;
     private $data = array();
 
-    public function __construct($requestUrl, array $cookies = array(), array $payload = array())
+    public function __construct(string $requestUrl, array $cookies = array(), array $payload = array())
     {
         $this->requestUri = $requestUrl;
         $this->cookies = $cookies;
         $this->data = $payload;
     }
 
-    public function getRequestUri()
+    public function getRequestUri() : string
     {
         return $this->requestUri;
     }
@@ -24,7 +24,7 @@ class HttpRequest
         return array_key_exists($name, $this->cookies);
     }
 
-    public function getCookie($name)
+    public function getCookie($name) : array
     {
         if (!$this->hasCookie($name)) {
             throw new \RuntimeException("Cookie '$name' not set'");

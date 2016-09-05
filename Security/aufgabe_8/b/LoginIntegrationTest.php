@@ -17,7 +17,8 @@ class LoginIntegrationTest extends PHPUnit_Framework_TestCase
     {
         $data = array(
             'USERNAME' => 'Administrator',
-            'PASSWORD' => 'secure'
+            'PASSWORD' => 'secure',
+            'REMEMBERME' => 'false'
         );
         $request = new HttpRequest('/login/check', array(), $data);
         $this->session->init($request);
@@ -34,7 +35,8 @@ class LoginIntegrationTest extends PHPUnit_Framework_TestCase
     {
         $data = array(
             'USERNAME' => 'Administrator',
-            'PASSWORD' => 'Wrong'
+            'PASSWORD' => 'Wrong',
+            'REMEMBERME' => 'false'
         );
         $request = new HttpRequest('/login/check', array(), $data);
         $this->session->init($request);
@@ -45,6 +47,29 @@ class LoginIntegrationTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->session->hasKey('userId'));
         $this->assertInstanceOf('Url', $result);
         $this->assertEquals('/login/failed', $result->getUri());
+    }
+
+    public function testUserCanLoginWithRememberMeFeature()
+    {
+        $data = array(
+            'USERNAME' => 'Administrator',
+            'PASSWORD' => 'secure',
+            'REMEMBERME' => 'true'
+        );
+
+        $cookie = array(
+            'rememberme' => 'true',
+        );
+
+        $request = new HttpRequest('/login/check', $cookie, $data);
+        $this->session->init($request);
+
+        $processor = $this->factory->getRouter()->route($request);
+        $result = $processor->execute($request);
+
+        $this->assertTrue($this->session->hasKey('userId'));
+        $this->assertInstanceOf('Url', $result);
+        $this->assertEquals('/secure', $result->getUri());
     }
 
     private function initDatabase()
