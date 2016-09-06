@@ -49,7 +49,7 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('/secure', $result->getUri());
     }
 
-    public function testUserCanNotEditPasswordWithRememberStatusTrue()
+    public function testUserCanNotEditPasswordWithRememberMeStatus()
     {
         $data = array(
             'ID' => 1,
