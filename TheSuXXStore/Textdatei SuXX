@@ -1,0 +1,7 @@
+Sicherheitslücken:
+
+- Die komplette App ist nicht gegen XSS geschützt. Alle Datanbank Zugriffe sind ungeschützt (keine Prepared Statements) und alle Benutzereingaben werden nicht validiert.
+- Als erstes musste die Ordnerberechtigung angepasst werden. Sie war für jedermann auf write eingestellt. chmod 775.
+- Die Registrierung ist überhaupt nicht gegen CSS geschützt. Keine Validierung, keine Prepared Statements! der gesamte Validierungs Workflow fehlt.
+- Login nicht escaped, nicht validiert und der Passwortschutz ist mit serialize sehr schlecht umgesetzt, da ein solches Passwort sehr einfach zu knackien ist.
+- Die Umsetzung der Fehlermeldungen ist sehr schwach.
