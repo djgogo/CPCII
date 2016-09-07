@@ -1,0 +1,2 @@
+Die Eingaben werden nicht escaped oder irgendwie sonst sanitized. Das ist der Grund weshalb 'Willi "der Böse" Wichtig' auf die Schnauze fällt.
+Die bestmögliche und sicherste Variante mit PDO die Daten zu escapen und zu encoden ist PDO->prepare und binding der Parameter.

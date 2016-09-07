@@ -1,0 +1,23 @@
+Geht es um die Generierung von SIDs, dann ist der einzig richtige Weg, sich auf möglichst zufällige, nicht ableitbare und nicht beeinflussbare Ursprungswerte zu verlassen.
+sollten zu einem Grossteil durch eine Zufallsfunktion wie rand() oder gar mit mt_rand() generiert werden:
+
+$sid = md5(rand(1000, 9999));
+
+Die Generierung von SIDs ist in der modernen Programmierung relativ simpel und so wird dann auch gerne auf vorhersehbare Grunddaten zurückgegriffen.
+Jenachdem sind diese durch den Angreifer vorhersagbar oder gar manipulierbar. Ist dies der Fall, kann mit berechenbarem Aufwand eine legitime SID generiert
+und damit eine bestehende Sitzung kompromittiert werden.
+
+Zufällige Werte, die durch Zufallsfunktionen wie rand() generiert werden, Identifikationsmechanismen auf anderer Ebene (z.B. Binden einer Session an eine IP-Adresse)
+und Ablauf einer Sitzung können dabei helfen, einen praktikablen Angriff erheblich zu erschweren oder gar unmöglich zu machen.
+
+Meistens verwerndete Generierung (Zeitwerte erkennen)
+$sid = md5(time());
+
+Generierung der SID mit Merkmalen des Clients:
+$sid = md5($_VERSER['REMOTE_ADDR']);
+
+Statische Werte:
+$sid = md5("SECRET_SESS_KEY_2010");
+
+Hashing von Teilinformationen:
+$sid = md5($_SERVER['REMOTE_ADDR']) . md5(time());

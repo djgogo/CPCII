@@ -1,0 +1,2 @@
+Die "Angemeldet bleiben" Funktion birgt ein entsprechendes Sicherheitsrisko, da auf dem Rechner des Benutzers (Cookie) gewisse Authentifizierungsinformationen abgespeichert
+werden müssen. Diese könnten von einem Angreifer kopiert werden und ausgenutzt werden. Für sehr kritische Anwendungen sollte man auf diese Funktion lieber verzichten.

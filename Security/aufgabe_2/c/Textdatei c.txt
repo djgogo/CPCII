@@ -1,0 +1,5 @@
+Der Test "testCallingGetUserByIdWithInvalidId()" fehlte die assertion oder expectation. Da hier ein Fehler erwartet wird ist die Expected Exception eingefügt worden.
+Zusätzlich musste die Funktion findById gegenüber SQL-Injections gesichert werden (Prepare & Bind) und mit Fehlerbehandlung versehen werden.
+
+Die gesamte PDO Abwicklung könnte in einem DatabaseBackend ausgelagert werden um für jeden einzelnen ausgeführte PDO Funktion eine Fehlerbehandlung zu haben.
+Wurde in der Aufgabe d) noch nicht umgesetzt.

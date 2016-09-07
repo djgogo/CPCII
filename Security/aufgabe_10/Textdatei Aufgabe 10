@@ -1,0 +1,8 @@
+a) die Captcha Eingabe sollte gegen XSS (Cross Site Scripting) abgesichert werden (escaped, quoted)
+
+b) Massnahmen gegen Session hijacking:
+    - Netzwerk Sicherheit HTTPS, SSL
+    - Session Cookie über eine enryptete Leitung senden (SSL bedingen immer, require SSL = true)
+
+c) - ereg ist seit PHP 5.3.0 deprecated (veraltet). Dieser muss unbedingt mit preg_match ersetzt werden.
+   - $name sollte escaped und validiert werden gleich nach der eingabe.
