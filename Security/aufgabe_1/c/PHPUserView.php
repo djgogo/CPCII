@@ -17,7 +17,7 @@ class PHPUserView
     {
         $user->setRealName(htmlspecialchars($user->getRealName()));
         $user->setScreenName(htmlspecialchars($user->getScreenName()));
-        $user->setEmail(urlencode($user->getEmail()));
+        $user->setEmail(htmlspecialchars($user->getEmail()));
     }
 
     private function getTemplateFileName()
