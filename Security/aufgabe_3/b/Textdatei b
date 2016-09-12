@@ -1,0 +1,2 @@
+Single und Double Quotes müssen für Xpath aufbereitet werden damit der Xpath funktioniert und auch sicher ist von Angriffen!
+Anführungszeichen müssen escaped werdne indem man sie in Anführungszeichen setzt. Single Quote mit Double Quotes und umgekehrt!

@@ -28,10 +28,10 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Url', $result);
         $this->assertEquals('/password/change/success', $result->getUri());
-        $this->testUserCanLoginWithNewValidCredentials();
+        $this->userCanLoginWithNewValidCredentials();
     }
 
-    private function testUserCanLoginWithNewValidCredentials()
+    private function userCanLoginWithNewValidCredentials()
     {
         $data = array(
             'USERNAME' => 'Administrator',
@@ -53,8 +53,7 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
     {
         $data = array(
             'ID' => 1,
-            'PASSWORD' => 'newPassword',
-            'REMEMBERME' => 'true'
+            'PASSWORD' => 'newPassword'
         );
 
         $cookie = array(
