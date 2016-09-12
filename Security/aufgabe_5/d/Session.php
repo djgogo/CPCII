@@ -25,7 +25,7 @@ class Session
 
     public function commit()
     {
-        $this->store->save($this->sid, $this->data);
+        $this->store->save($this->sid, $this->escape($this->data));
     }
 
     public function getSessionId()
@@ -46,7 +46,7 @@ class Session
     public function getKey($key)
     {
         if (!$this->hasKey($key)) {
-            throw new RuntimeException($key . ' net set');
+            throw new RuntimeException($key . ' not set');
         }
         return $this->data[$key];
     }
@@ -54,5 +54,10 @@ class Session
     private function generateSessionId() : Token
     {
         return new Token();
+    }
+
+    public function escape($string) : string
+    {
+        return htmlspecialchars($string);
     }
 }
