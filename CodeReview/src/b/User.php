@@ -16,8 +16,8 @@ namespace CodeReview {
         }
     }
 
-    $user = new User();
-    $user->setId(912367);
+    $userView = new User();
+    $userView->setId(912367);
 
-    var_dump($user);
+    var_dump($userView);
 }
