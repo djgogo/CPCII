@@ -24,12 +24,17 @@ class HttpRequest
         return array_key_exists($name, $this->cookies);
     }
 
-    public function getCookie($name) : array
+    public function getCookie($name) : string
     {
         if (!$this->hasCookie($name)) {
             throw new \RuntimeException("Cookie '$name' not set'");
         }
         return $this->cookies[$name];
+    }
+
+    public function setCookie($name, $value)
+    {
+        $this->cookies[$name] = $value;
     }
 
     public function hasParameter($name)

@@ -17,7 +17,7 @@ class Session
         if ($request->hasCookie('SID')) {
             $this->sid = $request->getCookie('SID');
         } else {
-            $this->sid = sha1(file_get_contents('/dev/urandom', NULL, NULL, NULL, 1024));
+            $this->sid = $this->generateSessionId();
         }
         $this->data = $this->store->load($this->sid);
     }
@@ -48,5 +48,10 @@ class Session
             throw new RuntimeException($key . ' not set');
         }
         return $this->data[$key];
+    }
+
+    private function generateSessionId() : Token
+    {
+        return new Token();
     }
 }

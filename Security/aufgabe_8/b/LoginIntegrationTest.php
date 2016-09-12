@@ -80,16 +80,22 @@ class LoginIntegrationTest extends PHPUnit_Framework_TestCase
             'CREATE TABLE user (
                 id INTEGER PRIMARY KEY,
                 username,
-                passwd
+                passwd,
+                remembermetoken
             )'
         );
 
         $id = 1;
         $username = 'Administrator';
         $hashedPassword = password_hash("secure", PASSWORD_DEFAULT);
+        $rememberMeToken = null;
 
-        $stmt = $pdo->prepare("INSERT INTO USER (id, username, passwd) VALUES (:id, :username, :passwd)");
-        $stmt->execute(array(':id' => $id, ':username' => $username, ':passwd' => $hashedPassword));
+        $stmt = $pdo->prepare("INSERT INTO USER (id, username, passwd, remembermetoken) VALUES (:id, :username, :passwd, :remembermetoken)");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':passwd', $hashedPassword, PDO::PARAM_STR);
+        $stmt->bindParam(':remembermetoken', $rememberMeToken);
+        $stmt->execute();
 
         if ($stmt->rowCount() != 1) {
             var_dump('Database could not be initialized!');

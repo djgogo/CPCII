@@ -31,7 +31,7 @@ class PasswordChangeProcessor implements ProcessorInterface
             throw new RuntimeException('Given password does not satisfy all required rules');
         }
 
-        if ($request->hasCookie('rememberme')) {
+        if ($request->hasCookie('rememberme') && $request->hasCookie('remembermetoken')) {
             return new Url('/login');
         }
 

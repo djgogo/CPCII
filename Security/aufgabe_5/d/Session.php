@@ -13,9 +13,10 @@ class Session
 
     public function init(HttpRequest $request)
     {
-        if ($request->hasParameter('SID')) {
-            $this->sid = $request->getParameter('SID');
-        } else if ($request->hasCookie('SID')) {
+        // Sicherheitsleck! SID über die Parameter einzulesen (link). XSS möglich und somit Session Fixation möglich.
+//        if ($request->hasParameter('SID')) {
+//            $this->sid = $request->getParameter('SID');
+        if ($request->hasCookie('SID')) {
             $this->sid = $request->getCookie('SID');
         } else {
             $this->sid = $this->generateSessionId();

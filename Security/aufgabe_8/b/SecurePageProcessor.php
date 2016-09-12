@@ -20,19 +20,19 @@ class SecurePageProcessor implements ProcessorInterface
 
     public function execute(HttpRequest $request)
     {
+        $userId = $request->getParameter('ID');
         $rememberMe = $request->getParameter('REMEMBERME');
 
-        if ($rememberMe === true && !$this->session->hasKey('userId') && $request->hasCookie('identifier') && $request->hasCookie('securitytoken')) {
+        if ($rememberMe === 'true' && !$this->session->hasKey('userId') && $request->hasCookie('rememberme') && $request->hasCookie('remembermetoken')) {
 
-            $identifier = $request->getCookie('identifier');
-            $securityToken = $request->getCookie('securitytoken');
-            $result = $this->authenticator->checkRememberMeTokens($identifier, $securityToken);
+            $rememberMeToken = $request->getCookie('remembermetoken');
+            $result = $this->authenticator->checkRememberMeToken($userId, $rememberMeToken);
 
             if ($result === false) {
                 throw new RuntimeException("A presumably stolen Security Token has been identified!");
             }
 
-            $this->session->setKey('userId', $this->authenticator->findIdByIdentifier($identifier));
+            $this->session->setKey('userId', $userId);
             $this->session->commit();
 
         } else {
