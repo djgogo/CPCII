@@ -15,6 +15,14 @@ class Post
      * @var string
      */
     private $body;
+    /**
+     * @var bool
+     */
+    private $headingOnlyOnce = false;
+    /**
+     * @var bool
+     */
+    private $bodyOnlyOnce = false;
 
     /**
      * Post constructor.
@@ -27,12 +35,22 @@ class Post
 
     public function addHeading(string $heading)
     {
-        $this->heading = $heading;
+        if ($this->headingOnlyOnce === false) {
+            $this->heading = $heading;
+            $this->headingOnlyOnce = true;
+        } else {
+            throw new PostException('Heading can not be edited!');
+        }
     }
 
     public function addBody(string $body)
     {
-        $this->body = $body;
+        if ($this->bodyOnlyOnce === false) {
+            $this->body = $body;
+            $this->bodyOnlyOnce = true;
+        } else {
+            throw new PostException('Body can not be edited!');
+        }
     }
 
     public function getHeading() : string
