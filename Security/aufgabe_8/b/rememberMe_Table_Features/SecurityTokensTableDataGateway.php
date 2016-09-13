@@ -49,6 +49,7 @@ class SecurityTokensTableDataGateway
 
         $this->cookie->set('identifier', $identifier);
         $this->cookie->set('securitytoken', $securityToken);
+        //$this->cookie->set('SID', sid Token Object;
     }
 
     public function checkSecurityToken($identifier, $securityToken) : bool

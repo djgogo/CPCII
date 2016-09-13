@@ -40,8 +40,10 @@ class LoginProcessor implements ProcessorInterface
         if ($userId !== false) {
             $this->session->setKey('userId', $userId);
 
-            if ($rememberMe === true) {
-                $this->authenticator->rememberMe($userId);
+            if ($rememberMe === 'true') {
+                $rememberMeToken = $this->authenticator->rememberMe($userId);
+                $request->setCookie('remembermetoken', $rememberMeToken);
+                $request->setCookie('SID', $this->session->getSessionId());
                 $this->session->commit();
             }
             return new Url('/secure');

@@ -22,6 +22,10 @@ class Router
                 return $this->factory->getLoginProcessor();
                 }
             case '/password/change/check': {
+                $session = $this->factory->getSession();
+                if (!$session->hasKey('userId')) {
+                    return $this->factory->getRedirectProcessor('/login');
+                }
                 return $this->factory->getPasswordChangeProcessor();
                 }
             case '/password/lost/step1/check': {

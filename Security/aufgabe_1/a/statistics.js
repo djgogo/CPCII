@@ -3,6 +3,6 @@ var statistics = {
         alert( 'trackUserView: ' + JSON.stringify(payload));
     },
     trackUserMail: function(payload) {
-        alert( 'trackUserMail: ' + JSON.stringify(payload));
+        alert( 'trackUserMail: ' + encodeURI(JSON.stringify(payload)));
     }
 };

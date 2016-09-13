@@ -1,7 +1,6 @@
 <?php
 class Session
 {
-
     private $store;
 
     private $data;
@@ -14,6 +13,9 @@ class Session
 
     public function init(HttpRequest $request)
     {
+        // Sicherheitsleck! SID über die Parameter einzulesen (link). XSS möglich und somit Session Fixation möglich.
+//        if ($request->hasParameter('SID')) {
+//            $this->sid = $request->getParameter('SID');
         if ($request->hasCookie('SID')) {
             $this->sid = $request->getCookie('SID');
         } else {
@@ -24,7 +26,7 @@ class Session
 
     public function commit()
     {
-        $this->store->save($this->sid, $this->data);
+        $this->store->save($this->sid, $this->escape($this->data));
     }
 
     public function getSessionId()
@@ -53,5 +55,10 @@ class Session
     private function generateSessionId() : Token
     {
         return new Token();
+    }
+
+    public function escape($string) : string
+    {
+        return htmlspecialchars($string);
     }
 }

@@ -23,13 +23,13 @@ class Factory
 
     public function getSecurePageProcessor() : SecurePageProcessor
     {
-        $authenticator = new Authenticator($this->getUserTableGateway(), $this->getSecurityTokensTableDataGateway());
+        $authenticator = new Authenticator($this->getUserTableGateway());
         return new SecurePageProcessor($authenticator, $this->getSession());
     }
 
     public function getLoginProcessor() : LoginProcessor
     {
-        $authenticator = new Authenticator($this->getUserTableGateway(), $this->getSecurityTokensTableDataGateway());
+        $authenticator = new Authenticator($this->getUserTableGateway());
         return new LoginProcessor($authenticator, $this->getSession());
     }
 
@@ -64,10 +64,5 @@ class Factory
     protected function getUserTableGateway() : UserTableDataGateway
     {
         return new UserTableDataGateway($this->pdo);
-    }
-
-    protected function getSecurityTokensTableDataGateway() : SecurityTokensTableDataGateway
-    {
-        return new SecurityTokensTableDataGateway($this->pdo, new Cookie());
     }
 }

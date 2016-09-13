@@ -10,14 +10,31 @@ und damit eine bestehende Sitzung kompromittiert werden.
 Zufällige Werte, die durch Zufallsfunktionen wie rand() generiert werden, Identifikationsmechanismen auf anderer Ebene (z.B. Binden einer Session an eine IP-Adresse)
 und Ablauf einer Sitzung können dabei helfen, einen praktikablen Angriff erheblich zu erschweren oder gar unmöglich zu machen.
 
-Meistens verwerndete Generierung (Zeitwerte erkennen)
+Oft verwendet aber unsichere Variante (Zeitwerte erkennen)
 $sid = md5(time());
+jeder kennt die Zeit. Aus diesem einfachen Grund kann sie herausgefunden werden. Und Md5 ist ein algorythmus der ganz einfach rückgängig gemacht werden kann!
 
 Generierung der SID mit Merkmalen des Clients:
 $sid = md5($_VERSER['REMOTE_ADDR']);
+die Merkmalen des Clients können einfach ausspieoniert werden! Sehr unsichere Variante
 
 Statische Werte:
 $sid = md5("SECRET_SESS_KEY_2010");
+Statische Werte können ausspioniert werden. Sehr unsichere Variante!
 
 Hashing von Teilinformationen:
 $sid = md5($_SERVER['REMOTE_ADDR']) . md5(time());
+Zwei unsichere Varianten zusammen ergeben immer noch eine unsichere Variante!
+
+Die Sicherste Variante bietet nur eine Zufallsfunktion. Am besten und sichersten erstellt man ein Token-Objekt welches ein sehr starken Zufallswert generiert
+der kryptographisch unmöglich zu knacken ist. Beispiel:
+
+private function createSessionId()
+    {
+        $source = file_get_contents('/dev/urandom', false, null, null, 64);
+        $source .= uniqid(uniqid(mt_rand(0, PHP_INT_MAX), true), true);
+        for ($t = 0; $t < 64; $t++) {
+            $source .= chr((mt_rand() ^ mt_rand()) % 256);
+        }
+        $this->tokenValue = sha1(hash('sha512', $source, true));
+    }

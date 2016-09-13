@@ -53,8 +53,37 @@ class UserTableDataGateway
         $result = $stmt->execute();
 
         if ($result === false) {
-            throw new RuntimeException("No record was updated");
+            throw new RuntimeException("No Password was updated");
         }
+    }
+
+    public function setRememberMeToken(int $id, string $rememberMeToken)
+    {
+        $stmt = $this->pdo->prepare("UPDATE user SET remembermetoken=:token WHERE id=:id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':token', $rememberMeToken, PDO::PARAM_STR);
+        $result = $stmt->execute();
+
+        if ($result === false) {
+            throw new RuntimeException("No RememberMe Token was updated");
+        }
+    }
+
+    public function checkRememberMeToken(int $id, string $rememberMeToken) : bool
+    {
+        $stmt = $this->pdo->prepare("SELECT id, remembermetoken FROM user WHERE id=:id AND remembermetoken=:token LIMIT 1");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':token', $rememberMeToken, PDO::PARAM_STR);
+        $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($userRow !== false) {
+            return true;
+        }
+
+        // change RememberMeSecurityToken for Security Reasons every time user come back
+        $newRememberMeToken = new Token();
+        $this->setRememberMeToken($id, $newRememberMeToken);
+        return false;
     }
 
 }

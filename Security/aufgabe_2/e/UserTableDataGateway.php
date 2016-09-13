@@ -23,7 +23,7 @@ class UserTableDataGateway
                     :eMail)'
             );
 
-            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->bindParam(':realName', $realName);
             $stmt->bindParam(':screenName', $screenName);
             $stmt->bindParam(':eMail', $eMail);
@@ -42,8 +42,9 @@ class UserTableDataGateway
         $stmt = $this->pdo->prepare(
             'SELECT id, realname, screenname, email FROM user WHERE id=:id '
         );
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-        if ($stmt->execute([':id' => $id]) === false) {
+        if ($stmt->execute() === false) {
             throw new \PDOException(sprintf('Benutzer mit Id "%s" konnte nicht ausgelesen werden', $id));
         }
 

@@ -1,4 +1,5 @@
 <?php
+
 class UserRepository
 {
 
@@ -17,7 +18,7 @@ class UserRepository
      */
     public function getUserByScreenName($name)
     {
-        return $this->extractFromDom(sprintf("//user[@screenname='%s']", $name));
+        return $this->extractFromDom(sprintf('//user[@screenname="%s"]', $name));
     }
 
     /**
@@ -40,4 +41,5 @@ class UserRepository
         $user->setScreenName($userNode->getAttribute('screenname'));
         return $user;
     }
+
 }

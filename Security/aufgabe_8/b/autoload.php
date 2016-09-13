@@ -25,7 +25,8 @@ spl_autoload_register(
                 'url' => '/Url.php',
                 'usertabledatagateway' => '/UserTableDataGateway.php',
                 'securitytokenstabledatagateway' => '/SecurityTokensTableDataGateway.php',
-                'cookie' => '/Cookie.php'
+                'cookie' => '/Cookie.php',
+                'token' => '/Token.php'
             );
         }
         $cn = strtolower($class);

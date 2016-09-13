@@ -1,5 +1,7 @@
 <?php
-class User {
+
+class User
+{
 
     /**
      * @var int
@@ -21,39 +23,51 @@ class User {
      */
     private $screenName;
 
-    public function __construct($id, $realName, $email) {
+    public function __construct($id, $realName, $email)
+    {
         $this->id = $id;
-        $this->realName = $realName;
-        $this->email = $email;
+        $this->realName = $this->escape($realName);
+        $this->email = $this->escape($email);
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setEmail($email) {
-        $this->email = $email;
+    public function setEmail($email)
+    {
+        $this->email = $this->escape($email);
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getRealName() {
+    public function getRealName()
+    {
         return $this->realName;
     }
 
     /**
      * @param string $screenName
      */
-    public function setScreenName($screenName) {
-        $this->screenName = $screenName;
+    public function setScreenName($screenName)
+    {
+        $this->screenName = $this->escape($screenName);
     }
 
-    public function getScreenName() {
+    public function getScreenName()
+    {
         if ($this->screenName == NULL) {
             return $this->realName;
         }
         return $this->screenName;
+    }
+
+    private function escape($string) : string
+    {
+        return htmlspecialchars($string, ENT_QUOTES);
     }
 }

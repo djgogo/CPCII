@@ -7,18 +7,11 @@ class Authenticator
     private $userGateway;
 
     /**
-     * @var SecurityTokensTableDataGateway
-     */
-    private $securityTokensGateway;
-
-    /**
      * @param UserTableDataGateway $userGateway
-     * @param SecurityTokensTableDataGateway $securityTokensGateway
      */
-    public function __construct(UserTableDataGateway $userGateway, SecurityTokensTableDataGateway $securityTokensGateway)
+    public function __construct(UserTableDataGateway $userGateway)
     {
         $this->userGateway = $userGateway;
-        $this->securityTokensGateway = $securityTokensGateway;
     }
 
     /**
@@ -31,22 +24,13 @@ class Authenticator
 
     public function rememberMe(int $userId)
     {
-        $identifier = new Token();
-        $securityToken = sha1(file_get_contents('/dev/urandom', NULL, NULL, NULL, 1024));
-
-        $this->securityTokensGateway->setRememberMeTokens($userId, $identifier, $securityToken);
-        $this->securityTokensGateway->setCookie($identifier, $securityToken);
+        $securityToken = new Token();
+        $this->userGateway->setRememberMeToken($userId, $securityToken);
         return $securityToken;
     }
 
-    public function checkRememberMeTokens(string $identifier, string $securityToken) : bool
+    public function checkRememberMeToken(int $userId, string $rememberMeToken) : bool
     {
-        return $this->securityTokensGateway->checkSecurityToken($identifier, $securityToken);
+        return $this->userGateway->checkRememberMeToken($userId, $rememberMeToken);
     }
-
-    public function findIdByIdentifier($identifier) : int
-    {
-        return $this->securityTokensGateway->getId($identifier);
-    }
-
 }

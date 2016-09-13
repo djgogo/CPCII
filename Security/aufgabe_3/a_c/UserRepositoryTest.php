@@ -4,7 +4,6 @@ require __DIR__ . '/UserRepository.php';
 
 class UserRepositoryTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var UserRepository
      */
@@ -19,7 +18,7 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testSearchingForAdministratorReturnsCorrectUser()
     {
-        /** @var User $user */
+        /** @var User $user  */
         $user = $this->repository->getUserByScreenName('Administrator');
         $this->assertInstanceOf('User', $user);
         $this->assertEquals('Administrator', $user->getScreenName());
@@ -27,7 +26,9 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testSearchingByScreenNameReturnsCorrectUser()
     {
-        $this->markTestIncomplete();
+        /** @var User $user  */
+        $user = $this->repository->getUserByScreenName('5.25" Floopy');
+        $this->assertInstanceOf('User', $user);
+        $this->assertEquals('5.25" Floopy', $user->getScreenName());
     }
-
 }
