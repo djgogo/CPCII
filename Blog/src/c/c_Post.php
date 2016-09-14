@@ -15,42 +15,15 @@ class Post
      * @var string
      */
     private $body;
-    /**
-     * @var bool
-     */
-    private $headingOnlyOnce = false;
-    /**
-     * @var bool
-     */
-    private $bodyOnlyOnce = false;
 
     /**
-     * Post constructor.
      * @param Author $author
      */
-    public function __construct(Author $author)
+    public function __construct(Author $author, string $heading, string $body)
     {
         $this->author = $author;
-    }
-
-    public function addHeading(string $heading)
-    {
-        if ($this->headingOnlyOnce === false) {
-            $this->heading = $heading;
-            $this->headingOnlyOnce = true;
-        } else {
-            throw new PostException('Heading can not be edited!');
-        }
-    }
-
-    public function addBody(string $body)
-    {
-        if ($this->bodyOnlyOnce === false) {
-            $this->body = $body;
-            $this->bodyOnlyOnce = true;
-        } else {
-            throw new PostException('Body can not be edited!');
-        }
+        $this->body = $body;
+        $this->heading = $heading;
     }
 
     public function getHeading() : string
