@@ -12,21 +12,13 @@ class Comment
      */
     private $comment;
     /**
-     * @var Comment
+     * @var array
      */
-    private $commentComment;
+    private $commentComments;
 
-    /**
-     * Comment constructor.
-     * @param Author $author
-     */
-    public function __construct(Author $author)
+    public function __construct(Author $author, string $comment)
     {
         $this->author = $author;
-    }
-
-    public function addCommentText(string $comment)
-    {
         $this->comment = $comment;
     }
 
@@ -40,15 +32,15 @@ class Comment
         return $this->author;
     }
 
-    public function addComment(Comment $comment)
+    public function addComment(Comment $commentComment)
     {
-        $this->commentComment = $comment;
-        $this->printComment();
+        $this->commentComments[] = $commentComment;
+        $this->publishComment($commentComment);
     }
 
-    public function printComment()
+    public function publishComment(Comment $commentComment)
     {
-        printf ("\n========= Comment from %s", $this->commentComment->getAuthor()->getName());
-        printf ("\n          %s\n", $this->commentComment->getCommentText());
+        printf("\n==================> Comment from %s", $commentComment->getAuthor()->getName());
+        printf("\n                    %s\n", $commentComment->getCommentText());
     }
 }
