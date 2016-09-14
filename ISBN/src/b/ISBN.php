@@ -19,7 +19,7 @@ class ISBN
         $this->isbn = $isbn;
     }
 
-    public function ensureRightPrefix(string $isbn)
+    private function ensureRightPrefix(string $isbn)
     {
         $prefix = substr($isbn, 0, 3);
         if (!($prefix == '978' || $prefix == '979')) {
@@ -27,7 +27,7 @@ class ISBN
         }
     }
 
-    public function addHyphens(string $isbn) : string
+    private function addHyphens(string $isbn) : string
     {
         return str_replace(' ', '-', $isbn);
     }

@@ -18,7 +18,7 @@ class ISBN
         $this->isbn = $isbn;
     }
 
-    public function addHyphens(string $isbn) : string
+    private function addHyphens(string $isbn) : string
     {
         return str_replace(' ', '-', $isbn);
     }

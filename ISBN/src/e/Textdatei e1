@@ -1,0 +1,5 @@
+Drei weitere Validierungen für die ISBN-Nummer:
+
+- Die Verlagsnummer kann auch geprüft werden
+- die ISBN Nummer kann auf die zwei verschiedenen Nummern ISBN-10 (kein Präfix) und ISBN-13 (5 Nummerngruppen) geprüft werden
+- Länge und Anzahl Nummerngruppen

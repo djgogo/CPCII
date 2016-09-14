@@ -16,6 +16,7 @@ class ISBN
     private function ensureValid(string $isbn)
     {
         $this->ensureRightPrefix($isbn);
+        $this->ensureRightNumberOfGroups($isbn);
         $this->ensureRightGroupNumber($isbn);
         $this->ensureRightCheckSum($isbn);
         $this->isbn = $isbn;
@@ -26,6 +27,13 @@ class ISBN
         $prefix = substr($isbn, 0, 3);
         if (!($prefix == '978' || $prefix == '979')) {
             throw new \InvalidIsbnException("Ungültiges Prefix: $prefix übergeben");
+        }
+    }
+
+    private function ensureRightNumberOfGroups(string $isbn)
+    {
+        if (count($this->splitIsbn($isbn)) < 5) {
+            throw new \InvalidIsbnException("Ungültiges Länge der ISBN Nummer übergeben");
         }
     }
 
@@ -72,7 +80,7 @@ class ISBN
             }
 
         } elseif ($splittedIsbn[0] === '979') {
-            if ($splittedIsbn[1] <10 || $splittedIsbn[1] > 12) {
+            if ($splittedIsbn[1] < 10 || $splittedIsbn[1] > 12) {
                 throw new InvalidIsbnException("Ungültige Gruppen Nummer: $splittedIsbn[1] übergeben");
             }
         }
@@ -81,6 +89,7 @@ class ISBN
     private function ensureRightCheckSum(string $isbn)
     {
         $cleanIsbn = $this->cleanIsbn($isbn);
+        $this->ensureRightLength($cleanIsbn);
         $checkSum = substr($cleanIsbn, -1);
         $c = substr($cleanIsbn, 0, -1);
 
@@ -108,6 +117,13 @@ class ISBN
     private function splitIsbn(string $isbn) : array
     {
         return preg_split("/[-\040]+/", $isbn);
+    }
+
+    private function ensureRightLength(string $cleanIsbn)
+    {
+        if (strlen($cleanIsbn) < 11) {
+            throw new InvalidIsbnException("Ungültige Clean-ISBN Länge: $cleanIsbn ");
+        }
     }
 
     private function addHyphens(string $isbn) : string
