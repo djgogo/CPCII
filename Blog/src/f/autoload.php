@@ -10,7 +10,10 @@ spl_autoload_register(
                 'author' => '/f_Author.php',
                 'blog' => '/f_Blog.php',
                 'post' => '/f_Post.php',
-                'blogexception' => '/BlogException.php'
+                'comment' => '/f_Comment.php',
+                'blogexception' => '/BlogException.php',
+                'permissionnotfoundexception' => '/PermissionNotFoundException.php',
+                'removepermissionexception' => '/RemovePermissionException.php'
             );
         }
         $cn = strtolower($class);
