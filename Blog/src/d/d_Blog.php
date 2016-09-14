@@ -12,9 +12,9 @@ class Blog
      */
     private $title;
     /**
-     * @var Post
+     * @var array
      */
-    private $post;
+    private $posts;
     /**
      * @var array
      */
@@ -24,6 +24,11 @@ class Blog
     {
         $this->author = $author;
         $this->addAuthor($author);
+    }
+
+    public function addAuthor(Author $author)
+    {
+        $this->permissions[] = $author;
     }
 
     public function setTitle(string $title)
@@ -39,22 +44,17 @@ class Blog
     public function addPost(Post $post)
     {
         // only owner or authors with permission can post on the blog
-        if (in_array($post->getAuthor(), $this->permissions)){
-            $this->post = $post;
-            $this->printPost();
-        }else {
-            printf("\n****> %s is not authorized to post on this blog - post rejected!!\n", $this->post->getAuthor()->getName());
+        if (in_array($post->getAuthor(), $this->permissions)) {
+            $this->posts[] = $post;
+            $this->publishPost($post);
+        } else {
+            throw new BlogException('not authorized to post on this blog!');
         }
     }
 
-    public function printPost()
+    private function publishPost(Post $post)
     {
-        printf ("\n-- %s : posted from %s", $this->post->getHeading(), $this->post->getAuthor()->getName());
-        printf ("\n%s\n", $this->post->getBody());
-    }
-
-    public function addAuthor(Author $author)
-    {
-        $this->permissions[] = $author;
+        printf("\n-- %s : posted from %s", $post->getHeading(), $post->getAuthor()->getName());
+        printf("\n%s\n", $post->getBody());
     }
 }
