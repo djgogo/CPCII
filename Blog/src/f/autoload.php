@@ -7,12 +7,10 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
-                'author' => '/e_Author.php',
-                'blog' => '/e_Blog.php',
-                'post' => '/e_Post.php',
-                'blogexception' => '/BlogException.php',
-                'permissionnotfoundexception' => '/PermissionNotFoundException.php',
-                'removepermissionexception' => '/RemovePermissionException.php'
+                'author' => '/f_Author.php',
+                'blog' => '/f_Blog.php',
+                'post' => '/f_Post.php',
+                'blogexception' => '/BlogException.php'
             );
         }
         $cn = strtolower($class);

@@ -65,7 +65,9 @@ try {
 /* try to remove Bob the owner from permission list */
 try {
     $blog1->removeAuthorFromPermissionList($bob);
-} catch (BlogException $e) {
+} catch (RemovePermissionException $e) {
+    printf("\n****> %s is the owner of this blog - removing rejected!!\n", $bob->getName());
+} catch (PermissionNotFoundException $e) {
     printf("\n****> %s is not in the permission list - removing rejected!!\n", $bob->getName());
 }
 
@@ -73,7 +75,9 @@ try {
 $Steve = new Author('Steve');
 try {
     $blog1->removeAuthorFromPermissionList($Steve);
-} catch (BlogException $e) {
+} catch (RemovePermissionException $e) {
+    printf("\n****> %s is the owner of this blog - removing rejected!!\n", $steve->getName());
+} catch (PermissionNotFoundException $e) {
     printf("\n****> %s is not in the permission list - removing rejected!!\n", $Steve->getName());
 }
 

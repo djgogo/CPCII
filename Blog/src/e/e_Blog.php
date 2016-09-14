@@ -64,10 +64,10 @@ class Blog
             if ($key > 0) {
                 unset($this->permissions[$key]);
             } else {
-                printf("\n****> %s is the owner of this blog - deletion rejected!!\n", $this->author->getName());
+                throw new RemovePermissionException('deletion not possible');
             }
         } else {
-            throw new BlogException('Author not found!');
+            throw new PermissionNotFoundException('Author not found!');
         }
     }
 }
