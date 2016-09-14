@@ -9,16 +9,16 @@ $url2 = new URL('HTTP://example.com/path');
 
 // Compare two URL Path's
 if ($url1->isSubPathOf($url2)) {
-    printf ("\nURL1: %s is a SubPath of URL2: %s \n", $url1, $url2);
+    printf("\nURL1: %s is a SubPath of URL2: %s \n", $url1, $url2);
 } else {
-    printf ("\nURL1: %s is NOT a SubPath of URL2: %s \n", $url1, $url2);
+    printf("\nURL1: %s is NOT a SubPath of URL2: %s \n", $url1, $url2);
 }
 
 // print SubPath
 try {
-    printf ("SubPath: %s \n", $url1->getSubPath($url2));
+    printf("SubPath: %s \n", $url1->getSubPath($url2));
 } catch (InvalidUrlException $e) {
-    printf ("Invalid SubPath: %s \n", $url1);
+    printf("Invalid SubPath: %s \n", $url1);
 }
 
 // Invalid Subpath
@@ -28,15 +28,15 @@ $url2 = new URL('HTTP://example.com/anotherPath');
 
 // Compare two URL Path's
 if ($url1->isSubPathOf($url2)) {
-    printf ("\nURL1: %s is a SubPath of URL2: %s \n", $url1, $url2);
+    printf("\nURL1: %s is a SubPath of URL2: %s \n", $url1, $url2);
 } else {
-    printf ("\nURL1: %s is NOT a SubPath of URL2: %s \n", $url1, $url2);
+    printf("\nURL1: %s is NOT a SubPath of URL2: %s \n", $url1, $url2);
 }
 
 // print SubPath
 try {
-    printf ("SubPath: %s \n", $url1->getSubPath($url2));
+    printf("SubPath: %s \n", $url1->getSubPath($url2));
 } catch (InvalidUrlException $e) {
-    printf ("Invalid SubPath: %s \n", $url1);
+    printf("Invalid SubPath: %s \n", $url1);
 }
 

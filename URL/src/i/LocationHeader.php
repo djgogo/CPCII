@@ -16,11 +16,11 @@ class LocationHeader
     public function send(AbstractHTTPStatusHeader $statusHeader)
     {
         header((string)$statusHeader);
-        printf ("\n *** Header Status: %s sendet \n", $statusHeader);
+        printf("\n *** Header Status: %s sendet \n", $statusHeader);
     }
 
     public function __toString() : string
     {
-        return $this->url;
+        return (string) $this->url;
     }
 }

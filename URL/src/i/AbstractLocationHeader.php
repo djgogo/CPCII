@@ -17,6 +17,6 @@ abstract class AbstractLocationHeader
 
     public function __toString() : string
     {
-        return $this->url;
+        return (string) $this->url;
     }
 }
