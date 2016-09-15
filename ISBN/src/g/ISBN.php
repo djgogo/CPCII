@@ -15,11 +15,21 @@ class ISBN
 
     private function ensureValid(string $isbn)
     {
+        $cleanIsbn = $this->cleanIsbn($isbn);
+        $this->ensureOnlyDigits($cleanIsbn);
         $this->ensureRightPrefix($isbn);
-        $this->ensureRightNumberOfGroups($isbn);
-        $this->ensureRightGroupNumber($isbn);
-        $this->ensureRightCheckSum($isbn);
+        $splittedIsbn = $this->splitIsbn($isbn);
+        $this->ensureRightNumberOfGroups($splittedIsbn);
+        $this->ensureRightGroupNumber($splittedIsbn);
+        $this->ensureRightCheckSum($cleanIsbn);
         $this->isbn = $isbn;
+    }
+
+    private function ensureOnlyDigits(string $cleanIsbn)
+    {
+        if (!ctype_digit($cleanIsbn)) {
+            throw new \InvalidIsbnException("Ungültige ISBN Nummer: $cleanIsbn übergeben");
+        }
     }
 
     private function ensureRightPrefix(string $isbn)
@@ -30,17 +40,15 @@ class ISBN
         }
     }
 
-    private function ensureRightNumberOfGroups(string $isbn)
+    private function ensureRightNumberOfGroups(array $splittedIsbn)
     {
-        if (count($this->splitIsbn($isbn)) < 5) {
+        if (count($splittedIsbn) < 5) {
             throw new \InvalidIsbnException("Ungültiges Länge der ISBN Nummer übergeben");
         }
     }
 
-    private function ensureRightGroupNumber(string $isbn)
+    private function ensureRightGroupNumber(array $splittedIsbn)
     {
-        $splittedIsbn = $this->splitIsbn($isbn);
-
         if ($splittedIsbn[0] === '978') {
 
             switch (strlen($splittedIsbn[1])) {
@@ -80,15 +88,14 @@ class ISBN
             }
 
         } elseif ($splittedIsbn[0] === '979') {
-            if ($splittedIsbn[1] <10 || $splittedIsbn[1] > 12) {
+            if ($splittedIsbn[1] < 10 || $splittedIsbn[1] > 12) {
                 throw new InvalidIsbnException("Ungültige Gruppen Nummer: $splittedIsbn[1] übergeben");
             }
         }
     }
 
-    private function ensureRightCheckSum(string $isbn)
+    private function ensureRightCheckSum(string $cleanIsbn)
     {
-        $cleanIsbn = $this->cleanIsbn($isbn);
         $this->ensureRightLength($cleanIsbn);
         $checkSum = substr($cleanIsbn, -1);
         $c = substr($cleanIsbn, 0, -1);

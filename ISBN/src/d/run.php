@@ -23,3 +23,17 @@ try {
 } catch (InvalidIsbnException $e) {
     printf("\nInvalid ISBN Length: %s \n", $invalidLength);
 }
+
+$notDigits = '978-3-8668A-192-9';
+try {
+    $notDigits = new ISBN('978-3-8668A-192-9');
+} catch (InvalidIsbnException $e) {
+    printf("\nInvalid ISBN Number: %s \n", $notDigits);
+}
+
+$notDigits = '978-1-56619-9X9-4';
+try {
+    $notDigits = new ISBN('978-1-56619-9X9-4');
+} catch (InvalidIsbnException $e) {
+    printf("\nInvalid ISBN Number: %s \n", $notDigits);
+}
