@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specification>
+ <configuration>
+  <class         name="FriendRequest"/>
+  <interface     name="FriendRequestState"/>
+  <abstractClass name="AbstractFriendRequestState"/>
+ </configuration>
+ <states>
+  <state name="PendingFriendRequestState"   query="isPending"/>
+  <state name="AcceptedFriendRequestState" query="isAccepted"/>
+  <state name="RemovedFriendRequestState" query="isRemoved"/>
+  <state name="DeclinedFriendRequestState" query="isDeclined"/>
+ </states>
+ <transitions>
+  <transition from="PendingFriendRequestState" to="AcceptedFriendRequestState"   operation="accept"/>
+  <transition from="PendingFriendRequestState" to="DeclinedFriendRequestState"   operation="decline"/>
+  <transition from="AcceptedFriendRequestState"   to="RemovedFriendRequestState" operation="remove"/>
+  <transition from="RemovedFriendRequestState" to="PendingFriendRequestState" operation="request"/>
+  <transition from="DeclinedFriendRequestState" to="PendingFriendRequestState" operation="request"/>
+ </transitions>
+ <operations>
+  <operation name="accept"   allowed="canBeAccepted"   disallowed="cannotBeAccepted"/>
+  <operation name="decline"  allowed="canBeDeclined"   disallowed="cannotBeDeclined"/>
+  <operation name="remove"   allowed="canBeRemoved"   disallowed="cannotBeRemoved"/>
+  <operation name="request" allowed="canBeRequested" disallowed="cannotBeRequested"/>
+ </operations>
+</specification>
