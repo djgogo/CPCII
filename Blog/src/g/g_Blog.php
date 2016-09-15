@@ -12,18 +12,14 @@ class Blog
      */
     private $title;
     /**
-     * @var Post
+     * @var array
      */
-    private $post;
+    private $posts;
     /**
      * @var array
      */
     public $permissions;
 
-    /**
-     * Blog constructor.
-     * @param Author $author
-     */
     public function __construct(Author $author)
     {
         $this->author = $author;
@@ -43,18 +39,18 @@ class Blog
     public function addPost(Post $post)
     {
         // only owner or authors with permission can post on the blog
-        if (in_array($post->getAuthor(), $this->permissions)){
-            $this->post = $post;
-            $this->printPost();
-        }else {
-            printf("\n****> %s has no permission to post on this blog!!\n", $post->getAuthor()->getName());
+        if (in_array($post->getAuthor(), $this->permissions)) {
+            $this->posts[] = $post;
+            $this->publishPost($post);
+        } else {
+            throw new BlogException('not authorized to post on this blog!');
         }
     }
 
-    public function printPost()
+    private function publishPost(Post $post)
     {
-        printf ("\n-- %s : posted from %s", $this->post->getHeading(), $this->post->getAuthor()->getName());
-        printf ("\n%s\n", $this->post->getBody());
+        printf("\n-- %s : posted from %s", $post->getHeading(), $post->getAuthor()->getName());
+        printf("\n%s\n", $post->getBody());
     }
 
     public function addAuthorToPermissionList(Author $author)
@@ -67,9 +63,11 @@ class Blog
         if (($key = (array_search($author, $this->permissions))) !== false) {
             if ($key > 0) {
                 unset($this->permissions[$key]);
-            }else {
-                printf("\n****> %s is the owner of this blog - deletion rejected!!\n", $this->author->getName());
+            } else {
+                throw new RemovePermissionException('deletion not possible');
             }
+        } else {
+            throw new PermissionNotFoundException('Author not found!');
         }
     }
 }

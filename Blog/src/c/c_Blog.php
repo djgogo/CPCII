@@ -12,9 +12,9 @@ class Blog
      */
     private $title;
     /**
-     * @var Post
+     * @var array
      */
-    private $post;
+    private $posts;
 
     public function __construct(Author $author)
     {
@@ -34,17 +34,17 @@ class Blog
     public function addPost(Post $post)
     {
         // only owner can post on the blog
-        if ($this->author === $post->getAuthor()){
-            $this->post = $post;
-            $this->printPost();
-        }else {
-            printf("\n******** %s is not the owner of this blog - post rejected!!\n", $this->author->getName());
+        if ($this->author === $post->getAuthor()) {
+            $this->posts[] = $post;
+            $this->publishPost($post);
+        } else {
+            throw new BlogException('Only Owner can post on his blog!');
         }
     }
 
-    public function printPost()
+    private function publishPost(Post $post)
     {
-        printf ("\n-- %s : posted from %s", $this->post->getHeading(), $this->author->getName());
-        printf ("\n%s\n", $this->post->getBody());
+        printf("\n-- %s : posted from %s", $post->getHeading(), $this->author->getName());
+        printf("\n%s\n", $post->getBody());
     }
 }

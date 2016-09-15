@@ -1,0 +1,3 @@
+Alle Kommentare werden in einer Tabelle Comments gespeichert (id, Author, Kommentar, Flag -> 0 = nicht freigegeben 1 = freigegeben)
+Alle noch nicht freigegebenen Kommentare werden separat angezeigt und müssen vom Blog-Owner freigegeben oder gelöscht werden.
+Alle freigegebenen Kommentare werden veröffentlicht

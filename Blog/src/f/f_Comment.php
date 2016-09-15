@@ -12,13 +12,9 @@ class Comment
      */
     private $comment;
 
-    public function __construct(Author $author)
+    public function __construct(Author $author, string $comment)
     {
         $this->author = $author;
-    }
-
-    public function addCommentText(string $comment)
-    {
         $this->comment = $comment;
     }
 

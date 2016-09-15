@@ -19,19 +19,11 @@ class Post
     /**
      * @param Author $author
      */
-    public function __construct(Author $author  )
+    public function __construct(Author $author, string $heading, string $body)
     {
         $this->author = $author;
-    }
-
-    public function addHeading(string $heading)
-    {
-        $this->heading = $heading;
-    }
-
-    public function addBody(string $body)
-    {
         $this->body = $body;
+        $this->heading = $heading;
     }
 
     public function getHeading() : string

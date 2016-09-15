@@ -11,6 +11,10 @@ class Blog
      * @var string
      */
     private $title;
+    /**
+     * @var array
+     */
+    private $posts;
 
     /**
      * @param Author $author
@@ -28,5 +32,17 @@ class Blog
     public function getTitle() : string
     {
         return $this->title;
+    }
+
+    public function addPost(Post $post)
+    {
+        $this->posts[] = $post;
+        $this->publishPost($post);
+    }
+
+    private function publishPost(Post $post)
+    {
+        printf("\n-- %s : posted from %s", $post->getHeading(), $this->author->getName());
+        printf("\n%s\n", $post->getBody());
     }
 }

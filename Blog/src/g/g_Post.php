@@ -16,27 +16,18 @@ class Post
      */
     private $body;
     /**
-     * @var Comment
+     * @var array
      */
-    private $comment;
+    private $comments;
 
     /**
-     * Post constructor.
      * @param Author $author
      */
-    public function __construct(Author $author  )
+    public function __construct(Author $author, string $heading, string $body)
     {
         $this->author = $author;
-    }
-
-    public function addHeading(string $heading)
-    {
-        $this->heading = $heading;
-    }
-
-    public function addBody(string $body)
-    {
         $this->body = $body;
+        $this->heading = $heading;
     }
 
     public function getHeading() : string
@@ -56,13 +47,13 @@ class Post
 
     public function addComment(Comment $comment)
     {
-        $this->comment = $comment;
-        $this->printComment();
+        $this->comments[] = $comment;
+        $this->publishComment($comment);
     }
 
-    public function printComment()
+    private function publishComment(Comment $comment)
     {
-        printf ("\n==== Comment from %s", $this->comment->getAuthor()->getName());
-        printf ("\n     %s\n", $this->comment->getCommentText());
+        printf("\n==========> Comment from %s", $comment->getAuthor()->getName());
+        printf("\n            %s\n", $comment->getCommentText());
     }
 }
