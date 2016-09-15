@@ -8,5 +8,5 @@ $url = new URL('HTTP://www.example.com');
 $locationHeader = new LocationHeader($url);
 $locationHeader->send($okStatusHeader);
 
-printf ("\n *** Redirected to: %s \n", $url);
+printf("\n *** Redirected to: %s \n", $url);
 

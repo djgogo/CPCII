@@ -23,7 +23,7 @@ class TemporaryRedirectHeader extends AbstractLocationHeader
 
     private function sendStatusMessages()
     {
-        printf("\n *** Header Status: %s sendet \n", $this->statusHeader);
+        printf("\n *** Header Status: %s \n", $this->statusHeader);
         printf("\n *** Redirected to: %s \n", $this->url);
     }
 }
