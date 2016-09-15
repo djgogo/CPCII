@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         bootstrap="../example/src/autoload.php"
+         strict="true"
+         verbose="true">
+  <testsuite name="Door">
+    <directory suffix="Test.php">../example/tests</directory>
+  </testsuite>
+
+  <logging>
+    <log type="coverage-html" target="coverage" title="Door" highlight="true"/>
+  </logging>
+
+  <filter>
+    <whitelist addUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">../example/src</directory>
+      <exclude>
+        <file>../example/src/autoload.php</file>
+      </exclude>
+    </whitelist>
+  </filter>
+</phpunit>

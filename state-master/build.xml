@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="door" default="build">
+ <target name="build" depends="prepare,visualize,phpunit"/>
+
+ <target name="clean">
+  <delete dir="${basedir}/build/coverage"/>
+  <delete file="${basedir}/build/graph.dot"/>
+  <delete file="${basedir}/build/graph.pdf"/>
+ </target>
+
+ <target name="prepare" depends="clean,generate,phpab">
+  <mkdir dir="${basedir}/build/coverage"/>
+ </target>
+
+ <target name="generate">
+  <exec executable="${basedir}/generator/run.php"/>
+ </target>
+
+ <target name="phpab">
+  <exec executable="phpab">
+   <arg value="--output" />
+   <arg path="example/src/autoload.php" />
+   <arg path="example/src" />
+  </exec>
+
+  <exec executable="phpab">
+   <arg value="--output" />
+   <arg path="generator/autoload.php" />
+   <arg path="generator" />
+  </exec>
+ </target>
+
+ <target name="visualize">
+  <exec executable="${basedir}/build/visualize.php" output="${basedir}/build/graph.dot"/>
+
+  <exec executable="dot">
+   <arg value="-Tpng"/>
+   <arg value="-o"/>
+   <arg path="${basedir}/build/graph.png"/>
+   <arg path="${basedir}/build/graph.dot"/>
+  </exec>
+ </target>
+
+ <target name="phpunit">
+  <exec executable="phpunit" failonerror="true">
+   <arg value="--configuration"/>
+   <arg path="${basedir}/build/phpunit.xml"/>
+  </exec>
+ </target>
+</project>

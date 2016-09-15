@@ -1,0 +1,7 @@
+/.ant_targets
+/.idea
+/build/coverage
+/build/graph.dot
+/composer.lock
+/composer.phar
+/vendor
