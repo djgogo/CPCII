@@ -1,0 +1,11 @@
+In diesem FAll würde es nicht empty heissen, denn das ist keine SplObject Methode, oder in der empty Methode würde man dann
+Sstorage->removeAll($storage).
+
+Jedenfalls würde das im echten Leben einem gesamten Löschen des warenkobrb Inhaltes gleichkommen.
+Egal ob das in einer Tabelle, Session, Cookie, XML-File etc. ist.
+
+Anstelle von empty ein neuer Warenkorb zu erstellen geht auch um den Warenkorb zu leeren. Und ist wenn man bedenkt, dass im
+alten Warenkorb erledigte Bestellungen vorhanden sind, die bereits an ein anderes System übertragen worden sind, die bessere
+Methode um den Warenkorb zu leeren. Einen neuen erstellen und den alten belassen damit die allfälligen verbindungen nicht
+getrennt werden. Falls in der Applikaton aber keine solchen verbindungen direkt vom Warenkorb zu anderen Systemen wie Lager, Buchhaltung etc.
+bestehen, dann wäre die Emtpy variante empfehlenswert.
