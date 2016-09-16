@@ -28,20 +28,20 @@ $articleD = $articleRepo->findArticleById(3);
 $articleG = $articleRepo->findArticleById(6);
 
 //* create cart-item instance and add some articles to cart1 */
-$cartItem1 = new CartItem('A', new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
-$cartItem11 = new CartItem('A', new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
-$cartItem12 = new CartItem('A', new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
-$cartItem13 = new CartItem('A', new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
+$cartItem1 = new CartItem($articleA->getId(), $articleA->getName(), new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
+$cartItem11 = new CartItem($articleA->getId(), $articleA->getName(), new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
+$cartItem12 = new CartItem($articleA->getId(), $articleA->getName(), new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
+$cartItem13 = new CartItem($articleA->getId(), $articleA->getName(), new Money($articleA->getPrice()->getAmount() * 2, 'EUR'), $articleA->getPrice(), 1);
 $cart->addItem($cartItem1);
 /* add more Items of the same Article - Merge this Items in Cart1!!!! */
 $cart->addItem($cartItem11);
 $cart->addItem($cartItem12);
 $cart->addItem($cartItem13);
 
-$cartItem2 = new CartItem('C', new Money($articleC->getPrice()->getAmount() * 1, 'EUR'), $articleC->getPrice(), 1);
+$cartItem2 = new CartItem($articleC->getId(), $articleC->getName(), new Money($articleC->getPrice()->getAmount() * 1, 'EUR'), $articleC->getPrice(), 1);
 $cart->addItem($cartItem2);
 
-$cartItem3 = new CartItem('D', new Money($articleD->getPrice()->getAmount() * 2, 'EUR'), $articleD->getPrice(), 2);
+$cartItem3 = new CartItem($articleD->getId(), $articleD->getName(), new Money($articleD->getPrice()->getAmount() * 2, 'EUR'), $articleD->getPrice(), 2);
 $cart->addItem($cartItem3);
 
 /* Add Voucher to Cart1 with 10% Reduction if Article A and D were found in the Cart1 */
@@ -54,10 +54,10 @@ $voucherRepo->addVoucher($voucher);
 $cart->addVoucher($voucherRepo->findVoucherById(1));
 
 /* Cart2 */
-$cartItem4 = new CartItem('C', new Money($articleC->getPrice()->getAmount() * 1, 'EUR'), $articleC->getPrice(), 1);
+$cartItem4 = new CartItem($articleC->getId(), $articleC->getName(), new Money($articleC->getPrice()->getAmount() * 1, 'EUR'), $articleC->getPrice(), 1);
 $cart2->addItem($cartItem4);
 
-$cartItem5 = new CartItem('G', new Money($articleG->getPrice()->getAmount() * 3, 'EUR'), $articleG->getPrice(), 3);
+$cartItem5 = new CartItem($articleG->getId(), $articleG->getName(), new Money($articleG->getPrice()->getAmount() * 3, 'EUR'), $articleG->getPrice(), 3);
 $cart2->addItem($cartItem5);
 
 /* try to use the voucher a second time! - there's no error implemented! But a Voucher can be added only once*/
