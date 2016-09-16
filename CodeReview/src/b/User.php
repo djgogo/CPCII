@@ -5,11 +5,6 @@ namespace CodeReview {
 
     class User
     {
-        /**
-         * @var int
-         */
-        private $id;
-
         public function setId(int $id)
         {
             $this->id = $id;

@@ -1,0 +1,11 @@
+Im ersten Moment denkt man die Ausgabe sei 234690. Ist aber NULL!
+
+Die Id wird nicht richtig initialisiert und somit auch nicht an die Klasse SpecialArticle übergeben und gesetzt.
+
+Ich habe nun folgende Aenderungen gemacht:
+
+ - die Id im Article Constructor richtig initzialisiert
+ - einen Constructor in SpciealArticle erstellt und die id von Article übernommen
+ - die set Methode implizit gelöst, damit man sie von aussen nicht verändern kann
+ - die Id beim Erstellen des SpecialArticles gleich als Attribut mitgegeben
+ - die Methode setId auf private geändert

@@ -9,13 +9,13 @@ namespace CodeReview\c
 
         public function __construct($id)
         {
-            $this->id = $id;
+            $this->setId($id);
         }
 
-//        public function setId($id)
-//        {
-//            $this->id = $id;
-//        }
+        private function setId($id)
+        {
+            $this->id = $id;
+        }
 
         public function getId()
         {
