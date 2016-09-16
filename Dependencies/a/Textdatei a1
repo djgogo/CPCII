@@ -1,0 +1,28 @@
+Liste aller impliziten Abhängigkeiten dieses Codes:
+
+b1. Auf die globale Konstante $config kann von überall her zugegriffen werden (über $GLOBALS)! nicht gut!
+    Anstelle dieser impliziten Abhängigkeit sollte die Konfigurationsdatei zu einem Parameter des Konstruktors werden,
+    da sie normalerweise bereits beim Erzeugen des Objekts bekannt ist.
+
+b2. Superglobals sind Built-in-Variablen, die immer in allen Gültigkeitsbereichen verfübar sind!
+    Anstelle diese Werte im Controller implizit aus der Superglobalen Variable $_POST zu entnehmen sollte man sie via
+    Dependency Injection einfügen. Und wenn möglich vorher in einer sicheren Klasse bearbeiten (Hashen, escapen etc.)
+
+b3. Die Abhängigkeit auf die Konstanten APP_PATH und DATA_DIR sind implizit, das bedeutet sie sind nicht Bestandteil der
+    öffentlihen API des Controllers. Sobald man AuthenticationController in einem anderen Kontext wiederverwenden will,
+    werden dort vermutlich die Konstanten nicht definiert sein. Wer sieht schon vorher den Quelltext durch, um her-
+    auszufinden, welche impliziten Abhängigkeiten erfüllt sein müssen!
+    In diesem Beispiel macht es Sinn wenn diese beiden Werte auch in der bereits verwendeten $config-Datei enthalten sind.
+
+b4. Die Konstante DIRECTORY_SEPARATOR um den Pfad-String zu schreiben braucht es nicht, auch wenn die App eine Cross-Plattform
+    wird, denn Windows ist es egal ob ein Forward-Slash / daher kommt. Der wird sowieso in Ihren Fall auf Back-Slash gewandelt.
+    Also benutzt man in diesem Fall am besten wie üblich den Forward Slash.
+
+b5. LdapAuthentication sollte genau so wie die Konfigurationsdatei explizit mit Dependency Injection als Konstruktor Attribut
+    übergeben werden. Im besten Falle wird die Klasse von der Factory erzeugt und im Controller als Dependency übergen.
+    Im Falle dass man eine andere Authentifizierung anwenden will, ist man flexibel diese ohne weitere Anpassungen
+    am Controller zu ändern. Der Controller ist somit auch in anderen Apps verwendbar.
+
+b6. Und zu letzt noch die Superglobale Variable $_SESSION. Genau so wie alle anderen globalen Variablen sollte sie explizit als
+    Dependency Injection in die Klasse übergeben werden. Natürlich sollte Sie vorerst noch mit allen Sichrehitsmassnahmen
+    (Session Hijacking, Seesion Fixation) bearbeitet werden.
