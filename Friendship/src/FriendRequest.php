@@ -110,17 +110,4 @@ class FriendRequest
                 throw new InvalidFriendRequestException("Status konnte nicht ermittelt werden!");
         }
     }
-
-    public function add()
-    {
-        if ($this->isAccepted()) {
-            throw new \InvalidFriendRequestException('User ' . $this->getFrom() . ' is already friend of ' . $this->getTo());
-        } elseif ($this->isPending()) {
-            throw new \InvalidFriendRequestException($this->getTo() . ' got already a Request from ' . $this->getFrom());
-        } elseif ($this->isDeclined()) {
-            throw new \InvalidFriendRequestException($this->getTo() . ' got already a Request from ' . $this->getFrom());
-        } else {
-            $this->setState(new PendingFriendRequestState);
-        }
-    }
 }

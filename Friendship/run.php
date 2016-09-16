@@ -11,12 +11,32 @@ $stefan = new User('Stefan');
  */
 // Friend Request from Anna to Peter
 $friendRequest1 = new FriendRequest($anna, $peter);
-$peter->addFriendRequest($friendRequest1);
+try {
+    $peter->addFriendRequest($friendRequest1);
+    printf("\nFriend Request from %s to %s added", $friendRequest1->getFrom(), $friendRequest1->getTo());
+} catch (InvalidFriendRequestException $e) {
+    printf(
+        "\n **> Friend Request from %s to %s could not be added - Request is %s!\n",
+        $friendRequest1->getFrom(),
+        $friendRequest1->getTo(),
+        $friendRequest1->getState()
+    );
+}
 
 /**
  * Trying to add a Request which was previous alreaedy added - Error!
  */
-$peter->addFriendRequest($friendRequest1);
+try {
+    $peter->addFriendRequest($friendRequest1);
+    printf("\nFriend Request from %s to %s added", $friendRequest1->getFrom(), $friendRequest1->getTo());
+} catch (InvalidFriendRequestException $e) {
+    printf(
+        "\n **> Friend Request from %s to %s could not be added - Request is %s!\n",
+        $friendRequest1->getFrom(),
+        $friendRequest1->getTo(),
+        $friendRequest1->getState()
+    );
+}
 
 /**
  * Happy Path - Confirmation of a Request
@@ -92,7 +112,17 @@ try {
  * Trying to decline a Friend Request from Anna again - Error!
  */
 // Add Friend Request from Anna to Stefan
-$stefan->addFriendRequest($friendRequest3);
+try {
+    $stefan->addFriendRequest($friendRequest3);
+    printf("\nFriend Request from %s to %s added", $friendRequest1->getFrom(), $friendRequest1->getTo());
+} catch (InvalidFriendRequestException $e) {
+    printf(
+        "\n **> Friend Request from %s to %s could not be added - Request is %s!\n",
+        $friendRequest1->getFrom(),
+        $friendRequest1->getTo(),
+        $friendRequest1->getState()
+    );
+}
 
 // Decline Friend Request from Anna
 try {
@@ -111,7 +141,18 @@ try {
 /**
  * Trying to add a Request which was previous declined - Error!
  */
-$stefan->addFriendRequest($friendRequest3);
+try {
+    $stefan->addFriendRequest($friendRequest3);
+    printf("\nFriend Request from %s to %s added", $friendRequest1->getFrom(), $friendRequest1->getTo());
+} catch (InvalidFriendRequestException $e) {
+    printf(
+        "\n **> Friend Request from %s to %s could not be added - Request is %s!\n",
+        $friendRequest1->getFrom(),
+        $friendRequest1->getTo(),
+        $friendRequest1->getState()
+    );
+}
+
 
 
 
