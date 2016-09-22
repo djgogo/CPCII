@@ -11,12 +11,32 @@ $stefan = new User('Stefan');
  */
 // Friend Request from Anna to Peter
 $friendRequest1 = new FriendRequest($anna, $peter);
-$peter->addFriendRequest($friendRequest1);
+try {
+    $peter->addFriendRequest($friendRequest1);
+    printf("\nFriend Request from %s to %s added", $friendRequest1->getFrom(), $friendRequest1->getTo());
+} catch (InvalidFriendRequestException $e) {
+    printf(
+        "\n **> Friend Request from %s to %s could not be added - Request is %s!\n",
+        $friendRequest1->getFrom(),
+        $friendRequest1->getTo(),
+        $friendRequest1->getState()
+    );
+}
 
 /**
  * Trying to add a Request which was previous alreaedy added - Error!
  */
-$peter->addFriendRequest($friendRequest1);
+try {
+    $peter->addFriendRequest($friendRequest1);
+    printf("\nFriend Request from %s to %s added", $friendRequest1->getFrom(), $friendRequest1->getTo());
+} catch (InvalidFriendRequestException $e) {
+    printf(
+        "\n **> Friend Request from %s to %s could not be added - Request is %s!\n",
+        $friendRequest1->getFrom(),
+        $friendRequest1->getTo(),
+        $friendRequest1->getState()
+    );
+}
 
 /**
  * Happy Path - Confirmation of a Request
@@ -26,7 +46,7 @@ try {
     $peter->confirm($friendRequest1);
     printf("\n%s confirmed %s's Friend Request :-)\n", $peter, $friendRequest1->getFrom());
 } catch (InvalidFriendRequestException $e) {
-    printf ("\n **> Anna's Friend Request could not be confirmed!");
+    printf("\n **> Anna's Friend Request could not be confirmed!");
 }
 
 /**
@@ -35,7 +55,7 @@ try {
 try {
     $peter->confirm($friendRequest1);
 } catch (InvalidFriendRequestException $e) {
-    printf ("\n **> User %s is already friend of %s - Confirmation declined!\n", $friendRequest1->getFrom(), $peter);
+    printf("\n **> User %s is already friend of %s - Confirmation declined!\n", $friendRequest1->getFrom(), $peter);
 }
 
 /**
@@ -54,7 +74,7 @@ $friendRequest3 = new FriendRequest($anna, $stefan);
 try {
     $anna->decline($friendRequest3);
 } catch (InvalidFriendRequestException $e) {
-    printf ("\n **> There's no Friend Request from %s - Could not be declined!\n", $friendRequest3->getFrom());
+    printf("\n **> There's no Friend Request from %s - Could not be declined!\n", $friendRequest3->getFrom());
 }
 
 /**
@@ -65,7 +85,7 @@ $friendRequest4 = new FriendRequest($stefan, $peter);
 try {
     $peter->confirm($friendRequest4);
 } catch (InvalidFriendRequestException $e) {
-    printf ("\n **> There's no Friend Request from %s - Confirmation declined!\n", $friendRequest4->getFrom());
+    printf("\n **> There's no Friend Request from %s - Confirmation declined!\n", $friendRequest4->getFrom());
 }
 
 /**
@@ -74,7 +94,7 @@ try {
 try {
     $peter->removeFriendship($stefan);
 } catch (InvalidFriendRequestException $e) {
-    printf ("\n **> %s is not a friend of %s! Could not be removed!\n", $stefan, $peter);
+    printf("\n **> %s is not a friend of %s! Could not be removed!\n", $stefan, $peter);
 }
 
 /**
@@ -82,36 +102,57 @@ try {
  */
 try {
     $peter->removeFriendship($anna);
-    printf ("\n%s has been removed from %s's friends list!\n", $anna, $peter);
-    printf ("%s has been removed from %s's friends list!\n", $peter, $anna);
+    printf("\n%s has been removed from %s's friends list!\n", $anna, $peter);
+    printf("%s has been removed from %s's friends list!\n", $peter, $anna);
 } catch (InvalidFriendRequestException $e) {
-    printf ("\n Removing Friendship with Anna failed!");
+    printf("\n Removing Friendship with Anna failed!");
 }
 
 /**
  * Trying to decline a Friend Request from Anna again - Error!
  */
 // Add Friend Request from Anna to Stefan
-$stefan->addFriendRequest($friendRequest3);
+try {
+    $stefan->addFriendRequest($friendRequest3);
+    printf("\nFriend Request from %s to %s added", $friendRequest1->getFrom(), $friendRequest1->getTo());
+} catch (InvalidFriendRequestException $e) {
+    printf(
+        "\n **> Friend Request from %s to %s could not be added - Request is %s!\n",
+        $friendRequest1->getFrom(),
+        $friendRequest1->getTo(),
+        $friendRequest1->getState()
+    );
+}
 
 // Decline Friend Request from Anna
 try {
     $stefan->decline($friendRequest3);
     printf("\nFriend Request from %s has been declined :-(\n", $friendRequest3->getFrom());
 } catch (InvalidFriendRequestException $e) {
-    printf ("\n Could not decline Anna's Request!");
+    printf("\n Could not decline Anna's Request!");
 }
 // Try to Decline Friend Request from Anna again!
 try {
     $stefan->decline($friendRequest3);
 } catch (InvalidFriendRequestException $e) {
-    printf ("\n **> %s's Friend Request is already declined - Cannot be declined again!\n", $friendRequest3->getFrom());
+    printf("\n **> %s's Friend Request is already declined - Cannot be declined again!\n", $friendRequest3->getFrom());
 }
 
 /**
  * Trying to add a Request which was previous declined - Error!
  */
-$stefan->addFriendRequest($friendRequest3);
+try {
+    $stefan->addFriendRequest($friendRequest3);
+    printf("\nFriend Request from %s to %s added", $friendRequest3->getFrom(), $friendRequest3->getTo());
+} catch (InvalidFriendRequestException $e) {
+    printf(
+        "\n **> Friend Request from %s to %s could not be added - Request is %s!\n",
+        $friendRequest3->getFrom(),
+        $friendRequest3->getTo(),
+        $friendRequest3->getState()
+    );
+}
+
 
 
 
