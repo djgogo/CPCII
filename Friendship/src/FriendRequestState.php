@@ -6,4 +6,5 @@ interface FriendRequestState
     public function decline();
     public function remove();
     public function request();
+    public function delete();
 }
