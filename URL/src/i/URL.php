@@ -68,7 +68,7 @@ class URL
 
     public function concatUrlWithSubPath(string $subPath) : URL
     {
-        if ($subPath[0] !== '/'){
+        if ($subPath[0] !== '/') {
             $subPath = '/' . $subPath;
         }
         return new URL($this . $subPath);
