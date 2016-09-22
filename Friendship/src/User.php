@@ -20,18 +20,18 @@ class User
 
     public function addFriendRequest(FriendRequest $friendRequest)
     {
-        if (in_array($friendRequest->getFrom(), $this->friends) && $friendRequest->isWithoutRequest()) {
+        if (in_array($friendRequest->getFrom(), $this->friends) && $friendRequest->isWithout()) {
             printf(
                 "\n --> User %s is already friend of %s - No Friend Request added!\n",
                 $friendRequest->getFrom(),
                 $friendRequest->getTo()
             );
         } else {
-            $this->addRequest($friendRequest);
+            $this->add($friendRequest);
         }
     }
 
-    private function addRequest(FriendRequest $friendRequest)
+    private function add(FriendRequest $friendRequest)
     {
         if ($friendRequest->isAccepted()) {
             throw new \InvalidFriendRequestException(
@@ -46,30 +46,30 @@ class User
                 $friendRequest->getTo() . ' got already a Request from ' . $friendRequest->getFrom()
             );
         }
-        $friendRequest->setState(new PendingFriendRequestState);
+        $friendRequest->request();
     }
 
     public function confirm(FriendRequest $friendRequest)
     {
         if (in_array($friendRequest->getFrom(), $this->friends)) {
             throw new \InvalidFriendRequestException('User ' . $friendRequest->getFrom() . ' is already friend of ' . $this->name);
-        } elseif ($friendRequest->isWithoutRequest()) {
+        } elseif ($friendRequest->isWithout()) {
             throw new \InvalidFriendRequestException('There\'s no Friend Request from ' . $friendRequest->getFrom() . ' - Confirmation declined!');
         } else {
             $this->addFriend($friendRequest->getFrom());
             $friendRequest->getFrom()->addFriend($this);
-            $friendRequest->setState(new AcceptedFriendRequestState);
+            $friendRequest->accept();
         }
     }
 
     public function decline(FriendRequest $friendRequest)
     {
-        if ($friendRequest->isWithoutRequest()) {
+        if ($friendRequest->isWithout()) {
             throw new \InvalidFriendRequestException('There\'s no Friend Request from ' . $friendRequest->getFrom() . ' - Confirmation declined!');
         } elseif ($friendRequest->isDeclined()) {
             throw new \InvalidFriendRequestException($friendRequest->getFrom() . ' is already declined!!');
         } else {
-            $friendRequest->setState(new DeclinedFriendRequestState);
+            $friendRequest->decline();
         }
     }
 

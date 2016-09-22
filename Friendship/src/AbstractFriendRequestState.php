@@ -21,4 +21,9 @@ abstract class AbstractFriendRequestState implements FriendRequestState
     {
         throw new IllegalStateTransitionException;
     }
+
+    public function delete()
+    {
+        throw new IllegalStateTransitionException;
+    }
 }

@@ -1,9 +1,8 @@
 <?php
-
 class RemovedFriendRequestState extends AbstractFriendRequestState
 {
-    public function request() : PendingFriendRequestState
+    public function delete() : WithoutFriendRequestState
     {
-        return new PendingFriendRequestState;
+        return new WithoutFriendRequestState;
     }
 }

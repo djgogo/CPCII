@@ -18,14 +18,12 @@ class FriendRequest
      */
     private $state;
 
-    public function __construct(User $from, User $to, FriendRequestState $state = null)
+    public function __construct(User $from, User $to)
     {
         $this->from = $from;
         $this->to = $to;
+        $this->setState(new WithoutFriendRequestState());
 
-        if ($state !== null) {
-            $this->setState($state);
-        }
     }
 
     public function getFrom() : User
@@ -58,6 +56,11 @@ class FriendRequest
         $this->setState($this->state->request());
     }
 
+    public function delete()
+    {
+        $this->setState($this->state->delete());
+    }
+
     public function isPending() : bool
     {
         return $this->state instanceof PendingFriendRequestState;
@@ -78,15 +81,12 @@ class FriendRequest
         return $this->state instanceof DeclinedFriendRequestState;
     }
 
-    public function isWithoutRequest()
+    public function isWithout()
     {
-        if ($this->state !== null) {
-            return false;
-        }
-        return true;
+        return $this->state instanceof WithoutFriendRequestState;
     }
 
-    public function setState(FriendRequestState $state)
+    private function setState(FriendRequestState $state)
     {
         $this->state = $state;
     }

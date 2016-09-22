@@ -143,13 +143,13 @@ try {
  */
 try {
     $stefan->addFriendRequest($friendRequest3);
-    printf("\nFriend Request from %s to %s added", $friendRequest1->getFrom(), $friendRequest1->getTo());
+    printf("\nFriend Request from %s to %s added", $friendRequest3->getFrom(), $friendRequest3->getTo());
 } catch (InvalidFriendRequestException $e) {
     printf(
         "\n **> Friend Request from %s to %s could not be added - Request is %s!\n",
-        $friendRequest1->getFrom(),
-        $friendRequest1->getTo(),
-        $friendRequest1->getState()
+        $friendRequest3->getFrom(),
+        $friendRequest3->getTo(),
+        $friendRequest3->getState()
     );
 }
 
