@@ -7,6 +7,6 @@ require_once __DIR__ . '/bootstrap.php';
 
 $db = new DatabaseAbstraction('sqlite::memory:');
 $db->connect();
-$db->execute('CREATE TABLE test(i INTEGER);');
+$db->execute('CREATE TABLE test(i INTEGER)');
 
-var_dump($db->query('SELECT * FROM test;'));
+var_dump($db->query('SELECT * FROM test'));

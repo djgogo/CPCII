@@ -1,0 +1,10 @@
+PDO::exec führt ein SQL Statement aus und gibt die Zahl der betroffenen Zelen zurück. In diesem Fall int 0 da nur eine leere
+Datei erstellt wird.
+
+PDO::query führt ein SQL Statement aus und gibt das Resultat der Abfrage als PDOStatement Objekt zurück. Das PDOStatement
+Objekt representiert ein Prepared Statement und, nachdem es ausgeführt wurde, die zugehörigen Datensätze.
+In diesem FAll erzeugt die Abfrage ein leeres PDOStatement Objekt da die Datei leer ist.
+
+
+
+

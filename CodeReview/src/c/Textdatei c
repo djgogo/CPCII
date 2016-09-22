@@ -4,8 +4,12 @@ Die Id wird nicht richtig initialisiert und somit auch nicht an die Klasse Speci
 
 Ich habe nun folgende Aenderungen gemacht:
 
- - die Id im Article Constructor richtig initzialisiert
- - einen Constructor in SpciealArticle erstellt und die id von Article übernommen
+ - die Id im Article Constructor richtig initialisiert
+ - einen Constructor in SpeciealArticle erstellt und die id von Article übernommen
  - die set Methode implizit gelöst, damit man sie von aussen nicht verändern kann
  - die Id beim Erstellen des SpecialArticles gleich als Attribut mitgegeben
  - die Methode setId auf private geändert
+
+
+ Die einfachere Variante aber nicht umbedingt schönere ist einfach die Sichtbarkeitd er Variable Id von private (nicht Sichtbar)
+ auf public (sichtbar) zu setzen. dann erscheint das Resultat so wie man im ersten Moment denkt.

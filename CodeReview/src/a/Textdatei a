@@ -1,2 +1,2 @@
-Die Id ist public angegeben. d.h. dass jedermann Zugriff auf die Id hat, was nicht wirklich empfehlenswert ist, Verhindern tun wir dies
-indem wir die Variable auf private setzen, so hat nur das laufende Programm zugriff auf die Id.
+Die Id ist public angegeben. Auf public deklarierte Elemente kann von überall her zugegriffen werden, was nicht wirklich empfehlenswert ist, Verhindern tun wir dies
+indem wir die Variable auf private setzen, so hat nur das aktuelle Klassen-Objekt zugriff auf die Id.

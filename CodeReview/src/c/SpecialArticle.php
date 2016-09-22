@@ -5,15 +5,15 @@ namespace CodeReview\c {
 
     class SpecialArticle extends Article
     {
-        private $id;
+        public $id;
 
-        public function __construct($id)
-        {
-            parent::__construct($id);
-            $this->setId($id);
-        }
+//        public function __construct($id)
+//        {
+//            parent::__construct($id);
+//            $this->setId($id);
+//        }
 
-        private function setId($id)
+        public function setId($id)
         {
             if ($id <= 100000) {
                 throw new ArticleException(
