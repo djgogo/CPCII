@@ -1,11 +1,4 @@
-src/a/autoload.php
-src/b/autoload.php
-src/c/autoload.php
-src/d/autoload.php
-src/f/autoload.php
-src/g/autoload.php
-src/autoload.php
+**/autoload.php
 build.xml
 build/*
 phpunit.xml
-tests/autoload.php
