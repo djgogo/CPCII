@@ -35,7 +35,7 @@ namespace Cart
 
         public function addItem(CartItemInterface $item)
         {
-            if ($this->containsArticle($this->articleRepository->findArticleByName($item->getName()))) {
+            if ($this->containsArticle($this->articleRepository->findArticleById($item->getId()))) {
                 $this->changeQuantity($item, $item->getQuantity());
                 return;
             }
@@ -54,7 +54,7 @@ namespace Cart
             $storage->rewind();
             while ($storage->valid()) {
                 $object = $storage->current();
-                if ($article->getName() === $object->getName()) {
+                if ($article->getId() === $object->getId()) {
                     $storage->rewind();
                     return true;
                 }
@@ -91,7 +91,7 @@ namespace Cart
             $storage->rewind();
             while ($storage->valid()) {
                 $object = $storage->current();
-                if ($item->getName() === $object->getName()) {
+                if ($item->getId() === $object->getId()) {
                     $object->setQuantity($object->getQuantity() + $quantity);
                     $this->calculateNewPrice($object);
                     $storage->rewind();
@@ -126,8 +126,7 @@ namespace Cart
         /**
          * Retrieve an external iterator
          * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
-         * @return \ArrayIterator --> not needed to use an external Iterator with SPLObjectStorage
-         *                            because it extends already Iterator!
+         * @return Traversable An instance of an object implementing <b>Iterator</b> or
          * <b>Traversable</b>
          * @since 5.0.0
          */

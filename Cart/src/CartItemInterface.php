@@ -5,6 +5,7 @@ namespace Cart
 {
     interface CartItemInterface
     {
+        public function getId();
         public function getName();
         public function getPrice();
         public function setPrice(Money $money);
