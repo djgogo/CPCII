@@ -1,0 +1,17 @@
+Das Programm gibt folgende Fehlermeldung aus:
+
+Warning: Declaration of CodeReview\f\PremiumUser::addContract(CodeReview\f\SpecialContract $contract) should be compatible
+with CodeReview\f\User::addContract(CodeReview\f\Contract $contract) in /var/www/Exercises/CodeReview/src/f/PremiumUser.php on line 6
+
+PremiumUser überschreibt die vererbte Methode addContract und verändert sie indem sie eine andere Instanz hinzufügt. Das ist
+nicht möglich. Die Instanz muss die gleiche sein, also von Contract und nicht von SpecialContract.
+
+Abhilfe würde eine neue Funktion in der Klasse User schaffen die "addSpecialContract" heisst und einen SpecialContract
+hinzufügt in einem separaten Array $specialContracts[]. Dies wäre auch hilfreich und einfacher falls man die Verträge später
+separat auflisten oder verarbeiten möchte.
+
+Eine andere Variante wäre eine separate Klasse PremiumUser zu erstellen die nicht von User abstammt und somit Ihre
+eigenen Funktionen und Arrays beinhaltet.
+
+Eine weitere Möglichkeit und die Sinnvollste wäre in der Klasse PremiumUser eine zusätzliche Funktion "addSpecialContract" zu erstellen
+welche dann hier die speziellen Verträge haltet und verwaltet.

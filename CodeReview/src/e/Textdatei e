@@ -1,0 +1,11 @@
+Intuitiv würde ich hier eine Overflow Exception erwarten. PHP aber konvertiert die Variable einfach zu einem double.
+
+Der höchste Wert von INT auf einem 64bit-System ist int(9223372036854775807). Addiert man 1 dazu konvertiert PHP die Variable
+zu einem double (In diesem Fall: double(9.2233720368548E+18)) weil es so grosse Zahlen speichern kann.
+
+Interessant ist das Resultat wenn man die Ausgabe zu einem int castet (var_dump((int)$counter->getCounter())) zeigt PHP
+den INT_MAX Wert als Minus Zahl an.
+
+Würde man die gezeigten Zählerwerte als Primärschlüssel von Datensätzen verwenden wäre die Konsequenz dass dies nicht für
+grosse Datenmengen funktionieren würde, da der Primärschlüssel irgendwann mal endet.
+
