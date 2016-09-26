@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metrics generated="2016-09-26T14:45:48" pdepend="2.2.4" ahh="0" andc="0" calls="16" ccn="38" ccn2="42" cloc="99" clsa="0" clsc="1" eloc="167" fanout="0" leafs="1" lloc="107" loc="304" maxDIT="0" ncloc="205" noc="1" nof="0" noi="0" nom="4" nop="1" roots="0">
+  <files>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe3/Diff.php" loc="304" cloc="99" eloc="167" lloc="107" ncloc="205"/>
+  </files>
+  <package name="SebastianBergmann" noc="1" noi="0" nom="4" nof="0" cr="0.15" rcr="0.15">
+    <class name="Diff" start="57" end="303" loc="247" cloc="47" eloc="157" lloc="101" ncloc="200" dit="0" noam="0" nocc="0" noom="0" nom="4" cr="0.15" rcr="0.15" ca="0" cbo="0" ce="0" impl="0" cis="3" csz="5" npm="3" vars="1" varsi="1" varsnp="0" wmc="42" wmci="42" wmcnp="32">
+      <file name="/var/www/Exercises/QualityAssurance/aufgabe3/Diff.php"/>
+      <method name="__construct" start="69" end="72" ccn="1" ccn2="1" loc="4" cloc="0" eloc="3" lloc="1" ncloc="4" npath="1" hnt="6" hnd="6" hv="15.509775004327" hd="4" hl="0.25" he="62.039100017308" ht="3.4466166676282" hb="0.0052238304343202" hi="3.8774437510817" mi="81.120955834208"/>
+      <method name="diff" start="81" end="143" ccn="13" ccn2="13" loc="63" cloc="3" eloc="48" lloc="33" ncloc="60" npath="780" hnt="49" hnd="215" hv="379.66144962988" hd="13.894736842105" hl="0.071969696969697" he="5275.2959316994" ht="293.07199620552" hb="0.10101285133726" hi="27.324119480939" mi="43.515957876398"/>
+      <method name="diffToArray" start="160" end="248" ccn="15" ccn2="18" loc="89" cloc="7" eloc="69" lloc="45" ncloc="82" npath="14400" hnt="55" hnd="362" hv="467.49152378958" hd="16.96" hl="0.058962264150943" he="7928.6562434712" ht="440.48090241507" hb="0.13253944200817" hi="27.564358714008" mi="38.772568592885"/>
+      <method name="longestCommonSubsequence" start="257" end="302" ccn="9" ccn2="10" loc="46" cloc="0" eloc="37" lloc="22" ncloc="46" npath="140" hnt="33" hnd="207" hv="253.88506959748" hd="12.258064516129" hl="0.081578947368421" he="3112.1395628078" ht="172.89664237821" hb="0.071053387561752" hi="20.711676730321" mi="47.60897372224"/>
+    </class>
+  </package>
+</metrics>
