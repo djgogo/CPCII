@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pmd version="@project.version@" timestamp="2016-09-27T07:59:39+02:00">
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Form/Type/DoctrineType.php">
+        <violation beginline="28" endline="193" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Bridge\Doctrine\Form\Type" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="DoctrineType" priority="2">
+            The class DoctrineType has a coupling between objects value of 13. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Tests/Form/Type/EntityTypeTest.php">
+        <violation beginline="27" endline="771" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Bridge\Doctrine\Tests\Form\Type" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="EntityTypeTest" priority="2">
+            The class EntityTypeTest has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Twig/NodeVisitor/TranslationDefaultDomainNodeVisitor.php">
+        <violation beginline="22" endline="106" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Bridge\Twig\NodeVisitor" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="TranslationDefaultDomainNodeVisitor" priority="2">
+            The class TranslationDefaultDomainNodeVisitor has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/FrameworkBundle.php">
+        <violation beginline="40" endline="76" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Bundle\FrameworkBundle" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="FrameworkBundle" priority="2">
+            The class FrameworkBundle has a coupling between objects value of 19. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Tests/DependencyInjection/WebProfilerExtensionTest.php">
+        <violation beginline="122" endline="122" rule="EvalExpression" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#evalexpression" priority="1">
+            The method getDumpedContainer() contains an eval expression.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Application.php">
+        <violation beginline="48" endline="1144" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Console" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="Application" priority="2">
+            The class Application has a coupling between objects value of 20. Consider to reduce the number of dependencies under 13.
+        </violation>
+        <violation beginline="127" endline="127" rule="ExitExpression" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#exitexpression" priority="1">
+            The method run() contains an exit expression.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Command/Command.php">
+        <violation beginline="29" endline="638" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Console\Command" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="Command" priority="2">
+            The class Command has a coupling between objects value of 13. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Tests/ApplicationTest.php">
+        <violation beginline="25" endline="637" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Console\Tests" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ApplicationTest" priority="2">
+            The class ApplicationTest has a coupling between objects value of 20. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Tests/Command/CommandTest.php">
+        <violation beginline="26" endline="285" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Console\Tests\Command" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="CommandTest" priority="2">
+            The class CommandTest has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/CssSelector/CssSelector.php">
+        <violation beginline="29" endline="322" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\CssSelector" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="CssSelector" priority="2">
+            The class CssSelector has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Compiler/PassConfig.php">
+        <violation beginline="25" endline="259" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\DependencyInjection\Compiler" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="PassConfig" priority="2">
+            The class PassConfig has a coupling between objects value of 19. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Container.php">
+        <violation beginline="62" endline="488" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\DependencyInjection" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="Container" priority="2">
+            The class Container has a coupling between objects value of 13. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/ContainerBuilder.php">
+        <violation beginline="32" endline="1002" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\DependencyInjection" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ContainerBuilder" priority="2">
+            The class ContainerBuilder has a coupling between objects value of 21. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Dumper/PhpDumper.php">
+        <violation beginline="33" endline="1152" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\DependencyInjection\Dumper" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="PhpDumper" priority="2">
+            The class PhpDumper has a coupling between objects value of 13. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Loader/XmlFileLoader.php">
+        <violation beginline="30" endline="418" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\DependencyInjection\Loader" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="XmlFileLoader" priority="2">
+            The class XmlFileLoader has a coupling between objects value of 16. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Loader/XmlFileLoaderTest.php">
+        <violation beginline="26" endline="371" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\DependencyInjection\Tests\Loader" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="XmlFileLoaderTest" priority="2">
+            The class XmlFileLoaderTest has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Finder/Adapter/AbstractFindAdapter.php">
+        <violation beginline="27" endline="319" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Finder\Adapter" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="AbstractFindAdapter" priority="2">
+            The class AbstractFindAdapter has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Finder/Adapter/PhpAdapter.php">
+        <violation beginline="21" endline="98" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Finder\Adapter" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="PhpAdapter" priority="2">
+            The class PhpAdapter has a coupling between objects value of 13. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Finder/Finder.php">
+        <violation beginline="35" endline="811" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Finder" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="Finder" priority="2">
+            The class Finder has a coupling between objects value of 19. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Finder/Tests/FinderTest.php">
+        <violation beginline="18" endline="752" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Finder\Tests" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="FinderTest" priority="2">
+            The class FinderTest has a coupling between objects value of 13. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/AbstractType.php">
+        <violation beginline="19" endline="138" rule="NumberOfChildren" ruleset="Design Rules" package="Symfony\Component\Form" externalInfoUrl="http://phpmd.org/rules/design.html#numberofchildren" class="AbstractType" priority="2">
+            The class AbstractType has 38 children. Consider to rebalance this class hierarchy to keep number of children under 15.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/CoreExtension.php">
+        <violation beginline="22" endline="56" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Form\Extension\Core" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="CoreExtension" priority="2">
+            The class CoreExtension has a coupling between objects value of 28. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/ChoiceType.php">
+        <violation beginline="30" endline="263" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Form\Extension\Core\Type" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ChoiceType" priority="2">
+            The class ChoiceType has a coupling between objects value of 15. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/DateTimeType.php">
+        <violation beginline="30" endline="302" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Form\Extension\Core\Type" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="DateTimeType" priority="2">
+            The class DateTimeType has a coupling between objects value of 15. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/DateType.php">
+        <violation beginline="27" endline="330" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Form\Extension\Core\Type" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="DateType" priority="2">
+            The class DateType has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Form.php">
+        <violation beginline="58" endline="1130" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Form" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="Form" priority="2">
+            The class Form has a coupling between objects value of 22. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/FormConfigBuilder.php">
+        <violation beginline="28" endline="938" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Form" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="FormConfigBuilder" priority="2">
+            The class FormConfigBuilder has a coupling between objects value of 15. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/ResolvedFormType.php">
+        <violation beginline="24" endline="254" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Form" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ResolvedFormType" priority="2">
+            The class ResolvedFormType has a coupling between objects value of 13. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Tests/SimpleFormTest.php">
+        <violation beginline="55" endline="873" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Form\Tests" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="SimpleFormTest" priority="2">
+            The class SimpleFormTest has a coupling between objects value of 13. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Bundle/Bundle.php">
+        <violation beginline="29" endline="197" rule="NumberOfChildren" ruleset="Design Rules" package="Symfony\Component\HttpKernel\Bundle" externalInfoUrl="http://phpmd.org/rules/design.html#numberofchildren" class="Bundle" priority="2">
+            The class Bundle has 17 children. Consider to rebalance this class hierarchy to keep number of children under 15.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/DataCollector/RequestDataCollector.php">
+        <violation beginline="28" endline="308" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\HttpKernel\DataCollector" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="RequestDataCollector" priority="2">
+            The class RequestDataCollector has a coupling between objects value of 16. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Debug/TraceableEventDispatcher.php">
+        <violation beginline="32" endline="470" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\HttpKernel\Debug" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="TraceableEventDispatcher" priority="2">
+            The class TraceableEventDispatcher has a coupling between objects value of 15. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpCache/HttpCache.php">
+        <violation beginline="616" endline="616" rule="EvalExpression" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#evalexpression" priority="1">
+            The method restoreResponseBody() contains an eval expression.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php">
+        <violation beginline="34" endline="255" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\HttpKernel" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="HttpKernel" priority="2">
+            The class HttpKernel has a coupling between objects value of 17. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php">
+        <violation beginline="47" endline="771" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\HttpKernel" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="Kernel" priority="2">
+            The class Kernel has a coupling between objects value of 28. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/Exception/FlattenExceptionTest.php">
+        <violation beginline="30" endline="235" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\HttpKernel\Tests\Exception" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="FlattenExceptionTest" priority="2">
+            The class FlattenExceptionTest has a coupling between objects value of 17. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/data/build-data.php">
+        <violation beginline="14" endline="14" rule="ExitExpression" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#exitexpression" priority="1">
+            The function bailout() contains an exit expression.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Stub/DateFormat/FullTransformer.php">
+        <violation beginline="23" endline="356" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Locale\Stub\DateFormat" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="FullTransformer" priority="2">
+            The class FullTransformer has a coupling between objects value of 21. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Tests/Fixtures/dumper/url_matcher1.php">
+        <violation beginline="38" endline="38" rule="GotoStatement" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#gotostatement" priority="1">
+            The method match() utilizes a goto statement.
+        </violation>
+        <violation beginline="49" endline="49" rule="GotoStatement" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#gotostatement" priority="1">
+            The method match() utilizes a goto statement.
+        </violation>
+        <violation beginline="86" endline="86" rule="GotoStatement" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#gotostatement" priority="1">
+            The method match() utilizes a goto statement.
+        </violation>
+        <violation beginline="97" endline="97" rule="GotoStatement" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#gotostatement" priority="1">
+            The method match() utilizes a goto statement.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Tests/Fixtures/dumper/url_matcher2.php">
+        <violation beginline="38" endline="38" rule="GotoStatement" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#gotostatement" priority="1">
+            The method match() utilizes a goto statement.
+        </violation>
+        <violation beginline="49" endline="49" rule="GotoStatement" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#gotostatement" priority="1">
+            The method match() utilizes a goto statement.
+        </violation>
+        <violation beginline="94" endline="94" rule="GotoStatement" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#gotostatement" priority="1">
+            The method match() utilizes a goto statement.
+        </violation>
+        <violation beginline="105" endline="105" rule="GotoStatement" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#gotostatement" priority="1">
+            The method match() utilizes a goto statement.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Acl/Dbal/AclProvider.php">
+        <violation beginline="37" endline="663" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Security\Acl\Dbal" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="AclProvider" priority="2">
+            The class AclProvider has a coupling between objects value of 19. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Acl/Dbal/MutableAclProvider.php">
+        <violation beginline="34" endline="882" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Security\Acl\Dbal" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="MutableAclProvider" priority="2">
+            The class MutableAclProvider has a coupling between objects value of 16. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/Firewall/AbstractAuthenticationListener.php">
+        <violation beginline="49" endline="229" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Security\Http\Firewall" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="AbstractAuthenticationListener" priority="2">
+            The class AbstractAuthenticationListener has a coupling between objects value of 19. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/Firewall/ContextListener.php">
+        <violation beginline="34" endline="177" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Security\Http\Firewall" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ContextListener" priority="2">
+            The class ContextListener has a coupling between objects value of 15. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/Firewall/DigestAuthenticationListener.php">
+        <violation beginline="32" endline="135" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Security\Http\Firewall" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="DigestAuthenticationListener" priority="2">
+            The class DigestAuthenticationListener has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/Firewall/ExceptionListener.php">
+        <violation beginline="39" endline="187" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Security\Http\Firewall" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ExceptionListener" priority="2">
+            The class ExceptionListener has a coupling between objects value of 20. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/Firewall/SwitchUserListener.php">
+        <violation beginline="38" endline="190" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Security\Http\Firewall" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="SwitchUserListener" priority="2">
+            The class SwitchUserListener has a coupling between objects value of 20. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/RememberMe/AbstractRememberMeServices.php">
+        <violation beginline="32" endline="307" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Security\Http\RememberMe" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="AbstractRememberMeServices" priority="2">
+            The class AbstractRememberMeServices has a coupling between objects value of 13. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Acl/Dbal/MutableAclProviderTest.php">
+        <violation beginline="30" endline="492" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Security\Tests\Acl\Dbal" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="MutableAclProviderTest" priority="2">
+            The class MutableAclProviderTest has a coupling between objects value of 21. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Templating/PhpEngine.php">
+        <violation beginline="176" endline="176" rule="EvalExpression" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#evalexpression" priority="1">
+            The method evaluate() contains an eval expression.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Constraint.php">
+        <violation beginline="31" endline="220" rule="NumberOfChildren" ruleset="Design Rules" package="Symfony\Component\Validator" externalInfoUrl="http://phpmd.org/rules/design.html#numberofchildren" class="Constraint" priority="2">
+            The class Constraint has 44 children. Consider to rebalance this class hierarchy to keep number of children under 15.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/ConstraintValidator.php">
+        <violation beginline="23" endline="119" rule="NumberOfChildren" ruleset="Design Rules" package="Symfony\Component\Validator" externalInfoUrl="http://phpmd.org/rules/design.html#numberofchildren" class="ConstraintValidator" priority="2">
+            The class ConstraintValidator has 36 children. Consider to rebalance this class hierarchy to keep number of children under 15.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/GraphWalkerTest.php">
+        <violation beginline="30" endline="592" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Validator\Tests" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="GraphWalkerTest" priority="2">
+            The class GraphWalkerTest has a coupling between objects value of 18. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/ValidationVisitorTest.php">
+        <violation beginline="31" endline="564" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Validator\Tests" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ValidationVisitorTest" priority="2">
+            The class ValidationVisitorTest has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/ValidatorFactoryTest.php">
+        <violation beginline="28" endline="193" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Validator\Tests" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ValidatorFactoryTest" priority="2">
+            The class ValidatorFactoryTest has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/ValidationVisitor.php">
+        <violation beginline="24" endline="226" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Validator" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ValidationVisitor" priority="2">
+            The class ValidationVisitor has a coupling between objects value of 13. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/ValidatorBuilder.php">
+        <violation beginline="37" endline="334" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Validator" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ValidatorBuilder" priority="2">
+            The class ValidatorBuilder has a coupling between objects value of 25. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/ValidatorFactory.php">
+        <violation beginline="80" endline="234" rule="CouplingBetweenObjects" ruleset="Design Rules" package="Symfony\Component\Validator" externalInfoUrl="http://phpmd.org/rules/design.html#couplingbetweenobjects" class="ValidatorFactory" priority="2">
+            The class ValidatorFactory has a coupling between objects value of 14. Consider to reduce the number of dependencies under 13.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Yaml/Tests/DumperTest.php">
+        <violation beginline="98" endline="98" rule="EvalExpression" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#evalexpression" priority="1">
+            The method testSpecifications() contains an eval expression.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Yaml/Tests/ParserTest.php">
+        <violation beginline="65" endline="65" rule="EvalExpression" ruleset="Design Rules" externalInfoUrl="http://phpmd.org/rules/design.html#evalexpression" priority="1">
+            The method getDataFormSpecifications() contains an eval expression.
+        </violation>
+    </file>
+</pmd>
