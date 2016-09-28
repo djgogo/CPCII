@@ -1,1 +1,4 @@
-Programm läuft so nicht. Frag mich wie das hier wohl gemeint war.
+Ausgabe = nichts! Wie soll ich von nichts einen unterscheid feststellen? Frag mich wie das hier wohl gemeint war.
+Von mir aus gesehen haben diese zwei autoload-funktionen keinen Unterschied. Beide suchen die Klasse File im Verzeichnis
+wo das autoload-file liegt. liegt die autoload datei nicht im selben Verzeichnis wie File() findet er die Klasse nicht.
+

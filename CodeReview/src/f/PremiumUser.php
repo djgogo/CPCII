@@ -5,12 +5,7 @@ namespace CodeReview\f
 {
     class PremiumUser extends User
     {
-//        public function addContract(SpecialContract $contract)
-//        {
-//            parent::addContract($contract);
-//        }
-
-        public function addSpecialContract(SpecialContract $contract)
+        public function addContract(Contract $contract)
         {
             parent::addContract($contract);
         }
