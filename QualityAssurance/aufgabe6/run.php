@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-use QualityAssurance\aufgabe6\Finder;
+require_once __DIR__ . '/bootstrap.php';
 
 $finder = new Finder();
 $classNames = $finder->findDeclarationsInDirectory('/var/www/Exercises/QualityAssurance/aufgabe6/src');
