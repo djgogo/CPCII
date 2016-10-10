@@ -1,10 +1,13 @@
 <?php
-declare(strict_types = 1);
 
-require_once __DIR__ . 'vendor/autoload.php';
-ini_set('xdebug.max_nesting_level', 3000);
+require_once __DIR__ . '/bootstrap.php';
 
+use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
+
 $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+$traverser = new NodeTraverser();
 
-
+$finder = new Finder($parser, $traverser);
+$classNames = $finder->findDeclarationsInDirectory('/var/www/Exercises/QualityAssurance/aufgabe8/src');
+$finder->printClassNames($classNames);

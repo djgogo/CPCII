@@ -1,25 +1,36 @@
 <?php
-declare(strict_types = 1);
 
 use PhpParser\Error;
-use PhpParser\ParserFactory;
+use PhpParser\NodeTraverser;
+use PhpParser\Parser as PhpParser;
 
 class Finder
 {
     /**
-     * @var ParserFactory
+     * @var PhpParser
      */
     private $parser;
 
     /**
-     * @var Error
+     * @var NodeTraverser
      */
-    private $error;
+    private $traverser;
 
-    public function __construct(ParserFactory $parser, Error $error)
+    public function __construct(PhpParser $parser, NodeTraverser $traverser)
     {
         $this->parser = $parser;
-        $this->error = $error;
+        $this->traverser = $traverser;
+        $this->addTraverser();
+
+        // with big fluent interfaces it can happen that PHP-Parser's Traverser
+        // exceeds the 100 recursions limit; set it to 3000 to be sure.
+        ini_set('xdebug.max_nesting_level', 3000);
+    }
+
+    private function addTraverser()
+    {
+        // add my visitor (ClassNameResolver)
+        $this->traverser->addVisitor(new MyNodeVisitor());
     }
 
     public function findDeclarationsInDirectory(string $filePath) : array
@@ -38,15 +49,18 @@ class Finder
 
     private function getClassFromFile(string $entry)
     {
-        // Grab the contents of the file
-        $code = file_get_contents(__DIR__ . '/' . $entry);
-
+        $className = '';
         try {
-            $stmts = $parser->parse($code);
-            // $stmts is an array of statement nodes
+            // Grab the contents of the file
+            $code = file_get_contents(__DIR__ . '/' . $entry);
 
-            // TODO grab the classname out from the Parsers Node Tree
-            // https://github.com/nikic/PHP-Parser/blob/master/doc/2_Usage_of_basic_components.markdown
+            // parse
+            $stmts = $this->parser->parse($code);
+
+            // traverse
+            $stmts = $this->traverser->traverse($stmts);
+
+            $className = end($stmts);
 
         } catch (Error $e) {
             echo 'Parse Error: ', $e->getMessage();
@@ -57,8 +71,6 @@ class Finder
 
     public function printClassNames(array $classNames)
     {
-        // TODO maybe use pretty printer from the parser?
-
         foreach ($classNames as $className) {
             printf("Found: %s\n", $className);
         }

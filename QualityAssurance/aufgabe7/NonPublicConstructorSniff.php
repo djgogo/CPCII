@@ -22,7 +22,6 @@ class CodeReview_Sniffs_PHP_NonPublicConstructorSniff extends PHP_CodeSniffer_St
     protected function processTokenWithinScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $currScope)
     {
         $tokens = $phpcsFile->getTokens();
-
         $methodName = $phpcsFile->getDeclarationName($stackPtr);
         if ($methodName === null || $methodName !== '__construct') {
             // only constructor

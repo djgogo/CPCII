@@ -1,10 +1,10 @@
 <?php
 
+/**
+ * @covers Finder
+ */
 class FinderTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Finder
-     */
     public function testCanFindClassNameInGivenDirectory()
     {
         $finder = new Finder();
