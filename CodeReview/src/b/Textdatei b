@@ -1,0 +1,5 @@
+Auch hier ist wie bereits bei a die Id als public definiert. Denn wenn keine deklaration der Variable angegeben wird
+nimmt PHP für die Variable die Sichtbarkeit public. Zusätzlich kann man hier die Id auch noch selber verändern.
+Ich nehme an der var_dump ist nur zum anzeigen gedacht. Der hätte auch nichts verloren in einem script.
+
+Die Id sollte wenn möglich einmalig und zufällig sein und man sollte sie nicht mit einer Set Methode verändern können.

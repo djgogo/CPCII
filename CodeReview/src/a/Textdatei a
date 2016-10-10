@@ -1,0 +1,2 @@
+Die Id ist public angegeben. Auf public deklarierte Elemente kann jeder zugreifen, welcher eine Referenz zum Objekt besitzt. Dies ist nicht wirklich empfehlenswert.
+Verhindern tun wir dies indem wir die Variable auf Sichtbarkeit private setzen, so hat nur das aktuelle Klassen-Objekt zugriff auf die Id.

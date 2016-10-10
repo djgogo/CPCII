@@ -1,22 +1,23 @@
 <?php
 declare(strict_types = 1);
 
-namespace CodeReview\c
-{
+namespace CodeReview\c {
+
     class SpecialArticle extends Article
     {
-        private $id;
+        public $id;
 
-        public function __construct($id)
-        {
-            parent::__construct($id);
-        }
+//        public function __construct($id)
+//        {
+//            parent::__construct($id);
+//            $this->setId($id);
+//        }
 
         public function setId($id)
         {
             if ($id <= 100000) {
                 throw new ArticleException(
-                  'ID must be greater thabn 100000'
+                    'ID must be greater than 100000'
                 );
             }
 

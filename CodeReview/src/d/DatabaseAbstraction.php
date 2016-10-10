@@ -32,7 +32,7 @@ namespace CodeReview\d
             return $this->db->exec($sql);
         }
 
-        public function query($sql) : \PDOStatement
+        public function query(string $sql) : \PDOStatement
         {
             return $this->db->query($sql);
         }
