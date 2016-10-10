@@ -1,0 +1,26 @@
+Das Programm gibt folgende Fehlermeldung aus:
+
+Warning: Declaration of CodeReview\f\PremiumUser::addContract(CodeReview\f\SpecialContract $contract) should be compatible
+with CodeReview\f\User::addContract(CodeReview\f\Contract $contract) in /var/www/Exercises/CodeReview/src/f/PremiumUser.php on line 6
+
+PremiumUser überschreibt die vererbte Methode addContract und verändert sie indem sie eine andere Instanz hinzufügt. Das ist
+nicht möglich. Die Instanz muss die gleiche sein, also von Contract und nicht von SpecialContract. Hier wurde das Open-Closed Prinzip
+verletzt welches besagt, dass Software-Einheiten (hier die Methode accContract) Erweiterungen möglich machen sollen, aber ohne
+dabei ihr Verhalten zu ändern (ihr Sourcecode und ihre Schnittstelle sollte sich nicht ändern) und das Liskovsche Substitutions-
+prinzip welches fordert, dass eine Instanz einer abgeleiteten Klasse sich so verhalten muss, dass jeman, der mein, ein Objekt
+derBasisklasse vor sich zu haben, nicht durch unerwartetes Verhalten überrascht wird, wenn es sich dabei tatsächlich um ein Objekt
+eines Subtyps handelt. Dann lässt sich stets bedenkenlos ein Objekt vom Typ Superklasse durch ein Objekt vom Typ Subklasse ersetzen.
+
+Abhilfe würde eine neue Funktion in der Klasse User schaffen die "addSpecialContract" heisst und einen SpecialContract
+hinzufügt in einem separaten Array $specialContracts[]. Dies wäre auch hilfreich und einfacher falls man die Verträge später
+separat auflisten oder verarbeiten möchte.
+
+Eine andere Variante wäre eine separate Klasse PremiumUser zu erstellen die nicht von User abstammt und somit Ihre
+eigenen Funktionen und Arrays beinhaltet. Welche aber die denkbar schlechteste Lösung ist.
+
+Eine weitere Möglichkeit wäre in der Klasse PremiumUser eine zusätzliche Funktion "addSpecialContract" zu erstellen
+welche dann hier die speziellen Verträge haltet und verwaltet.
+
+Die wohl Sinnvollste Variante ist in der Subklasse PremiumUser der überschreibenden Methode addContract eine Instanz von
+Contract zu übergeben und nicht SpecialContract, da SpecialContract sowieso die Subklasse von Contract ist, macht das kein
+Unterschied.

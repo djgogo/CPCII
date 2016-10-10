@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 /**
  * @covers \User
- * @uses \FriendRequest
+ * @uses   \FriendRequest
  */
 class UserTest extends PHPUnit_Framework_TestCase
 {
@@ -11,10 +11,12 @@ class UserTest extends PHPUnit_Framework_TestCase
      * @var User
      */
     private $user1;
+
     /**
      * @var User
      */
     private $user2;
+
     /**
      * @var FriendRequest
      */
@@ -24,18 +26,20 @@ class UserTest extends PHPUnit_Framework_TestCase
     {
         $this->user1 = new User('User1');
         $this->user2 = new User('User2');
+
         $this->friendRequest = new FriendRequest($this->user1, $this->user2);
     }
 
     public function testFriendCanBeAdded()
     {
         $this->user2->addFriendRequest($this->friendRequest);
-        $this->assertEquals('pending', $this->friendRequest->getStatus());
+        $this->assertEquals('pending', $this->friendRequest->getState());
+        $this->assertTrue($this->friendRequest->isPending());
     }
 
     public function testFriendRequestCannotBeAddedIfAlreadyAdded()
     {
-        $this->expectException('InvalidFriendRequestException');
+        $this->expectException(InvalidFriendRequestException::class);
         $this->user2->addFriendRequest($this->friendRequest);
         $this->user2->addFriendRequest($this->friendRequest);
     }
@@ -54,15 +58,6 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->user2->addFriendRequest($this->friendRequest);
         $this->user2->confirm($this->friendRequest);
         $this->user2->confirm($this->friendRequest);
-    }
-
-    public function testAcceptedFriendRequestCannotBeAddedAgainFromConfirmer()
-    {
-        $this->expectException('InvalidFriendRequestException');
-        $friendRequest = new FriendRequest($this->user2, $this->user1);
-        $this->user2->addFriendRequest($this->friendRequest);
-        $this->user2->confirm($this->friendRequest);
-        $this->user1->addFriendRequest($friendRequest);
     }
 
     public function testNotExistingFriendRequestCannotBeDeclined()

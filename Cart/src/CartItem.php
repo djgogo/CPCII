@@ -6,6 +6,11 @@ namespace Cart
     class CartItem implements CartItemInterface
     {
         /**
+         * @var int
+         */
+        private $id;
+
+        /**
          * @var string
          */
         private $name;
@@ -24,13 +29,22 @@ namespace Cart
          * @var int
          */
         public $quantity;
+        /**
+         * @var int
+         */
 
-        public function __construct(string $name, Money $price, Money $unitPrice, int $quantity)
+        public function __construct(int $id, string $name, Money $price, Money $unitPrice, int $quantity)
         {
             $this->name = $name;
             $this->price = $price;
             $this->unitPrice = $unitPrice;
             $this->quantity = $quantity;
+            $this->id = $id;
+        }
+
+        public function getId() : int
+        {
+            return $this->id;
         }
 
         public function getName() : string

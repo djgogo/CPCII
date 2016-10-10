@@ -12,7 +12,7 @@ class IsbnTest extends \PHPUnit_Framework_TestCase
     public function testValidISBN($number)
     {
         $isbn = new ISBN($number);
-        $this->assertSame($number, (string) $isbn);
+        $this->assertSame($number, (string)$isbn);
     }
 
     /**

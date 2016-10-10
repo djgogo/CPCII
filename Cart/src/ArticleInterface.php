@@ -5,6 +5,7 @@ namespace Cart
 {
     interface ArticleInterface
     {
+        public function getId();
         public function getName();
         public function getPrice();
     }

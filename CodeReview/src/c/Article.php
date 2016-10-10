@@ -5,17 +5,17 @@ namespace CodeReview\c
 {
     abstract class Article
     {
-        private $id;
+        public $id;
 
-        public function __construct($id)
+//        public function __construct($id)
+//        {
+//            $this->setId($id);
+//        }
+
+        public function setId($id)
         {
             $this->id = $id;
         }
-
-//        public function setId($id)
-//        {
-//            $this->id = $id;
-//        }
 
         public function getId()
         {

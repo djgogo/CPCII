@@ -10,15 +10,7 @@ abstract class AbstractHTTPStatusHeader
 
     public function __construct()
     {
-        $this->ensureValid();
         $this->generateStatusMessage();
-    }
-
-    private function ensureValid()
-    {
-        if (!is_subclass_of($this, 'AbstractHTTPStatusHeader') ) {
-            throw new \InvalidHTTPStatusHeaderException("Ungültiger Status-Code");
-        }
     }
 
     abstract protected function generateStatusMessage();

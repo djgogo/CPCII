@@ -12,3 +12,5 @@ var_dump($counter->getCounter());
 $counter = new Counter(PHP_INT_MAX);
 $counter->increment();
 var_dump($counter->getCounter());
+
+var_dump((int)$counter->getCounter());
