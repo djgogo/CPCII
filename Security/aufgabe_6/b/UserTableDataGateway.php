@@ -14,7 +14,7 @@ class UserTableDataGateway
     public function findIdByCredentials($username, $password)
     {
         try {
-            $stmt = $this->pdo->prepare("id FROM user where username==:uname AND passwd=:pass LIMIT 1");
+            $stmt = $this->pdo->prepare("SELECT id FROM user where username=:uname AND passwd=:pass LIMIT 1");
             $stmt->execute(array(':uname' => $username, ':pass' => $password));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($stmt->rowCount() > 0) {
