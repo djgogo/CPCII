@@ -7,9 +7,8 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
-                'finder' => '/src/Finder.php',
-                'mynodevisitor' => '/src/MyNodeVisitor.php',
-                'nodevisitorabstract' => '/vendor\nikic\php-parser\lib\PhpParser\NodeVisitorAbstract.php'
+                'finder2' => '/src/Finder2.php',
+                'mynodevisitor' => '/src/MyNodeVisitor.php'
             );
         }
         $cn = strtolower($class);

@@ -4,7 +4,7 @@ use PhpParser\Error;
 use PhpParser\NodeTraverser;
 use PhpParser\Parser as PhpParser;
 
-class Finder
+class Finder2
 {
     /**
      * @var PhpParser
