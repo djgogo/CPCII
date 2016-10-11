@@ -1,0 +1,5 @@
+PHP ist ein System, das PHP-Code serverseitig verarbeitet. Das bedeutet, dass der Quelltext nicht an den Webbrowser übermittelt wird,
+sondern an einen Interpreter auf dem Webserver. Da die dynamische Programmiersprache PHP erst zur Laufzeit interpretiert wird, gestaltet
+sich die statische Code Analyse relativ schwierig und wird nie alle Fehler und Probleme aufdecken können.
+
+Aus diesem Grund ist der Entwickler in der Verantwortung seinen Code so Fehlerfrei und lesbar wie möglich zu schreiben.
