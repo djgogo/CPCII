@@ -1,0 +1,6 @@
+Die Request- und Response Interfaces (allgeimein Response und Requests) sollten in getrennten Controllern verarbeitet
+werden. Mit dieser Anpassung wäre der ShoppingCartController bereits einfacher zu testen.
+
+Auch das Repo des Carts muss nicht im Controller sein und könnte andersweitig verarbeitet werden. Der Controller kriegt die
+Kunden-Nummer dann von der Session und nach der Verarbeitung gibt der Kontroller den Re-Direct Link zurück für go oder nicht gut.
+Die Daten direkt in die Response zu schreiben ist schon aus Sicherheitsgründen nicht gut.
