@@ -1,0 +1,33 @@
+Bei grossen Parameter Mengen die getestet werden müssen kann oder sollte ein Dataprovider angewendet werden. Beispiel:
+
+/**
+ * @dataProvider validProvider
+ */
+public function testAlgorithmTrue($a, $b, $c)
+{
+    $this->assertTrue($this->a->run($a, $b, $c)
+}
+
+/**
+ * @dataProvider InvalidProvider
+ */
+public function testAlgorithmFalse($a, $b, $c)
+{
+    $this->assertFalse($this->a->run($a, $b, $c)
+}
+
+public function validProvider()
+{
+    return [
+        [1][2][3],
+        [7][8][9]
+    ];
+}
+
+public function InvalidProvider()
+{
+    return [
+        [0][0][0],
+        [4][5][6]
+    ];
+}

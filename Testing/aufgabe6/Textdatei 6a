@@ -1,0 +1,12 @@
+Name sehr schlecht gewählt, zu wenig aussagekräftig.
+
+Ob eine Datenspeicherung funktioniert hat oder nicht sollte man mit einem positiven Assert testen, also $this->assertTrue
+mit den Beispieldaten vergleichen. D.h. man sollte nicht ein Fehlschlag zusichern. In diesem Beispiel wäre z.B. folgender Assert in Ordnung:
+$this->assertFileEquals() oder $this->assertStringEqualsFile()
+
+Da es ein DatenbankTest ist genügt dieser Assert aber nicht. Eine Datenbank sollte die folgenden 4 Punkte beachten:
+
+1. Clean-up Database (Ist bereits ein Test gelaufen, sollte der Anfangszustand wiederhergestellt werden oder alle Testdaten in allen Tabellen löschen)
+2. Set up fixture (Anfangszustand setzen)
+3. Run Test, Verify Outcome (Test laufen lassen und Ergebnis auswerten)
+4. Teardown (Zurücksetzen)
