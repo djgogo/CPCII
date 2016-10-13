@@ -1,0 +1,14 @@
+Die Abhängigkeiten einer zu testenden Methode müssen klar und explizit in der API defniert sein. Das bedeutet, dass benötigte
+Objekte entweder an den Konstruktor der entsprechenden Klasse oder an die Methode selbst übergeben werden müssen (Dependency Injection).
+Die benötigten Objekte sollen nicht im Rumpf der Methode erzeugt werden, da die Abhängigkeiten sonst nicht gekapselt sind und daher
+nicht gegen Stub- oder Mock-Objekte ausgetauscht werden können. Je weniger Abhängigkeiten eine Methode hat, desto einfacher gestaltet sich
+das Schreiben ihrer Tests.
+
+Die userId als globale Variable anzugeben ist auch aus Sicherheitsgründen nicht empfehlenswert. die userId sollte als Funktions Parameter
+mitgegeben werden.
+
+Die Datenbank Schnittstelle PDO sollte als Dependency im Konstruktor oder als Parameter in die Funktion übergeben werden. Die DSN könnte
+sich z.b. ändern und so den bereits geschriebenen Test fehlschlagen lassen.
+
+
+
