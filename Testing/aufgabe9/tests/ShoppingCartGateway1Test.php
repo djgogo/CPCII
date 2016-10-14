@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-class ShoppingCartGatewayTest extends PHPUnit_Framework_TestCase
+class ShoppingCartGateway1Test extends PHPUnit_Framework_TestCase
 {
     /**
      * @var PDOFactory
@@ -95,7 +95,7 @@ class ShoppingCartGatewayTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, count($cart->getItems()));
     }
 
-    public function testShoppinCartCanBeDeleted()
+    public function testShoppingCartCanBeDeleted()
     {
         // Insert two Shopping Carts
         $id1 = new UUID();

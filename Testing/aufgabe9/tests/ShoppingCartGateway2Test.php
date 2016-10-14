@@ -1,12 +1,9 @@
 <?php
-require 'FixtureTestCase.php';
 
-class MyTestCase extends FixtureTestCase
+class ShoppingCartGateway2Test extends FixtureTestCase
 {
     public $fixtures = array(
-        'posts',
-        'postmeta',
-        'options'
+        'shoppingCart'
     );
 
     function testReadDatabase()
@@ -14,22 +11,22 @@ class MyTestCase extends FixtureTestCase
         $conn = $this->getConnection()->getConnection();
 
         // fixtures auto loaded, let's read some data
-        $query = $conn->query('SELECT * FROM posts');
+        $query = $conn->query('SELECT * FROM shoppingCart');
         $results = $query->fetchAll(PDO::FETCH_COLUMN);
         $this->assertEquals(2, count($results));
 
         // now delete them
-        $conn->query('TRUNCATE posts');
+        $conn->query('DELETE FROM shoppingCart');
 
-        $query = $conn->query('SELECT * FROM posts');
+        $query = $conn->query('SELECT * FROM shoppingCart');
         $results = $query->fetchAll(PDO::FETCH_COLUMN);
         $this->assertEquals(0, count($results));
 
         // now reload them
-        $ds = $this->getDataSet(array('posts'));
+        $ds = $this->getDataSet(array('shoppingCart'));
         $this->loadDataSet($ds);
 
-        $query = $conn->query('SELECT * FROM posts');
+        $query = $conn->query('SELECT * FROM shoppingCart');
         $results = $query->fetchAll(PDO::FETCH_COLUMN);
         $this->assertEquals(2, count($results));
     }

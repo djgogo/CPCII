@@ -3,9 +3,7 @@
 class FixtureTestCase extends PHPUnit_Extensions_Database_TestCase
 {
     public $fixtures = array(
-        'options',
-        'postmeta',
-        'posts'
+        'shoppingCart'
     );
 
     private $conn = null;
@@ -51,7 +49,8 @@ class FixtureTestCase extends PHPUnit_Extensions_Database_TestCase
     {
         if ($this->conn === null) {
             try {
-                $pdo = new PDO('sqlite::memory:');
+                $factory = new PDOFactory();
+                $pdo = $factory->getPDO();
                 $this->conn = $this->createDefaultDBConnection($pdo, 'test');
             } catch (PDOException $e) {
                 echo $e->getMessage();
