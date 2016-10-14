@@ -80,12 +80,38 @@ class ShoppingCartGatewayTest extends PHPUnit_Framework_TestCase
         $cart1->addItem($this->item);
         $this->gateway->insert($id1, $cart1);
 
-        // TODO gateway->update mit Preisänderung oder item löschen und dann updaten
+        // Assert that item is added
+        $this->assertEquals(1, count($cart1->getItems()));
+
+        // Remove Item and assert
+        $cart1->removeItem($this->item);
+        $this->assertEquals(0, count($cart1->getItems()));
+
+        // Update Cart Database
+        $this->gateway->update($id1, $cart1);
+
+        // Assert that the change has affected the cart in the database
+        $cart = $this->gateway->findById($id1);
+        $this->assertEquals(0, count($cart->getItems()));
+    }
+
+    public function testShoppinCartCanBeDeleted()
+    {
+        // Insert two Shopping Carts
+        $id1 = new UUID();
+        $cart1 = new ShoppingCart($id1);
+        $this->gateway->insert($id1, $cart1);
 
         $query = $this->db->query('SELECT * FROM shoppingCart');
         $result = $query->fetchAll(PDO::FETCH_COLUMN);
+        $this->assertEquals(1, count($result));
 
-        // TODO assert
+        // Delete Cart from Cart Database
+        $this->gateway->delete($id1);
+
+        $query = $this->db->query('SELECT * FROM shoppingCart');
+        $result = $query->fetchAll(PDO::FETCH_COLUMN);
+        $this->assertEquals(0, count($result));
     }
 
     private function initDatabase()

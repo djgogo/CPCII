@@ -84,7 +84,7 @@ class ShoppingCartGateway implements ShoppingCartInterface
             $stmt->bindParam(':id', $id);
 
             if ($stmt->execute() === false) {
-                throw new \PDOException(sprintf('Cart mit Id "%s" konnte nicht geändert werden', $id));
+                throw new \PDOException(sprintf('Cart mit Id "%s" konnte nicht gelöscht werden', $id));
             }
 
         } catch (PDOException $e) {
