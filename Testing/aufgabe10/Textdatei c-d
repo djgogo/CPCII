@@ -1,0 +1,41 @@
+Before:
+
+dev@psa /var/www/Exercises/Testing/aufgabe10 testing $ phpunit
+PHPUnit 5.6.1 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/Testing/aufgabe10/phpunit.xml
+
+.E                                                                  2 / 2 (100%)
+
+Time: 134 ms, Memory: 12.00MB
+
+There was 1 error:
+
+1) SchoolingTest::testMaximum12ParticipantsAreAllowed
+Error: Call to undefined method Schooling::addParticipant()
+
+/var/www/Exercises/Testing/aufgabe10/tests/SchoolingTest.php:20
+
+ERRORS!
+Tests: 2, Assertions: 1, Errors: 1.
+
+
+After:
+
+dev@psa /var/www/Exercises/Testing/aufgabe10 testing $ phpunit
+PHPUnit 5.6.1 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/Testing/aufgabe10/phpunit.xml
+
+...                                                                 3 / 3 (100%)
+
+Time: 148 ms, Memory: 12.00MB
+
+OK (3 tests, 3 assertions)
+
+Generating code coverage report in Clover XML format ... done
+
+Generating code coverage report in HTML format ... done
+
