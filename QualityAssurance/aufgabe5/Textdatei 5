@@ -1,0 +1,30 @@
+Codesize
+.../Component/Yaml/Parser.php
+Die Klasse hat alles zu bieten was man nicht machen sollte. Die Methode parse() ist 208 Zeilen lang, hat eine zyklomatische Komplexität von 60
+und eine NPATH Komplexität von 877050! Die Overall Komplexität ist 120 und damit extrem hoch. Die sollte maximal 50 sein. Also diesem Parser
+würde ein Refactroing ganz gut tun.
+
+Leider nicht nur der Parser. Ich denke das wollte Sebastian mit dieser Uebung aufzeigen. Es sind extrem viele Klassen richtig weit über den
+Werten die man als sauberen, einfach wartbaren und lesbaren Code bezeichnen würde.
+
+Design
+Hier zeigt sich dass es Klassen gibt die 28 Objekt Abhängigkeiten besitzen. Dann gibt es nicht wenige die eval benutzen. Das eval() Konstrukt wird
+als sehr gefährlich eingestuft, weil es die Ausführung von beliebigem PHP-Code erlaubt. Seine Verwendung wird daher nicht empfohlen. Bei Benutzung
+sollte man einfach achten dass die übergebenen Daten ordnungsgemäss validiert worden sind.
+
+.../Component/Routing/Tests/Fixtures/dumper/url_matcher1/2.php
+der url_matcher1 und url_matcher2 besitzen tatsätchlich 4 goto Anweisungen! Das ist Spaghetti-Code vom feinsten. Hier sollte man ein else oder switch-case
+benutzen. Das goto ist überflüssig. Die Methode match() hat deswegen eine NPATH Komplexität von sage und schreibe 412724447815680000!
+
+UnusedCode
+.../Bridge/Doctrine/Logger/DbalLogger.php
+Diese Klasse ist eine von ganz ganz vielen die unbenutze lokale Variablen oder Parameter besitzt. Aus welchem Grund auch immer haben hier die
+Entwickler unnötige Variablen und Parameter definiert die definitiv in der jeweiligen Klassen nicht benutzt werden. Z.b. im DbalLogger wird
+im foreach nur der Index eines Arrays verarbeitet. Trotzdem ist => $param angegeben welcher gar nicht verwendet wird. Zusätzlich wird ein
+Methoden Parameter angegeben welcher auch nicht verwendet wird.
+
+Abschliessend ist hier zu erwähnen dass die Entwickler dieses Frameworks wahrscheinlich nicht solchen Coding-Guidelines unterworfen waren und phpmd ganz
+sicher nicht im Einsatz war als diese Software geschrieben wurde!
+
+
+

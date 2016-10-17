@@ -1,0 +1,15 @@
+dev@psa /var/www/Exercises/QualityAssurance/aufgabe8 quality $ phpunit
+PHPUnit 5.4.6 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/QualityAssurance/aufgabe8/phpunit.xml
+
+.                                                                   1 / 1 (100%)
+
+Time: 218 ms, Memory: 14.00MB
+
+OK (1 test, 2 assertions)
+
+Generating code coverage report in Clover XML format ... done
+
+Generating code coverage report in HTML format ... done

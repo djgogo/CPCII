@@ -1,0 +1,1843 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pmd version="@project.version@" timestamp="2016-09-27T07:54:53+02:00">
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/DependencyInjection/AbstractDoctrineExtension.php">
+        <violation beginline="222" endline="222" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$driverPath'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/DependencyInjection/CompilerPass/RegisterEventListenersAndSubscribersPass.php">
+        <violation beginline="131" endline="131" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$id'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Form/DoctrineOrmTypeGuesser.php">
+        <violation beginline="156" endline="156" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$mapping'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Logger/DbalLogger.php">
+        <violation beginline="53" endline="53" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$param'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Tests/DoctrineOrmTestCase.php">
+        <violation beginline="38" endline="38" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$paths'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Tests/Fixtures/AssociationEntity.php">
+        <violation beginline="26" endline="26" rule="UnusedPrivateField" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatefield" priority="3">
+            Avoid unused private fields such as '$id'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Tests/Fixtures/CompositeIdentEntity.php">
+        <violation beginline="59" endline="59" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$user'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Tests/Fixtures/ContainerAwareFixture.php">
+        <violation beginline="28" endline="28" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$manager'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Tests/Form/Type/EntityTypeTest.php">
+        <violation beginline="179" endline="179" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$field'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Tests/Validator/Constraints/UniqueValidatorTest.php">
+        <violation beginline="342" endline="342" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$violationsList'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Propel1/Tests/Fixtures/Item.php">
+        <violation beginline="74" endline="74" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$col'.
+        </violation>
+        <violation beginline="84" endline="84" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$b'.
+        </violation>
+        <violation beginline="97" endline="97" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$b'.
+        </violation>
+        <violation beginline="101" endline="101" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$con'.
+        </violation>
+        <violation beginline="105" endline="105" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$con'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Propel1/Tests/Fixtures/TranslatableItem.php">
+        <violation beginline="67" endline="67" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$col'.
+        </violation>
+        <violation beginline="77" endline="77" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$b'.
+        </violation>
+        <violation beginline="90" endline="90" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$b'.
+        </violation>
+        <violation beginline="94" endline="94" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$con'.
+        </violation>
+        <violation beginline="98" endline="98" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$con'.
+        </violation>
+        <violation beginline="102" endline="102" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$con'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Propel1/Tests/Fixtures/TranslatableItemI18n.php">
+        <violation beginline="60" endline="60" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$col'.
+        </violation>
+        <violation beginline="70" endline="70" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$b'.
+        </violation>
+        <violation beginline="83" endline="83" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$b'.
+        </violation>
+        <violation beginline="87" endline="87" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$con'.
+        </violation>
+        <violation beginline="91" endline="91" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$con'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Node/TransDefaultDomainNode.php">
+        <violation beginline="29" endline="29" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$compiler'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/CacheWarmer/TemplateFinder.php">
+        <violation beginline="58" endline="58" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$name'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Command/RouterMatchCommand.php">
+        <violation beginline="74" endline="74" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$i'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Command/ServerRunCommand.php">
+        <violation beginline="92" endline="92" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$type'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/DependencyInjection/Compiler/AddCacheClearerPass.php">
+        <violation beginline="35" endline="35" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$attributes'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/DependencyInjection/Compiler/AddValidatorInitializersPass.php">
+        <violation beginline="27" endline="27" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$attributes'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/DependencyInjection/Compiler/RegisterKernelListenersPass.php">
+        <violation beginline="46" endline="46" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$attributes'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/DependencyInjection/Compiler/RoutingResolverPass.php">
+        <violation beginline="33" endline="33" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$attributes'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Test/WebTestCase.php">
+        <violation beginline="158" endline="158" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$class'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Tests/Functional/Bundle/TestBundle/Controller/SessionController.php">
+        <violation beginline="45" endline="45" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$request'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Tests/Functional/ProfilerTest.php">
+        <violation beginline="34" endline="34" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$crawler'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Translation/PhpExtractor.php">
+        <violation beginline="98" endline="98" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$token'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/DependencyInjection/Security/Factory/AbstractFactory.php">
+        <violation beginline="137" endline="137" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$container'.
+        </violation>
+        <violation beginline="137" endline="137" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$id'.
+        </violation>
+        <violation beginline="137" endline="137" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$config'.
+        </violation>
+        <violation beginline="155" endline="155" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$userProvider'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/DependencyInjection/SecurityExtension.php">
+        <violation beginline="243" endline="243" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$i'.
+        </violation>
+        <violation beginline="436" endline="436" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$container'.
+        </violation>
+        <violation beginline="507" endline="507" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$master'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Tests/DependencyInjection/Security/Factory/AbstractFactoryTest.php">
+        <violation beginline="50" endline="50" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$authProviderId'.
+        </violation>
+        <violation beginline="51" endline="51" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listenerId'.
+        </violation>
+        <violation beginline="52" endline="52" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$entryPointId'.
+        </violation>
+        <violation beginline="63" endline="63" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$authProviderId'.
+        </violation>
+        <violation beginline="64" endline="64" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listenerId'.
+        </violation>
+        <violation beginline="65" endline="65" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$entryPointId'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/DependencyInjection/Compiler/TwigEnvironmentPass.php">
+        <violation beginline="39" endline="39" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$attributes'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/BrowserKit/Client.php">
+        <violation beginline="318" endline="318" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$request'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/BrowserKit/Tests/CookieJarTest.php">
+        <violation beginline="36" endline="36" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie'.
+        </violation>
+        <violation beginline="53" endline="53" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie1'.
+        </violation>
+        <violation beginline="54" endline="54" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie2'.
+        </violation>
+        <violation beginline="122" endline="122" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie1'.
+        </violation>
+        <violation beginline="123" endline="123" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie2'.
+        </violation>
+        <violation beginline="124" endline="124" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie3'.
+        </violation>
+        <violation beginline="127" endline="127" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie5'.
+        </violation>
+        <violation beginline="148" endline="148" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie'.
+        </violation>
+        <violation beginline="157" endline="157" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie1'.
+        </violation>
+        <violation beginline="158" endline="158" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie2'.
+        </violation>
+        <violation beginline="170" endline="170" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie1'.
+        </violation>
+        <violation beginline="180" endline="180" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie1'.
+        </violation>
+        <violation beginline="181" endline="181" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie2'.
+        </violation>
+        <violation beginline="191" endline="191" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie1'.
+        </violation>
+        <violation beginline="192" endline="192" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie2'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/ClassLoader/Tests/ClassMapGeneratorTest.php">
+        <violation beginline="50" endline="50" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expected'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Config/Definition/Builder/ExprBuilder.php">
+        <violation beginline="46" endline="46" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$v'.
+        </violation>
+        <violation beginline="160" endline="160" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$v'.
+        </violation>
+        <violation beginline="192" endline="192" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$v'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Config/Tests/Definition/Builder/ExprBuilderTest.php">
+        <violation beginline="196" endline="196" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$v'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Config/Tests/Loader/DelegatingLoaderTest.php">
+        <violation beginline="24" endline="24" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$loader'.
+        </violation>
+        <violation beginline="24" endline="24" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$resolver'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Command/Command.php">
+        <violation beginline="165" endline="165" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$input'.
+        </violation>
+        <violation beginline="165" endline="165" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$output'.
+        </violation>
+        <violation beginline="176" endline="176" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$input'.
+        </violation>
+        <violation beginline="176" endline="176" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$output'.
+        </violation>
+        <violation beginline="189" endline="189" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$input'.
+        </violation>
+        <violation beginline="189" endline="189" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$output'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Formatter/OutputFormatter.php">
+        <violation beginline="170" endline="206" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\Console\Formatter" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="OutputFormatter" method="replaceStyle" priority="3">
+            Avoid unused private methods such as 'replaceStyle'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Helper/DialogHelper.php">
+        <violation beginline="44" endline="44" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$width'.
+        </violation>
+        <violation beginline="411" endline="411" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$output'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Input/InputDefinition.php">
+        <violation beginline="457" endline="457" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$optionMax'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Shell.php">
+        <violation beginline="110" endline="110" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$type'.
+        </violation>
+        <violation beginline="151" endline="178" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\Console" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="Shell" method="autocompleter" priority="3">
+            Avoid unused private methods such as 'autocompleter'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Tests/ApplicationTest.php">
+        <violation beginline="271" endline="271" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$a'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Tests/Command/CommandTest.php">
+        <violation beginline="181" endline="181" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$definition'.
+        </violation>
+        <violation beginline="234" endline="234" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$input'.
+        </violation>
+        <violation beginline="263" endline="263" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$input'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Tests/Formatter/OutputFormatterStyleStackTest.php">
+        <violation beginline="22" endline="22" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$s1'.
+        </violation>
+        <violation beginline="55" endline="55" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$s3'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Tests/Helper/DialogHelperTest.php">
+        <violation beginline="163" endline="163" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$output'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Tests/Tester/ApplicationTesterTest.php">
+        <violation beginline="29" endline="29" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$input'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Console/Tests/Tester/CommandTesterTest.php">
+        <violation beginline="28" endline="28" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$input'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/CssSelector/Node/PseudoNode.php">
+        <violation beginline="105" endline="105" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$xpath'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/ContainerBuilder.php">
+        <violation beginline="488" endline="488" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$extension'.
+        </violation>
+        <violation beginline="974" endline="974" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$id'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Dumper/PhpDumper.php">
+        <violation beginline="160" endline="160" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$id'.
+        </violation>
+        <violation beginline="342" endline="342" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$id'.
+        </violation>
+        <violation beginline="357" endline="357" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$id'.
+        </violation>
+        <violation beginline="412" endline="412" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$id'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Loader/PhpFileLoader.php">
+        <violation beginline="35" endline="35" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$container'.
+        </violation>
+        <violation beginline="36" endline="36" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$loader'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Loader/XmlFileLoader.php">
+        <violation beginline="82" endline="82" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$file'.
+        </violation>
+        <violation beginline="133" endline="133" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$file'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Loader/YamlFileLoader.php">
+        <violation beginline="216" endline="216" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$attribute'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Compiler/AnalyzeServiceReferencesPassTest.php">
+        <violation beginline="27" endline="27" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$a'.
+        </violation>
+        <violation beginline="32" endline="32" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$b'.
+        </violation>
+        <violation beginline="34" endline="34" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$ref2'.
+        </violation>
+        <violation beginline="37" endline="37" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$c'.
+        </violation>
+        <violation beginline="39" endline="39" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$ref3'.
+        </violation>
+        <violation beginline="43" endline="43" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$d'.
+        </violation>
+        <violation beginline="48" endline="48" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$e'.
+        </violation>
+        <violation beginline="91" endline="91" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$ref1'.
+        </violation>
+        <violation beginline="92" endline="92" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$ref2'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Compiler/InlineServiceDefinitionsPassTest.php">
+        <violation beginline="120" endline="120" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$a'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Compiler/IntegrationTest.php">
+        <violation beginline="40" endline="40" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$b'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/ContainerBuilderTest.php">
+        <violation beginline="147" endline="147" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$bar'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/ContainerTest.php">
+        <violation beginline="506" endline="506" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$instance'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Dumper/XmlDumperTest.php">
+        <violation beginline="70" endline="70" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$container'.
+        </violation>
+        <violation beginline="91" endline="91" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$container'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/includes/ProjectExtension.php">
+        <violation beginline="37" endline="37" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$config'.
+        </violation>
+        <violation beginline="37" endline="37" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$container'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Loader/ClosureLoaderTest.php">
+        <violation beginline="33" endline="33" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$container'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/ParameterBag/ParameterBagTest.php">
+        <violation beginline="38" endline="38" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$parameters'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/DomCrawler/Tests/CrawlerTest.php">
+        <violation beginline="289" endline="289" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$node'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/EventDispatcher/ContainerAwareEventDispatcher.php">
+        <violation beginline="82" endline="82" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$priority'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/EventDispatcher/EventDispatcher.php">
+        <violation beginline="161" endline="161" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$eventName'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/EventDispatcher/Tests/ContainerAwareEventDispatcherTest.php">
+        <violation beginline="185" endline="185" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$event'.
+        </violation>
+        <violation beginline="204" endline="204" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$event'.
+        </violation>
+        <violation beginline="221" endline="221" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$event'.
+        </violation>
+        <violation beginline="238" endline="238" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$e'.
+        </violation>
+        <violation beginline="254" endline="254" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$e'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/EventDispatcher/Tests/EventDispatcherTest.php">
+        <violation beginline="240" endline="240" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$test'.
+        </violation>
+        <violation beginline="279" endline="279" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$e'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Finder/Shell/Command.php">
+        <violation beginline="117" endline="117" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$index'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Finder/Tests/FinderTest.php">
+        <violation beginline="470" endline="470" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$dir'.
+        </violation>
+        <violation beginline="482" endline="482" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$file'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/AbstractType.php">
+        <violation beginline="80" endline="80" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$options'.
+        </violation>
+        <violation beginline="95" endline="95" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$options'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/ChoiceList/ChoiceList.php">
+        <violation beginline="396" endline="396" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$choice'.
+        </violation>
+        <violation beginline="412" endline="412" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$choice'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/DataTransformer/ChoiceToBooleanArrayTransformer.php">
+        <violation beginline="62" endline="62" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$value'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/DataTransformer/ChoicesToBooleanArrayTransformer.php">
+        <violation beginline="64" endline="64" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$value'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/EventListener/ResizeFormListener.php">
+        <violation beginline="80" endline="80" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$child'.
+        </violation>
+        <violation beginline="85" endline="85" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$value'.
+        </violation>
+        <violation beginline="107" endline="107" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$child'.
+        </violation>
+        <violation beginline="116" endline="116" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$value'.
+        </violation>
+        <violation beginline="142" endline="142" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$child'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/CheckboxType.php">
+        <violation beginline="49" endline="49" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$form'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/CollectionType.php">
+        <violation beginline="76" endline="76" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$options'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Form.php">
+        <violation beginline="1001" endline="1001" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$name'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/FormView.php">
+        <violation beginline="356" endline="356" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$name'.
+        </violation>
+        <violation beginline="356" endline="356" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$value'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Test/DeprecationErrorHandler.php">
+        <violation beginline="7" endline="7" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+        <violation beginline="16" endline="16" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$message'.
+        </violation>
+        <violation beginline="16" endline="16" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$file'.
+        </violation>
+        <violation beginline="16" endline="16" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$line'.
+        </violation>
+        <violation beginline="16" endline="16" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Tests/CompoundFormTest.php">
+        <violation beginline="345" endline="345" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$bar'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Tests/Extension/Core/DataTransformer/DateTimeToLocalizedStringTransformerTest.php">
+        <violation beginline="161" endline="161" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$transformer'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Tests/Extension/Core/Type/ChoiceTypeTest.php">
+        <violation beginline="119" endline="119" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$choice'.
+        </violation>
+        <violation beginline="614" endline="614" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$viewValue'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Tests/Extension/Core/Type/FormTypeTest.php">
+        <violation beginline="484" endline="484" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$value'.
+        </violation>
+        <violation beginline="510" endline="510" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$value'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Tests/Extension/Validator/Constraints/FormValidatorTest.php">
+        <violation beginline="537" endline="537" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$form'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Tests/Fixtures/Author.php">
+        <violation beginline="22" endline="22" rule="UnusedPrivateField" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatefield" priority="3">
+            Avoid unused private fields such as '$privateProperty'.
+        </violation>
+        <violation beginline="34" endline="37" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\Form\Tests\Fixtures" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="Author" method="getPrivateGetter" priority="3">
+            Avoid unused private methods such as 'getPrivateGetter'.
+        </violation>
+        <violation beginline="59" endline="62" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\Form\Tests\Fixtures" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="Author" method="isPrivateIsser" priority="3">
+            Avoid unused private methods such as 'isPrivateIsser'.
+        </violation>
+        <violation beginline="68" endline="70" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\Form\Tests\Fixtures" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="Author" method="setPrivateSetter" priority="3">
+            Avoid unused private methods such as 'setPrivateSetter'.
+        </violation>
+        <violation beginline="68" endline="68" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$data'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Form/Tests/FormFactoryTest.php">
+        <violation beginline="634" endline="637" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\Form\Tests" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="FormFactoryTest" method="getMockType" priority="3">
+            Avoid unused private methods such as 'getMockType'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Session/Storage/MockFileSessionStorage.php">
+        <violation beginline="35" endline="35" rule="UnusedPrivateField" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatefield" priority="3">
+            Avoid unused private fields such as '$sessionData'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/CookieTest.php">
+        <violation beginline="54" endline="54" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookie'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/File/UploadedFileTest.php">
+        <violation beginline="118" endline="118" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$movedFile'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/HeaderBagTest.php">
+        <violation beginline="59" endline="59" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$headerDate'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/RedirectResponseTest.php">
+        <violation beginline="33" endline="33" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$response'.
+        </violation>
+        <violation beginline="41" endline="41" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$response'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/RequestTest.php">
+        <violation beginline="20" endline="20" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/ResponseHeaderBagTest.php">
+        <violation beginline="215" endline="215" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cookies'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/Session/Attribute/AttributeBagTest.php">
+        <violation beginline="86" endline="86" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$value'.
+        </violation>
+        <violation beginline="94" endline="94" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expected'.
+        </violation>
+        <violation beginline="108" endline="108" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expected'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/Session/Attribute/NamespacedAttributeBagTest.php">
+        <violation beginline="81" endline="81" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$value'.
+        </violation>
+        <violation beginline="89" endline="89" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expected'.
+        </violation>
+        <violation beginline="103" endline="103" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expected'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/Session/SessionTest.php">
+        <violation beginline="50" endline="50" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/Session/Storage/Handler/MongoDbSessionHandlerTest.php">
+        <violation beginline="121" endline="121" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$criteria'.
+        </violation>
+        <violation beginline="121" endline="121" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$options'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/Session/Storage/Handler/NativeFileSessionHandlerTest.php">
+        <violation beginline="47" endline="47" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$handler'.
+        </violation>
+        <violation beginline="70" endline="70" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$handler'.
+        </violation>
+        <violation beginline="76" endline="76" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$storage'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/Session/Storage/Handler/NullSessionHandlerTest.php">
+        <violation beginline="29" endline="29" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$storage'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/Session/Storage/NativeSessionStorageTest.php">
+        <violation beginline="96" endline="96" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$storage'.
+        </violation>
+        <violation beginline="104" endline="104" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$storage'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Tests/Session/Storage/Proxy/AbstractProxyTest.php">
+        <violation beginline="25" endline="25" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$savePath'.
+        </violation>
+        <violation beginline="25" endline="25" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$sessionName'.
+        </violation>
+        <violation beginline="33" endline="33" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$id'.
+        </violation>
+        <violation beginline="37" endline="37" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$id'.
+        </violation>
+        <violation beginline="37" endline="37" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$data'.
+        </violation>
+        <violation beginline="41" endline="41" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$id'.
+        </violation>
+        <violation beginline="45" endline="45" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$maxlifetime'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/DataCollector/RouterDataCollector.php">
+        <violation beginline="55" endline="55" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$request'.
+        </violation>
+        <violation beginline="55" endline="55" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$controller'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Debug/ErrorHandler.php">
+        <violation beginline="82" endline="82" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Debug/ExceptionHandler.php">
+        <violation beginline="163" endline="163" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$exception'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Debug/TraceableEventDispatcher.php">
+        <violation beginline="200" endline="200" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$event'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Fragment/FragmentHandler.php">
+        <violation beginline="80" endline="80" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$event'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpCache/Esi.php">
+        <violation beginline="227" endline="244" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\HttpKernel\HttpCache" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="Esi" method="handleEsiIncludeTag" priority="3">
+            Avoid unused private methods such as 'handleEsiIncludeTag'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpCache/Store.php">
+        <violation beginline="139" endline="139" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$req'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Profiler/BaseMemcacheProfilerStorage.php">
+        <violation beginline="34" endline="34" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$username'.
+        </violation>
+        <violation beginline="34" endline="34" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$password'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Profiler/MongoDbProfilerStorage.php">
+        <violation beginline="28" endline="28" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$username'.
+        </violation>
+        <violation beginline="28" endline="28" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$password'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Profiler/PdoProfilerStorage.php">
+        <violation beginline="197" endline="197" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$db'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Profiler/RedisProfilerStorage.php">
+        <violation beginline="47" endline="47" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$username'.
+        </violation>
+        <violation beginline="47" endline="47" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$password'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/Controller/ControllerResolverTest.php">
+        <violation beginline="116" endline="116" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$bar'.
+        </violation>
+        <violation beginline="153" endline="153" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$foo'.
+        </violation>
+        <violation beginline="153" endline="153" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$bar'.
+        </violation>
+        <violation beginline="157" endline="157" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$foo'.
+        </violation>
+        <violation beginline="161" endline="161" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$foo'.
+        </violation>
+        <violation beginline="161" endline="161" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$bar'.
+        </violation>
+        <violation beginline="165" endline="165" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$foo'.
+        </violation>
+        <violation beginline="165" endline="165" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$bar'.
+        </violation>
+        <violation beginline="165" endline="165" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$foobar'.
+        </violation>
+        <violation beginline="173" endline="173" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$request'.
+        </violation>
+        <violation beginline="178" endline="178" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$foo'.
+        </violation>
+        <violation beginline="178" endline="178" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$foobar'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/Debug/ExceptionHandlerTest.php">
+        <violation beginline="67" endline="67" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$response'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/Debug/TraceableEventDispatcherTest.php">
+        <violation beginline="55" endline="55" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listener'.
+        </violation>
+        <violation beginline="67" endline="67" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listener'.
+        </violation>
+        <violation beginline="92" endline="92" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listener'.
+        </violation>
+        <violation beginline="109" endline="109" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listener1'.
+        </violation>
+        <violation beginline="110" endline="110" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listener2'.
+        </violation>
+        <violation beginline="124" endline="124" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listener1'.
+        </violation>
+        <violation beginline="125" endline="125" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listener2'.
+        </violation>
+        <violation beginline="140" endline="140" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listener1'.
+        </violation>
+        <violation beginline="141" endline="141" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listener2'.
+        </violation>
+        <violation beginline="152" endline="152" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$listener1'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/Exception/FlattenExceptionTest.php">
+        <violation beginline="107" endline="107" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$statusCode'.
+        </violation>
+        <violation beginline="123" endline="123" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$statusCode'.
+        </violation>
+        <violation beginline="156" endline="156" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$statusCode'.
+        </violation>
+        <violation beginline="190" endline="190" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$foo'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/Fragment/FragmentHandlerTest.php">
+        <violation beginline="71" endline="71" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$message'.
+        </violation>
+        <violation beginline="71" endline="71" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$file'.
+        </violation>
+        <violation beginline="71" endline="71" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$line'.
+        </violation>
+        <violation beginline="71" endline="71" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/HttpCache/HttpCacheTest.php">
+        <violation beginline="172" endline="172" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$request'.
+        </violation>
+        <violation beginline="258" endline="258" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$request'.
+        </violation>
+        <violation beginline="285" endline="285" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$request'.
+        </violation>
+        <violation beginline="316" endline="316" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$request'.
+        </violation>
+        <violation beginline="346" endline="346" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$request'.
+        </violation>
+        <violation beginline="728" endline="728" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$request'.
+        </violation>
+        <violation beginline="801" endline="801" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$that'.
+        </violation>
+        <violation beginline="802" endline="802" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$request'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/HttpCache/StoreTest.php">
+        <violation beginline="54" endline="54" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cacheKey'.
+        </violation>
+        <violation beginline="94" endline="94" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$req'.
+        </violation>
+        <violation beginline="221" endline="221" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$path'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/HttpCache/TestMultipleHttpKernel.php">
+        <violation beginline="68" endline="68" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$request'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/Logger.php">
+        <violation beginline="44" endline="44" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/Profiler/Mock/MemcacheMock.php">
+        <violation beginline="39" endline="39" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$timeout'.
+        </violation>
+        <violation beginline="59" endline="59" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$timeout'.
+        </violation>
+        <violation beginline="85" endline="85" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$persistent'.
+        </violation>
+        <violation beginline="85" endline="85" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$weight'.
+        </violation>
+        <violation beginline="85" endline="85" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$timeout'.
+        </violation>
+        <violation beginline="85" endline="85" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$retry_interval'.
+        </violation>
+        <violation beginline="85" endline="85" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$status'.
+        </violation>
+        <violation beginline="85" endline="85" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$failure_callback'.
+        </violation>
+        <violation beginline="85" endline="85" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$timeoutms'.
+        </violation>
+        <violation beginline="106" endline="106" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$flag'.
+        </violation>
+        <violation beginline="106" endline="106" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expire'.
+        </violation>
+        <violation beginline="131" endline="131" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$flag'.
+        </violation>
+        <violation beginline="131" endline="131" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expire'.
+        </violation>
+        <violation beginline="152" endline="152" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$flag'.
+        </violation>
+        <violation beginline="152" endline="152" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expire'.
+        </violation>
+        <violation beginline="175" endline="175" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$flags'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/Profiler/Mock/MemcachedMock.php">
+        <violation beginline="38" endline="38" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$option'.
+        </violation>
+        <violation beginline="38" endline="38" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$value'.
+        </violation>
+        <violation beginline="52" endline="52" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$weight'.
+        </violation>
+        <violation beginline="72" endline="72" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expiration'.
+        </violation>
+        <violation beginline="96" endline="96" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expiration'.
+        </violation>
+        <violation beginline="116" endline="116" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expiration'.
+        </violation>
+        <violation beginline="140" endline="140" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$cache_cb'.
+        </violation>
+        <violation beginline="140" endline="140" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$cas_token'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Tests/Profiler/Mock/RedisMock.php">
+        <violation beginline="40" endline="40" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$timeout'.
+        </violation>
+        <violation beginline="59" endline="59" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$name'.
+        </violation>
+        <violation beginline="59" endline="59" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$value'.
+        </violation>
+        <violation beginline="93" endline="93" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$ttl'.
+        </violation>
+        <violation beginline="112" endline="112" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$ttl'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/data/build-data.php">
+        <violation beginline="30" endline="30" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$output'.
+        </violation>
+        <violation beginline="79" endline="79" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$output'.
+        </violation>
+        <violation beginline="88" endline="88" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$output'.
+        </violation>
+        <violation beginline="156" endline="156" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$output'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Stub/DateFormat/FullTransformer.php">
+        <violation beginline="25" endline="25" rule="UnusedPrivateField" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatefield" priority="3">
+            Avoid unused private fields such as '$quoteMatch'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Stub/StubCollator.php">
+        <violation beginline="125" endline="125" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$str1'.
+        </violation>
+        <violation beginline="125" endline="125" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$str2'.
+        </violation>
+        <violation beginline="141" endline="141" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$attr'.
+        </violation>
+        <violation beginline="173" endline="173" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$type'.
+        </violation>
+        <violation beginline="189" endline="189" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$string'.
+        </violation>
+        <violation beginline="220" endline="220" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$attr'.
+        </violation>
+        <violation beginline="220" endline="220" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$val'.
+        </violation>
+        <violation beginline="242" endline="242" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$strength'.
+        </violation>
+        <violation beginline="258" endline="258" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$arr'.
+        </violation>
+        <violation beginline="278" endline="278" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$arr'.
+        </violation>
+        <violation beginline="278" endline="278" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$sortFlag'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Stub/StubIntlDateFormatter.php">
+        <violation beginline="234" endline="234" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$object'.
+        </violation>
+        <violation beginline="234" endline="234" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$format'.
+        </violation>
+        <violation beginline="234" endline="234" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="310" endline="310" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$type'.
+        </violation>
+        <violation beginline="403" endline="403" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$value'.
+        </violation>
+        <violation beginline="403" endline="403" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$position'.
+        </violation>
+        <violation beginline="453" endline="453" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$calendar'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Stub/StubLocale.php">
+        <violation beginline="204" endline="204" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$header'.
+        </violation>
+        <violation beginline="220" endline="220" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$subtags'.
+        </violation>
+        <violation beginline="238" endline="238" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$langtag'.
+        </violation>
+        <violation beginline="238" endline="238" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="238" endline="238" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$canonicalize'.
+        </violation>
+        <violation beginline="254" endline="254" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="285" endline="285" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="285" endline="285" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$inLocale'.
+        </violation>
+        <violation beginline="302" endline="302" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="302" endline="302" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$inLocale'.
+        </violation>
+        <violation beginline="319" endline="319" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="319" endline="319" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$inLocale'.
+        </violation>
+        <violation beginline="336" endline="336" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="336" endline="336" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$inLocale'.
+        </violation>
+        <violation beginline="353" endline="353" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="353" endline="353" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$inLocale'.
+        </violation>
+        <violation beginline="369" endline="369" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="385" endline="385" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="401" endline="401" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="417" endline="417" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="435" endline="435" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$langtag'.
+        </violation>
+        <violation beginline="435" endline="435" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="435" endline="435" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$canonicalize'.
+        </violation>
+        <violation beginline="435" endline="435" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$default'.
+        </violation>
+        <violation beginline="451" endline="451" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+        <violation beginline="467" endline="467" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$locale'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Stub/StubNumberFormatter.php">
+        <violation beginline="411" endline="411" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$type'.
+        </violation>
+        <violation beginline="441" endline="441" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$attr'.
+        </violation>
+        <violation beginline="457" endline="457" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$attr'.
+        </violation>
+        <violation beginline="475" endline="475" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$value'.
+        </violation>
+        <violation beginline="475" endline="475" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$currency'.
+        </violation>
+        <violation beginline="475" endline="475" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$position'.
+        </violation>
+        <violation beginline="586" endline="586" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$pattern'.
+        </violation>
+        <violation beginline="603" endline="603" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$attr'.
+        </violation>
+        <violation beginline="603" endline="603" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$value'.
+        </violation>
+        <violation beginline="620" endline="620" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$attr'.
+        </violation>
+        <violation beginline="620" endline="620" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$value'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Tests/Stub/StubCollatorTest.php">
+        <violation beginline="26" endline="26" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$collator'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Tests/Stub/StubIntlDateFormatterTest.php">
+        <violation beginline="26" endline="26" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$formatter'.
+        </violation>
+        <violation beginline="1023" endline="1023" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$intlExpected'.
+        </violation>
+        <violation beginline="1032" endline="1032" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$stubExpected'.
+        </violation>
+        <violation beginline="1127" endline="1127" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$expectedTimeZoneId'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Tests/Stub/StubIntlTest.php">
+        <violation beginline="44" endline="44" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$name'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Locale/Tests/Stub/StubNumberFormatterTest.php">
+        <violation beginline="30" endline="30" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$formatter'.
+        </violation>
+        <violation beginline="38" endline="38" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$formatter'.
+        </violation>
+        <violation beginline="46" endline="46" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$formatter'.
+        </violation>
+        <violation beginline="64" endline="64" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$ret'.
+        </violation>
+        <violation beginline="460" endline="460" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$formattedValue'.
+        </violation>
+        <violation beginline="466" endline="466" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$cf'.
+        </violation>
+        <violation beginline="734" endline="734" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$currency'.
+        </violation>
+        <violation beginline="820" endline="820" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$message'.
+        </violation>
+        <violation beginline="830" endline="830" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$message'.
+        </violation>
+        <violation beginline="1118" endline="1118" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$parsedValue'.
+        </violation>
+        <violation beginline="1137" endline="1137" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$parsedValue'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/OptionsResolver/Options.php">
+        <violation beginline="305" endline="305" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$closures'.
+        </violation>
+        <violation beginline="313" endline="313" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$normalizer'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/OptionsResolver/Tests/OptionsResolverTest.php">
+        <violation beginline="50" endline="50" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$options'.
+        </violation>
+        <violation beginline="165" endline="165" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$previousValue'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/OptionsResolver/Tests/OptionsTest.php">
+        <violation beginline="94" endline="94" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$test'.
+        </violation>
+        <violation beginline="96" endline="96" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$options'.
+        </violation>
+        <violation beginline="111" endline="111" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$options'.
+        </violation>
+        <violation beginline="129" endline="129" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$options'.
+        </violation>
+        <violation beginline="227" endline="227" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$options'.
+        </violation>
+        <violation beginline="449" endline="449" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$object'.
+        </violation>
+        <violation beginline="522" endline="522" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$options'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Process/Process.php">
+        <violation beginline="999" endline="999" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$err'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Process/Tests/AbstractProcessTest.php">
+        <violation beginline="107" endline="107" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$type'.
+        </violation>
+        <violation beginline="119" endline="119" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$matches'.
+        </violation>
+        <violation beginline="128" endline="128" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$matches'.
+        </violation>
+        <violation beginline="138" endline="138" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$matches'.
+        </violation>
+        <violation beginline="147" endline="147" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$matches'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Process/Tests/ProcessBuilderTest.php">
+        <violation beginline="24" endline="24" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$expected'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Process/Tests/ProcessFailedExceptionTest.php">
+        <violation beginline="39" endline="39" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$exception'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/PropertyAccess/Tests/Fixtures/Author.php">
+        <violation beginline="22" endline="22" rule="UnusedPrivateField" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatefield" priority="3">
+            Avoid unused private fields such as '$privateProperty'.
+        </violation>
+        <violation beginline="34" endline="37" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\PropertyAccess\Tests\Fixtures" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="Author" method="getPrivateGetter" priority="3">
+            Avoid unused private methods such as 'getPrivateGetter'.
+        </violation>
+        <violation beginline="59" endline="62" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\PropertyAccess\Tests\Fixtures" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="Author" method="isPrivateIsser" priority="3">
+            Avoid unused private methods such as 'isPrivateIsser'.
+        </violation>
+        <violation beginline="68" endline="70" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\PropertyAccess\Tests\Fixtures" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="Author" method="setPrivateSetter" priority="3">
+            Avoid unused private methods such as 'setPrivateSetter'.
+        </violation>
+        <violation beginline="68" endline="68" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$data'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/PropertyAccess/Tests/Fixtures/Magician.php">
+        <violation beginline="16" endline="16" rule="UnusedPrivateField" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatefield" priority="3">
+            Avoid unused private fields such as '$foobar'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/PropertyAccess/Tests/PropertyAccessorCollectionTest.php">
+        <violation beginline="52" endline="52" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$axis'.
+        </violation>
+        <violation beginline="54" endline="54" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$axis'.
+        </violation>
+        <violation beginline="65" endline="65" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$axis'.
+        </violation>
+        <violation beginline="72" endline="72" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$axis'.
+        </violation>
+        <violation beginline="93" endline="93" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$structure'.
+        </violation>
+        <violation beginline="98" endline="98" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$axis'.
+        </violation>
+        <violation beginline="100" endline="100" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$axis'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Loader/PhpFileLoader.php">
+        <violation beginline="42" endline="42" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$loader'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Loader/YamlFileLoader.php">
+        <violation beginline="105" endline="105" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$path'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Matcher/TraceableUrlMatcher.php">
+        <violation beginline="49" endline="49" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$matches'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Matcher/UrlMatcher.php">
+        <violation beginline="181" endline="181" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$pathinfo'.
+        </violation>
+        <violation beginline="181" endline="181" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$name'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Tests/Annotation/RouteTest.php">
+        <violation beginline="23" endline="23" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$route'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Tests/Fixtures/AnnotatedClasses/BarClass.php">
+        <violation beginline="16" endline="16" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$arg1'.
+        </violation>
+        <violation beginline="16" endline="16" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$arg2'.
+        </violation>
+        <violation beginline="16" endline="16" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$arg3'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Tests/Generator/Dumper/PhpGeneratorDumperTest.php">
+        <violation beginline="102" endline="102" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$url'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Tests/Matcher/ApacheUrlMatcherTest.php">
+        <violation beginline="35" endline="35" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$name'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Tests/RouteCollectionTest.php">
+        <violation beginline="148" endline="148" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$foo'.
+        </violation>
+        <violation beginline="150" endline="150" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$bar'.
+        </violation>
+        <violation beginline="171" endline="171" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$foo'.
+        </violation>
+        <violation beginline="172" endline="172" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$bar'.
+        </violation>
+        <violation beginline="213" endline="213" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$a'.
+        </violation>
+        <violation beginline="229" endline="229" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$foo'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Routing/Tests/RouteCompilerTest.php">
+        <violation beginline="161" endline="161" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$compiled'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Acl/Dbal/AclProvider.php">
+        <violation beginline="386" endline="386" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$aces'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Acl/Domain/PermissionGrantingStrategy.php">
+        <violation beginline="137" endline="137" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$acl'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Authorization/AccessDecisionManager.php">
+        <violation beginline="94" endline="118" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\Security\Core\Authorization" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="AccessDecisionManager" method="decideAffirmative" priority="3">
+            Avoid unused private methods such as 'decideAffirmative'.
+        </violation>
+        <violation beginline="134" endline="173" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\Security\Core\Authorization" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="AccessDecisionManager" method="decideConsensus" priority="3">
+            Avoid unused private methods such as 'decideConsensus'.
+        </violation>
+        <violation beginline="181" endline="209" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\Security\Core\Authorization" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="AccessDecisionManager" method="decideUnanimous" priority="3">
+            Avoid unused private methods such as 'decideUnanimous'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/Firewall.php">
+        <violation beginline="66" endline="66" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$response'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/Firewall/AbstractAuthenticationListener.php">
+        <violation beginline="183" endline="183" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$event'.
+        </violation>
+        <violation beginline="200" endline="200" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$event'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/Firewall/AccessListener.php">
+        <violation beginline="61" endline="61" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$channel'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/Firewall/ChannelListener.php">
+        <violation beginline="47" endline="47" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$attributes'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/RememberMe/AbstractRememberMeServices.php">
+        <violation beginline="222" endline="222" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$request'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Http/RememberMe/PersistentTokenBasedRememberMeServices.php">
+        <violation beginline="76" endline="76" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$tokenValue'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Acl/Dbal/AclProviderBenchmarkTest.php">
+        <violation beginline="87" endline="87" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$options'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Acl/Dbal/AclProviderTest.php">
+        <violation beginline="114" endline="114" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$ace'.
+        </violation>
+        <violation beginline="140" endline="140" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$options'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Acl/Dbal/MutableAclProviderTest.php">
+        <violation beginline="82" endline="82" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$acl'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Acl/Domain/AclTest.php">
+        <violation beginline="25" endline="25" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$permissionStrategy'.
+        </violation>
+        <violation beginline="150" endline="150" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$property'.
+        </violation>
+        <violation beginline="194" endline="194" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$property'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Core/Authorization/AccessDecisionManagerTest.php">
+        <violation beginline="54" endline="54" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$manager'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Http/Firewall/BasicAuthenticationListenerTest.php">
+        <violation beginline="90" endline="90" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$token'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Http/Firewall/LogoutListenerTest.php">
+        <violation beginline="41" endline="41" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$context'.
+        </violation>
+        <violation beginline="151" endline="151" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$context'.
+        </violation>
+        <violation beginline="175" endline="175" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Http/Firewall/RememberMeListenerTest.php">
+        <violation beginline="37" endline="37" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$service'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Http/FirewallTest.php">
+        <violation beginline="64" endline="64" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$response'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Http/RememberMe/AbstractRememberMeServicesTest.php">
+        <violation beginline="118" endline="118" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$account'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Security/Tests/Http/RememberMe/PersistentTokenBasedRememberMeServicesTest.php">
+        <violation beginline="60" endline="60" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$series'.
+        </violation>
+        <violation beginline="61" endline="61" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$tokenValue'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Templating/Tests/Loader/CacheLoaderTest.php">
+        <violation beginline="34" endline="34" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$varLoader'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Templating/Tests/Loader/FilesystemLoaderTest.php">
+        <violation beginline="30" endline="30" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$path'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Translation/Loader/MoFileLoader.php">
+        <violation beginline="103" endline="103" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$formatRevision'.
+        </violation>
+        <violation beginline="107" endline="107" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$sizeHashes'.
+        </violation>
+        <violation beginline="108" endline="108" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$offsetHashes'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Translation/MessageCatalogue.php">
+        <violation beginline="30" endline="30" rule="UnusedPrivateField" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatefield" priority="3">
+            Avoid unused private fields such as '$parent'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/ConstraintValidator.php">
+        <violation beginline="116" endline="116" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$value'.
+        </violation>
+        <violation beginline="116" endline="116" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$constraint'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Constraints/MaxLengthValidator.php">
+        <violation beginline="27" endline="27" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$options'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Constraints/MaxValidator.php">
+        <violation beginline="26" endline="26" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$options'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Constraints/MinLengthValidator.php">
+        <violation beginline="27" endline="27" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$options'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Constraints/MinValidator.php">
+        <violation beginline="26" endline="26" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$options'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/ExecutionContext.php">
+        <violation beginline="397" endline="404" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="Symfony\Component\Validator" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatemethod" class="ExecutionContext" method="executeConstraintValidators" priority="3">
+            Avoid unused private methods such as 'executeConstraintValidators'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Mapping/Loader/XmlFileLoader.php">
+        <violation beginline="48" endline="48" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$provider'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/ConstraintValidatorTest.php">
+        <violation beginline="28" endline="28" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/Constraints/CallbackValidatorTest.php">
+        <violation beginline="20" endline="20" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$object'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/Constraints/CollectionValidatorTest.php">
+        <violation beginline="389" endline="389" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$data'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/Constraints/IpValidatorTest.php">
+        <violation beginline="64" endline="64" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$ip'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/Constraints/MaxLengthValidatorTest.php">
+        <violation beginline="39" endline="39" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/Constraints/MaxValidatorTest.php">
+        <violation beginline="39" endline="39" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/Constraints/MinLengthValidatorTest.php">
+        <violation beginline="39" endline="39" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/Constraints/MinValidatorTest.php">
+        <violation beginline="36" endline="36" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/ExecutionContextTest.php">
+        <violation beginline="67" endline="67" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/Fixtures/EntityParent.php">
+        <violation beginline="19" endline="19" rule="UnusedPrivateField" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedprivatefield" priority="3">
+            Avoid unused private fields such as '$internal'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/GraphWalkerTest.php">
+        <violation beginline="75" endline="75" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/Mapping/ClassMetadataFactoryTest.php">
+        <violation beginline="25" endline="25" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+        <violation beginline="111" endline="111" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$tester'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/ValidatorBuilderTest.php">
+        <violation beginline="34" endline="34" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/ValidatorContextTest.php">
+        <violation beginline="37" endline="37" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Validator/Tests/ValidatorFactoryTest.php">
+        <violation beginline="49" endline="49" rule="UnusedFormalParameter" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedformalparameter" priority="3">
+            Avoid unused parameters such as '$context'.
+        </violation>
+        <violation beginline="141" endline="141" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$path'.
+        </violation>
+    </file>
+    <file name="/var/www/Exercises/QualityAssurance/aufgabe5/Symfony/vendor/symfony/symfony/src/Symfony/Component/Yaml/Tests/ParserTest.php">
+        <violation beginline="87" endline="87" rule="UnusedLocalVariable" ruleset="Unused Code Rules" externalInfoUrl="http://phpmd.org/rules/unusedcode.html#unusedlocalvariable" priority="3">
+            Avoid unused local variables such as '$content'.
+        </violation>
+    </file>
+</pmd>
