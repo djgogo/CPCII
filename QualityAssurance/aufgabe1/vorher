@@ -1,0 +1,42 @@
+FILE: /var/www/Exercises/QualityAssurance/aufgabe1/example.php
+----------------------------------------------------------------------
+FOUND 13 ERRORS AND 7 WARNINGS AFFECTING 11 LINES
+----------------------------------------------------------------------
+  2 | WARNING | [x] Inline control structures are discouraged
+  2 | ERROR   | [ ] Missing file doc comment
+  3 | WARNING | [x] Inline control structures are discouraged
+  4 | ERROR   | [x] Line indented incorrectly; expected 0 spaces,
+    |         |     found 6
+  4 | ERROR   | [ ] Expected "if (...) {\n"; found "if(...) { /* ...
+    |         |     */\n"
+  5 | ERROR   | [x] Line indented incorrectly; expected 0 spaces,
+    |         |     found 6
+  6 | ERROR   | [ ] Expected "} else if (...) {\n"; found "}\n
+    |         |     else if(...){ /* ... */\n"
+  6 | ERROR   | [ ] Expected "if (...) {\n"; found "if(...){ /* ...
+    |         |     */\n"
+  6 | ERROR   | [x] There must be a single space between the closing
+    |         |     parenthesis and the opening brace of a multi-line
+    |         |     IF statement; found 0 spaces
+  7 | ERROR   | [x] Line indented incorrectly; expected 8 spaces,
+    |         |     found 5
+  7 | ERROR   | [x] Closing brace indented incorrectly; expected 6
+    |         |     spaces, found 5
+  7 | WARNING | [x] Inline control structures are discouraged
+  8 | WARNING | [x] Inline control structures are discouraged
+  8 | ERROR   | [x] Line indented incorrectly; expected at least 8
+    |         |     spaces, found 7
+  9 | WARNING | [x] Inline control structures are discouraged
+  9 | ERROR   | [x] Line indented incorrectly; expected at least 8
+    |         |     spaces, found 7
+ 10 | WARNING | [x] Inline control structures are discouraged
+ 11 | WARNING | [x] Inline control structures are discouraged
+ 11 | ERROR   | [x] Line indented incorrectly; expected at least 8
+    |         |     spaces, found 5
+ 12 | ERROR   | [x] Line indented incorrectly; expected at least 8
+    |         |     spaces, found 0
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 16 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+Time: 81ms; Memory: 4Mb

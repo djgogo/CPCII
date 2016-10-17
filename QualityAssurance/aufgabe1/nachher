@@ -1,0 +1,8 @@
+FILE: /var/www/Exercises/QualityAssurance/aufgabe1/example_nachher.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 2 | ERROR | Missing file doc comment
+----------------------------------------------------------------------
+
+Time: 23ms; Memory: 4Mb

@@ -1,0 +1,37 @@
+Beispiel einer Dienstgütevereinbarung für die Antwortzeiten:
+„Der Dienstleistungserbringer sichert zu, dass die Verarbeitungs- und Antwortzeiten des Systems mindestens den bisherigen, beim Kunden
+am [Datum] gemessenen und in Anhang [Nr.] festgehaltenen Verarbeitungs- und Antwortzeiten entsprechen.“
+
+Die Antwortzeit wird üblicherweise als die Zeitdauer betrachtet, die zwischen dem Anfordern (Request) des ersten Bytes an Information, bis zum
+letzten Bytes jedes Bildes, eines Stylesheets oder eines Javadatei-Skripts welches an den Benutzer ausgeliefert wird.
+
+Nachdem die Service Levels definiert wurden und den extern vereinbarten Zielen entsprechen, müssen sie aus der Perspektive des Kunden
+gemessen werden. Hierbei wird vom Service Level Monitoring (Service Level Überwachung) gesprochen.
+
+Anforderungen an Messverfahren
+1. Zuverlässig
+2. Objektiv
+3. Wirtschaftlich sinnvoll
+4. Genau
+5. Kontrollierbar durch beide Vertragspartner
+
+Die Frage, welche SLA Messungen gebraucht werden sollen, ist oft umstritten. Die Metriken werden durch die Service Level Objectives definiert.
+Die SLOs müssen für die Messung folgendes erfüllen:
+
+Messbar
+Es macht absolut keinen Sinn ein SLO aufzubauen für etwas, was nicht gemessen werden kann.
+Das englische Sprichwort: „If you can’t measure it, you can’t manage it“ trifft hier den
+Nagel auf den Kopf. Wie kann beurteilt werden ob eine Abmachung eingehalten wird, wenn
+es nicht gemessen werden kann? Zum Beispiel mag es zwar eine gute Idee sein die End-toEnd
+Response Zeit als SLO einzubeziehen, falls jedoch die nötige Software um die
+tatsächliche Response Zeit zu messen nicht verfügbar ist, macht es keinen Sinn diese zu
+messen. Denn was nicht gemessen werden kann, kann auch nicht effektiv verbessert werden.
+
+Tools zur Messung:
+1. Firebug
+2. Yahoo's YSlow
+3. PageSpeed von Google (Google Analytics)
+4. Pingdom Website Speed Test
+5. GTmetrix
+6. webpagetest.org
+7. Internetsupervision.com

@@ -1,0 +1,39 @@
+Ich nehme an Inspekt.php hätte all diese Werte automatisch ausgewertet und leserlich präsentiert. Leider hat Sebastian
+die github Seite mit dem Inspekt.php gelöscht. Aus diesem Grund hier nur eine Auswahl der XML-Outputs von PHP_Depend:
+
+Example.php
+Cyclomatic Complexity (ccn) : 8
+NPATH Complexity (npath) : 128
+Die Klasse Example hat eine Zyklomatische Kopmlexität (Anzahl der Verzeweigungen) von 8 (low: 1-4, medium: 8-10, hoch 8-10, hell: 11+)
+und eine NPATH-Komplexität (Anzahl von Ausführungspfade) von 128 (hoch, kritisch bei 200).
+Die Unzulänglichkeit der returnInput Methode sind die vielen If-Abfragen welche so automatisch viele Ausführungspfade erzeugen.
+
+Diff.php
+Methode diff:
+Cyclomatic Complexity (ccn) : 13 (hell)
+NPATH Complexity (npath) : 780 (sehr kritisch!)
+Lines of Code (loc) : 63 ..... very long
+
+Methode diffToArray:
+Cyclomatic Complexity (ccn) : 15 (hell)
+NPATH Complexity (npath) : 14400 (holy sh....!)
+Lines of Code (loc) : 89 .... tooooo long
+
+Methode longestCommonSubsequence:
+Cyclomatic Complexity (ccn) : 9 (high)
+NPATH Complexity (npath) : 140 (high)
+Lines of Code (loc) : 46
+
+Was hier sofort heraussticht sind die zwei Methoden diff und vorallem diffToArray mit Ihren krass hohen zyklomatischen Komplexitat und
+Ausführungspfade. Die npath Komplexität ist hier phenomenal hoch. Diesen Code kann man ruhig als kompliziert und nicht lesefreundlich bezeichnen.
+
+ArchiveTar.php
+Diese Klasse ist ohne Auswertungstool kaum zu bewerten. Die Anzahl der Funktionen in der Klasse ist bereits schon ein zu grosser Wert.
+Jedenfalls sticht eine Funktion extrem heraus. Die Methode _extractlist mit einem NPATH Komplexitäts-Wert von 2434441020 und 222 Lines of Code!
+Diese Methode sollte einem Refaktorisierungsprozess unterzogen werden. Die einzelnen Verarbeitungsblöcke sollten in eigene Methoden transferiert werden.
+So könnte man die Komplexität reduzieren. Ich würde sogar meinen die Methode sollte eine eigene Klasse bekommen.
+
+
+
+
+
