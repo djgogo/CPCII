@@ -1,2 +1,2 @@
-in der Funtion updatePassword in der Klasse UserTableDAtaGateway ist ein Sicherheitsproblem! Ein PDO-Statement wird ausgeführt ohne vorranige Prepared Statements
+in der Funktion updatePassword in der Klasse UserTableDAtaGateway ist ein Sicherheitsproblem! Ein PDO-Statement wird ausgeführt ohne vorrangige Prepared Statements
 mit Variablen named Bindings. Das ist eine Sicherheitslücke mit der Angreifer SQL-Injections ausführen könnten.

@@ -61,6 +61,25 @@ class PasswordChangeIntegrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('/secure', $result->getUri());
     }
 
+    public function testUserCanNotEditPasswordIfNotLoggedIn()
+    {
+        // Try to change Password without Log-in first
+        $data = array(
+            'ID' => 1,
+            'PASSWORD' => 'newPassword',
+            'REMEMBERME' => 'false'
+        );
+        $request = new HttpRequest('/password/change/check', array(), $data);
+        $this->session->init($request);
+
+        $processor = $this->factory->getRouter()->route($request);
+        $result = $processor->execute($request);
+
+        $this->assertInstanceOf('Url', $result);
+        // Redirect to Login!
+        $this->assertEquals('/login', $result->getUri());
+    }
+
     public function testUserCanNotEditPasswordOnRememberMeStatus()
     {
         // Login User with Remember Me first
