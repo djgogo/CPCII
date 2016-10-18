@@ -13,26 +13,27 @@
  * @copyright 2011-2012 thePHP.cc - The PHP Consulting Company, Germany
  *
  */
-class SuxxFactory
+class SuxxResponse
 {
-    protected $defaultController = 'SuxxErrorController';
 
-    public function setDefaultController($default)
+    protected $data = array();
+
+    public function __set($key, $value)
     {
-        $this->defaultController = $default;
+        $this->data[$key] = $value;
     }
 
-    public function getController($name)
+    public function __get($key)
     {
-        $name = 'Suxx' . ucfirst($name) . 'Controller';
-        if (!class_exists($name)) {
-            return new $this->defaultController($this);
+        if (!isset($this->data[$key])) {
+            throw new SuxxResponseException("Key '$key' does not exist");
         }
-        return new $name($this);
+        return $this->data[$key];
     }
 
-    public function getDatabase($dsn)
+    public function __isset($key)
     {
-        return new SuxxDatabase($dsn);
+        return isset($this->data[$key]);
     }
+
 }

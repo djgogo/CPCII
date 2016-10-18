@@ -28,7 +28,7 @@ class SuxxLoginController extends SuxxController
                 $request->getValue('passwd')
             );
             if ($res->num_rows != 1) {
-                return new SuxxStaticView(__DIR__ . '/../pages/loginfailed.xhtml');
+                return new SuxxStaticView(__DIR__ . '/../Pages/loginfailed.xhtml');
             }
             $_SESSION['user'] = $res->fetch_object();
             setcookie('SuxxUser', serialize($_SESSION['user']), time() + 60 * 60 * 24 * 31, '/');

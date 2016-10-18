@@ -13,15 +13,15 @@
  * @copyright 2011-2012 thePHP.cc - The PHP Consulting Company, Germany
  *
  */
-abstract class SuxxController
+class SuxxHomeController extends SuxxController
 {
 
-    protected $factory;
+    protected $viewFile = '/../Pages/homepage.xhtml';
 
-    public function __construct(SuxxFactory $factory)
+    public function execute(SuxxRequest $request, SuxxResponse $response)
     {
-        $this->factory = $factory;
+        $response->products = $this->dataGateway->getAllProducts();
+        return new SuxxStaticView(__DIR__ . $this->viewFile);
     }
 
-    abstract public function execute(SuxxRequest $request, SuxxResponse $response);
 }

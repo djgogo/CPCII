@@ -13,18 +13,17 @@
  * @copyright 2011-2012 thePHP.cc - The PHP Consulting Company, Germany
  *
  */
-class SuxxHomeController extends SuxxController
+abstract class SuxxController
 {
+    /**
+     * @var SuxxProductTableDataGateway
+     */
+    protected $dataGateway;
 
-    protected $viewFile = '/../pages/homepage.xhtml';
-
-    public function execute(SuxxRequest $request, SuxxResponse $response)
+    public function __construct(SuxxProductTableDataGateway $dataGateway)
     {
-        $db = $this->factory->getDatabase(DSN);
-        $res = $db->query('select * from products limit %s, 3', $request->getValue('start', 0));
-        $response->products = $res->getAll();
-
-        return new SuxxStaticView(__DIR__ . $this->viewFile);
+        $this->dataGateway = $dataGateway;
     }
 
+    abstract public function execute(SuxxRequest $request, SuxxResponse $response);
 }

@@ -31,7 +31,7 @@ class SuxxProductController extends SuxxController
         );
         $response->comments = $res->getAll();
 
-        return new SuxxStaticView(__DIR__ . '/../pages/product.xhtml');
+        return new SuxxStaticView(__DIR__ . '/../Pages/product.xhtml');
     }
 
 }
