@@ -4,6 +4,7 @@
     <title>SuXX :: SUperstore - the eXclusive eXperience - Homepage </title>
 </head>
 <body>
+<img src="../img/suxx-logo.png" alt="Suxx Logo" width="30%" height="30%"/>
     <div id="header">
        <h1>SuXX :: SUperstore - the eXclusive eXperience</h1>
     </div>
@@ -74,6 +75,20 @@
             </tr>
         </table>
        </form>
+    </fieldset>
+    </div>
+    <?php } else { ?>
+    <div style="float:right">
+    <fieldset id="logout" title="Logout">
+        <legend>Logout:</legend>
+        <form action="/suxx/logout" method="post">
+            <table>
+                <tr>
+                    <td>&#160;</td>
+                    <td><input type="submit" value="Log out!" /></td>
+                </tr>
+            </table>
+        </form>
     </fieldset>
     </div>
     <?php } ?>

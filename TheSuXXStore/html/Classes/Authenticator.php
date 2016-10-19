@@ -1,6 +1,6 @@
 <?php
 
-class SuxxRegistrator
+class SuxxAuthenticator
 {
     /**
      * @var UserTableDataGateway
@@ -12,9 +12,9 @@ class SuxxRegistrator
         $this->userGateway = $userGateway;
     }
 
-    public function register($row) : bool
+    public function authenticate(string $username, string $password) : bool
     {
-        return $this->userGateway->insert($row);
+        return $this->userGateway->findUserByCredentials($username, $password);
     }
 }
 

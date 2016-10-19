@@ -5,12 +5,12 @@ class SuxxRequest
     /**
      * @var array
      */
-    protected $input;
+    public $input;
 
     /**
      * @var array
      */
-    protected $params;
+    public $params;
 
     public function __construct(Array $request, Array $session)
     {

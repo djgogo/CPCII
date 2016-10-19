@@ -1,21 +1,21 @@
 <?php
 
-class SuxxRegisterController
+class SuxxRegisterController extends SuxxController
 {
     /**
      * @var SuxxRegistrator
      */
     private $registrator;
 
-    public function __construct(SuxxRegistrator $registrator)
+    public function __construct(SuxxProductTableDataGateway $dataGateway, SuxxRegistrator $registrator)
     {
         $this->registrator = $registrator;
+        parent::__construct($dataGateway);
     }
 
     public function execute(SuxxRequest $request, SuxxResponse $response)
     {
         $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $request);
-
         $registrationFormCommand->validateRequest();
 
         if ($registrationFormCommand->hasErrors()) {
@@ -24,7 +24,7 @@ class SuxxRegisterController
             $registrationFormCommand->performAction();
         }
 
-        header('Location: /', 302); // TODO Redirect to Home with message for Login
-        die();
+        $response->products = $this->dataGateway->getAllProducts();
+        return new SuxxStaticView(__DIR__ . '/../Pages/homepage.xhtml');
     }
 }

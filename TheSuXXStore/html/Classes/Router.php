@@ -15,7 +15,6 @@ class SuxxRouter
     public function route(SuxxRequest $request)
     {
         $uri = $request->getRequestUri();
-        var_dump($uri);
         switch ($uri) {
             case '/': {
                 return $this->factory->getHomeController();
@@ -26,6 +25,12 @@ class SuxxRouter
             case '/suxx/register': {
                 return $this->factory->getRegisterController();
                 }
+            case '/suxx/logout': {
+                return $this->factory->getLogoutController();
+            }
+            case '/suxx/product?pid=1': {
+                return $this->factory->getProductController();
+            }
         }
     }
 }

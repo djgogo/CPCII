@@ -49,7 +49,23 @@ class SuxxFactory
     public function getRegisterController() : SuxxRegisterController
     {
         $registrator = new SuxxRegistrator($this->getUserTableGateway());
-        return new SuxxRegisterController($registrator);
+        return new SuxxRegisterController($this->getProductTableGateway(), $registrator);
+    }
+
+    public function getLoginController() : SuxxLoginController
+    {
+        $authenticator = new SuxxAuthenticator($this->getUserTableGateway());
+        return new SuxxLoginController($this->getProductTableGateway(), $authenticator);
+    }
+
+    public function getLogoutController() : SuxxLogoutController
+    {
+        return new SuxxLogoutController($this->getProductTableGateway());
+    }
+
+    public function getProductController() : SuxxProductController
+    {
+        return new SuxxProductController($this->getProductTableGateway());
     }
 
     protected function getProductTableGateway() : SuxxProductTableDataGateway

@@ -46,46 +46,47 @@ class SuxxRegistrationFormCommand
     public function validateRequest()
     {
         if ($this->username === '') {
-            $this->request->session['message'] = 'Bitte geben Sie einen Usernamen ein';
+            $this->request->setParams(['message' => 'Bitte geben Sie einen Usernamen ein']);
         }
 
         if ($this->passwd === '') {
-            $this->request->session['message'] = 'Bitte geben Sie ein Passwort ein';
+            $this->request->setParams(['message' => 'Bitte geben Sie ein Passwort ein']);
         }
 
         if ($this->name === '') {
-            $this->request->session['message'] = 'Bitte geben Sie einen Namen ein';
+            $this->request->setParams(['message' => 'Bitte geben Sie einen Namen ein']);
         }
 
         try {
             new Email($this->email);
         } catch (\InvalidArgumentException $e) {
-            $this->request->session['message'] = 'Bitte geben Sie eine gültige Email-Adresse ein';
+            $this->request->setParams(['message' => 'Bitte geben Sie eine gültige Email-Adresse ein']);
         }
     }
 
     public function performAction()
     {
         $row = [
-            $this->username,
-            $this->passwd,
-            $this->name,
-            $this->email
+            'username' => $this->username,
+            'password' => $this->passwd,
+            'email' => $this->email,
+            'name' => $this->name,
+            'description' => 'Test Account'
         ];
 
         if ($this->registrator->register($row)) {
-            $this->request->session['message'] = 'Vielen Dank für die Anmeldung';
+            $this->request->setParams(['message' => 'Vielen Dank für die Anmeldung']);
         } else {
-            $this->request->session['message'] = 'Anmeldung fehlgeschlagen!';
+            $this->request->setParams(['message' => 'Anmeldung fehlgeschlagen!']);
         }
     }
 
     public function hasErrors() : bool
     {
-        if (count($this->request->session['message']) > 0) {
-            return false;
+        if ($this->request->params !== null) {
+            return true;
         }
-        return true;
+        return false;
     }
 }
 
