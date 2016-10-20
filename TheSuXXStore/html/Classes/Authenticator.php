@@ -12,7 +12,7 @@ class SuxxAuthenticator
         $this->userGateway = $userGateway;
     }
 
-    public function authenticate(string $username, string $password) : bool
+    public function authenticate(string $username, string $password)
     {
         return $this->userGateway->findUserByCredentials($username, $password);
     }

@@ -22,15 +22,6 @@ class SuxxFactory
         $this->defaultController = $default;
     }
 
-    public function getController($name)
-    {
-        $name = 'Suxx' . ucfirst($name) . 'Controller';
-        if (!class_exists($name)) {
-            return new $this->defaultController($this);
-        }
-        return new $name($this);
-    }
-
     public function getDatabase() : PDO
     {
         return $this->pdoFactory->getDbHandler();
@@ -65,12 +56,22 @@ class SuxxFactory
 
     public function getProductController() : SuxxProductController
     {
-        return new SuxxProductController($this->getProductTableGateway());
+        return new SuxxProductController($this->getProductTableGateway(), $this->getCommentTableGateway());
+    }
+
+    public function getCommentController() : SuxxCommentController
+    {
+        return new SuxxCommentController($this->getCommentTableGateway());
     }
 
     protected function getProductTableGateway() : SuxxProductTableDataGateway
     {
         return new SuxxProductTableDataGateway($this->getDatabase());
+    }
+
+    protected function getCommentTableGateway() : SuxxCommentTableDataGateway
+    {
+        return new SuxxCommentTableDataGateway($this->getDatabase());
     }
 
     protected function getUserTableGateway() : SuxxUserTableDataGateway

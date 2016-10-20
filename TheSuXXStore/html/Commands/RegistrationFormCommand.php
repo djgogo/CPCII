@@ -62,6 +62,10 @@ class SuxxRegistrationFormCommand
         } catch (\InvalidArgumentException $e) {
             $this->request->setParams(['message' => 'Bitte geben Sie eine gültige Email-Adresse ein']);
         }
+
+        if ($this->username !== '' && $this->registrator->usernameExists($this->username)) {
+            $this->request->setParams(['message' => 'Username bereits vergeben!']);
+        }
     }
 
     public function performAction()
@@ -71,7 +75,7 @@ class SuxxRegistrationFormCommand
             'password' => $this->passwd,
             'email' => $this->email,
             'name' => $this->name,
-            'description' => 'Test Account'
+            'description' => 'Suxx Account'
         ];
 
         if ($this->registrator->register($row)) {

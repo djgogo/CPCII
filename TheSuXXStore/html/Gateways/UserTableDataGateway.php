@@ -40,7 +40,8 @@ class SuxxUserTableDataGateway
     {
         try {
             $stmt = $this->pdo->prepare("SELECT username, passwd FROM user WHERE username=:username LIMIT 1");
-            $stmt->execute(array(':username' => $username));
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($userRow !== false) {
@@ -53,8 +54,30 @@ class SuxxUserTableDataGateway
                     return false;
                 }
             }
+
         } catch (PDOException $e) {
             printf("%s, User: %s was not found in the Database", $e->getMessage(), $username);
+        }
+    }
+
+    public function findUserByUsername(string $username)
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM user WHERE username=:username LIMIT 1");
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($userRow !== false) {
+                if ($username === $userRow['USERNAME']) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        } catch (PDOException $e) {
+            printf("%s, User with Username %s was not found in the Database", $e->getMessage(), $username);
         }
     }
 }

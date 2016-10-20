@@ -1,6 +1,6 @@
 <?php
 
-class SuxxLogoutController extends SuxxController
+class SuxxLogoutController implements SuxxController
 {
     /**
      * @var string

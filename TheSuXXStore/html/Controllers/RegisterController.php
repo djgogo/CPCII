@@ -1,16 +1,21 @@
 <?php
 
-class SuxxRegisterController extends SuxxController
+class SuxxRegisterController implements SuxxController
 {
     /**
      * @var SuxxRegistrator
      */
     private $registrator;
 
+    /**
+     * @var SuxxProductTableDataGateway
+     */
+    private $dataGateway;
+
     public function __construct(SuxxProductTableDataGateway $dataGateway, SuxxRegistrator $registrator)
     {
         $this->registrator = $registrator;
-        parent::__construct($dataGateway);
+        $this->dataGateway = $dataGateway;
     }
 
     public function execute(SuxxRequest $request, SuxxResponse $response)

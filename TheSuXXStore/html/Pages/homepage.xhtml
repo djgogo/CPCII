@@ -2,9 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>SuXX :: SUperstore - the eXclusive eXperience - Homepage </title>
+    <meta charset="utf-8"/>
 </head>
 <body>
-<img src="../img/suxx-logo.png" alt="Suxx Logo" width="30%" height="30%"/>
+<img src="../Images/suxx-logo.png" alt="Suxx Logo" width="30%" height="30%"/>
     <div id="header">
        <h1>SuXX :: SUperstore - the eXclusive eXperience</h1>
     </div>
@@ -21,7 +22,9 @@
          <?php foreach($response->products as $product) { ?>
          <tr>
             <td>
-                <a href="/suxx/product?pid=<?php echo $product->PID; ?>"><img src="/?=PHPE9568F34-D428-11d2-A769-00AA001ACF42" /></a>
+                <?php if ($product->IMG != '') { ?>
+                <img src="../Images/Products/Small/<?php echo $product->PID; ?>_small_<?php echo $product->IMG; ?>" />
+                <?php } ?>
             </td>
             <td><a href="/suxx/product?pid=<?php echo $product->PID; ?>"><?php echo $product->LABEL; ?></a></td>
          </tr>

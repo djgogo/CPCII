@@ -12,6 +12,30 @@ class SuxxCommentTableDataGateway
         $this->pdo = $pdo;
     }
 
+    public function insert(array $row) : string
+    {
+        try {
+            $stmt = $this->pdo->prepare(
+                'INSERT INTO comments (pid, author, comment, picture) 
+            VALUES (:pid, 
+                    :author, 
+                    :comment, 
+                    :picture)'
+            );
+
+            $stmt->bindParam(':pid', $row['pid'], PDO::PARAM_STR);
+            $stmt->bindParam(':author', $row['author'], PDO::PARAM_STR);
+            $stmt->bindParam(':comment', $row['comment'], PDO::PARAM_STR);
+            $stmt->bindParam(':picture', $row['picture'], PDO::PARAM_STR);
+
+            $stmt->execute();
+            return $this->pdo->lastInsertId();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function findCommentsByPid($id)
     {
         try {

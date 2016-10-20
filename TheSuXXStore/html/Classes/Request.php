@@ -44,6 +44,4 @@ class SuxxRequest
 
         return $default;
     }
-
-
 }

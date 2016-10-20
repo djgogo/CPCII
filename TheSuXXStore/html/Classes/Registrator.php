@@ -16,5 +16,10 @@ class SuxxRegistrator
     {
         return $this->userGateway->insert($row);
     }
+
+    public function usernameExists(string $username) : bool
+    {
+        return $this->userGateway->findUserByUsername($username);
+    }
 }
 

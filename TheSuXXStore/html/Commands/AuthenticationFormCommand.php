@@ -42,13 +42,13 @@ class SuxxAuthenticationFormCommand
         }
     }
 
-    public function performAction() : bool
+    public function performAction()
     {
         if ($this->authenticator->authenticate($this->username, $this->passwd)) {
-            $this->request->setParams(['message' => 'Willkommen - Du bist eingeloggt!']);
+            $_SESSION['message'] = 'Willkommen - Du bist eingeloggt!';
             return true;
         } else {
-            $this->request->setParams(['message' => 'Log-In fehlgeschlagen!']);
+            $_SESSION['message'] = 'Log-In fehlgeschlagen!';
             return false;
         }
     }

@@ -1,16 +1,21 @@
 <?php
 
-class SuxxLoginController extends SuxxController
+class SuxxLoginController implements SuxxController
 {
     /**
      * @var SuxxAuthenticator
      */
     private $authenticator;
 
+    /**
+     * @var SuxxProductTableDataGateway
+     */
+    private $dataGateway;
+
     public function __construct(SuxxProductTableDataGateway $dataGateway, SuxxAuthenticator $authenticator)
     {
         $this->authenticator = $authenticator;
-        parent::__construct($dataGateway);
+        $this->dataGateway = $dataGateway;
     }
 
     public function execute(SuxxRequest $request, SuxxResponse $response)
