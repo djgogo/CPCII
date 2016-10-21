@@ -13,6 +13,7 @@ class SuxxUserTableDataGateway
 
     public function insert(array $row)
     {
+        $hashedPassword = password_hash($row['password'], PASSWORD_DEFAULT);
         try {
             $stmt = $this->pdo->prepare(
                 'INSERT INTO user (username, passwd, email, name, descr) 
@@ -24,7 +25,7 @@ class SuxxUserTableDataGateway
             );
 
             $stmt->bindParam(':username', $row['username'], PDO::PARAM_STR);
-            $stmt->bindParam(':passwd', $row['password'], PDO::PARAM_STR);
+            $stmt->bindParam(':passwd', $hashedPassword, PDO::PARAM_STR);
             $stmt->bindParam(':email', $row['email'], PDO::PARAM_STR);
             $stmt->bindParam(':name', $row['name'], PDO::PARAM_STR);
             $stmt->bindParam(':descr', $row['description'], PDO::PARAM_STR);
@@ -45,8 +46,7 @@ class SuxxUserTableDataGateway
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($userRow !== false) {
-                //if (password_verify($password, $userRow['passwd'])) {
-                if ($password === $userRow['passwd']) {
+                if (password_verify($password, $userRow['passwd'])) {
                     $_SESSION['user'] = $username;
                     setcookie($username, 'logged in', time() + 60 * 60 * 24 * 31, '/');
                     return true;

@@ -12,7 +12,7 @@ $response = new SuxxResponse();
 $pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234');
 $factory  = new SuxxFactory($pdoFactory);
 
-$processor = $factory->getRouter()->route($request);
-$view = $processor->execute($request, $response);
+$controller = $factory->getRouter()->route($request);
+$view = $controller->execute($request, $response);
 
 echo $view->render($request, $response);

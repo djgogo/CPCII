@@ -76,7 +76,7 @@ INSERT INTO `products` (`PID`, `LABEL`, `IMG`, `PRICE`) VALUES
 CREATE TABLE `user` (
   `UID` int(11) NOT NULL,
   `USERNAME` varchar(30) NOT NULL,
-  `PASSWD` varchar(80) NOT NULL,
+  `PASSWD` varchar(255) NOT NULL,
   `EMAIL` varchar(80) NOT NULL,
   `NAME` varchar(80) NOT NULL,
   `DESCR` text NOT NULL,

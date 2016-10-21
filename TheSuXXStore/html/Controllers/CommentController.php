@@ -25,5 +25,4 @@ class SuxxCommentController implements SuxxController
 
         header('Location: /suxx/product?pid=' . $request->getValue('product'), 302);
     }
-
 }

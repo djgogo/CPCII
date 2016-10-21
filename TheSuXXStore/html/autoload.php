@@ -9,7 +9,9 @@ spl_autoload_register(
             $classes = array(
                 'email' => '/ValueObjects/Email.php',
                 'invalidemailexception' => '/Exceptions/InvalidEmailException.php',
+                'invaliduploadedfileexception' => '/Exceptions/InvalidUploadedFileException.php',
                 'pdofactory' => '/Factories/PDOFactory.php',
+                'suxx404controller' => '/Controllers/404Controller.php',
                 'suxxauthenticationformcommand' => '/Commands/AuthenticationFormCommand.php',
                 'suxxauthenticator' => '/Classes/Authenticator.php',
                 'suxxcommentcontroller' => '/Controllers/CommentController.php',
@@ -19,6 +21,7 @@ spl_autoload_register(
                 'suxxerrorcontroller' => '/Controllers/ErrorController.php',
                 'suxxerrorview' => '/Views/errorview.php',
                 'suxxfactory' => '/Factories/Factory.php',
+                'suxxfileupload' => '/ValueObjects/FileUpload.php',
                 'suxxhomecontroller' => '/Controllers/HomeController.php',
                 'suxxlogincontroller' => '/Controllers/LoginController.php',
                 'suxxlogoutcontroller' => '/Controllers/LogoutController.php',

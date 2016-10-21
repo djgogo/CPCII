@@ -11,6 +11,14 @@
     <div id="header">
        <h1>SuXX :: SUperstore - the eXclusive eXperience</h1>
     </div>
+    <div>
+        <?php
+                $msg = $request->getValue('message');
+                if ($msg) {
+                echo '<p style="color:green;">'.$msg.'</p>';
+                }
+                ?>
+    </div>
     <div style="float:left; width:700px; border:1px solid red;">
       <p>
         <span>Product No <?php echo $product->PID; ?></span>        
@@ -26,7 +34,7 @@
            <?php if ($comment->PICTURE != '') { ?>
            <img src="../Images/Comments/<?php echo $comment->CID; ?>_<?php echo $comment->PICTURE; ?>" />
            <?php } ?>
-           <?php echo $comment->AUTHOR; ?> said:<br/>
+           <?php echo $comment->AUTHOR; ?> said: <br/>
            <?php echo $comment->COMMENT; ?>
         </div>
       <?php } ?>

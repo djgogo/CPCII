@@ -64,6 +64,11 @@ class SuxxFactory
         return new SuxxCommentController($this->getCommentTableGateway());
     }
 
+    public function get404Controller() : Suxx404Controller
+    {
+        return new Suxx404Controller();
+    }
+
     protected function getProductTableGateway() : SuxxProductTableDataGateway
     {
         return new SuxxProductTableDataGateway($this->getDatabase());

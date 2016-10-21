@@ -32,7 +32,7 @@ class SuxxResponse
         if (!isset($this->data[$key])) {
             throw new SuxxResponseException("Key '$key' does not exist");
         }
-        return $this->data[$key];
+        return $this->escape($this->data[$key]);
     }
 
     public function __isset($key)
@@ -40,4 +40,8 @@ class SuxxResponse
         return isset($this->data[$key]);
     }
 
+    private function escape($string) : string
+    {
+        return htmlspecialchars($string, ENT_QUOTES);
+    }
 }

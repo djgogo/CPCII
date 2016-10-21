@@ -52,6 +52,10 @@ class SuxxRegistrationFormCommand
         if ($this->passwd === '') {
             $this->request->setParams(['message' => 'Bitte geben Sie ein Passwort ein']);
         }
+        
+        if (strlen($this->passwd) < 6) {
+            $this->request->setParams(['message' => 'Das Passwort muss mindestens 6 Zeichen lang sein']);
+        }
 
         if ($this->name === '') {
             $this->request->setParams(['message' => 'Bitte geben Sie einen Namen ein']);
@@ -79,7 +83,7 @@ class SuxxRegistrationFormCommand
         ];
 
         if ($this->registrator->register($row)) {
-            $this->request->setParams(['message' => 'Vielen Dank für die Anmeldung']);
+            $this->request->setParams(['message' => 'Vielen Dank für die Anmeldung - Loggen Sie sich bitte ein']);
         } else {
             $this->request->setParams(['message' => 'Anmeldung fehlgeschlagen!']);
         }
