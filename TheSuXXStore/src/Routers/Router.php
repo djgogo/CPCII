@@ -7,12 +7,18 @@ class SuxxRouter
      */
     private $factory;
 
-    public function __construct(SuxxFactory $factory)
+    /**
+     * @var SuxxSession
+     */
+    private $session;
+
+    public function __construct(SuxxFactory $factory, SuxxSession $session)
     {
         $this->factory = $factory;
+        $this->session = $session;
     }
 
-    public function route(SuxxRequest $request, SuxxSession $session)
+    public function route(SuxxRequest $request)
     {
         $uri = $request->getRequestUri();
         $path = parse_url($uri)['path'];
@@ -43,8 +49,8 @@ class SuxxRouter
 
     protected function hasCsrfError(SuxxRequest $request)
     {
-        if (!$request->getValue('csrf') === $_SESSION['csrf']) {
-            $_SESSION['error'] = 'Das übergebene Formular hat kein gültiges CSRF-Token!';
+        if ($request->getValue('csrf') != $this->session->getValue('token')) {
+            $this->session->setValue('error', 'Das übergebene Formular hat kein gültiges CSRF-Token!');
             return true;
         }
         return false;

@@ -23,7 +23,7 @@ class SuxxProductController implements SuxxController
         $response->product = $this->productDataGateway->findProductById($request->getValue('pid'));
         $response->comments = $this->commentDataGateway->findCommentsByPid($request->getValue('pid'));
 
-        return new SuxxStaticView(__DIR__ . '/../Pages/product.xhtml');
+        return new SuxxStaticView(__DIR__ . '/../../Pages/product.xhtml');
     }
 
 }

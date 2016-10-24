@@ -41,7 +41,6 @@ nur mit einer sicheren Verbindung übertragen werden (HTTPS).
 - Beim Kommentar kann ein Bild hochgeladen werden. Im Moment könnte ein Angreifer ein Virus, einen Wurm oder sonstwas hochladen. Hier sollten nur Bild-Dateien
 erlaubt werden. Das sollte bei einer Validierung dringend berücksichtigt werden.
 
-// TODO -----------> CSRF Token Implementierung
 - Die Templates/Pages sind nicht gegen CSRF (Cross Site Request Forgery) geschützt. Entführte URL's könnten missbraucht werden um auf Pages zu gelangen ohne
 notwendige Berechtigung oder um Seiten nachzubauen um sensible Benutzerdaten zu fischen. Zur Absicherung dieses Problems bedarf es eines Request-Tokens,
 der per verstecktem Eingabefeld in einem Formular mitgeschickt wird. Da dieser Wert für jedes Formular und jeden Abruf der Seite ein anderer ist, kann ein

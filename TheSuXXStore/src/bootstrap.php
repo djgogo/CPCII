@@ -6,16 +6,18 @@ ini_set('display_errors', 1);
 require __DIR__ . '/autoload.php';
 session_start();
 
+if (empty($_SESSION['token'])) {
+    $_SESSION['token'] = new SuxxToken();
+}
+
 $request = new SuxxRequest($_REQUEST);
 $session = new SuxxSession($_SESSION);
 $response = new SuxxResponse();
 
-$_SESSION['token'] = new SuxxToken();
-
 $pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234');
-$factory  = new SuxxFactory($pdoFactory);
+$factory  = new SuxxFactory($pdoFactory, $session);
 
-$controller = $factory->getRouter()->route($request, $session);
+$controller = $factory->getRouter()->route($request);
 $view = $controller->execute($request, $session, $response);
 
 echo $view->render($request, $session, $response);

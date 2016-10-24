@@ -31,7 +31,9 @@ class SuxxLoginController implements SuxxController
         }
 
         if (!$check) {
-            return new SuxxStaticView(__DIR__ . '/../Pages/loginfailed.xhtml');
+            $response->products = $this->dataGateway->getAllProducts();
+            return new SuxxStaticView(__DIR__ . '/../../Pages/homepage.xhtml');
+            //return new SuxxStaticView(__DIR__ . '/../../Pages/loginfailed.xhtml');
         }
 
         header('Location: /', 302);

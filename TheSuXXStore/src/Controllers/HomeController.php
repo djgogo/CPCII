@@ -15,6 +15,6 @@ class SuxxHomeController implements SuxxController
     {
         unset($_SESSION['message']);
         $response->products = $this->dataGateway->getAllProducts();
-        return new SuxxStaticView(__DIR__ . '/../Pages/homepage.xhtml');
+        return new SuxxStaticView(__DIR__ . '/../../Pages/homepage.xhtml');
     }
 }

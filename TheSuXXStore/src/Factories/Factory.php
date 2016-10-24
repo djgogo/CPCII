@@ -12,9 +12,15 @@ class SuxxFactory
      */
     protected $defaultController = 'SuxxErrorController';
 
-    public function __construct(PDOFactory $pdoFactory)
+    /**
+     * @var SuxxSession
+     */
+    private $session;
+
+    public function __construct(PDOFactory $pdoFactory, SuxxSession $session)
     {
         $this->pdoFactory = $pdoFactory;
+        $this->session = $session;
     }
 
     public function setDefaultController($default)
@@ -29,7 +35,7 @@ class SuxxFactory
 
     public function getRouter() : SuxxRouter
     {
-        return new SuxxRouter($this);
+        return new SuxxRouter($this, $this->session);
     }
 
     public function getHomeController() : SuxxHomeController

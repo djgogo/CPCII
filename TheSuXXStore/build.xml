@@ -6,8 +6,8 @@
     <target name="phpab" description="Generate autoloader scripts">
         <exec executable="phpab">
             <arg value="--output" />
-            <arg path="${basedir}/html/autoload.php" />
-            <arg path="${basedir}/html" />
+            <arg path="${basedir}/src/autoload.php" />
+            <arg path="${basedir}/src" />
         </exec>
 
     </target>
