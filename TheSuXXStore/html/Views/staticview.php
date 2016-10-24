@@ -23,7 +23,7 @@ class SuxxStaticView implements SuxxViewInterface
         $this->staticFile = $filename;
     }
 
-    public function render(SuxxRequest $request, SuxxResponse $response)
+    public function render(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
         ob_start();
         include $this->staticFile;

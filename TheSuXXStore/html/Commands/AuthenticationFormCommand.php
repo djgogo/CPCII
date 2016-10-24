@@ -8,6 +8,11 @@ class SuxxAuthenticationFormCommand
     private $request;
 
     /**
+     * @var SuxxSession
+     */
+    private $session;
+
+    /**
      * @var SuxxAuthenticator
      */
     private $authenticator;
@@ -22,9 +27,10 @@ class SuxxAuthenticationFormCommand
      */
     private $passwd;
 
-    public function __construct(SuxxAuthenticator $authenticator, SuxxRequest $request)
+    public function __construct(SuxxAuthenticator $authenticator, SuxxRequest $request, SuxxSession $session)
     {
         $this->request = $request;
+        $this->session = $session;
         $this->authenticator = $authenticator;
 
         $this->username = $request->getValue('username');
@@ -34,11 +40,11 @@ class SuxxAuthenticationFormCommand
     public function validateRequest()
     {
         if ($this->username === '') {
-            $this->request->setParams(['message' => 'Bitte geben Sie einen Usernamen ein']);
+            $this->session->setValue('error', 'Bitte geben Sie einen Usernamen ein');
         }
 
         if ($this->passwd === '') {
-            $this->request->setParams(['message' => 'Bitte geben Sie ein Passwort ein']);
+            $this->session->setValue('error', 'Bitte geben Sie ein Passwort ein');
         }
     }
 
@@ -55,7 +61,7 @@ class SuxxAuthenticationFormCommand
 
     public function hasErrors() : bool
     {
-        if ($this->request->params !== null) {
+        if ($this->session->isset('error')) {
             return true;
         }
         return false;

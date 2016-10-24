@@ -18,9 +18,9 @@ class SuxxRegisterController implements SuxxController
         $this->dataGateway = $dataGateway;
     }
 
-    public function execute(SuxxRequest $request, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
-        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $request);
+        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $request, $session);
         $registrationFormCommand->validateRequest();
 
         if ($registrationFormCommand->hasErrors()) {

@@ -18,10 +18,10 @@ class SuxxLoginController implements SuxxController
         $this->dataGateway = $dataGateway;
     }
 
-    public function execute(SuxxRequest $request, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
         $check = false;
-        $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $request);
+        $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $request, $session);
         $authenticationFormCommand->validateRequest();
 
         if ($authenticationFormCommand->hasErrors()) {

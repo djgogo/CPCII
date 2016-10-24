@@ -12,10 +12,9 @@ class SuxxRequest
      */
     public $params;
 
-    public function __construct(Array $request, Array $session)
+    public function __construct(Array $request)
     {
         $this->input = $request;
-        $this->session = $session;
     }
 
     public function getRequestUri() : string
@@ -32,10 +31,6 @@ class SuxxRequest
     {
         if (isset($this->input[$key])) {
             return $this->escape($this->input[$key]);
-        }
-
-        if (isset($this->session[$key])) {
-            return $this->escape($this->session[$key]);
         }
 
         if (isset($this->params[$key])) {

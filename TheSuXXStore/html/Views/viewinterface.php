@@ -15,6 +15,6 @@
  */
 interface SuxxViewInterface
 {
-    public function render(SuxxRequest $request, SuxxResponse $response);
+    public function render(SuxxRequest $request, SuxxSession $session, SuxxResponse $response);
 
 }

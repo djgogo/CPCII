@@ -7,7 +7,7 @@ class SuxxLogoutController implements SuxxController
      */
     protected $viewFile = '/../Pages/homepage.xhtml';
 
-    public function execute(SuxxRequest $request, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
         unset($_SESSION['user']);
         session_destroy();

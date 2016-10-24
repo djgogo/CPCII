@@ -34,9 +34,12 @@ spl_autoload_register(
                 'suxxresponse' => '/Classes/Response.php',
                 'suxxresponseexception' => '/Exceptions/ResponseException.php',
                 'suxxrouter' => '/Classes/Router.php',
+                'suxxsession' => '/Classes/Session.php',
+                'suxxsessionexception' => '/Exceptions/SessionException.php',
                 'suxxstaticview' => '/Views/staticview.php',
                 'suxxusertabledatagateway' => '/Gateways/UserTableDataGateway.php',
-                'suxxviewinterface' => '/Views/viewinterface.php'
+                'suxxviewinterface' => '/Views/viewinterface.php',
+                'token' => '/ValueObjects/Token.php'
             );
         }
         $cn = strtolower($class);

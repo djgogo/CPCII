@@ -11,7 +11,7 @@ class SuxxHomeController implements SuxxController
     {
         $this->dataGateway = $dataGateway;
     }
-    public function execute(SuxxRequest $request, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
         unset($_SESSION['message']);
         $response->products = $this->dataGateway->getAllProducts();

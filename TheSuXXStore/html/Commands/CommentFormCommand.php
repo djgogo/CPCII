@@ -8,6 +8,11 @@ class SuxxCommentFormCommand
     private $request;
 
     /**
+     * @var SuxxSession
+     */
+    private $session;
+
+    /**
      * @var SuxxCommentTableDataGateway
      */
     private $dataGateway;
@@ -22,9 +27,10 @@ class SuxxCommentFormCommand
      */
     private $picture;
 
-    public function __construct(SuxxCommentTableDataGateway $dataGateway, SuxxRequest $request)
+    public function __construct(SuxxCommentTableDataGateway $dataGateway, SuxxRequest $request, SuxxSession $session)
     {
         $this->request = $request;
+        $this->session = $session;
         $this->comment = $request->getValue('comment');
         $this->dataGateway = $dataGateway;
 
@@ -51,7 +57,7 @@ class SuxxCommentFormCommand
     {
         $row = [
             'pid' => $this->request->getValue('product'),
-            'author' => $this->request->getValue('user'),
+            'author' => $this->session->getValue('user'),
             'comment' => $this->comment,
             'picture' => $this->picture
         ];

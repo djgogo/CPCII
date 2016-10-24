@@ -6,13 +6,14 @@ ini_set('display_errors', 1);
 require __DIR__ . '/autoload.php';
 session_start();
 
-$request  = new SuxxRequest($_REQUEST, $_SESSION);
+$request = new SuxxRequest($_REQUEST);
+$session = new SuxxSession($_SESSION);
 $response = new SuxxResponse();
 
 $pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234');
 $factory  = new SuxxFactory($pdoFactory);
 
-$controller = $factory->getRouter()->route($request);
-$view = $controller->execute($request, $response);
+$controller = $factory->getRouter()->route($request, $session);
+$view = $controller->execute($request, $session, $response);
 
-echo $view->render($request, $response);
+echo $view->render($request, $session, $response);

@@ -18,7 +18,7 @@ class SuxxProductController implements SuxxController
         $this->productDataGateway = $productDataGateway;
     }
 
-    public function execute(SuxxRequest $request, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
         $response->product = $this->productDataGateway->findProductById($request->getValue('pid'));
         $response->comments = $this->commentDataGateway->findCommentsByPid($request->getValue('pid'));

@@ -12,9 +12,9 @@ class SuxxCommentController implements SuxxController
         $this->commentDataGateway = $commentDataGateway;
     }
 
-    public function execute(SuxxRequest $request, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
-        $commentFormCommand = new SuxxCommentFormCommand($this->commentDataGateway, $request);
+        $commentFormCommand = new SuxxCommentFormCommand($this->commentDataGateway, $request, $session);
         $commentFormCommand->validateRequest();
 
         if ($commentFormCommand->hasErrors()) {

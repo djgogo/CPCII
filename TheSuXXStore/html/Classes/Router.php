@@ -12,7 +12,7 @@ class SuxxRouter
         $this->factory = $factory;
     }
 
-    public function route(SuxxRequest $request)
+    public function route(SuxxRequest $request, SuxxSession $session)
     {
         $uri = $request->getRequestUri();
         $path = parse_url($uri)['path'];
