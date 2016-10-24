@@ -36,6 +36,7 @@
     <fieldset id="login">
        <legend>Login:</legend>    
        <form action="/suxx/login" method="post">
+           <input type="hidden" name="csrf" value="<?php echo $session->getValue('token'); ?>" />
          <table>
             <tr>
                <td>Login:</td>

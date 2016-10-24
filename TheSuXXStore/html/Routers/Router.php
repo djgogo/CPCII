@@ -17,16 +17,13 @@ class SuxxRouter
         $uri = $request->getRequestUri();
         $path = parse_url($uri)['path'];
 
-        if ($this->hasCsrfError($request)) {
-            // TODO CSRF token handling
-            //message 'Das übergebene Formular hat kein gültiges CSRF-Token. Uri: "%s"', $uri)));
-            //return $this->factory->getErrorController);
-        }
-
         switch ($path) {
             case '/':
                 return $this->factory->getHomeController();
             case '/suxx/login':
+                if ($this->hasCsrfError($request)) {
+                    return $this->factory->getErrorController();
+                }
                 return $this->factory->getLoginController();
             case '/suxx/register':
                 return $this->factory->getRegisterController();
@@ -35,6 +32,9 @@ class SuxxRouter
             case '/suxx/product':
                 return $this->factory->getProductController();
             case '/suxx/comment':
+                if ($this->hasCsrfError($request)) {
+                    return $this->factory->getErrorController();
+                }
                 return $this->factory->getCommentController();
             default:
                 return $this->factory->get404Controller();
@@ -43,7 +43,11 @@ class SuxxRouter
 
     protected function hasCsrfError(SuxxRequest $request)
     {
-        return !$request->getValue('csrf');
+        if (!$request->getValue('csrf') === $_SESSION['csrf']) {
+            $_SESSION['error'] = 'Das übergebene Formular hat kein gültiges CSRF-Token!';
+            return true;
+        }
+        return false;
     }
 }
 

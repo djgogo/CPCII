@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Token Generator
- *
- * Generates a unique hashed token using various sources for random data
- */
-class Token
+class SuxxToken
 {
     /**
      * @var string

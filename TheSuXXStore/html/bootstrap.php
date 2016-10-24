@@ -10,6 +10,8 @@ $request = new SuxxRequest($_REQUEST);
 $session = new SuxxSession($_SESSION);
 $response = new SuxxResponse();
 
+$_SESSION['token'] = new SuxxToken();
+
 $pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234');
 $factory  = new SuxxFactory($pdoFactory);
 

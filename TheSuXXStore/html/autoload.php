@@ -33,13 +33,13 @@ spl_autoload_register(
                 'suxxrequest' => '/Classes/Request.php',
                 'suxxresponse' => '/Classes/Response.php',
                 'suxxresponseexception' => '/Exceptions/ResponseException.php',
-                'suxxrouter' => '/Classes/Router.php',
+                'suxxrouter' => '/Routers/Router.php',
+                'suxxrouterexception' => '/Exceptions/RouterException.php',
                 'suxxsession' => '/Classes/Session.php',
-                'suxxsessionexception' => '/Exceptions/SessionException.php',
                 'suxxstaticview' => '/Views/staticview.php',
+                'suxxtoken' => '/ValueObjects/Token.php',
                 'suxxusertabledatagateway' => '/Gateways/UserTableDataGateway.php',
-                'suxxviewinterface' => '/Views/viewinterface.php',
-                'token' => '/ValueObjects/Token.php'
+                'suxxviewinterface' => '/Views/viewinterface.php'
             );
         }
         $cn = strtolower($class);
