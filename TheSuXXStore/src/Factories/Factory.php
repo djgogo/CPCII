@@ -33,9 +33,13 @@ class SuxxFactory
         return $this->pdoFactory->getDbHandler();
     }
 
-    public function getRouter() : SuxxRouter
+    public function getRouter()
     {
-        return new SuxxRouter($this, $this->session);
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            return new SuxxStaticPageRouter($this);
+        } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            return new SuxxPostRequestRouter($this, $this->session);
+        }
     }
 
     public function getHomeController() : SuxxHomeController
@@ -67,7 +71,7 @@ class SuxxFactory
 
     public function getCommentController() : SuxxCommentController
     {
-        return new SuxxCommentController($this->getCommentTableGateway());
+        return new SuxxCommentController($this->getCommentTableGateway(), new SuxxFileBackend());
     }
 
     public function getErrorController() : SuxxErrorController

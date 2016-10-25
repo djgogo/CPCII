@@ -20,6 +20,8 @@ class SuxxProductController implements SuxxController
 
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
+        unset($session->session['error']);
+
         if ($request->getValue('pid') === '') {
             return new SuxxStaticView(__DIR__ . '/../../Pages/404errorview.xhtml');
         }

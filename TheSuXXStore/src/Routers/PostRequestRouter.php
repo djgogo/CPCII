@@ -1,6 +1,6 @@
 <?php
 
-class SuxxRouter
+class SuxxPostRequestRouter
 {
     /**
      * @var Factory
@@ -23,24 +23,18 @@ class SuxxRouter
         $uri = $request->getRequestUri();
         $path = parse_url($uri)['path'];
 
+        if ($this->hasCsrfError($request)) {
+            return $this->factory->getErrorController();
+        }
+
         switch ($path) {
-            case '/':
-                return $this->factory->getHomeController();
             case '/suxx/login':
-                if ($this->hasCsrfError($request)) {
-                    return $this->factory->getErrorController();
-                }
                 return $this->factory->getLoginController();
             case '/suxx/register':
                 return $this->factory->getRegisterController();
             case '/suxx/logout':
                 return $this->factory->getLogoutController();
-            case '/suxx/product':
-                return $this->factory->getProductController();
             case '/suxx/comment':
-                if ($this->hasCsrfError($request)) {
-                    return $this->factory->getErrorController();
-                }
                 return $this->factory->getCommentController();
             default:
                 return $this->factory->get404Controller();

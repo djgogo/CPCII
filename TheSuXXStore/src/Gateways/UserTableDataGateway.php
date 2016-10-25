@@ -37,10 +37,10 @@ class SuxxUserTableDataGateway
         }
     }
 
-    public function findUserByCredentials(string $username, string $password)
+    public function findUserByCredentials(string $username, string $password): bool
     {
         try {
-            $stmt = $this->pdo->prepare("SELECT username, passwd FROM user WHERE username=:username LIMIT 1");
+            $stmt = $this->pdo->prepare("SELECT passwd FROM user WHERE username=:username LIMIT 1");
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -48,7 +48,7 @@ class SuxxUserTableDataGateway
             if ($userRow !== false) {
                 if (password_verify($password, $userRow['passwd'])) {
                     $_SESSION['user'] = $username;
-                    setcookie($username, 'logged in', time() + 60 * 60 * 24 * 31, '/');
+                    //setcookie($username, 'logged in', time() + 60 * 60 * 24 * 31, '/');
                     return true;
                 } else {
                     return false;
@@ -58,6 +58,7 @@ class SuxxUserTableDataGateway
         } catch (PDOException $e) {
             printf("%s, User: %s was not found in the Database", $e->getMessage(), $username);
         }
+        return false;
     }
 
     public function findUserByUsername(string $username)

@@ -56,6 +56,7 @@
     <fieldset id="register" title="Register">    
        <legend>Register:</legend>    
        <form action="/suxx/register" method="post">
+           <input type="hidden" name="csrf" value="<?php echo $session->getValue('token'); ?>" />
          <table>
             <tr>
                <td>Login:</td>
@@ -86,6 +87,7 @@
     <fieldset id="logout" title="Logout">
         <legend>Logout:</legend>
         <form action="/suxx/logout" method="post">
+            <input type="hidden" name="csrf" value="<?php echo $session->getValue('token'); ?>" />
             <table>
                 <tr>
                     <td>&#160;</td>

@@ -48,10 +48,10 @@ class SuxxAuthenticationFormCommand
         }
     }
 
-    public function performAction()
+    public function performAction(): bool
     {
         if ($this->authenticator->authenticate($this->username, $this->passwd)) {
-            $_SESSION['message'] = 'Willkommen - Du bist eingeloggt!';
+            $this->session->setValue('message', 'Willkommen - Du bist eingeloggt!');
             return true;
         } else {
             $this->session->setValue('error', 'Log-In fehlgeschlagen!');

@@ -10,7 +10,7 @@ if (empty($_SESSION['token'])) {
     $_SESSION['token'] = new SuxxToken();
 }
 
-$request = new SuxxRequest($_REQUEST);
+$request = new SuxxRequest($_REQUEST, $_FILES);
 $session = new SuxxSession($_SESSION);
 $response = new SuxxResponse();
 
@@ -21,3 +21,5 @@ $controller = $factory->getRouter()->route($request);
 $view = $controller->execute($request, $session, $response);
 
 echo $view->render($request, $session, $response);
+
+$session->commit();

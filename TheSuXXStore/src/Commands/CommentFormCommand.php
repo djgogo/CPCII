@@ -18,6 +18,11 @@ class SuxxCommentFormCommand
     private $dataGateway;
 
     /**
+     * @var SuxxFileBackend
+     */
+    private $backend;
+
+    /**
      * @var string
      */
     private $comment;
@@ -27,28 +32,31 @@ class SuxxCommentFormCommand
      */
     private $picture;
 
-    public function __construct(SuxxCommentTableDataGateway $dataGateway, SuxxRequest $request, SuxxSession $session)
+    public function __construct(
+        SuxxCommentTableDataGateway $dataGateway,
+        SuxxRequest $request,
+        SuxxSession $session,
+        SuxxFileBackend $backend)
     {
         $this->request = $request;
         $this->session = $session;
-        $this->comment = $request->getValue('comment');
         $this->dataGateway = $dataGateway;
-
-        unset($_SESSION['message']);
-        $this->picture = isset($_FILES['picture']) ? $_FILES['picture']['name'] : '';
+        $this->backend = $backend;
+        $this->comment = $request->getValue('comment');
+        $this->picture = $this->request->getFile();
     }
 
     public function validateRequest()
     {
         if ($this->comment === '') {
-            $_SESSION['message'] = 'Bitte geben Sie einen Kommentar ein!';
+            $this->session->setValue('error', 'Bitte geben Sie einen Kommentar ein!');
         }
 
         if ($this->picture !== '') {
             try {
                 new SuxxFileUpload();
             } catch (\InvalidUploadedFileException $e) {
-                $_SESSION['message'] = 'Das Bild ist ungültig - Dateiupload konnte nicht ausgeführt werden!';
+                $this->session->setValue('error', 'Das Bild ist ungültig - Dateiupload konnte nicht ausgeführt werden!');
             }
         }
     }
@@ -65,20 +73,21 @@ class SuxxCommentFormCommand
         $cid = $this->dataGateway->insert($row);
 
         if ($cid !== '') {
-            $_SESSION['message'] = 'Vielen Dank für Deinen Kommentar';
+            $this->session->setValue('message', 'Vielen Dank für Deinen Kommentar');
         } else {
-            $_SESSION['message'] = 'Kommentar fehlgeschlagen!';
+            $this->session->setValue('error', 'Kommentar fehlgeschlagen!');
         }
 
         if ($this->picture) {
-            $path = __DIR__ . '/../../html/Images/Comments/' . $cid . '_' . $this->picture;
-            move_uploaded_file($_FILES['picture']['tmp_name'], $path);
+            $targetPath = __DIR__ . '/../../html/Images/Comments/' . $cid . '_' . $this->picture;
+            $originalPath = $this->request->getFilePath();
+            $this->backend->moveUploadedFileTo($originalPath, $targetPath);
         }
     }
 
     public function hasErrors() : bool
     {
-        if ($_SESSION['message'] !== null) {
+        if ($this->session->isset('error')) {
             return true;
         }
         return false;

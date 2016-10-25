@@ -7,7 +7,7 @@ class SuxxSession
      */
     public $session;
 
-    public function __construct(Array $session)
+    public function __construct(array $session)
     {
         $this->session = $session;
     }
@@ -25,6 +25,11 @@ class SuxxSession
         return $default;
     }
 
+    public function getSessionData() : array
+    {
+        return $this->session;
+    }
+
     public function isset($key) : bool
     {
         return isset($this->session[$key]);
@@ -33,5 +38,12 @@ class SuxxSession
     private function escape($string) : string
     {
         return htmlspecialchars($string, ENT_QUOTES);
+    }
+
+    public function commit()
+    {
+        var_dump($_SESSION);
+        var_dump($this->getSessionData());
+        $_SESSION = $this->getSessionData();
     }
 }

@@ -12,14 +12,47 @@ class SuxxRequest
      */
     public $params;
 
-    public function __construct(Array $request)
+    /**
+     * @var array
+     */
+    private $files;
+
+    /**
+     * @var string
+     */
+    private $picture;
+
+    public function __construct(array $request, array $files)
     {
         $this->input = $request;
+        $this->files = $files;
+
+        if ($this->isset('picture')) {
+            $this->picture = $this->files['picture']['name'];
+            $this->originalPath = $this->files['picture']['tmp_name'];
+        } else {
+            $this->picture = '';
+        }
     }
 
     public function getRequestUri() : string
     {
         return $_SERVER['REQUEST_URI'];
+    }
+
+    public function isset($key) : bool
+    {
+        return isset($this->files[$key]);
+    }
+
+    public function getFile() : string
+    {
+        return $this->picture;
+    }
+
+    public function getFilePath() : string
+    {
+        return $this->originalPath;
     }
 
     public function setParams(Array $params)
@@ -35,6 +68,10 @@ class SuxxRequest
 
         if (isset($this->params[$key])) {
             return $this->escape($this->params[$key]);
+        }
+
+        if (isset($this->files[$key])) {
+            return $this->escape($this->files[$key]);
         }
 
         return $default;

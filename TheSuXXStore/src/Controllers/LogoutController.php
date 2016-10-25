@@ -9,7 +9,8 @@ class SuxxLogoutController implements SuxxController
 
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
-        unset($_SESSION['user']);
+        unset($session->session);
+        var_dump($session);
         session_destroy();
 
         header('Location: /', 302);

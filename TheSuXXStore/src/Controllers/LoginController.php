@@ -20,7 +20,10 @@ class SuxxLoginController implements SuxxController
 
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
+        //unset($session->session['error']);
+        $session->setValue('error', '');
         $check = false;
+
         $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $request, $session);
         $authenticationFormCommand->validateRequest();
 
@@ -31,12 +34,15 @@ class SuxxLoginController implements SuxxController
         }
 
         if (!$check) {
-            $response->products = $this->dataGateway->getAllProducts();
-            return new SuxxStaticView(__DIR__ . '/../../Pages/homepage.xhtml');
-            //return new SuxxStaticView(__DIR__ . '/../../Pages/loginfailed.xhtml');
+//            $response->products = $this->dataGateway->getAllProducts();
+//            return new SuxxStaticView(__DIR__ . '/../../Pages/homepage.xhtml');
+            return new SuxxStaticView(__DIR__ . '/../../Pages/loginfailed.xhtml');
         }
 
-        header('Location: /', 302);
+        session_regenerate_id();
+        $response->products = $this->dataGateway->getAllProducts();
+        return new SuxxStaticView(__DIR__ . '/../../Pages/homepage.xhtml');
+//        header('Location: /', 302);
     }
 
 }

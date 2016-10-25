@@ -23,7 +23,7 @@ class SuxxCommentTableDataGateway
                     :picture)'
             );
 
-            $stmt->bindParam(':pid', $row['pid'], PDO::PARAM_STR);
+            $stmt->bindParam(':pid', $row['pid'], PDO::PARAM_INT);
             $stmt->bindParam(':author', $row['author'], PDO::PARAM_STR);
             $stmt->bindParam(':comment', $row['comment'], PDO::PARAM_STR);
             $stmt->bindParam(':picture', $row['picture'], PDO::PARAM_STR);
