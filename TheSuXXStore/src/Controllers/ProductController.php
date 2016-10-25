@@ -20,6 +20,9 @@ class SuxxProductController implements SuxxController
 
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
+        if ($request->getValue('pid') === '') {
+            return new SuxxStaticView(__DIR__ . '/../../Pages/404errorview.xhtml');
+        }
         $response->product = $this->productDataGateway->findProductById($request->getValue('pid'));
         $response->comments = $this->commentDataGateway->findCommentsByPid($request->getValue('pid'));
 

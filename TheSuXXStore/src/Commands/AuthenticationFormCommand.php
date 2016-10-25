@@ -54,7 +54,7 @@ class SuxxAuthenticationFormCommand
             $_SESSION['message'] = 'Willkommen - Du bist eingeloggt!';
             return true;
         } else {
-            $_SESSION['message'] = 'Log-In fehlgeschlagen!';
+            $this->session->setValue('error', 'Log-In fehlgeschlagen!');
             return false;
         }
     }

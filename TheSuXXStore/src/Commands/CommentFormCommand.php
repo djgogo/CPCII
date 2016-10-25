@@ -71,7 +71,7 @@ class SuxxCommentFormCommand
         }
 
         if ($this->picture) {
-            $path = __DIR__ . '/../Images/Comments/' . $cid . '_' . $this->picture;
+            $path = __DIR__ . '/../../html/Images/Comments/' . $cid . '_' . $this->picture;
             move_uploaded_file($_FILES['picture']['tmp_name'], $path);
         }
     }
