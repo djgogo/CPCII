@@ -38,7 +38,7 @@ class SuxxLoginController implements SuxxController
 
         session_regenerate_id();
         $_SESSION = $session->getSessionData();
-        header('Location: /', 302);
+        $response->setRedirect('/');
     }
 
 }

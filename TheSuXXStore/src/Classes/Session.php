@@ -32,7 +32,10 @@ class SuxxSession
 
     public function getSessionData() : array
     {
-        return $this->session;
+        if ($this->session !== null) {
+            return $this->session;
+        }
+        return array();
     }
 
     public function isset($key) : bool

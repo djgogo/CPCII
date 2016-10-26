@@ -21,6 +21,11 @@ $factory  = new SuxxFactory($pdoFactory, $session);
 $controller = $factory->getRouter()->route($request);
 $view = $controller->execute($request, $session, $response);
 
-echo $view->render($request, $session, $response);
+if ($response->hasRedirect()) {
+    $_SESSION = $session->getSessionData();
+    header('Location: ' . $response->getRedirect(), 302);
+} else {
+    echo $view->render($request, $session, $response);
+    $_SESSION = $session->getSessionData();
+}
 
-$_SESSION = $session->getSessionData();

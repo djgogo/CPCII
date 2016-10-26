@@ -22,6 +22,11 @@ class SuxxResponse
      */
     public $comments;
 
+    /**
+     * @var string
+     */
+    private $redirect;
+
     public function __set($key, $value)
     {
         $this->data[$key] = $value;
@@ -38,6 +43,21 @@ class SuxxResponse
     public function __isset($key)
     {
         return isset($this->data[$key]);
+    }
+
+    public function setRedirect($path)
+    {
+        $this->redirect = $path;
+    }
+
+    public function getRedirect() : string
+    {
+        return $this->redirect;
+    }
+
+    public function hasRedirect() : bool
+    {
+        return isset($this->redirect);
     }
 
     private function escape($string) : string

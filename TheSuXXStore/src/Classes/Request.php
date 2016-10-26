@@ -27,7 +27,7 @@ class SuxxRequest
         $this->input = $request;
         $this->files = $files;
 
-        if ($this->isset('picture')) {
+        if ($this->hasFile('picture')) {
             $this->picture = $this->files['picture']['name'];
             $this->originalPath = $this->files['picture']['tmp_name'];
         } else {
@@ -40,7 +40,7 @@ class SuxxRequest
         return $_SERVER['REQUEST_URI'];
     }
 
-    public function isset($key) : bool
+    public function hasFile($key) : bool
     {
         return isset($this->files[$key]);
     }
