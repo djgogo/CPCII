@@ -14,7 +14,8 @@ $request = new SuxxRequest($_REQUEST, $_FILES);
 $session = new SuxxSession($_SESSION);
 $response = new SuxxResponse();
 
-$pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234');
+//$pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234');
+$pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore');
 $factory  = new SuxxFactory($pdoFactory, $session);
 
 $controller = $factory->getRouter()->route($request);
