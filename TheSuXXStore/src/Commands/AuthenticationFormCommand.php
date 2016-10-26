@@ -52,6 +52,7 @@ class SuxxAuthenticationFormCommand
     {
         if ($this->authenticator->authenticate($this->username, $this->passwd)) {
             $this->session->setValue('message', 'Willkommen - Du bist eingeloggt!');
+            $this->session->setValue('user', $this->username);
             return true;
         } else {
             $this->session->setValue('error', 'Log-In fehlgeschlagen!');

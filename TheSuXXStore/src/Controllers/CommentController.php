@@ -20,8 +20,6 @@ class SuxxCommentController implements SuxxController
 
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
-        unset($session->session['error']);
-
         $commentFormCommand = new SuxxCommentFormCommand($this->commentDataGateway, $request, $session, $this->backend);
         $commentFormCommand->validateRequest();
 
@@ -31,6 +29,7 @@ class SuxxCommentController implements SuxxController
             $commentFormCommand->performAction();
         }
 
+        $_SESSION = $session->getSessionData();
         header('Location: /suxx/product?pid=' . $request->getValue('product'), 302);
     }
 }

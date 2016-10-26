@@ -25,6 +25,11 @@ class SuxxSession
         return $default;
     }
 
+    public function deleteValue($key)
+    {
+        unset($this->session[$key]);
+    }
+
     public function getSessionData() : array
     {
         return $this->session;
@@ -38,12 +43,5 @@ class SuxxSession
     private function escape($string) : string
     {
         return htmlspecialchars($string, ENT_QUOTES);
-    }
-
-    public function commit()
-    {
-        var_dump($_SESSION);
-        var_dump($this->getSessionData());
-        $_SESSION = $this->getSessionData();
     }
 }

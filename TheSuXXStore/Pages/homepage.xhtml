@@ -13,6 +13,8 @@
        <?php
            $msg = $session->getValue('message');
            $error = $session->getValue('error');
+               $session->deleteValue('message');
+               $session->deleteValue('error');
            if ($msg) {echo '<p style="color:green;">'.$msg.'</p>';}
            if ($error) {echo '<p style="color:red;">'.$error.'</p>';}
         ?>

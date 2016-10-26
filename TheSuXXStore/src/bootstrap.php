@@ -22,4 +22,4 @@ $view = $controller->execute($request, $session, $response);
 
 echo $view->render($request, $session, $response);
 
-$session->commit();
+$_SESSION = $session->getSessionData();

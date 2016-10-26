@@ -47,7 +47,6 @@ class SuxxUserTableDataGateway
 
             if ($userRow !== false) {
                 if (password_verify($password, $userRow['passwd'])) {
-                    $_SESSION['user'] = $username;
                     //setcookie($username, 'logged in', time() + 60 * 60 * 24 * 31, '/');
                     return true;
                 } else {
