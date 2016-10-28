@@ -1,0 +1,6 @@
+Der erste Test wie bereits vorher erwähnt mit allen Werten auf True gibt exakt den Betrag wieder zurück welcher angegeben wird, da ++ und --
+immer wieder dasselbe Ergebnis ergibt.
+
+Der zweite Test gibt auch exakt den übergebenen Wert wieder zurück, da keine Veränderung stattfindet. Also keine Entscheidung aufgerufen wird.
+
+Aus diesem Grund laufen diese beiden Tests durch und ergeben eine 100% Branch-Coverage. 

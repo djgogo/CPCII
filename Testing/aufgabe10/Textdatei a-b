@@ -1,0 +1,42 @@
+Before:
+
+dev@psa /var/www/Exercises/Testing/aufgabe10 testing $ phpunit
+PHPUnit 5.6.1 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/Testing/aufgabe10/phpunit.xml
+
+E                                                                   1 / 1 (100%)
+
+Time: 153 ms, Memory: 12.00MB
+
+There was 1 error:
+
+1) ParticipantTest::testIdCanBeRetrieved
+Error: Call to undefined method Participant::getId()
+
+/var/www/Exercises/Testing/aufgabe10/tests/ParticipantTest.php:18
+
+ERRORS!
+Tests: 1, Assertions: 0, Errors: 1.
+
+
+
+After:
+
+dev@psa /var/www/Exercises/Testing/aufgabe10 testing $ phpunit
+PHPUnit 5.6.1 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/Testing/aufgabe10/phpunit.xml
+
+.                                                                   1 / 1 (100%)
+
+Time: 132 ms, Memory: 12.00MB
+
+OK (1 test, 1 assertion)
+
+Generating code coverage report in Clover XML format ... done
+
+Generating code coverage report in HTML format ... done
+

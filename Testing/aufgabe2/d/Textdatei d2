@@ -1,0 +1,6 @@
+Würde man die 9 Zeichen der Zeichenkette '...---...' als einzelne Buchstaben verarbeiten wären das 9 einzelne String-Variablen oder eine String Variable
+mit 17 Zeichen ('. . . - - - . . .') falls man sie mit einem Leerzeichen trennen würde.
+
+Dies hätte zur Folge dass der Vergleichsalgorithmus angepasst werden müsste. Da es hier aber immer nur um SOS geht wäre auch dieser Vergleich machbar. Würde
+man das gesamte Alphabet testen müssen, wäre das ganz klar eine kompliziertere Angelegenheit da einzelne Buchstaben im SOS, wie z.B. e oder t nur 1 Zeichen
+lang sind, wo andere wie eben das S drei Zeichen lang sind.

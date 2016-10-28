@@ -1,0 +1,40 @@
+Before:
+
+dev@psa /var/www/Exercises/Testing/aufgabe10 testing $ phpunit
+PHPUnit 5.6.1 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/Testing/aufgabe10/phpunit.xml
+
+...E                                                                4 / 4 (100%)
+
+Time: 149 ms, Memory: 12.00MB
+
+There was 1 error:
+
+1) SchoolingTest::testParticipantsGradeCanBeRetrievedById
+Error: Call to undefined method Schooling::getParticipantsGrade()
+
+/var/www/Exercises/Testing/aufgabe10/tests/SchoolingTest.php:36
+
+ERRORS!
+Tests: 4, Assertions: 3, Errors: 1.
+
+
+After:
+
+dev@psa /var/www/Exercises/Testing/aufgabe10 testing $ phpunit
+PHPUnit 5.6.1 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/Testing/aufgabe10/phpunit.xml
+
+.....                                                               5 / 5 (100%)
+
+Time: 202 ms, Memory: 12.00MB
+
+OK (5 tests, 5 assertions)
+
+Generating code coverage report in Clover XML format ... done
+
+Generating code coverage report in HTML format ... done

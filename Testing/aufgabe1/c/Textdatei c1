@@ -1,0 +1,2 @@
+Die Methode setIncrement sollte keine Negativen Zahlen zulassen. Der Name wäre cann schon falsch,
+sont müsste es setDecrease heissen. Wenn Increment dann nur aufwärts.

@@ -1,0 +1,14 @@
+$bar sollte kein Mock sein wenn man das Objekt als Zusicherung wählt und die Art wie der Mock erstellt wird ist falsch.
+hier die korrigierte Variante:
+
+        $bar = new Bar();
+
+        $foo = $this->getMockBuilder(foo::class)
+                     ->setMethods(['operation'])
+                     ->getMock();
+
+        $foo->expects($this->once())
+             ->method('operation')
+             ->with($this->identicalTo($bar));
+
+        $foo->operation($bar);

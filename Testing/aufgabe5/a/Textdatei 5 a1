@@ -1,0 +1,14 @@
+Der erste Test mit allen Werten auf True gibt exakt den Betrag wieder zurück welcher angegeben wird, da ++ und --
+immer wieder dasselbe Ergebnis zurückliefert.
+
+Verändert man einen der Parameter zu False wird der Test fehlschlagen. Hier wären einige Tests mehr angebracht. Nähmlich
+je einen Test für jede mögliche Variante (6 Verzweigungen):
+
+false, false, false
+true, false, false
+true, true, false
+true, true, true
+false, true, true
+false, false, true
+
+
