@@ -7,21 +7,6 @@ class Recognizer
      */
     private $knownMessages;
 
-    /**
-     * @var array
-     */
-    private $similarMessages = [
-        '-..---...',
-        '.-.---...',
-        '..----...',
-        '....--...',
-        '...-.-...',
-        '...--....',
-        '...----..',
-        '...---.-.',
-        '...---..-'
-    ];
-
     public function addKnownMessage(string $msg, Message $message)
     {
         $this->knownMessages[$msg] = $message;
@@ -29,7 +14,7 @@ class Recognizer
 
     public function recognize(Message $message)
     {
-        if (!in_array($message, $this->knownMessages) && !in_array($message, $this->similarMessages)) {
+        if (!in_array($message, $this->knownMessages) && similar_text('...---...', $message) <= 7) {
             return false;
         }
 

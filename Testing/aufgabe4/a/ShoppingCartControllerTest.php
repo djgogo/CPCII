@@ -58,7 +58,7 @@ class ShoppingCartControllerTest extends \PHPUnit_Framework_TestCase
     public function testShoppingCartCanBeExecuted()
     {
         $items = [];
-        $customerId = '';
+        $customerId = 99;
 
         $this->request->expects($this->once())
             ->method('get')
@@ -67,7 +67,7 @@ class ShoppingCartControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->repository->expects($this->once())
             ->method('getCartByCustomerId')
-            ->with(null)
+            ->with($customerId)
             ->willReturn($this->cart);
 
         $this->response->expects($this->exactly(2))

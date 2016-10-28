@@ -3,23 +3,18 @@
 class LegacyController
 {
     /**
-     * @var PDO
+     * @var LegacyGateway
      */
-    private $db;
+    private $gateway;
 
-    public function __construct(PDO $db)
+    public function __construct(LegacyGateway $gateway)
     {
-        $this->db = $db;
+        $this->gateway = $gateway;
     }
 
     public function performAction(int $userId)
     {
-        $statement = $this->db->prepare('SELECT * FROM users WHERE id=:user;');
-        $statement->bindValue(':user', $userId, PDO::PARAM_INT);
-        $statement->execute();
-
-        $record = $statement->fetch(PDO::FETCH_ASSOC);
-
+        $user = $this->gateway->findUserById($userId);
         // ...
 
         print 'something';

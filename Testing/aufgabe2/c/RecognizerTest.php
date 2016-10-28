@@ -28,14 +28,20 @@ class RecognizerTest extends \PHPUnit_Framework_TestCase
 
     public function testWrongMessageCanNotBeRecognized()
     {
-        $wrongSos = new Message('.-......-.');
+        $wrongSos = new Message('.-.....-.');
         $this->assertFalse($this->recognizer->recognize($wrongSos));
     }
 
-    public function testHustledMessageCanBeRecognized()
+    public function testOnlyOneWrongCharacterCanBeRecognized()
     {
-        $hustledSos = new Message('.-.---...');
-        $this->assertEquals('SOS', $this->recognizer->recognize($hustledSos));
+        $oneWrongCharacterMessage = new Message('.-.---...');
+        $this->assertEquals('SOS', $this->recognizer->recognize($oneWrongCharacterMessage));
+    }
+
+    public function testTwoWrongCharacterCanNotBeRecognized()
+    {
+        $twoWrongCharacterMessage = new Message('.-..--...');
+        $this->assertFalse($this->recognizer->recognize($twoWrongCharacterMessage));
     }
 }
 
