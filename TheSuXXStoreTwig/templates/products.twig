@@ -1,0 +1,9 @@
+<h2>Products</h2>
+
+<div class="row">
+    {% for product in response->products %}
+        <div class="span4">
+            <h2>{{ product }}</h2>
+        </div>
+    {% endfor %}
+</div>

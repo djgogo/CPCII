@@ -14,6 +14,6 @@ class SuxxHomeController implements SuxxController
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
         $response->products = $this->dataGateway->getAllProducts();
-        return new SuxxStaticView(__DIR__ . '/../../Pages/homepage.xhtml');
+        return 'base.twig';
     }
 }
