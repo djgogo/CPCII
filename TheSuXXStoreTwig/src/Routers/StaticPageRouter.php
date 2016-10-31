@@ -3,7 +3,7 @@
 class SuxxStaticPageRouter
 {
     /**
-     * @var Factory
+     * @var SuxxFactory
      */
     private $factory;
 
@@ -20,8 +20,13 @@ class SuxxStaticPageRouter
         switch ($path) {
             case '/':
                 return $this->factory->getHomeController();
+            case '/modallogin':
+                return $this->factory->getLoginModalController();
             case '/suxx/product':
+                $request->setParam('productDetail', 1);
                 return $this->factory->getProductController();
+            case '/suxx/logout':
+                return $this->factory->getLogoutController();
             default:
                 return $this->factory->get404Controller();
         }

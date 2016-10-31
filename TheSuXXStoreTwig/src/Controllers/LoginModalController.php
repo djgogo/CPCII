@@ -1,9 +1,9 @@
 <?php
 
-class Suxx404Controller implements SuxxController
+class SuxxLoginModalController implements SuxxController
 {
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
-        return '404errorview.twig';
+        return 'login.twig';
     }
 }

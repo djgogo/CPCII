@@ -1,16 +1,26 @@
 {% block content %}
-    <div id="header">
-        <h1>SuXX :: SUperstore - the eXclusive eXperience</h1>
-    </div>
+
 <!-- Main component for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work.
-            It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>
-                <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
+    <div id="header" class="jumbotron">
+        <h1>SuXX :: SUperstore</h1>
+        <p>the eXclusive eXperience</p>
     </div>
 
-    {{ include('products.twig') }}
+    {% if session.getValue('message') %}
+        <p class="bg-success">{{ session.getValue('message') }}</p>
+    {% endif %}
+
+    {% if session.getValue('error') %}
+        <p class="bg-danger">{{ session.getValue('error') }}</p>
+    {% endif %}
+
+    {{ session.deleteValue('message') }}
+    {{ session.deleteValue('error') }}
+
+    {% if request.getValue('productDetail') != 1 %}
+        {{ include('products.twig') }}
+    {% else %}
+        {{ include('product.twig') }}
+    {% endif %}
+
 {% endblock %}

@@ -21,12 +21,13 @@ class SuxxProductController implements SuxxController
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
         if ($request->getValue('pid') === '') {
-            return new SuxxStaticView(__DIR__ . '/../../Pages/404errorview.xhtml');
+            return '404errorview.twig';
         }
         $response->product = $this->productDataGateway->findProductById($request->getValue('pid'));
         $response->comments = $this->commentDataGateway->findCommentsByPid($request->getValue('pid'));
 
-        return new SuxxStaticView(__DIR__ . '/../../Pages/product.xhtml');
+        //TODO --> did it via base.twig!!!! change it to product.twig -> home.twig korrigieren ohne pagedetail flag!!!!
+        return 'base.twig';
     }
 
 }

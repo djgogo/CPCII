@@ -53,6 +53,11 @@ class SuxxFactory
         return new SuxxRegisterController($this->getProductTableGateway(), $registrator);
     }
 
+    public function getLoginModalController() : SuxxLoginModalController
+    {
+        return new SuxxLoginModalController();
+    }
+
     public function getLoginController() : SuxxLoginController
     {
         $authenticator = new SuxxAuthenticator($this->getUserTableGateway());
@@ -61,7 +66,7 @@ class SuxxFactory
 
     public function getLogoutController() : SuxxLogoutController
     {
-        return new SuxxLogoutController($this->getProductTableGateway());
+        return new SuxxLogoutController();
     }
 
     public function getProductController() : SuxxProductController

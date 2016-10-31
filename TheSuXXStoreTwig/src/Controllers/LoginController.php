@@ -32,8 +32,7 @@ class SuxxLoginController implements SuxxController
         }
 
         if (!$check) {
-            $response->products = $this->dataGateway->getAllProducts();
-            return new SuxxStaticView(__DIR__ . '/../../Pages/homepage.xhtml');
+            return 'login.twig';
         }
 
         session_regenerate_id();

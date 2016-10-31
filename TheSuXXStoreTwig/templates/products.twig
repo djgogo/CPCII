@@ -1,9 +1,23 @@
 <h2>Products</h2>
 
-<div class="row">
-    {% for product in response->products %}
-        <div class="span4">
-            <h2>{{ product }}</h2>
-        </div>
+<table class="table table-striped">
+    <thead>
+    <tr><th></th>
+        <th>Product-Id</th>
+        <th>Product</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for product in response.products %}
+    <tr><td><img src="../Images/Products/Small/{{ product.PID }}_small_{{ product.IMG }}" /></td>
+        <td>{{ product.PID }}</td>
+        <td><a href="/suxx/product?pid={{ product.PID }}">{{ product.LABEL }}</a></td>
+        <td>{{ product.PRICE }}</td>
+    </tr>
     {% endfor %}
-</div>
+    </tbody>
+</table>
+
+
+

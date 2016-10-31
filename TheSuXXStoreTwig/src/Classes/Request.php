@@ -60,6 +60,11 @@ class SuxxRequest
         $this->params = $params;
     }
 
+    public function setParam($key, $value)
+    {
+        $this->params[$key] = $value;
+    }
+
     public function getValue($key, $default = null)
     {
         if (isset($this->input[$key])) {

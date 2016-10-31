@@ -32,8 +32,6 @@ class SuxxPostRequestRouter
                 return $this->factory->getLoginController();
             case '/suxx/register':
                 return $this->factory->getRegisterController();
-            case '/suxx/logout':
-                return $this->factory->getLogoutController();
             case '/suxx/comment':
                 return $this->factory->getCommentController();
             default:

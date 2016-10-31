@@ -28,8 +28,7 @@ if ($response->hasRedirect()) {
     $_SESSION = $session->getSessionData();
     header('Location: ' . $response->getRedirect(), 302);
 } else {
-    //echo $view->render($request, $session, $response);
-    echo $twig->render($view, array($request, $session, $response));
+    echo $twig->render($view, array('request' => $request, 'session' => $session, 'response' => $response));
     $_SESSION = $session->getSessionData();
 }
 
