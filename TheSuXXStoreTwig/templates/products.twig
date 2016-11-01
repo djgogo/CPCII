@@ -10,7 +10,7 @@
     </thead>
     <tbody>
     {% for product in response.products %}
-    <tr><td><img src="../Images/Products/Small/{{ product.PID }}_small_{{ product.IMG }}" /></td>
+    <tr><td><img src="../images/Products/Small/{{ product.PID }}_small_{{ product.IMG }}" /></td>
         <td>{{ product.PID }}</td>
         <td><a href="/suxx/product?pid={{ product.PID }}">{{ product.LABEL }}</a></td>
         <td>{{ product.PRICE }}</td>

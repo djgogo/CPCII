@@ -79,7 +79,7 @@ class SuxxCommentFormCommand
         }
 
         if ($this->picture) {
-            $targetPath = __DIR__ . '/../../html/Images/Comments/' . $cid . '_' . $this->picture;
+            $targetPath = __DIR__ . '/../../html/images/Comments/' . $cid . '_' . $this->picture;
             $originalPath = $this->request->getFilePath();
             $this->backend->moveUploadedFileTo($originalPath, $targetPath);
         }

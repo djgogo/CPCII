@@ -1,6 +1,6 @@
 <?php
 
-class SuxxRegisterModalController implements SuxxController
+class SuxxRegisterViewController implements SuxxController
 {
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {

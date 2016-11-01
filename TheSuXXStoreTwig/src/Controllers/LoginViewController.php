@@ -1,6 +1,6 @@
 <?php
 
-class SuxxLoginModalController implements SuxxController
+class SuxxLoginViewController implements SuxxController
 {
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {

@@ -20,10 +20,10 @@ class SuxxStaticPageRouter
         switch ($path) {
             case '/':
                 return $this->factory->getHomeController();
-            case '/modallogin':
-                return $this->factory->getLoginModalController();
-            case '/modalregister':
-                return $this->factory->getRegisterModalController();
+            case '/loginview':
+                return $this->factory->getLoginViewController();
+            case '/registerview':
+                return $this->factory->getRegisterViewController();
             case '/suxx/product':
                 return $this->factory->getProductController();
             case '/suxx/logout':

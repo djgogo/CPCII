@@ -47,9 +47,9 @@ class SuxxFactory
         return new SuxxHomeController($this->getProductTableGateway());
     }
 
-    public function getRegisterModalController() : SuxxRegisterModalController
+    public function getRegisterViewController() : SuxxRegisterViewController
     {
-        return new SuxxRegisterModalController();
+        return new SuxxRegisterViewController();
     }
 
     public function getRegisterController() : SuxxRegisterController
@@ -58,9 +58,9 @@ class SuxxFactory
         return new SuxxRegisterController($this->getProductTableGateway(), $registrator);
     }
 
-    public function getLoginModalController() : SuxxLoginModalController
+    public function getLoginViewController() : SuxxLoginViewController
     {
-        return new SuxxLoginModalController();
+        return new SuxxLoginViewController();
     }
 
     public function getLoginController() : SuxxLoginController
