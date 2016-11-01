@@ -47,6 +47,11 @@ class SuxxFactory
         return new SuxxHomeController($this->getProductTableGateway());
     }
 
+    public function getRegisterModalController() : SuxxRegisterModalController
+    {
+        return new SuxxRegisterModalController();
+    }
+
     public function getRegisterController() : SuxxRegisterController
     {
         $registrator = new SuxxRegistrator($this->getUserTableGateway());

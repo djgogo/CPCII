@@ -26,8 +26,7 @@ class SuxxProductController implements SuxxController
         $response->product = $this->productDataGateway->findProductById($request->getValue('pid'));
         $response->comments = $this->commentDataGateway->findCommentsByPid($request->getValue('pid'));
 
-        //TODO --> did it via base.twig!!!! change it to product.twig -> home.twig korrigieren ohne pagedetail flag!!!!
-        return 'base.twig';
+        return 'product.twig';
     }
 
 }

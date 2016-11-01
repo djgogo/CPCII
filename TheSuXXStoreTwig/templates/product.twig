@@ -1,41 +1,36 @@
-<span><img src="../Images/Products/{{ response.product.PID }}_{{ response.product.IMG }}" /></span>
+{% extends "base.twig" %}
 
-<h2>Product No {{ response.product.PID }} - {{ response.product.LABEL }}</h2>
-<h3>for only <span class="label label-success">US$ {{ response.product.PRICE }}</span></h3>
+{% block content %}
 
-{% if session.getValue('message') %}
-    <p class="bg-success">{{ session.getValue('message') }}</p>
-{% endif %}
+    {{ include('navbar.twig') }}
 
-{% if session.getValue('error') %}
-    <p class="bg-danger">{{ session.getValue('error') }}</p>
-{% endif %}
+    <span><img src="../Images/Products/{{ response.product.PID }}_{{ response.product.IMG }}" /></span>
 
-{{ session.deleteValue('message') }}
-{{ session.deleteValue('error') }}
+    <h2>Product No {{ response.product.PID }} - {{ response.product.LABEL }}</h2>
+    <h3>for only <span class="label label-success">US$ {{ response.product.PRICE }}</span></h3>
 
-{{ include('comments.twig') }}
+    {{ include('error.twig') }}
+    {{ include('comments.twig') }}
 
-{% if session.getValue('user') %}
+    {% if session.getValue('user') %}
+        <h4>Add a comment?</h4>
+        <form enctype="multipart/form-data" method="post" action="/suxx/comment">
 
-    <h4>Add a comment?</h4>
-    <form class="form-horizontal" enctype="multipart/form-data" method="post" action="/suxx/comment">
-        <div class="form-group">
             <input type="hidden" name="csrf" value="{{ session.getValue('token') }}">
             <input type="hidden" name="product" value="{{ response.product.PID }}">
-        </div>
-        <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputFile">Add a Photo?</label>
-            <input type="file" id="exampleInputFile" name="picture">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
 
-{% else %}
-    <h4><span class="label label-info">Login to leave a comment.</span></h4>
-{% endif %}
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">Add a Photo?</label>
+                <input type="file" id="exampleInputFile" name="picture">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    {% else %}
+        <h4><span class="label label-info">Login to leave a comment.</span></h4>
+    {% endif %}
 
+{% endblock %}

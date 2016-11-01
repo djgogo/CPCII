@@ -12,14 +12,14 @@
 
     {% for comment in response.comments %}
     <tr>
+        <td>{{ comment.AUTHOR }} said:</td>
+        <td>{{ comment.COMMENT }}</td>
+
         {% if comment.PICTURE != '' %}
             <td><img src="../Images/Comments/{{ comment.CID }}_{{ comment.PICTURE }}" /></td>
         {% else %}
             <td></td>
         {% endif %}
-
-        <td>{{ comment.AUTHOR }} said:</td>
-        <td>{{ comment.COMMENT }}</td>
     </tr>
     {% endfor %}
 

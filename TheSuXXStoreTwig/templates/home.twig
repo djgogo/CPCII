@@ -1,26 +1,11 @@
 {% block content %}
 
-<!-- Main component for a primary marketing message or call to action -->
     <div id="header" class="jumbotron">
         <h1>SuXX :: SUperstore</h1>
         <p>the eXclusive eXperience</p>
     </div>
 
-    {% if session.getValue('message') %}
-        <p class="bg-success">{{ session.getValue('message') }}</p>
-    {% endif %}
-
-    {% if session.getValue('error') %}
-        <p class="bg-danger">{{ session.getValue('error') }}</p>
-    {% endif %}
-
-    {{ session.deleteValue('message') }}
-    {{ session.deleteValue('error') }}
-
-    {% if request.getValue('productDetail') != 1 %}
-        {{ include('products.twig') }}
-    {% else %}
-        {{ include('product.twig') }}
-    {% endif %}
+    {{ include('error.twig') }}
+    {{ include('products.twig') }}
 
 {% endblock %}

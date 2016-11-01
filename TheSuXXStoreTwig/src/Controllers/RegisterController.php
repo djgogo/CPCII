@@ -25,11 +25,12 @@ class SuxxRegisterController implements SuxxController
 
         if ($registrationFormCommand->hasErrors()) {
             // TODO $registrationFormCommand->repopulateform();
+            return 'register.twig';
         } else {
             $registrationFormCommand->performAction();
         }
 
         $response->products = $this->dataGateway->getAllProducts();
-        return new SuxxStaticView(__DIR__ . '/../../Pages/homepage.xhtml');
+        return 'base.twig';
     }
 }

@@ -1,0 +1,11 @@
+{% block error %}
+    {# Error Handling #}
+    {% if session.getValue('message') %}
+        <p class="bg-success">{{ session.getValue('message') }}</p>
+    {% endif %}
+    {% if session.getValue('error') %}
+        <p class="bg-danger">{{ session.getValue('error') }}</p>
+    {% endif %}
+    {{ session.deleteValue('message') }}
+    {{ session.deleteValue('error') }}
+{% endblock %}

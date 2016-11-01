@@ -22,8 +22,9 @@ class SuxxStaticPageRouter
                 return $this->factory->getHomeController();
             case '/modallogin':
                 return $this->factory->getLoginModalController();
+            case '/modalregister':
+                return $this->factory->getRegisterModalController();
             case '/suxx/product':
-                $request->setParam('productDetail', 1);
                 return $this->factory->getProductController();
             case '/suxx/logout':
                 return $this->factory->getLogoutController();

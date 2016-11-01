@@ -1,35 +1,60 @@
 {% extends "base.twig" %}
 
 {% block stylesheets %}
-  <!-- Custom styles for this template -->
-  <link href="../html/css/signin.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="../html/css/login.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
 
-    {% if session.getValue('message') %}
-        <p class="bg-success">{{ session.getValue('message') }}</p>
-    {% endif %}
+    {{ include('error.twig') }}
 
-    {% if session.getValue('error') %}
-        <p class="bg-danger">{{ session.getValue('error') }}</p>
-    {% endif %}
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h2 class="title">Sign In</h2>
+                    <hr />
+                </div>
+            </div>
 
-    {{ session.deleteValue('message') }}
-    {{ session.deleteValue('error') }}
+            <div class="main-login main-center">
 
-    <form class="form-signin" action="/suxx/login" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
+                <form class="form-horizontal" action="/suxx/login" method="post">
 
-        <input type="hidden" name="csrf" value="{{ session.getValue('token') }}">
+                    <input type="hidden" name="csrf" value="{{ session.getValue('token') }}">
 
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Username" required autofocus>
+                    <div class="form-group">
+                        <label for="username" class="col-sm-2 control-label">Username</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+                            </div>
+                        </div>
+                    </div>
 
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" name="passwd" placeholder="Password" required>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="passwd" id="password"  placeholder="Enter your Password"/>
+                            </div>
+                        </div>
+                    </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-2">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Sign in</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <a href="../modalregister">Register</a>
+                    </div>
+                </form>
+            </div>
+        </div>
 
 {% endblock %}

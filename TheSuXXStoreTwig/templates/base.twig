@@ -9,8 +9,6 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="TheSuXXStore App">
         <meta name="author" content="Peter Sacco">
-        <!-- Custom styles -->
-        {% block stylesheets %}{% endblock %}
 
         <title>{% block title %}SuXX :: SUperstore - the eXclusive eXperience - Homepage{% endblock %}</title>
 
@@ -23,7 +21,11 @@
                 integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
                 crossorigin="anonymous"></script>
 
+        <!-- Custom styles -->
+        {% block stylesheets %}{% endblock %}
+
     {% endblock %}
+
 </head>
 
 <body>
@@ -36,6 +38,7 @@
 
     <div id="footer">
         {% block footer %}
+            <hr />
             &copy; Copyright 2016 by <a
                 href="http://TheSuXXStore/">you</a>.
         {% endblock %}
