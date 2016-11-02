@@ -3,7 +3,6 @@
 {% block stylesheets %}
   <!-- Custom styles for this template -->
   <link href="/css/login.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
@@ -22,47 +21,70 @@
 
             <form class="form-horizontal" action="/suxx/register" method="post">
 
+                {# CSRF Protection Token #}
                 <input type="hidden" name="csrf" value="{{ session.getValue('token') }}">
 
-                <div class="form-group">
+                <div class="form-group {% if session.getValue('error').username %}has-error{% endif %}">
                     <label for="username" class="sr-only">Username</label>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 inputGroupContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" class="form-control" id="username" name="username"
+                                   value="{{ session.getValue('register_username')}}" placeholder="Enter your Username">
                         </div>
+                        {% if session.getValue('error').username %}
+                            <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').username }}</small></span>
+                        {% endif %}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {% if session.getValue('error').password %}has-error{% endif %}">
                     <label for="password" class="sr-only">Password</label>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 inputGroupContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="passwd" id="password"  placeholder="Enter your Password"/>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" class="form-control" name="passwd" id="password"
+                                   value="{{ session.getValue('register_passwd')}}" placeholder="Enter your Password"/>
                         </div>
+                        {% if session.getValue('error').password %}
+                            <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').password }}</small></span>
+                        {% endif %}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {% if session.getValue('error').name %}has-error{% endif %}">
                     <label for="name" class="sr-only">Your Name</label>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 inputGroupContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" class="form-control" name="name" id="name"
+                                   value="{{ session.getValue('register_name')}}" placeholder="Enter your Name"/>
                         </div>
+                        {% if session.getValue('error').name %}
+                            <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').name }}</small></span>
+                        {% endif %}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {% if session.getValue('error').email %}has-error{% endif %}">
                     <label for="email" class="sr-only">Your Email</label>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 inputGroupContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-inbox"></i></span>
+                            <input type="text" class="form-control" name="email" id="email"
+                                   value="{{ session.getValue('register_email')}}" placeholder="Enter your Email"/>
                         </div>
+                        {% if session.getValue('error').email %}
+                            <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').email }}</small></span>
+                        {% endif %}
                     </div>
                 </div>
+
+                {{ session.deleteValue('error') }}
+                {{ session.deleteValue('register_username') }}
+                {{ session.deleteValue('register_passwd') }}
+                {{ session.deleteValue('register_name') }}
+                {{ session.deleteValue('register_email') }}
 
                 <div class="form-group">
                     <div class="col-sm-12">

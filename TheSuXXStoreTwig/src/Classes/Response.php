@@ -27,12 +27,12 @@ class SuxxResponse
      */
     private $redirect;
 
-    public function __set($key, $value)
+    public function setValue($key, $value)
     {
         $this->data[$key] = $value;
     }
 
-    public function __get($key)
+    public function getValue($key)
     {
         if (!isset($this->data[$key])) {
             throw new SuxxResponseException("Key '$key' does not exist");
@@ -40,7 +40,7 @@ class SuxxResponse
         return $this->escape($this->data[$key]);
     }
 
-    public function __isset($key)
+    public function isset($key)
     {
         return isset($this->data[$key]);
     }

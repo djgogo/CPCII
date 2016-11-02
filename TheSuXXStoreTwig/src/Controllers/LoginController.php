@@ -22,11 +22,15 @@ class SuxxLoginController implements SuxxController
     {
         $check = false;
 
-        $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $request, $session);
+        $loginFormError = [
+            'username' => '',
+            'password' => ''
+        ];
+        $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $request, $session, $loginFormError);
         $authenticationFormCommand->validateRequest();
 
         if ($authenticationFormCommand->hasErrors()) {
-            // TODO $registrationFormCommand->repopulateform();
+            $authenticationFormCommand->repopulateForm();
         } else {
             $check = $authenticationFormCommand->performAction();
         }

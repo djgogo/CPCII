@@ -5,11 +5,11 @@
             <p class="bg-success">{{ session.getValue('message') }}</p>
         </div>
     {% endif %}
-    {% if session.getValue('error') %}
+    {% if session.getValue('warning') %}
         <div class="alert alert-danger">
-            <p class="bg-danger">{{ session.getValue('error') }}</p>
+            <p class="bg-danger">{{ session.getValue('warning') }}</p>
         </div>
     {% endif %}
     {{ session.deleteValue('message') }}
-    {{ session.deleteValue('error') }}
+    {{ session.deleteValue('warning') }}
 {% endblock %}

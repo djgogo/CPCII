@@ -18,6 +18,11 @@ class SuxxAuthenticationFormCommand
     private $authenticator;
 
     /**
+     * @var array
+     */
+    private $error;
+
+    /**
      * @var string
      */
     private $username;
@@ -27,11 +32,12 @@ class SuxxAuthenticationFormCommand
      */
     private $passwd;
 
-    public function __construct(SuxxAuthenticator $authenticator, SuxxRequest $request, SuxxSession $session)
+    public function __construct(SuxxAuthenticator $authenticator, SuxxRequest $request, SuxxSession $session, array $error)
     {
         $this->request = $request;
         $this->session = $session;
         $this->authenticator = $authenticator;
+        $this->error = $error;
 
         $this->username = $request->getValue('username');
         $this->passwd = $request->getValue('passwd');
@@ -40,11 +46,13 @@ class SuxxAuthenticationFormCommand
     public function validateRequest()
     {
         if ($this->username === '') {
-            $this->session->setValue('error', 'Bitte geben Sie einen Usernamen ein');
+            $this->error['username'] = 'Bitte geben Sie einen Usernamen ein';
+            $this->session->setValue('error', $this->error);
         }
 
         if ($this->passwd === '') {
-            $this->session->setValue('error', 'Bitte geben Sie ein Passwort ein');
+            $this->error['password'] = 'Bitte geben Sie ein Passwort ein';
+            $this->session->setValue('error', $this->error);
         }
     }
 
@@ -55,7 +63,7 @@ class SuxxAuthenticationFormCommand
             $this->session->setValue('user', $this->username);
             return true;
         } else {
-            $this->session->setValue('error', 'Log-In fehlgeschlagen!');
+            $this->session->setValue('warning', 'Log-In fehlgeschlagen!');
             return false;
         }
     }
@@ -66,6 +74,17 @@ class SuxxAuthenticationFormCommand
             return true;
         }
         return false;
+    }
+
+    public function repopulateForm()
+    {
+        if ($this->username !== '') {
+            $this->session->setValue('login_username', $this->username);
+        }
+
+        if ($this->passwd !== '') {
+            $this->session->setValue('login_passwd', $this->passwd);
+        }
     }
 }
 

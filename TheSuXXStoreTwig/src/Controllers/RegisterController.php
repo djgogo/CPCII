@@ -20,11 +20,17 @@ class SuxxRegisterController implements SuxxController
 
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
-        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $request, $session);
+        $registerFormError = [
+            'username' => '',
+            'password' => '',
+            'name' => '',
+            'email' => ''
+        ];
+        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $request, $session, $registerFormError);
         $registrationFormCommand->validateRequest();
 
         if ($registrationFormCommand->hasErrors()) {
-            // TODO $registrationFormCommand->repopulateform();
+            $registrationFormCommand->repopulateForm();
             return 'register.twig';
         } else {
             $registrationFormCommand->performAction();
