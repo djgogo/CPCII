@@ -10,12 +10,6 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Datenbank: `suxx`
 --
@@ -34,14 +28,14 @@ CREATE TABLE `comments` (
   `AUTHOR` varchar(200) NOT NULL,
   `COMMENT` text NOT NULL,
   `PICTURE` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `comments`
 --
 
 INSERT INTO `comments` (`CID`, `PID`, `AUTHOR`, `COMMENT`, `PICTURE`) VALUES
-(2, 1, 'gogo', 'This is my absolutely most favourite Headphone ever :-)', ''),
+(1, 1, 'gogo', 'This is my absolutely most favourite Headphone ever :-)', ''),
 (8, 1, 'gogo', 'one more time', 'smiley.jpg'),
 (9, 1, 'test', 'test comment Bla Bla Bla!\r\nBla Bla Bla\r\nTest Test Test', ''),
 (10, 2, 'gogo', 'amazinggreatsupercoolfabulous... :-)', ''),
@@ -58,7 +52,14 @@ CREATE TABLE `products` (
   `PID` int(10) NOT NULL,
   `LABEL` varchar(200) NOT NULL,
   `IMG` varchar(200) NOT NULL,
-  `PRICE` int(11) NOT NULL
+  `PRICE` int(11) NOT NULL,
+  --
+  -- automatic initializing and updating for more than one timestamp field is not possible before MySQL 5.6.5 !!!!
+  --
+  -- `CREATED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  -- `UPDATED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `CREATED` DATETIME NOT NULL,
+  `UPDATED` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -91,13 +92,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`UID`, `USERNAME`, `PASSWD`, `EMAIL`, `NAME`, `DESCR`, `PICTURE`, `CREATED`) VALUES
-(10, 'petersacco', '$2y$10$H81dsPPsAbkT10oShO5AruHZsobbzAL5c7urFXg1dBZEzvSXPWGfi', 'peter@sacco.ch', 'Peter Sacco', 'pwd 1234', '', '2016-10-21 10:53:42'),
-(11, 'gogo', '$2y$10$2SR0l.bZHmDEU/Flhr8gxeSFDlryH3WuLYw73dqIXoegXl/Qj0T9O', 'gogo@musiq.ch', 'Gogo', 'pwd 123456', '', '2016-10-21 15:05:50'),
-(12, 'test', '$2y$10$SdxetgoS9CyCdcjq8RTY4Owiz0BoaT57YV7QkbKlizAdDWXyZttim', 'test@muster.ch', 'Test Muster', 'pwd 123456', '', '2016-10-24 08:05:09');
-
---
--- Indizes der exportierten Tabellen
---
+(1, 'petersacco', '$2y$10$H81dsPPsAbkT10oShO5AruHZsobbzAL5c7urFXg1dBZEzvSXPWGfi', 'peter@sacco.ch', 'Peter Sacco', 'pwd 1234', '', '2016-10-21 10:53:42'),
+(2, 'gogo', '$2y$10$2SR0l.bZHmDEU/Flhr8gxeSFDlryH3WuLYw73dqIXoegXl/Qj0T9O', 'gogo@musiq.ch', 'Gogo', 'pwd 123456', '', '2016-10-21 15:05:50'),
+(3, 'test', '$2y$10$SdxetgoS9CyCdcjq8RTY4Owiz0BoaT57YV7QkbKlizAdDWXyZttim', 'test@muster.ch', 'Test Muster', 'pwd 123456', '', '2016-10-24 08:05:09');
 
 --
 -- Indizes für die Tabelle `comments`
@@ -120,24 +117,19 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `USERNAME` (`USERNAME`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
---
-
---
 -- AUTO_INCREMENT für Tabelle `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `CID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `CID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT für Tabelle `products`
 --
 ALTER TABLE `products`
-  MODIFY `PID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
