@@ -1,11 +1,31 @@
+<script type="text/javascript" charset="utf-8">
+    $('#edit').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+
+        var label = button.data('label'); // Extract info from data-* attributes
+        var price = button.data('price'); // Extract info from data-* attributes
+
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this);
+        modal.find('.modal-title').text('You are changing Article: ' + label);
+        modal.find('.modal-body input').val(label);
+        modal.find('.modal-body input').val(price);
+        console.log(label);
+    })
+</script>
+
+
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+                <div class="modal-title"></div>
             </div>
+
+
 
             <form method="post" action="/suxx/updateproduct">
 
