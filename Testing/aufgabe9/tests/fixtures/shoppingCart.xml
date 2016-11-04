@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<database name="test">
+  <table_data name="shoppingCart">
+		<row>
+			<field name="id">413D403A-AB83-9238-FEDB-7111300010C3</field>
+			<field name="cart">O:12:"ShoppingCart":2:{s:16:"\000ShoppingCart\000id";O:4:"UUID":1:{s:10:"\000UUID\000uuid";s:36:"413D403A-AB83-9238-FEDB-7111300010C3";}s:19:"\000ShoppingCart\000items";N;}</field>
+		</row>
+		<row>
+			<field name="id">093DA408-31A5-05AD-E227-8C81BED14A58</field>
+			<field name="cart">O:12:"ShoppingCart":2:{s:16:"\000ShoppingCart\000id";O:4:"UUID":1:{s:10:"\000UUID\000uuid";s:36:"093DA408-31A5-05AD-E227-8C81BED14A58";}s:19:"\000ShoppingCart\000items";N;}</field>
+		</row>
+	</table_data>
+</database>
+</mysqldump>

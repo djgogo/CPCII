@@ -1,0 +1,28 @@
+dev@psa /var/www/Exercises/Testing/aufgabe5 testing $ phpunit
+PHPUnit 5.4.6 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/Testing/aufgabe5/phpunit.xml
+
+.FF.                                                                4 / 4 (100%)
+
+Time: 180 ms, Memory: 12.00MB
+
+There were 2 failures:
+
+1) ExampleTest::testReturnInputPath2
+Failed asserting that 3 matches expected 2.
+
+/var/www/Exercises/Testing/aufgabe5/c/ExampleTest.php:14
+
+2) ExampleTest::testReturnInputPath3
+Failed asserting that 1 matches expected 2.
+
+/var/www/Exercises/Testing/aufgabe5/c/ExampleTest.php:20
+
+FAILURES!
+Tests: 4, Assertions: 4, Failures: 2.
+
+Generating code coverage report in Clover XML format ... done
+
+Generating code coverage report in HTML format ... done

@@ -1,0 +1,64 @@
+{% block stylesheets %}
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#products').DataTable();
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+
+            $(".btn-primary").on("click", function(){
+                $("#edit").modal("show");
+                $("#label").val($(this).closest('tr').children()[2].textContent);
+                $("#price").val($(this).closest('tr').children()[3].textContent);
+            });
+
+            $(".btn-danger").on("click", function(){
+                $("#delete").modal("show");
+                $("#pid").val($(this).closest('tr').children()[0].textContent);
+            });
+
+        } );
+    </script>
+{% endblock %}
+
+<h2>Products</h2>
+
+<table id="products" class="display table table-striped" cellspacing="0" width="100%">
+    <thead>
+    <tr><th></th>
+        <th>Product-Id</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th><small>Edit</small></th>
+        <th><small>Delete</small></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for product in response.products %}
+    <tr><td><img src="../images/Products/Small/{{ product.PID }}_small_{{ product.IMG }}" /></td>
+        <td>{{ product.PID }}</td>
+        <td><a href="/suxx/product?pid={{ product.PID }}">{{ product.LABEL }}</a></td>
+        <td>{{ product.PRICE }}</td>
+        <td>{{ product.CREATED }}</td>
+        <td>{{ product.UPDATED }}</td>
+
+        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit">
+                    <span class="glyphicon glyphicon-pencil"></span></button></p></td>
+
+        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete">
+                    <span class="glyphicon glyphicon-trash"></span></button></p></td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{{ include('product.update-modal.twig') }}
+{{ include('product.delete-modal.twig') }}
+

@@ -1,0 +1,19 @@
+dev@psa /var/www/Exercises/Testing/aufgabe2/c testing $ phpunit RecognizerTest.php
+PHPUnit 5.4.6 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/Testing/aufgabe2/c/phpunit.xml
+
+..F                                                                 3 / 3 (100%)
+
+Time: 81 ms, Memory: 10.00MB
+
+There was 1 failure:
+
+1) RecognizerTest::testHustledMessageCanBeRecognized
+Failed asserting that false matches expected 'SOS'.
+
+/var/www/Exercises/Testing/aufgabe2/c/RecognizerTest.php:38
+
+FAILURES!
+Tests: 3, Assertions: 3, Failures: 1.

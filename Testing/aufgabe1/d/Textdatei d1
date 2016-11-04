@@ -1,0 +1,11 @@
+dev@psa /var/www/Exercises/Testing/src/aufgabe1/d testing $ phpunit CounterTest.php
+PHPUnit 5.4.6 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/Testing/src/aufgabe1/d/phpunit.xml
+
+....                                                                4 / 4 (100%)
+
+Time: 95 ms, Memory: 10.00MB
+
+OK (4 tests, 6 assertions)

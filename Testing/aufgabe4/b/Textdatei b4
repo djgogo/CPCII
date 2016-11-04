@@ -1,0 +1,3 @@
+Alle Kollaboratoren der Klasse ShoppinCartController werden gemockt. D.h. kein echter Code wird von diesen Klassen laufen.
+Das bedeutet in disem Fall dass 4 Kollaboratoren des Controllers mit einem Mock getestet werden. Um so mehr Kollaboratoren
+desto komplizierter der Test.

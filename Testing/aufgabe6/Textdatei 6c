@@ -1,0 +1,9 @@
+Hier findet gar kein Test statt! und die KOllaborator Klasse Bar darf ein Mock sein. der Test könnte z.B. wie folgt aussehen:
+
+public function testSomething() {
+    $foo = new Foo;
+    $bar = $this->getMockBuilder(bar::class)
+        ->disableOriginalConstructor()
+        ->getMock();
+    $this-assertEquals('something', $foo-doSomething($bar));
+}

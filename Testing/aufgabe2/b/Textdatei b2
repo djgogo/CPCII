@@ -1,0 +1,11 @@
+dev@psa /var/www/Exercises/Testing/aufgabe2/b testing $ phpunit RecognizerTest.php
+PHPUnit 5.4.6 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 7.0.11 with Xdebug 2.4.1
+Configuration: /var/www/Exercises/Testing/aufgabe2/b/phpunit.xml
+
+..                                                                  2 / 2 (100%)
+
+Time: 80 ms, Memory: 10.00MB
+
+OK (2 tests, 2 assertions)
