@@ -26,6 +26,8 @@ class SuxxStaticPageRouter
                 return $this->factory->getRegisterViewController();
             case '/suxx/product':
                 return $this->factory->getProductController();
+            case '/suxx/updateproductview':
+                return $this->factory->getUpdateProductViewController();
             case '/suxx/logout':
                 return $this->factory->getLogoutController();
             default:

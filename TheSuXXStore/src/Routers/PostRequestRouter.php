@@ -34,6 +34,8 @@ class SuxxPostRequestRouter
                 return $this->factory->getRegisterController();
             case '/suxx/comment':
                 return $this->factory->getCommentController();
+            case '/suxx/updateproduct';
+                return $this->factory->getUpdateProductController();
             default:
                 return $this->factory->get404Controller();
         }

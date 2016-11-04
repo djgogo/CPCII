@@ -79,6 +79,16 @@ class SuxxFactory
         return new SuxxProductController($this->getProductTableGateway(), $this->getCommentTableGateway());
     }
 
+    public function getUpdateProductViewController() : SuxxUpdateProductViewController
+    {
+        return new SuxxUpdateProductViewController($this->getProductTableGateway());
+    }
+
+    public function getUpdateProductController() : SuxxUpdateProductController
+    {
+        return new SuxxUpdateProductController($this->getProductTableGateway());
+    }
+
     public function getCommentController() : SuxxCommentController
     {
         return new SuxxCommentController($this->getCommentTableGateway(), new SuxxFileBackend());

@@ -1,0 +1,52 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    {{ include('navbar.twig') }}
+    {{ include('message.twig') }}
+
+    <span><img src="../images/Products/{{ response.product.PID }}_{{ response.product.IMG }}" /></span>
+
+    <h2>Update Product No {{ response.product.PID }} - {{ response.product.LABEL }}</h2>
+
+    {% if session.getValue('user') %}
+        <form class="form-horizontal" method="post" action="/suxx/updateproduct">
+
+            {# CSRF Protection Token #}
+            <input type="hidden" name="csrf" value="{{ session.getValue('token') }}">
+            <input type="hidden" name="product" value="{{ response.product.PID }}">
+
+            <div class="form-group {% if session.getValue('error').label %}has-error{% endif %}">
+                <label for="label" class="col-sm-2 control-label">Product Label</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="label" name="label" value="{{ response.product.LABEL }}">
+                    {% if session.getValue('error').label %}
+                        <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').label }}</small></span>
+                    {% endif %}
+                </div>
+
+            </div>
+            <<div class="form-group {% if session.getValue('error').price %}has-error{% endif %}">
+                <label for="price" class="col-sm-2 control-label">Price</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" id="price" name="price" value="{{ response.product.PRICE }}">
+                    {% if session.getValue('error').price %}
+                        <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').price }}</small></span>
+                    {% endif %}
+                </div>
+            </div>
+
+            {{ session.deleteValue('error') }}
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-4">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+
+        </form>
+    {% else %}
+        <a href="../loginview" class="btn btn-primary btn-lg active" role="button">You have to login to update a product</a>
+    {% endif %}
+
+{% endblock %}

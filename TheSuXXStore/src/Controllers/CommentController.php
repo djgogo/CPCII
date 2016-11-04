@@ -23,9 +23,7 @@ class SuxxCommentController implements SuxxController
         $commentFormCommand = new SuxxCommentFormCommand($this->commentDataGateway, $request, $session, $this->backend);
         $commentFormCommand->validateRequest();
 
-        if ($commentFormCommand->hasErrors()) {
-            // TODO $registrationFormCommand->repopulateform();
-        } else {
+        if (!$commentFormCommand->hasErrors()) {
             $commentFormCommand->performAction();
         }
 

@@ -34,4 +34,24 @@ class SuxxProductTableDataGateway
             sprintf("%s, Benutzer mit Id %s konnte nicht ausgelesen werden", $e->getMessage(), $id);
         }
     }
+
+    public function update(array $row) : string
+    {
+        try {
+            $stmt = $this->pdo->prepare(
+                'UPDATE products SET label=:label, price=:price WHERE pid=:pid'
+            );
+
+            $stmt->bindParam(':pid', $row['pid'], PDO::PARAM_INT);
+            $stmt->bindParam(':label', $row['label'], PDO::PARAM_STR);
+            $stmt->bindParam(':price', $row['price'], PDO::PARAM_STR);
+
+            $stmt->execute();
+            return true;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        return false;
+    }
 }
