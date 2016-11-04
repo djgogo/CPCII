@@ -1,0 +1,30 @@
+<h2>Comments</h2>
+
+<table class="table table-striped">
+
+    <thead>
+    <tr>
+        <th>Comments for this Product:</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    {% for comment in response.comments %}
+    <tr>
+        <td>{{ comment.AUTHOR }} said:</td>
+        <td>{{ comment.COMMENT }}</td>
+
+        {% if comment.PICTURE != '' %}
+            <td><img src="../images/Comments/{{ comment.CID }}_{{ comment.PICTURE }}" /></td>
+        {% else %}
+            <td></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+
