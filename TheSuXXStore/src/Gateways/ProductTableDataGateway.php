@@ -45,6 +45,19 @@ class SuxxProductTableDataGateway
         }
     }
 
+    public function getSearchedProduct($searchString)
+    {
+        try {
+            $stmt = $this->pdo->prepare('SELECT * FROM products WHERE label LIKE :search ');
+            $search = '%' . $searchString . '%';
+            $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            sprintf("%s, Error in products-table", $e->getMessage());
+        }
+    }
+
     public function findProductById($id)
     {
         try {

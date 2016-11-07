@@ -27,6 +27,10 @@ class SuxxHomeController implements SuxxController
                 $session->setValue('sort', '');
         }
 
+        if ($request->getValue('search')) {
+            $response->products = $this->dataGateway->getSearchedProduct($request->getValue('search'));
+        }
+
         return 'base.twig';
     }
 }
