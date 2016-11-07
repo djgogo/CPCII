@@ -18,6 +18,8 @@ class SuxxUpdateProductViewController implements SuxxController
             return '404errorview.twig';
         }
         $response->product = $this->productDataGateway->findProductById($request->getValue('pid'));
+        $session->setValue('updateproduct_label', $response->product->LABEL);
+        $session->setValue('updateproduct_price', $response->product->PRICE);
 
         return 'updateproductview.twig';
     }

@@ -23,6 +23,11 @@ class SuxxUpdateProductFormCommand
     private $dataGateway;
 
     /**
+     * @var array
+     */
+    private $error;
+
+    /**
      * @var string
      */
     private $label;
@@ -36,12 +41,15 @@ class SuxxUpdateProductFormCommand
         SuxxProductTableDataGateway $dataGateway,
         SuxxRequest $request,
         SuxxResponse $response,
-        SuxxSession $session)
+        SuxxSession $session,
+        array $error)
     {
         $this->request = $request;
         $this->response = $response;
         $this->session = $session;
         $this->dataGateway = $dataGateway;
+        $this->error = $error;
+
         $this->label = $request->getValue('label');
         $this->price = $request->getValue('price');
     }
@@ -49,18 +57,20 @@ class SuxxUpdateProductFormCommand
     public function validateRequest()
     {
         if ($this->label === '') {
-            $this->session->setValue('error', 'Bitte geben Sie einen Label-Text ein!');
+            $this->error['label'] = 'Bitte geben Sie einen Label-Text ein!';
+            $this->session->setValue('error', $this->error);
         }
 
         if ($this->price === '') {
-            $this->session->setValue('error', 'Bitte geben Sie einen Preis ein!');
+            $this->error['price'] = 'Bitte geben Sie einen Preis ein!';
+            $this->session->setValue('error', $this->error);
         }
     }
 
     public function performAction()
     {
         $row = [
-            'pid' => $this->request->getValue('product'),
+            'pid' => $this->request->getValue('product-id'),
             'label' => $this->label,
             'price' => $this->price
         ];
@@ -68,7 +78,7 @@ class SuxxUpdateProductFormCommand
         if ($this->dataGateway->update($row)) {
             $this->session->setValue('message', 'Datensatz wurde geändert');
         } else {
-            $this->session->setValue('error', 'Aenderung fehlgeschlagen!');
+            $this->session->setValue('warning', 'Aenderung fehlgeschlagen!');
         }
     }
 
@@ -82,14 +92,12 @@ class SuxxUpdateProductFormCommand
 
     public function repopulateForm()
     {
-        // TODO !!! i have to put a new value into object product which is in the request object!!!!
-        //  TODO --> create a normal class instead of stdclass and do an getter and setter of the attributes!!
         if ($this->label !== '') {
-            $this->response->product->label = $this->label;
+            $this->session->setValue('updateproduct_label', $this->label);
         }
 
         if ($this->price !== '') {
-            $this->response->product->price = $this->price;
+            $this->session->setValue('updateproduct_price', $this->price);
         }
     }
 }

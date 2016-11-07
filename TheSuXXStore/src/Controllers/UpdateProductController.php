@@ -14,14 +14,19 @@ class SuxxUpdateProductController implements SuxxController
 
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
-        $updateproductFormCommand = new SuxxUpdateProductFormCommand($this->productDataGateway, $request, $response, $session);
-        $updateproductFormCommand->validateRequest();
+        $updateProductFormError = [
+            'label' => '',
+            'price' => ''
+        ];
+        $updateProductFormCommand = new SuxxUpdateProductFormCommand($this->productDataGateway, $request, $response, $session, $updateProductFormError);
+        $updateProductFormCommand->validateRequest();
 
-        if ($updateproductFormCommand->hasErrors()) {
-            $updateproductFormCommand->repopulateForm();
+        if ($updateProductFormCommand->hasErrors()) {
+            $response->product = $this->productDataGateway->findProductById($request->getValue('product-id'));
+            $updateProductFormCommand->repopulateForm();
             return 'updateproductview.twig';
         } else {
-            $updateproductFormCommand->performAction();
+            $updateProductFormCommand->performAction();
         }
 
         $response->products = $this->productDataGateway->getAllProducts();
