@@ -13,7 +13,20 @@ class SuxxHomeController implements SuxxController
     }
     public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
     {
-        $response->products = $this->dataGateway->getAllProducts();
+        switch ($request->getValue('sort')) {
+            case 'ASC':
+                $response->products = $this->dataGateway->getAllProductsOrderedByUpdatedAscending();
+                $session->setValue('sort', 'ASC');
+                break;
+            case 'DESC':
+                $response->products = $this->dataGateway->getAllProductsOrderedByUpdatedDescending();
+                $session->setValue('sort', 'DESC');
+                break;
+            default:
+                $response->products = $this->dataGateway->getAllProducts();
+                $session->setValue('sort', '');
+        }
+
         return 'base.twig';
     }
 }

@@ -23,6 +23,28 @@ class SuxxProductTableDataGateway
         }
     }
 
+    public function getAllProductsOrderedByUpdatedAscending()
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM products ORDER BY updated ASC");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            sprintf("%s, Error in products-table", $e->getMessage());
+        }
+    }
+
+    public function getAllProductsOrderedByUpdatedDescending()
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM products ORDER BY updated DESC");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            sprintf("%s, Error in products-table", $e->getMessage());
+        }
+    }
+
     public function findProductById($id)
     {
         try {

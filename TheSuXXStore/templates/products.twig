@@ -7,7 +7,7 @@
         <th>Product</th>
         <th>Price</th>
         <th>Created</th>
-        <th>Updated</th>
+        <th><a href="?sort={% if session.getValue('sort') == 'ASC' %}DESC{% else %}ASC{% endif %}">Updated</a></th>
     </tr>
     </thead>
     <tbody>
