@@ -22,14 +22,14 @@ class SuxxUpdateProductController implements SuxxController
         $updateProductFormCommand->validateRequest();
 
         if ($updateProductFormCommand->hasErrors()) {
-            $response->product = $this->productDataGateway->findProductById($request->getValue('product-id'));
+            $response->setProducts($this->productDataGateway->findProductById($request->getValue('product-id')));
             $updateProductFormCommand->repopulateForm();
             return 'updateproductview.twig';
         } else {
             $updateProductFormCommand->performAction();
         }
 
-        $response->products = $this->productDataGateway->getAllProducts();
+        $response->setProducts($this->productDataGateway->getAllProducts());
         return 'base.twig';
     }
 }

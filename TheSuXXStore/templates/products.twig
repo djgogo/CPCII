@@ -22,13 +22,13 @@
     </thead>
     <tbody>
     {% for product in response.products %}
-    <tr><td><img src="../images/Products/Small/{{ product.PID }}_small_{{ product.IMG }}" /></td>
-        <td>{{ product.PID }}</td>
-        <td><a href="/suxx/product?pid={{ product.PID }}">{{ product.LABEL }}</a></td>
-        <td>{{ product.PRICE }}</td>
-        <td>{{ product.CREATED }}</td>
-        <td>{{ product.UPDATED }}</td>
-        <td><a href="/suxx/updateproductview?pid={{ product.PID }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+    <tr><td><img src="../images/Products/Small/{{ product.pid }}_small_{{ product.img }}" /></td>
+        <td>{{ product.pid }}</td>
+        <td><a href="/suxx/product?pid={{ product.pid }}">{{ product.label }}</a></td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.created }}</td>
+        <td>{{ product.updated }}</td>
+        <td><a href="/suxx/updateproductview?pid={{ product.pid }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
         <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
     </tr>
     {% endfor %}

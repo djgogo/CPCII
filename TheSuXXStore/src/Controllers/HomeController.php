@@ -15,20 +15,20 @@ class SuxxHomeController implements SuxxController
     {
         switch ($request->getValue('sort')) {
             case 'ASC':
-                $response->products = $this->dataGateway->getAllProductsOrderedByUpdatedAscending();
+                $response->setProducts($this->dataGateway->getAllProductsOrderedByUpdatedAscending());
                 $session->setValue('sort', 'ASC');
                 break;
             case 'DESC':
-                $response->products = $this->dataGateway->getAllProductsOrderedByUpdatedDescending();
+                $response->setProducts($this->dataGateway->getAllProductsOrderedByUpdatedDescending());
                 $session->setValue('sort', 'DESC');
                 break;
             default:
-                $response->products = $this->dataGateway->getAllProducts();
+                $response->setProducts($this->dataGateway->getAllProducts());
                 $session->setValue('sort', '');
         }
 
         if ($request->getValue('search')) {
-            $response->products = $this->dataGateway->getSearchedProduct($request->getValue('search'));
+            $response->setProducts($this->dataGateway->getSearchedProduct($request->getValue('search')));
         }
 
         return 'base.twig';

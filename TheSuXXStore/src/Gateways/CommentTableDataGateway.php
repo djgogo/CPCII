@@ -36,13 +36,13 @@ class SuxxCommentTableDataGateway
         }
     }
 
-    public function findCommentsByPid($id)
+    public function findCommentsByPid(int $id)
     {
         try {
             $stmt = $this->pdo->prepare("SELECT * FROM comments WHERE pid=:pid");
-            $stmt->bindParam(':pid', $id, PDO::PARAM_STR);
+            $stmt->bindParam(':pid', $id, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'SuxxComment');
         } catch (PDOException $e) {
             sprintf("%s, Kommentare mit Id %s konnten nicht ausgelesen werden", $e->getMessage(), $id);
         }

@@ -17,7 +17,7 @@ class SuxxProductTableDataGateway
         try {
             $stmt = $this->pdo->prepare("SELECT * FROM products");
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'SuxxProduct');
         } catch (PDOException $e) {
             sprintf("%s, Error in products-table", $e->getMessage());
         }
@@ -28,7 +28,7 @@ class SuxxProductTableDataGateway
         try {
             $stmt = $this->pdo->prepare("SELECT * FROM products ORDER BY updated ASC");
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'SuxxProduct');
         } catch (PDOException $e) {
             sprintf("%s, Error in products-table", $e->getMessage());
         }
@@ -39,32 +39,32 @@ class SuxxProductTableDataGateway
         try {
             $stmt = $this->pdo->prepare("SELECT * FROM products ORDER BY updated DESC");
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'SuxxProduct');
         } catch (PDOException $e) {
             sprintf("%s, Error in products-table", $e->getMessage());
         }
     }
 
-    public function getSearchedProduct($searchString)
+    public function getSearchedProduct(string $searchString)
     {
         try {
             $stmt = $this->pdo->prepare('SELECT * FROM products WHERE label LIKE :search ');
             $search = '%' . $searchString . '%';
             $stmt->bindParam(':search', $search, PDO::PARAM_STR);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'SuxxProduct');
         } catch (PDOException $e) {
             sprintf("%s, Error in products-table", $e->getMessage());
         }
     }
 
-    public function findProductById($id)
+    public function findProductById(int $id)
     {
         try {
             $stmt = $this->pdo->prepare("SELECT * FROM products WHERE pid=:pid LIMIT 1");
-            $stmt->bindParam(':pid', $id, PDO::PARAM_STR);
+            $stmt->bindParam(':pid', $id, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_OBJ);
+            return $stmt->fetchObject('SuxxProduct');
         } catch (PDOException $e) {
             sprintf("%s, Benutzer mit Id %s konnte nicht ausgelesen werden", $e->getMessage(), $id);
         }

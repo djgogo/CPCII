@@ -5,22 +5,22 @@ class SuxxResponse
     /**
      * @var array
      */
-    protected $data = array();
+    private $data = array();
 
     /**
-     * @var object
+     * @var array
      */
-    public $products;
+    private $products;
 
     /**
-     * @var object
+     * @var SuxxProduct
      */
-    public $product;
+    private $product;
 
     /**
-     * @var object
+     * @var array
      */
-    public $comments;
+    private $comments;
 
     /**
      * @var string
@@ -32,7 +32,7 @@ class SuxxResponse
         $this->data[$key] = $value;
     }
 
-    public function getValue($key)
+    public function getValue(string $key)
     {
         if (!isset($this->data[$key])) {
             throw new SuxxResponseException("Key '$key' does not exist");
@@ -40,12 +40,42 @@ class SuxxResponse
         return $this->escape($this->data[$key]);
     }
 
-    public function isset($key)
+    public function isset(string $key)
     {
         return isset($this->data[$key]);
     }
 
-    public function setRedirect($path)
+    public function getProduct() : SuxxProduct
+    {
+        return $this->product;
+    }
+
+    public function setProduct(SuxxProduct $product)
+    {
+        $this->product = $product;
+    }
+
+    public function getProducts() : array
+    {
+        return $this->products;
+    }
+
+    public function setProducts(array $products)
+    {
+        $this->products = $products;
+    }
+
+    public function getComments() : array
+    {
+        return $this->comments;
+    }
+
+    public function setComments(array $comments)
+    {
+        $this->comments = $comments;
+    }
+
+    public function setRedirect(string $path)
     {
         $this->redirect = $path;
     }
@@ -60,7 +90,7 @@ class SuxxResponse
         return isset($this->redirect);
     }
 
-    private function escape($string) : string
+    private function escape(string $string) : string
     {
         return htmlspecialchars($string, ENT_QUOTES);
     }

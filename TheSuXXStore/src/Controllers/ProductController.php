@@ -23,8 +23,8 @@ class SuxxProductController implements SuxxController
         if ($request->getValue('pid') === '') {
             return '404errorview.twig';
         }
-        $response->product = $this->productDataGateway->findProductById($request->getValue('pid'));
-        $response->comments = $this->commentDataGateway->findCommentsByPid($request->getValue('pid'));
+        $response->setProduct($this->productDataGateway->findProductById($request->getValue('pid')));
+        $response->setComments($this->commentDataGateway->findCommentsByPid($request->getValue('pid')));
 
         return 'product.twig';
     }

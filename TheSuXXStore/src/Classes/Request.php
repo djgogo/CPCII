@@ -5,12 +5,12 @@ class SuxxRequest
     /**
      * @var array
      */
-    public $input;
+    private $input;
 
     /**
      * @var array
      */
-    public $params;
+    private $params;
 
     /**
      * @var array
@@ -40,7 +40,7 @@ class SuxxRequest
         return $_SERVER['REQUEST_URI'];
     }
 
-    public function hasFile($key) : bool
+    public function hasFile(string $key) : bool
     {
         return isset($this->files[$key]);
     }
@@ -60,7 +60,7 @@ class SuxxRequest
         $this->params = $params;
     }
 
-    public function setParam($key, $value)
+    public function setParam(string $key, $value)
     {
         $this->params[$key] = $value;
     }
@@ -82,7 +82,7 @@ class SuxxRequest
         return $default;
     }
 
-    private function escape($string) : string
+    private function escape(string $string) : string
     {
         return htmlspecialchars($string, ENT_QUOTES);
     }

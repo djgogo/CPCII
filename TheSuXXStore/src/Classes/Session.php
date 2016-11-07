@@ -12,12 +12,12 @@ class SuxxSession
         $this->session = $session;
     }
 
-    public function setValue($key, $value)
+    public function setValue(string $key, $value)
     {
         $this->session[$key] = $value;
     }
 
-    public function getValue($key, $default = null)
+    public function getValue(string $key, $default = null)
     {
         if (isset($this->session[$key])) {
             return $this->session[$key];
@@ -25,9 +25,11 @@ class SuxxSession
         return $default;
     }
 
-    public function deleteValue($key)
+    public function deleteValue(string $key)
     {
-        unset($this->session[$key]);
+        if (isset($this->session[$key])) {
+            unset($this->session[$key]);
+        }
     }
 
     public function getSessionData() : array
@@ -38,7 +40,7 @@ class SuxxSession
         return array();
     }
 
-    public function isset($key) : bool
+    public function isset(string $key) : bool
     {
         return isset($this->session[$key]);
     }

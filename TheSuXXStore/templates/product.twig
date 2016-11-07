@@ -5,10 +5,10 @@
     {{ include('navbar.twig') }}
     {{ include('message.twig') }}
 
-    <span><img src="../images/Products/{{ response.product.PID }}_{{ response.product.IMG }}" /></span>
+    <span><img src="../images/Products/{{ response.product.pid }}_{{ response.product.img }}" /></span>
 
-    <h2>Product No {{ response.product.PID }} - {{ response.product.LABEL }}</h2>
-    <h3>for only <span class="label label-success">US$ {{ response.product.PRICE }}</span></h3>
+    <h2>Product No {{ response.product.pid }} - {{ response.product.label }}</h2>
+    <h3>for only <span class="label label-success">US$ {{ response.product.price }}</span></h3>
 
     {{ include('comments.twig') }}
 
@@ -17,7 +17,7 @@
         <form enctype="multipart/form-data" method="post" action="/suxx/comment">
 
             <input type="hidden" name="csrf" value="{{ session.getValue('token') }}">
-            <input type="hidden" name="product" value="{{ response.product.PID }}">
+            <input type="hidden" name="product" value="{{ response.product.pid }}">
 
             <div class="form-group">
                 <label for="comment">Comment:</label>
