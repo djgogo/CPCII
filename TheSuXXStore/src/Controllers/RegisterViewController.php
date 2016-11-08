@@ -2,7 +2,7 @@
 
 class SuxxRegisterViewController implements SuxxController
 {
-    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxResponse $response)
     {
         return 'register.twig';
     }

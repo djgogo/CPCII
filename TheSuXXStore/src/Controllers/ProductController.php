@@ -18,7 +18,7 @@ class SuxxProductController implements SuxxController
         $this->productDataGateway = $productDataGateway;
     }
 
-    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxResponse $response)
     {
         if ($request->getValue('pid') === '') {
             return '404errorview.twig';

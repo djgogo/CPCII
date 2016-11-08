@@ -1,16 +1,11 @@
 <?php
 
-class SuxxUpdateProductFormCommand
+class SuxxUpdateProductFormCommand extends SuxxAbstractFormCommand
 {
     /**
      * @var SuxxRequest
      */
     private $request;
-
-    /**
-     * @var SuxxResponse
-     */
-    private $response;
 
     /**
      * @var SuxxSession
@@ -23,7 +18,7 @@ class SuxxUpdateProductFormCommand
     private $dataGateway;
 
     /**
-     * @var array
+     * @var SuxxFormError
      */
     private $error;
 
@@ -39,30 +34,39 @@ class SuxxUpdateProductFormCommand
 
     public function __construct(
         SuxxProductTableDataGateway $dataGateway,
-        SuxxRequest $request,
-        SuxxResponse $response,
         SuxxSession $session,
-        array $error)
+        SuxxFormError $error)
     {
-        $this->request = $request;
-        $this->response = $response;
-        $this->session = $session;
         $this->dataGateway = $dataGateway;
+        $this->session = $session;
         $this->error = $error;
+    }
 
+    public function execute(SuxxRequest $request)
+    {
+        $this->session->deleteValue('error');
+
+        $this->request = $request;
         $this->label = $request->getValue('label');
         $this->price = $request->getValue('price');
+
+        $this->validateRequest();
+        if (!$this->hasErrors()) {
+            $this->performAction();
+            return true;
+        }
+        return false;
     }
 
     public function validateRequest()
     {
         if ($this->label === '') {
-            $this->error['label'] = 'Bitte geben Sie einen Label-Text ein!';
+            $this->error->set('label', 'Bitte geben Sie einen Label-Text ein!');
             $this->session->setValue('error', $this->error);
         }
 
         if ($this->price === '') {
-            $this->error['price'] = 'Bitte geben Sie einen Preis ein!';
+            $this->error->set('price', 'Bitte geben Sie einen Preis ein!');
             $this->session->setValue('error', $this->error);
         }
     }

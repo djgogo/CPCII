@@ -1,6 +1,6 @@
 <?php
 
-class SuxxCommentFormCommand
+class SuxxCommentFormCommand extends SuxxAbstractFormCommand
 {
     /**
      * @var SuxxRequest
@@ -32,36 +32,55 @@ class SuxxCommentFormCommand
      */
     private $picture;
 
+    /**
+     * @var SuxxFormError
+     */
+    private $error;
+
     public function __construct(
         SuxxCommentTableDataGateway $dataGateway,
-        SuxxRequest $request,
         SuxxSession $session,
-        SuxxFileBackend $backend)
+        SuxxFileBackend $backend,
+        SuxxFormError $error)
     {
-        $this->request = $request;
         $this->session = $session;
         $this->dataGateway = $dataGateway;
         $this->backend = $backend;
-        $this->comment = $request->getValue('comment');
-        $this->picture = $this->request->getFile();
+        $this->error = $error;
     }
 
-    public function validateRequest()
+    public function execute(SuxxRequest $request)
+    {
+        $this->session->deleteValue('error');
+
+        $this->request = $request;
+        $this->comment = $request->getValue('comment');
+        $this->picture = $request->getFile();
+
+        $this->validateRequest();
+        if (!$this->hasErrors()) {
+            $this->performAction();
+            return true;
+        }
+        return false;
+    }
+
+    protected function validateRequest()
     {
         if ($this->comment === '') {
-            $this->session->setValue('error', 'Bitte geben Sie einen Kommentar ein!');
+            $this->error->set('comment', 'Bitte geben Sie einen Kommentar ein!');
         }
 
         if ($this->picture !== '') {
             try {
                 new SuxxFileUpload();
             } catch (\InvalidUploadedFileException $e) {
-                $this->session->setValue('error', 'Das Bild ist ungültig - Dateiupload konnte nicht ausgeführt werden!');
+                $this->error->set('file', 'Das Bild ist ungültig - Dateiupload konnte nicht ausgeführt werden!');
             }
         }
     }
 
-    public function performAction()
+    protected function performAction()
     {
         $row = [
             'pid' => $this->request->getValue('product'),
@@ -75,7 +94,7 @@ class SuxxCommentFormCommand
         if ($cid !== '') {
             $this->session->setValue('message', 'Vielen Dank für Deinen Kommentar');
         } else {
-            $this->session->setValue('error', 'Kommentar fehlgeschlagen!');
+            $this->session->setValue('warning', 'Kommentar fehlgeschlagen!');
         }
 
         if ($this->picture) {
@@ -85,12 +104,16 @@ class SuxxCommentFormCommand
         }
     }
 
-    public function hasErrors() : bool
+    protected function hasErrors() : bool
     {
         if ($this->session->isset('error')) {
             return true;
         }
         return false;
+    }
+
+    protected function repopulateForm()
+    {
     }
 }
 

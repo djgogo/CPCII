@@ -1,12 +1,7 @@
 <?php
 
-class SuxxRegistrationFormCommand
+class SuxxRegistrationFormCommand extends SuxxAbstractFormCommand
 {
-    /**
-     * @var SuxxRequest
-     */
-    private $request;
-
     /**
      * @var SuxxSession
      */
@@ -18,7 +13,7 @@ class SuxxRegistrationFormCommand
     private $registrator;
 
     /**
-     * @var array
+     * @var SuxxFormError
      */
     private $error;
 
@@ -42,55 +37,66 @@ class SuxxRegistrationFormCommand
      */
     private $email;
 
-    public function __construct(SuxxRegistrator $registrator, SuxxRequest $request, SuxxSession $session, array $error)
+    public function __construct(SuxxRegistrator $registrator, SuxxSession $session, SuxxFormError $error)
     {
-        $this->request = $request;
         $this->session = $session;
         $this->registrator = $registrator;
         $this->error = $error;
+    }
+
+    public function execute(SuxxRequest $request)
+    {
+        $this->session->deleteValue('error');
 
         $this->username = $request->getValue('username');
         $this->passwd = $request->getValue('passwd');
         $this->name = $request->getValue('name');
         $this->email = $request->getValue('email');
+
+        $this->validateRequest();
+        if (!$this->hasErrors()) {
+            $this->performAction();
+            return true;
+        }
+        return false;
     }
 
-    public function validateRequest()
+    protected function validateRequest()
     {
         if ($this->username === '') {
-            $this->error['username'] = 'Bitte geben Sie einen Usernamen ein';
+            $this->error->set('username', 'Bitte geben Sie einen Usernamen ein');
             $this->session->setValue('error', $this->error);
         }
 
         if ($this->passwd === '') {
-            $this->error['password'] = 'Bitte geben Sie ein Passwort ein';
+            $this->error->set('password', 'Bitte geben Sie ein Passwort ein');
             $this->session->setValue('error', $this->error);
         }
 
         if (strlen($this->passwd) < 6) {
-            $this->error['password'] = 'Das Passwort muss mindestens 6 Zeichen lang sein';
+            $this->error->set('password', 'Das Passwort muss mindestens 6 Zeichen lang sein');
             $this->session->setValue('error', $this->error);
         }
 
         if ($this->name === '') {
-            $this->error['name'] = 'Bitte geben Sie einen Namen ein';
+            $this->error->set('name', 'Bitte geben Sie einen Namen ein');
             $this->session->setValue('error', $this->error);
         }
 
         try {
             new Email($this->email);
         } catch (\InvalidArgumentException $e) {
-            $this->error['email'] = 'Bitte geben Sie eine gültige Email-Adresse ein';
+            $this->error->set('email', 'Bitte geben Sie eine gültige Email-Adresse ein');
             $this->session->setValue('error', $this->error);
         }
 
         if ($this->username !== '' && $this->registrator->usernameExists($this->username)) {
-            $this->error['username'] = 'Username bereits vergeben!';
+            $this->error->set('username', 'Username bereits vergeben!');
             $this->session->setValue('error', $this->error);
         }
     }
 
-    public function performAction()
+    protected function performAction()
     {
         $row = [
             'username' => $this->username,
@@ -107,7 +113,7 @@ class SuxxRegistrationFormCommand
         }
     }
 
-    public function hasErrors() : bool
+    protected function hasErrors() : bool
     {
         if ($this->session->isset('error')) {
             return true;
@@ -115,7 +121,7 @@ class SuxxRegistrationFormCommand
         return false;
     }
 
-    public function repopulateForm()
+    protected function repopulateForm()
     {
         if ($this->username !== '') {
             $this->session->setValue('register_username', $this->username);

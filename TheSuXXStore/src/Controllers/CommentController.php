@@ -3,6 +3,11 @@
 class SuxxCommentController implements SuxxController
 {
     /**
+     * @var SuxxSession
+     */
+    private $session;
+
+    /**
      * @var SuxxCommentTableDataGateway
      */
     private $commentDataGateway;
@@ -12,22 +17,28 @@ class SuxxCommentController implements SuxxController
      */
     private $backend;
 
-    public function __construct(SuxxCommentTableDataGateway $commentDataGateway, SuxxFileBackend $backend)
+    public function __construct(
+        SuxxSession $session,
+        SuxxCommentFormCommand $commentFormCommand,
+        SuxxCommentTableDataGateway $commentDataGateway,
+        SuxxFileBackend $backend)
     {
+        $this->session = $session;
         $this->commentDataGateway = $commentDataGateway;
         $this->backend = $backend;
+        $this->commentFormCommand = $commentFormCommand;
     }
 
-    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxResponse $response)
     {
-        $commentFormCommand = new SuxxCommentFormCommand($this->commentDataGateway, $request, $session, $this->backend);
-        $commentFormCommand->validateRequest();
+        $result = $this->commentFormCommand->execute($request);
 
-        if (!$commentFormCommand->hasErrors()) {
-            $commentFormCommand->performAction();
+        if ($result === false) {
+            return 'product.twig';
         }
 
-        $_SESSION = $session->getSessionData();
+        $_SESSION = $this->session->getSessionData();
         header('Location: /suxx/product?pid=' . $request->getValue('product'), 302);
+
     }
 }

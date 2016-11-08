@@ -14,6 +14,10 @@ class SuxxStaticPageRouter
 
     public function route(SuxxRequest $request)
     {
+        if (!$request->isGetRequest()) {
+            return null;
+        }
+
         $uri = $request->getRequestUri();
         $path = parse_url($uri)['path'];
 
@@ -31,7 +35,7 @@ class SuxxStaticPageRouter
             case '/suxx/logout':
                 return $this->factory->getLogoutController();
             default:
-                return $this->factory->get404Controller();
+                return null;
         }
     }
 }

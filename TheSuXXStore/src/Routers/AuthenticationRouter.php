@@ -1,6 +1,6 @@
 <?php
 
-class SuxxPostRequestRouter
+class SuxxAuthenticationRouter
 {
     /**
      * @var Factory
@@ -32,10 +32,10 @@ class SuxxPostRequestRouter
         }
 
         switch ($path) {
-            case '/suxx/comment':
-                return $this->factory->getCommentController();
-            case '/suxx/updateproduct';
-                return $this->factory->getUpdateProductController();
+            case '/suxx/login':
+                return $this->factory->getLoginController();
+            case '/suxx/register':
+                return $this->factory->getRegisterController();
             default:
                 return null;
         }
@@ -50,4 +50,3 @@ class SuxxPostRequestRouter
         return false;
     }
 }
-

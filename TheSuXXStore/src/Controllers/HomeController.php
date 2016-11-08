@@ -3,28 +3,34 @@
 class SuxxHomeController implements SuxxController
 {
     /**
+     * @var SuxxSession
+     */
+    private $session;
+
+    /**
      * @var SuxxProductTableDataGateway
      */
     private $dataGateway;
 
-    public function __construct(SuxxProductTableDataGateway $dataGateway)
+    public function __construct(SuxxSession $session, SuxxProductTableDataGateway $dataGateway)
     {
+        $this->session = $session;
         $this->dataGateway = $dataGateway;
     }
-    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxResponse $response)
     {
         switch ($request->getValue('sort')) {
             case 'ASC':
                 $response->setProducts($this->dataGateway->getAllProductsOrderedByUpdatedAscending());
-                $session->setValue('sort', 'ASC');
+                $this->session->setValue('sort', 'ASC');
                 break;
             case 'DESC':
                 $response->setProducts($this->dataGateway->getAllProductsOrderedByUpdatedDescending());
-                $session->setValue('sort', 'DESC');
+                $this->session->setValue('sort', 'DESC');
                 break;
             default:
                 $response->setProducts($this->dataGateway->getAllProducts());
-                $session->setValue('sort', '');
+                $this->session->setValue('sort', '');
         }
 
         if ($request->getValue('search')) {

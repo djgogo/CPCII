@@ -8,11 +8,6 @@ class SuxxFactory
     private $pdoFactory;
 
     /**
-     * @var string
-     */
-    protected $defaultController = 'SuxxErrorController';
-
-    /**
      * @var SuxxSession
      */
     private $session;
@@ -23,28 +18,27 @@ class SuxxFactory
         $this->session = $session;
     }
 
-    public function setDefaultController($default)
-    {
-        $this->defaultController = $default;
-    }
-
     public function getDatabase() : PDO
     {
         return $this->pdoFactory->getDbHandler();
     }
 
-    public function getRouter()
+    public function getRouters() : array
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            return new SuxxStaticPageRouter($this);
-        } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            return new SuxxPostRequestRouter($this, $this->session);
-        }
+        return [
+            new SuxxStaticPageRouter($this),
+            new SuxxPostRequestRouter($this, $this->session),
+            new SuxxAuthenticationRouter($this, $this->session),
+            new SuxxError404Router($this),
+        ];
     }
 
+    /**
+     * Controllers
+     */
     public function getHomeController() : SuxxHomeController
     {
-        return new SuxxHomeController($this->getProductTableGateway());
+        return new SuxxHomeController($this->session, $this->getProductTableGateway());
     }
 
     public function getRegisterViewController() : SuxxRegisterViewController
@@ -54,8 +48,7 @@ class SuxxFactory
 
     public function getRegisterController() : SuxxRegisterController
     {
-        $registrator = new SuxxRegistrator($this->getUserTableGateway());
-        return new SuxxRegisterController($this->getProductTableGateway(), $registrator);
+        return new SuxxRegisterController($this->getRegistrationFormCommand(), $this->getProductTableGateway());
     }
 
     public function getLoginViewController() : SuxxLoginViewController
@@ -65,8 +58,7 @@ class SuxxFactory
 
     public function getLoginController() : SuxxLoginController
     {
-        $authenticator = new SuxxAuthenticator($this->getUserTableGateway());
-        return new SuxxLoginController($this->getProductTableGateway(), $authenticator);
+        return new SuxxLoginController($this->session, $this->getAuthenticationFormCommand(), $this->getProductTableGateway());
     }
 
     public function getLogoutController() : SuxxLogoutController
@@ -81,17 +73,17 @@ class SuxxFactory
 
     public function getUpdateProductViewController() : SuxxUpdateProductViewController
     {
-        return new SuxxUpdateProductViewController($this->getProductTableGateway());
+        return new SuxxUpdateProductViewController($this->session, $this->getProductTableGateway());
     }
 
     public function getUpdateProductController() : SuxxUpdateProductController
     {
-        return new SuxxUpdateProductController($this->getProductTableGateway());
+        return new SuxxUpdateProductController($this->getUpdateProductFormCommand(), $this->getProductTableGateway());
     }
 
     public function getCommentController() : SuxxCommentController
     {
-        return new SuxxCommentController($this->getCommentTableGateway(), new SuxxFileBackend());
+        return new SuxxCommentController($this->session, $this->getCommentFormCommand(), $this->getCommentTableGateway(), $this->getFileBackend());
     }
 
     public function getErrorController() : SuxxErrorController
@@ -104,6 +96,9 @@ class SuxxFactory
         return new Suxx404Controller();
     }
 
+    /**
+     * TableDataGateways
+     */
     protected function getProductTableGateway() : SuxxProductTableDataGateway
     {
         return new SuxxProductTableDataGateway($this->getDatabase());
@@ -117,5 +112,46 @@ class SuxxFactory
     protected function getUserTableGateway() : SuxxUserTableDataGateway
     {
         return new SuxxUserTableDataGateway($this->getDatabase());
+    }
+
+    /**
+     * FormCommands
+     */
+    public function getCommentFormCommand() : SuxxCommentFormCommand
+    {
+        return new SuxxCommentFormCommand($this->getCommentTableGateway(), $this->session, $this->getFileBackend(), $this->getFormError());
+    }
+
+    public function getAuthenticationFormCommand() : SuxxAuthenticationFormCommand
+    {
+        $authenticator = new SuxxAuthenticator($this->getUserTableGateway());
+        return new SuxxAuthenticationFormCommand($authenticator, $this->session, $this->getFormError());
+    }
+
+    public function getRegistrationFormCommand() : SuxxRegistrationFormCommand
+    {
+        $registrator = new SuxxRegistrator($this->getUserTableGateway());
+        return new SuxxRegistrationFormCommand($registrator, $this->session, $this->getFormError());
+    }
+
+    public function getUpdateProductFormCommand() : SuxxUpdateProductFormCommand
+    {
+        return new SuxxUpdateProductFormCommand($this->getProductTableGateway(), $this->session, $this->getFormError());
+    }
+
+    /**
+     * Forms Errorhandling
+     */
+    protected function getFormError() : SuxxFormError
+    {
+        return new SuxxFormError($this->session);
+    }
+
+    /**
+     * FileBackends
+     */
+    protected function getFileBackend() : SuxxFileBackend
+    {
+        return new SuxxFileBackend();
     }
 }

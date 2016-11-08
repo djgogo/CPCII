@@ -3,44 +3,40 @@
 class SuxxLoginController implements SuxxController
 {
     /**
-     * @var SuxxAuthenticator
+     * @var SuxxSession
      */
-    private $authenticator;
+    private $session;
+
+    /**
+     * @var SuxxAuthenticationFormCommand
+     */
+    private $authenticationFormCommand;
 
     /**
      * @var SuxxProductTableDataGateway
      */
     private $dataGateway;
 
-    public function __construct(SuxxProductTableDataGateway $dataGateway, SuxxAuthenticator $authenticator)
+    public function __construct(
+        SuxxSession $session,
+        SuxxAuthenticationFormCommand $authenticationFormCommand,
+        SuxxProductTableDataGateway $dataGateway)
     {
-        $this->authenticator = $authenticator;
+        $this->session = $session;
+        $this->authenticationFormCommand = $authenticationFormCommand;
         $this->dataGateway = $dataGateway;
     }
 
-    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxResponse $response)
     {
-        $check = false;
+        $result = $this->authenticationFormCommand->execute($request);
 
-        $loginFormError = [
-            'username' => '',
-            'password' => ''
-        ];
-        $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $request, $session, $loginFormError);
-        $authenticationFormCommand->validateRequest();
-
-        if ($authenticationFormCommand->hasErrors()) {
-            $authenticationFormCommand->repopulateForm();
-        } else {
-            $check = $authenticationFormCommand->performAction();
-        }
-
-        if (!$check) {
+        if ($result === false) {
             return 'login.twig';
         }
 
         session_regenerate_id();
-        $_SESSION = $session->getSessionData();
+        $_SESSION = $this->session->getSessionData();
         $response->setRedirect('/');
     }
 

@@ -6,29 +6,50 @@ require __DIR__ . '/autoload.php';
 require __DIR__ . '/../vendor/autoload.php';
 session_start();
 
-/* Create CSRF Protection Token */
+/**
+ * Create CSRF Protection Token
+ */
 if (empty($_SESSION['token'])) {
     $_SESSION['token'] = new SuxxToken();
 }
 
-/* Create Templating Engine */
+/**
+ * Create Templating Engine (Twig)
+ */
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/../templates');
 $twig = new Twig_Environment($loader, ['cache' => false]);
 
-/* Create Request, Response and Session Object */
-$request = new SuxxRequest($_REQUEST, $_FILES);
+/**
+ * Create Request, Response and Session Objects
+ */
+$request = new SuxxRequest($_REQUEST, $_SERVER, $_FILES);
 $session = new SuxxSession($_SESSION);
 $response = new SuxxResponse();
 
-/* Create Database Handler and the Factory */
+/**
+ * Create Database Handler and the Factory
+ */
 $pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore');
 $factory  = new SuxxFactory($pdoFactory, $session);
 
-/* Create Controller from the Route, get the View and Execute*/
-$controller = $factory->getRouter()->route($request);
-$view = $controller->execute($request, $session, $response);
+/**
+ * Get the Router and Controller for execution
+ */
+$routers = $factory->getRouters();
+foreach ($routers as $router) {
+    $controller = $router->route($request);
+    if ($controller != null) {
+        break;
+    }
+}
+/**
+ * Get the View and execute
+ */
+$view = $controller->execute($request, $response);
 
-/* Render or Redirect */
+/**
+ * Render or Redirect
+ */
 if ($response->hasRedirect()) {
     $_SESSION = $session->getSessionData();
     header('Location: ' . $response->getRedirect(), 302);

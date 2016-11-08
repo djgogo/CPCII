@@ -3,40 +3,32 @@
 class SuxxRegisterController implements SuxxController
 {
     /**
-     * @var SuxxRegistrator
+     * @var SuxxRegistrationFormCommand
      */
-    private $registrator;
+    private $registrationFormCommand;
 
     /**
      * @var SuxxProductTableDataGateway
      */
     private $dataGateway;
 
-    public function __construct(SuxxProductTableDataGateway $dataGateway, SuxxRegistrator $registrator)
+    public function __construct(
+        SuxxRegistrationFormCommand $registrationFormCommand,
+        SuxxProductTableDataGateway $dataGateway)
     {
-        $this->registrator = $registrator;
+        $this->registrationFormCommand = $registrationFormCommand;
         $this->dataGateway = $dataGateway;
     }
 
-    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxResponse $response)
     {
-        $registerFormError = [
-            'username' => '',
-            'password' => '',
-            'name' => '',
-            'email' => ''
-        ];
-        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $request, $session, $registerFormError);
-        $registrationFormCommand->validateRequest();
+        $result = $this->registrationFormCommand->execute($request);
 
-        if ($registrationFormCommand->hasErrors()) {
-            $registrationFormCommand->repopulateForm();
+        if ($result === false) {
             return 'register.twig';
-        } else {
-            $registrationFormCommand->performAction();
         }
 
-        $response->products = $this->dataGateway->getAllProducts();
+        $response->setProducts($this->dataGateway->getAllProducts());
         return 'base.twig';
     }
 }

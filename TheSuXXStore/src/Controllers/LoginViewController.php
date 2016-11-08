@@ -2,7 +2,7 @@
 
 class SuxxLoginViewController implements SuxxController
 {
-    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxResponse $response)
     {
         return 'login.twig';
     }

@@ -24,7 +24,7 @@
                     {# CSRF Protection Token #}
                     <input type="hidden" name="csrf" value="{{ session.getValue('token') }}">
 
-                    <div class="form-group {% if session.getValue('error').username %}has-error{% endif %}">
+                    <div class="form-group {% if session.getValue('error').get('username') %}has-error{% endif %}">
                         <label for="username" class="sr-only">Username</label>
                         <div class="col-sm-12 inputGroupContainer">
                             <div class="input-group">
@@ -32,13 +32,13 @@
                                 <input type="text" class="form-control" id="username" name="username"
                                        value="{{ session.getValue('login_username')}}" placeholder="Enter your Username">
                             </div>
-                            {% if session.getValue('error').username %}
-                                <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').username }}</small></span>
+                            {% if session.getValue('error').get('username') %}
+                                <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('username') }}</small></span>
                             {% endif %}
                         </div>
                     </div>
 
-                    <div class="form-group {% if session.getValue('error').password %}has-error{% endif %}">
+                    <div class="form-group {% if session.getValue('error').get('password') %}has-error{% endif %}">
                         <label for="password" class="sr-only">Password</label>
                         <div class="col-sm-12 inputGroupContainer">
                             <div class="input-group">
@@ -46,13 +46,12 @@
                                 <input type="password" class="form-control" name="passwd" id="password"
                                        value="{{ session.getValue('login_passwd')}}" placeholder="Enter your Password"/>
                             </div>
-                            {% if session.getValue('error').password %}
-                                <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').password }}</small></span>
+                            {% if session.getValue('error').get('password') %}
+                                <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('password') }}</small></span>
                             {% endif %}
                         </div>
                     </div>
 
-                    {{ session.deleteValue('error') }}
                     {{ session.deleteValue('login_username') }}
                     {{ session.deleteValue('login_passwd') }}
 

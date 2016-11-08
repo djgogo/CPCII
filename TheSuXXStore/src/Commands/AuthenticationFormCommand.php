@@ -1,12 +1,7 @@
 <?php
 
-class SuxxAuthenticationFormCommand
+class SuxxAuthenticationFormCommand extends SuxxAbstractFormCommand
 {
-    /**
-     * @var SuxxRequest
-     */
-    private $request;
-
     /**
      * @var SuxxSession
      */
@@ -18,7 +13,7 @@ class SuxxAuthenticationFormCommand
     private $authenticator;
 
     /**
-     * @var array
+     * @var SuxxFormError
      */
     private $error;
 
@@ -32,31 +27,40 @@ class SuxxAuthenticationFormCommand
      */
     private $passwd;
 
-    public function __construct(SuxxAuthenticator $authenticator, SuxxRequest $request, SuxxSession $session, array $error)
+    public function __construct(SuxxAuthenticator $authenticator, SuxxSession $session, SuxxFormError $error)
     {
-        $this->request = $request;
         $this->session = $session;
         $this->authenticator = $authenticator;
         $this->error = $error;
+    }
+
+    public function execute(SuxxRequest $request)
+    {
+        $this->session->deleteValue('error');
 
         $this->username = $request->getValue('username');
         $this->passwd = $request->getValue('passwd');
+
+        $this->validateRequest();
+        if (!$this->hasErrors()) {
+            $this->performAction();
+            return true;
+        }
+        return false;
     }
 
-    public function validateRequest()
+    protected function validateRequest()
     {
         if ($this->username === '') {
-            $this->error['username'] = 'Bitte geben Sie einen Usernamen ein';
-            $this->session->setValue('error', $this->error);
+            $this->error->set('username', 'Bitte geben Sie einen Usernamen ein');
         }
 
         if ($this->passwd === '') {
-            $this->error['password'] = 'Bitte geben Sie ein Passwort ein';
-            $this->session->setValue('error', $this->error);
+            $this->error->set('password', 'Bitte geben Sie ein Passwort ein');
         }
     }
 
-    public function performAction(): bool
+    protected function performAction(): bool
     {
         if ($this->authenticator->authenticate($this->username, $this->passwd)) {
             $this->session->setValue('message', 'Willkommen - Du bist eingeloggt!');
@@ -68,7 +72,7 @@ class SuxxAuthenticationFormCommand
         }
     }
 
-    public function hasErrors() : bool
+    protected function hasErrors() : bool
     {
         if ($this->session->isset('error')) {
             return true;
@@ -76,7 +80,7 @@ class SuxxAuthenticationFormCommand
         return false;
     }
 
-    public function repopulateForm()
+    protected function repopulateForm()
     {
         if ($this->username !== '') {
             $this->session->setValue('login_username', $this->username);

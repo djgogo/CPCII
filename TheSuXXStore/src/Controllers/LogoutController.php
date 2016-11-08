@@ -2,9 +2,8 @@
 
 class SuxxLogoutController implements SuxxController
 {
-    public function execute(SuxxRequest $request, SuxxSession $session, SuxxResponse $response)
+    public function execute(SuxxRequest $request, SuxxResponse $response)
     {
-        unset($session->session);
         session_unset();
 
         $response->setRedirect('/');
