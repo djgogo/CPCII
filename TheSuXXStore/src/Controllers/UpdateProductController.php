@@ -22,7 +22,7 @@ class SuxxUpdateProductController implements SuxxController
         $updateProductFormCommand->validateRequest();
 
         if ($updateProductFormCommand->hasErrors()) {
-            $response->setProducts($this->productDataGateway->findProductById($request->getValue('product-id')));
+            $response->setProduct($this->productDataGateway->findProductById($request->getValue('product-id')));
             $updateProductFormCommand->repopulateForm();
             return 'updateproductview.twig';
         } else {
