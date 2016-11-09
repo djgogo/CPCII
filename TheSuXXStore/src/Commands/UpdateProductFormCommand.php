@@ -18,6 +18,11 @@ class SuxxUpdateProductFormCommand extends SuxxAbstractFormCommand
     private $dataGateway;
 
     /**
+     * @var SuxxFormPopulate
+     */
+    private $populate;
+
+    /**
      * @var SuxxFormError
      */
     private $error;
@@ -35,10 +40,12 @@ class SuxxUpdateProductFormCommand extends SuxxAbstractFormCommand
     public function __construct(
         SuxxProductTableDataGateway $dataGateway,
         SuxxSession $session,
+        SuxxFormPopulate $formPopulate,
         SuxxFormError $error)
     {
         $this->dataGateway = $dataGateway;
         $this->session = $session;
+        $this->populate = $formPopulate;
         $this->error = $error;
     }
 
@@ -62,12 +69,10 @@ class SuxxUpdateProductFormCommand extends SuxxAbstractFormCommand
     {
         if ($this->label === '') {
             $this->error->set('label', 'Bitte geben Sie einen Label-Text ein!');
-            $this->session->setValue('error', $this->error);
         }
 
         if ($this->price === '') {
             $this->error->set('price', 'Bitte geben Sie einen Preis ein!');
-            $this->session->setValue('error', $this->error);
         }
     }
 
@@ -97,11 +102,11 @@ class SuxxUpdateProductFormCommand extends SuxxAbstractFormCommand
     public function repopulateForm()
     {
         if ($this->label !== '') {
-            $this->session->setValue('updateproduct_label', $this->label);
+            $this->populate->set('label', $this->label);
         }
 
         if ($this->price !== '') {
-            $this->session->setValue('updateproduct_price', $this->price);
+            $this->populate->set('price', $this->price);
         }
     }
 }

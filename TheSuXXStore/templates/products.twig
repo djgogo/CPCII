@@ -22,13 +22,13 @@
     </thead>
     <tbody>
     {% for product in response.products %}
-    <tr><td><img src="../images/Products/Small/{{ product.pid }}_small_{{ product.img }}" /></td>
+    <tr><td><img src="../images/Products/Small/{{ product.pid|e('html_attr') }}_small_{{ product.img|e('html_attr') }}" /></td>
         <td>{{ product.pid }}</td>
-        <td><a href="/suxx/product?pid={{ product.pid }}">{{ product.label }}</a></td>
+        <td><a href="/suxx/product?pid={{ product.pid|e('html_attr') }}">{{ product.label|e('html_attr') }}</a></td>
         <td>{{ product.price }}</td>
         <td>{{ product.created }}</td>
         <td>{{ product.updated }}</td>
-        <td><a href="/suxx/updateproductview?pid={{ product.pid }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        <td><a href="/suxx/updateproductview?pid={{ product.pid|e('html_attr') }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
         <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
     </tr>
     {% endfor %}

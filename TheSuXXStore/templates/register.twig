@@ -30,7 +30,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" class="form-control" id="username" name="username"
-                                   value="{{ session.getValue('register_username')}}" placeholder="Enter your Username">
+                                   value="{{ session.getValue('populate').get('username')|e('html_attr') }}" placeholder="Enter your Username">
                         </div>
                         {% if session.getValue('error').get('username') %}
                             <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('username') }}</small></span>
@@ -44,7 +44,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input type="password" class="form-control" name="passwd" id="password"
-                                   value="{{ session.getValue('register_passwd')}}" placeholder="Enter your Password"/>
+                                   value="{{ session.getValue('populate').get('passwd')|e('html_attr') }}" placeholder="Enter your Password"/>
                         </div>
                         {% if session.getValue('error').get('password') %}
                             <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('password') }}</small></span>
@@ -58,7 +58,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" class="form-control" name="name" id="name"
-                                   value="{{ session.getValue('register_name')}}" placeholder="Enter your Name"/>
+                                   value="{{ session.getValue('populate').get('name')|e('html_attr') }}" placeholder="Enter your Name"/>
                         </div>
                         {% if session.getValue('error').get('name') %}
                             <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('name') }}</small></span>
@@ -72,18 +72,13 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-inbox"></i></span>
                             <input type="text" class="form-control" name="email" id="email"
-                                   value="{{ session.getValue('register_email')}}" placeholder="Enter your Email"/>
+                                   value="{{ session.getValue('populate').get('email')|e('html_attr') }}" placeholder="Enter your Email"/>
                         </div>
                         {% if session.getValue('error').get('email') %}
                             <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('email') }}</small></span>
                         {% endif %}
                     </div>
                 </div>
-
-                {{ session.deleteValue('register_username') }}
-                {{ session.deleteValue('register_passwd') }}
-                {{ session.deleteValue('register_name') }}
-                {{ session.deleteValue('register_email') }}
 
                 <div class="form-group">
                     <div class="col-sm-12">

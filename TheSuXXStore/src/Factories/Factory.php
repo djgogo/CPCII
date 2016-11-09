@@ -53,7 +53,7 @@ class SuxxFactory
 
     public function getLoginViewController() : SuxxLoginViewController
     {
-        return new SuxxLoginViewController();
+        return new SuxxLoginViewController($this->session);
     }
 
     public function getLoginController() : SuxxLoginController
@@ -73,7 +73,7 @@ class SuxxFactory
 
     public function getUpdateProductViewController() : SuxxUpdateProductViewController
     {
-        return new SuxxUpdateProductViewController($this->session, $this->getProductTableGateway());
+        return new SuxxUpdateProductViewController($this->session, $this->getProductTableGateway(), $this->getFormPopulate());
     }
 
     public function getUpdateProductController() : SuxxUpdateProductController
@@ -125,26 +125,31 @@ class SuxxFactory
     public function getAuthenticationFormCommand() : SuxxAuthenticationFormCommand
     {
         $authenticator = new SuxxAuthenticator($this->getUserTableGateway());
-        return new SuxxAuthenticationFormCommand($authenticator, $this->session, $this->getFormError());
+        return new SuxxAuthenticationFormCommand($authenticator, $this->session, $this->getFormPopulate(), $this->getFormError());
     }
 
     public function getRegistrationFormCommand() : SuxxRegistrationFormCommand
     {
         $registrator = new SuxxRegistrator($this->getUserTableGateway());
-        return new SuxxRegistrationFormCommand($registrator, $this->session, $this->getFormError());
+        return new SuxxRegistrationFormCommand($registrator, $this->session, $this->getFormPopulate(), $this->getFormError());
     }
 
     public function getUpdateProductFormCommand() : SuxxUpdateProductFormCommand
     {
-        return new SuxxUpdateProductFormCommand($this->getProductTableGateway(), $this->session, $this->getFormError());
+        return new SuxxUpdateProductFormCommand($this->getProductTableGateway(), $this->session, $this->getFormPopulate(), $this->getFormError());
     }
 
     /**
-     * Forms Errorhandling
+     * Forms Errorhandling and Repopulate
      */
     protected function getFormError() : SuxxFormError
     {
         return new SuxxFormError($this->session);
+    }
+
+    protected function getFormPopulate() : SuxxFormPopulate
+    {
+        return new SuxxFormPopulate($this->session);
     }
 
     /**

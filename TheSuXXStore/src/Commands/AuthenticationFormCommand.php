@@ -13,6 +13,11 @@ class SuxxAuthenticationFormCommand extends SuxxAbstractFormCommand
     private $authenticator;
 
     /**
+     * @var SuxxFormPopulate
+     */
+    private $populate;
+
+    /**
      * @var SuxxFormError
      */
     private $error;
@@ -27,10 +32,11 @@ class SuxxAuthenticationFormCommand extends SuxxAbstractFormCommand
      */
     private $passwd;
 
-    public function __construct(SuxxAuthenticator $authenticator, SuxxSession $session, SuxxFormError $error)
+    public function __construct(SuxxAuthenticator $authenticator, SuxxSession $session, SuxxFormPopulate $formPopulate, SuxxFormError $error)
     {
         $this->session = $session;
         $this->authenticator = $authenticator;
+        $this->populate = $formPopulate;
         $this->error = $error;
     }
 
@@ -46,6 +52,7 @@ class SuxxAuthenticationFormCommand extends SuxxAbstractFormCommand
             $this->performAction();
             return true;
         }
+        $this->repopulateForm();
         return false;
     }
 
@@ -83,11 +90,11 @@ class SuxxAuthenticationFormCommand extends SuxxAbstractFormCommand
     protected function repopulateForm()
     {
         if ($this->username !== '') {
-            $this->session->setValue('login_username', $this->username);
+            $this->populate->set('username', $this->username);
         }
 
         if ($this->passwd !== '') {
-            $this->session->setValue('login_passwd', $this->passwd);
+            $this->populate->set('passwd', $this->passwd);
         }
     }
 }

@@ -25,10 +25,10 @@ class SuxxUpdateProductController implements SuxxController
         if ($result === false) {
             $response->setProduct($this->productDataGateway->findProductById($request->getValue('product-id')));
             $this->updateProductFormCommand->repopulateForm();
-            return 'updateproductview.twig';
+            return 'updateproduct.twig';
         }
 
         $response->setProducts($this->productDataGateway->getAllProducts());
-        return 'base.twig';
+        $response->setRedirect('/');
     }
 }

@@ -7,9 +7,20 @@ class SuxxFormPopulate implements SuxxFormInterface
      */
     private $data = [];
 
+    /**
+     * @var SuxxSession
+     */
+    private $session;
+
+    public function __construct(SuxxSession $session)
+    {
+        $this->session = $session;
+    }
+
     public function set(string $key, string $value)
     {
         $this->data[$key] = $value;
+        $this->session->setValue('populate', $this);
     }
 
     public function has(string $key)
@@ -27,7 +38,9 @@ class SuxxFormPopulate implements SuxxFormInterface
     public function get(string $key, $default = null)
     {
         if ($this->has($key)) {
-            return $this->data[$key];
+            $value = $this->data[$key];
+            unset($this->data[$key]);
+            return $value;
         }
         return $default;
     }

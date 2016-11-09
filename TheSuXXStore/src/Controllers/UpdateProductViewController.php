@@ -12,10 +12,16 @@ class SuxxUpdateProductViewController implements SuxxController
      */
     private $session;
 
-    public function __construct(SuxxSession $session, SuxxProductTableDataGateway $productDataGateway)
+    /**
+     * @var SuxxFormPopulate
+     */
+    private $populate;
+
+    public function __construct(SuxxSession $session, SuxxProductTableDataGateway $productDataGateway, SuxxFormPopulate $formPopulate)
     {
         $this->productDataGateway = $productDataGateway;
         $this->session = $session;
+        $this->populate = $formPopulate;
     }
 
     public function execute(SuxxRequest $request, SuxxResponse $response)
@@ -25,11 +31,11 @@ class SuxxUpdateProductViewController implements SuxxController
         }
 
         $response->setProduct($this->productDataGateway->findProductById($request->getValue('pid')));
-        $this->session->setValue('updateproduct_label', $response->getProduct()->getLabel());
-        $this->session->setValue('updateproduct_price', $response->getProduct()->getPrice());
+        $this->populate->set('label', $response->getProduct()->getLabel());
+        $this->populate->set('price', $response->getProduct()->getPrice());
         $this->session->deleteValue('error');
 
-        return 'updateproductview.twig';
+        return 'updateproduct.twig';
     }
 
 }

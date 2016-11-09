@@ -34,7 +34,7 @@ class SuxxCommentController implements SuxxController
         $result = $this->commentFormCommand->execute($request);
 
         if ($result === false) {
-            return 'product.twig';
+            header('Location: /suxx/product?pid=' . $request->getValue('product'), 302);
         }
 
         $_SESSION = $this->session->getSessionData();
