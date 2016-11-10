@@ -35,6 +35,7 @@ class SuxxUserTableDataGateway
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+        return false;
     }
 
     public function findUserByCredentials(string $username, string $password): bool
@@ -79,5 +80,6 @@ class SuxxUserTableDataGateway
         } catch (PDOException $e) {
             printf("%s, User with Username %s was not found in the Database", $e->getMessage(), $username);
         }
+        return false;
     }
 }

@@ -2,5 +2,5 @@
 build.xml
 bootstrap
 vendor
-build/*
+build
 phpunit.xml
