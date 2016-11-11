@@ -2,8 +2,8 @@
 
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
-require __DIR__ . '/autoload.php';
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/src/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 session_start();
 
 /**
@@ -16,7 +16,7 @@ if (empty($_SESSION['token'])) {
 /**
  * Create Templating Engine (Twig)
  */
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/../templates');
+$loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
 $twig = new Twig_Environment($loader, ['cache' => false]);
 
 /**

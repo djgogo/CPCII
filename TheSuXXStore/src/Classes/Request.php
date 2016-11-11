@@ -10,11 +10,6 @@ class SuxxRequest
     /**
      * @var array
      */
-    private $params;
-
-    /**
-     * @var array
-     */
     private $files;
 
     /**
@@ -34,8 +29,8 @@ class SuxxRequest
         $this->server = $server;
 
         if ($this->hasFile('picture')) {
-            $this->picture = $this->files['picture']['name'];
-            $this->originalPath = $this->files['picture']['tmp_name'];
+            $this->picture = $this->getFileData()['filename'];
+            $this->originalPath = $this->getFileData()['filePath'];
         } else {
             $this->picture = '';
         }
@@ -61,6 +56,14 @@ class SuxxRequest
         return ($this->getRequestMethod() == 'GET');
     }
 
+    public function getFileData() : array
+    {
+        return [
+            'filename' => $this->picture = $this->files['picture']['name'],
+            'filePath' => $this->originalPath = $this->files['picture']['tmp_name']
+        ];
+    }
+
     public function hasFile(string $key) : bool
     {
         return isset($this->files[$key]);
@@ -76,30 +79,11 @@ class SuxxRequest
         return $this->originalPath;
     }
 
-    public function setParams(Array $params)
-    {
-        $this->params = $params;
-    }
-
-    public function setParam(string $key, $value)
-    {
-        $this->params[$key] = $value;
-    }
-
     public function getValue($key, $default = null)
     {
         if (isset($this->input[$key])) {
             return $this->escape($this->input[$key]);
         }
-
-        if (isset($this->params[$key])) {
-            return $this->escape($this->params[$key]);
-        }
-
-        if (isset($this->files[$key])) {
-            return $this->escape($this->files[$key]);
-        }
-
         return $default;
     }
 

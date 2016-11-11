@@ -32,7 +32,7 @@ class SuxxResponse
         $this->data[$key] = $value;
     }
 
-    public function getValue(string $key)
+    public function getValue(string $key) : string
     {
         if (!isset($this->data[$key])) {
             throw new SuxxResponseException("Key '$key' does not exist");
@@ -40,7 +40,7 @@ class SuxxResponse
         return $this->escape($this->data[$key]);
     }
 
-    public function isset(string $key)
+    public function isset(string $key) : bool
     {
         return isset($this->data[$key]);
     }

@@ -5,43 +5,44 @@ class SuxxSession
     /**
      * @var array
      */
-    public $session;
+    public $data;
 
     public function __construct(array $session)
     {
-        $this->session = $session;
+        $this->data = $session;
     }
 
     public function setValue(string $key, $value)
     {
-        $this->session[$key] = $value;
+        $this->data[$key] = $value;
     }
 
     public function getValue(string $key, $default = null)
     {
-        if (isset($this->session[$key])) {
-            return $this->session[$key];
+        if (isset($this->data[$key])) {
+            return $this->data[$key];
         }
         return $default;
     }
 
     public function deleteValue(string $key)
     {
-        if (isset($this->session[$key])) {
-            unset($this->session[$key]);
+        if (!isset($this->data[$key])) {
+            throw new SuxxSessionException("Key '$key' does not exist");
         }
+        unset($this->data[$key]);
     }
 
     public function getSessionData() : array
     {
-        if ($this->session !== null) {
-            return $this->session;
+        if ($this->data !== null) {
+            return $this->data;
         }
         return array();
     }
 
     public function isset(string $key) : bool
     {
-        return isset($this->session[$key]);
+        return isset($this->data[$key]);
     }
 }

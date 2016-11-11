@@ -13,14 +13,10 @@ class SuxxFileBackend
         move_uploaded_file($source, $destination);
     }
 
-    public function exists($filename) : bool
-    {
-        return file_exists($filename);
-    }
-
     public function directoryExists($directory) : bool
     {
         return is_dir($directory);
+
     }
 }
 
