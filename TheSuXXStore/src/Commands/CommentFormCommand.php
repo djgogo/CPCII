@@ -51,7 +51,9 @@ class SuxxCommentFormCommand extends SuxxAbstractFormCommand
 
     public function execute(SuxxRequest $request)
     {
-        $this->session->deleteValue('error');
+        if ($this->session->isset('error')) {
+            $this->session->deleteValue('error');
+        }
 
         $this->request = $request;
         $this->comment = $request->getValue('comment');

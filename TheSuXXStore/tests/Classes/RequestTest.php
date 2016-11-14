@@ -77,19 +77,14 @@ class SuxxRequestTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->request->hasFile('picture'));
     }
 
-    public function testFileDataCanBeRetrieved()
+    public function testFilenameCanBeRetrieved()
     {
-        $this->assertEquals($this->files['picture']['name'], $this->request->getFileData()['filename']);
-    }
-
-    public function testFileCanBeRetrieved()
-    {
-        $this->assertEquals($this->request->getFileData()['filename'], $this->request->getFile());
+        $this->assertEquals($this->request->getFilename(), $this->request->getFile());
     }
 
     public function testFilePathCanBeRetrieved()
     {
-        $this->assertEquals($this->request->getFileData()['filePath'], $this->request->getFilePath());
+        $this->assertEquals($this->request->getFilePath(), $this->request->getFilePath());
     }
 
     public function testValueCanBeRetrieved()

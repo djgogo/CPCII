@@ -30,7 +30,7 @@ class SuxxRegistrationFormCommand extends SuxxAbstractFormCommand
     /**
      * @var string
      */
-    private $passwd;
+    private $password;
 
     /**
      * @var string
@@ -52,10 +52,12 @@ class SuxxRegistrationFormCommand extends SuxxAbstractFormCommand
 
     public function execute(SuxxRequest $request)
     {
-        $this->session->deleteValue('error');
+        if ($this->session->isset('error')) {
+            $this->session->deleteValue('error');
+        }
 
         $this->username = $request->getValue('username');
-        $this->passwd = $request->getValue('passwd');
+        $this->password = $request->getValue('password');
         $this->name = $request->getValue('name');
         $this->email = $request->getValue('email');
 
@@ -74,12 +76,12 @@ class SuxxRegistrationFormCommand extends SuxxAbstractFormCommand
             $this->error->set('username', 'Bitte geben Sie einen Usernamen ein');
         }
 
-        if ($this->passwd === '') {
-            $this->error->set('password', 'Bitte geben Sie ein Passwort ein');
+        if (strlen($this->password) < 6) {
+            $this->error->set('password', 'Das Passwort muss mindestens 6 Zeichen lang sein');
         }
 
-        if (strlen($this->passwd) < 6) {
-            $this->error->set('password', 'Das Passwort muss mindestens 6 Zeichen lang sein');
+        if ($this->password === '') {
+            $this->error->set('password', 'Bitte geben Sie ein Passwort ein');
         }
 
         if ($this->name === '') {
@@ -101,7 +103,7 @@ class SuxxRegistrationFormCommand extends SuxxAbstractFormCommand
     {
         $row = [
             'username' => $this->username,
-            'password' => $this->passwd,
+            'password' => $this->password,
             'email' => $this->email,
             'name' => $this->name,
             'description' => 'Suxx Account'
@@ -110,7 +112,7 @@ class SuxxRegistrationFormCommand extends SuxxAbstractFormCommand
         if ($this->registrator->register($row)) {
             $this->session->setValue('message', 'Vielen Dank für die Anmeldung - Loggen Sie sich bitte ein');
         } else {
-            $this->session->setValue('message', 'Anmeldung fehlgeschlagen!');
+            $this->session->setValue('warning', 'Anmeldung fehlgeschlagen!');
         }
     }
 
@@ -128,8 +130,8 @@ class SuxxRegistrationFormCommand extends SuxxAbstractFormCommand
             $this->populate->set('username', $this->username);
         }
 
-        if ($this->passwd !== '') {
-            $this->populate->set('passwd', $this->passwd);
+        if ($this->password !== '') {
+            $this->populate->set('password', $this->password);
         }
 
         if ($this->name !== '') {

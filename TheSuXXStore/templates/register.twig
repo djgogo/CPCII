@@ -43,8 +43,8 @@
                     <div class="col-sm-12 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input type="password" class="form-control" name="passwd" id="password"
-                                   value="{{ session.getValue('populate').get('passwd')|e('html_attr') }}" placeholder="Enter your Password"/>
+                            <input type="password" class="form-control" name="password" id="password"
+                                   value="{{ session.getValue('populate').get('password')|e('html_attr') }}" placeholder="Enter your Password"/>
                         </div>
                         {% if session.getValue('error').get('password') %}
                             <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('password') }}</small></span>

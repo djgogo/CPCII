@@ -43,7 +43,7 @@ class SuxxFactory
 
     public function getRegisterViewController() : SuxxRegisterViewController
     {
-        return new SuxxRegisterViewController();
+        return new SuxxRegisterViewController($this->session);
     }
 
     public function getRegisterController() : SuxxRegisterController

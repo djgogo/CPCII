@@ -30,7 +30,7 @@ class SuxxAuthenticationFormCommand extends SuxxAbstractFormCommand
     /**
      * @var string
      */
-    private $passwd;
+    private $password;
 
     public function __construct(SuxxAuthenticator $authenticator, SuxxSession $session, SuxxFormPopulate $formPopulate, SuxxFormError $error)
     {
@@ -42,10 +42,12 @@ class SuxxAuthenticationFormCommand extends SuxxAbstractFormCommand
 
     public function execute(SuxxRequest $request)
     {
-        $this->session->deleteValue('error');
+        if ($this->session->isset('error')) {
+            $this->session->deleteValue('error');
+        }
 
         $this->username = $request->getValue('username');
-        $this->passwd = $request->getValue('passwd');
+        $this->password = $request->getValue('password');
 
         $this->validateRequest();
         if (!$this->hasErrors()) {
@@ -62,14 +64,14 @@ class SuxxAuthenticationFormCommand extends SuxxAbstractFormCommand
             $this->error->set('username', 'Bitte geben Sie einen Usernamen ein');
         }
 
-        if ($this->passwd === '') {
+        if ($this->password === '') {
             $this->error->set('password', 'Bitte geben Sie ein Passwort ein');
         }
     }
 
     protected function performAction(): bool
     {
-        if ($this->authenticator->authenticate($this->username, $this->passwd)) {
+        if ($this->authenticator->authenticate($this->username, $this->password)) {
             $this->session->setValue('message', 'Willkommen - Du bist eingeloggt!');
             $this->session->setValue('user', $this->username);
             return true;
@@ -93,8 +95,8 @@ class SuxxAuthenticationFormCommand extends SuxxAbstractFormCommand
             $this->populate->set('username', $this->username);
         }
 
-        if ($this->passwd !== '') {
-            $this->populate->set('passwd', $this->passwd);
+        if ($this->password !== '') {
+            $this->populate->set('password', $this->password);
         }
     }
 }

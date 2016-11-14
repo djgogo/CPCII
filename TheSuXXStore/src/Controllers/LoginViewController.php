@@ -13,7 +13,9 @@ class SuxxLoginViewController implements SuxxController
     }
     public function execute(SuxxRequest $request, SuxxResponse $response)
     {
-        $this->session->deleteValue('error');
+        if ($this->session->isset('error')) {
+            $this->session->deleteValue('error');
+        }
 
         return 'login.twig';
     }

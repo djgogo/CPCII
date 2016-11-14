@@ -29,8 +29,7 @@ class SuxxRequest
         $this->server = $server;
 
         if ($this->hasFile('picture')) {
-            $this->picture = $this->getFileData()['filename'];
-            $this->originalPath = $this->getFileData()['filePath'];
+            $this->picture = $this->getFilename();
         } else {
             $this->picture = '';
         }
@@ -56,12 +55,14 @@ class SuxxRequest
         return ($this->getRequestMethod() == 'GET');
     }
 
-    public function getFileData() : array
+    public function getFilename() : string
     {
-        return [
-            'filename' => $this->picture = $this->files['picture']['name'],
-            'filePath' => $this->originalPath = $this->files['picture']['tmp_name']
-        ];
+        return $this->files['picture']['name'];
+    }
+
+    public function getFilePath() : string
+    {
+        return $this->files['picture']['tmp_name'];
     }
 
     public function hasFile(string $key) : bool
@@ -72,11 +73,6 @@ class SuxxRequest
     public function getFile() : string
     {
         return $this->picture;
-    }
-
-    public function getFilePath() : string
-    {
-        return $this->originalPath;
     }
 
     public function getValue($key, $default = null)

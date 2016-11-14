@@ -33,7 +33,10 @@ class SuxxUpdateProductViewController implements SuxxController
         $response->setProduct($this->productDataGateway->findProductById($request->getValue('pid')));
         $this->populate->set('label', $response->getProduct()->getLabel());
         $this->populate->set('price', $response->getProduct()->getPrice());
-        $this->session->deleteValue('error');
+
+        if ($this->session->isset('error')) {
+            $this->session->deleteValue('error');
+        }
 
         return 'updateproduct.twig';
     }
