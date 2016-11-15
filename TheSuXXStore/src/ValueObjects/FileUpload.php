@@ -12,8 +12,15 @@ class SuxxFileUpload
         'image/gif'
     ];
 
-    public function __construct()
+    /**
+     * @var SuxxUploadedFile
+     */
+    private $file;
+
+    public function __construct(SuxxUploadedFile $file)
     {
+        $this->file = $file;
+
         $this->ensureValidImage();
         $this->ensureValidSize();
         $this->ensureAllowedMimeType();
@@ -21,7 +28,7 @@ class SuxxFileUpload
 
     private function ensureValidImage()
     {
-        $result = getimagesize($_FILES['picture']['tmp_name']);
+        $result = $this->file->getImageSize();
 
         if ($result === false) {
             throw new \InvalidUploadedFileException('Die übergebene Datei ist ungültig!');
@@ -30,14 +37,14 @@ class SuxxFileUpload
 
     private function ensureValidSize()
     {
-        if ($_FILES['picture']['size'] > 500000) {
+        if ($this->file->getSize() > 500000) {
             throw new \InvalidUploadedFileException('Die übergebene Datei ist zu gross!');
         }
     }
 
     private function ensureAllowedMimeType()
     {
-        $result = getimagesize($_FILES['picture']['tmp_name']);
+        $result = $this->file->getImageSize();
 
         if (!in_array($result['mime'], $this->allowedMimeTypes)) {
             throw new \InvalidUploadedFileException('Der übergebene Dateityp ist ungültig!');

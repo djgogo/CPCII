@@ -32,9 +32,9 @@ class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
     private $error;
 
     /**
-     * @var SuxxRegistrationFormCommand
+     * @var PHPUnit_Framework_MockObject_MockObject | SuxxUploadedFile
      */
-    private $registrationFormCommand;
+    private $file;
 
     protected function setUp()
     {
@@ -42,16 +42,13 @@ class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->file = $this->getMockBuilder(SuxxUploadedFile::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->session = new SuxxSession(array());
         $this->populate = new SuxxFormPopulate($this->session);
         $this->error = new SuxxFormError($this->session);
-
-        $this->registrationFormCommand = new SuxxRegistrationFormCommand(
-            $this->registrator,
-            $this->session,
-            $this->populate,
-            $this->error
-        );
     }
 
     /**
@@ -59,16 +56,15 @@ class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
      * @param $fieldToEmpty
      * @param $expectedErrorMessage
      */
-    public function testEmptyFormFieldTriggersErrorAndRepopulate($fieldToEmpty, $expectedErrorMessage)
+    public function testEmptyFormFieldTriggersError($fieldToEmpty, $expectedErrorMessage)
     {
         $request = $this->getValidRequestArray();
         $request[$fieldToEmpty] = '';
-        $request = new SuxxRequest($request, array(), array());
+        $request = new SuxxRequest($request, array(), $this->file);
 
-        $this->registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertFalse($this->registrationFormCommand->execute($request));
+        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+        $this->assertFalse($registrationFormCommand->execute($request));
         $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($fieldToEmpty));
-        $this->assertEquals($request->getValue($fieldToEmpty), $this->session->getValue('populate')->get($fieldToEmpty));
     }
 
     public function testInvalidPasswordTriggersError()
@@ -77,12 +73,11 @@ class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
 
         $request = $this->getValidRequestArray();
         $request['password'] = 123;
-        $request = new SuxxRequest($request, array(), array());
+        $request = new SuxxRequest($request, array(), $this->file);
 
-        $this->registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertFalse($this->registrationFormCommand->execute($request));
+        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+        $this->assertFalse($registrationFormCommand->execute($request));
         $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('password'));
-        $this->assertEquals($request->getValue('password'), $this->session->getValue('populate')->get('password'));
     }
 
     public function testInvalidEmailTriggersError()
@@ -91,12 +86,11 @@ class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
 
         $request = $this->getValidRequestArray();
         $request['email'] = 'wrong Email';
-        $request = new SuxxRequest($request, array(), array());
+        $request = new SuxxRequest($request, array(), $this->file);
 
-        $this->registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertFalse($this->registrationFormCommand->execute($request));
+        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+        $this->assertFalse($registrationFormCommand->execute($request));
         $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('email'));
-        $this->assertEquals($request->getValue('email'), $this->session->getValue('populate')->get('email'));
     }
 
     public function testAlreadyExistingUsernameTriggersError()
@@ -105,17 +99,16 @@ class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
 
         $request = $this->getValidRequestArray();
         $request['username'] = 'test';
-        $request = new SuxxRequest($request, array(), array());
+        $request = new SuxxRequest($request, array(), $this->file);
 
         $this->registrator
             ->expects($this->once())
             ->method('usernameExists')
             ->willReturn(true);
 
-        $this->registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertFalse($this->registrationFormCommand->execute($request));
+        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+        $this->assertFalse($registrationFormCommand->execute($request));
         $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('username'));
-        $this->assertEquals($request->getValue('username'), $this->session->getValue('populate')->get('username'));
     }
 
     public function testHappyPath()
@@ -123,15 +116,15 @@ class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
         $expectedMessage = 'Vielen Dank für die Anmeldung - Loggen Sie sich bitte ein';
 
         $request = $this->getValidRequestArray();
-        $request = new SuxxRequest($request, array(), array());
+        $request = new SuxxRequest($request, array(), $this->file);
 
         $this->registrator
             ->expects($this->once())
             ->method('register')
             ->willReturn(true);
 
-        $this->registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertTrue($this->registrationFormCommand->execute($request));
+        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+        $this->assertTrue($registrationFormCommand->execute($request));
         $this->assertEquals($expectedMessage, $this->session->getValue('message'));
     }
 
@@ -140,15 +133,15 @@ class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
         $expectedMessage = 'Anmeldung fehlgeschlagen!';
 
         $request = $this->getValidRequestArray();
-        $request = new SuxxRequest($request, array(), array());
+        $request = new SuxxRequest($request, array(), $this->file);
 
         $this->registrator
             ->expects($this->once())
             ->method('register')
             ->willReturn(false);
 
-        $this->registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertTrue($this->registrationFormCommand->execute($request));
+        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+        $this->assertTrue($registrationFormCommand->execute($request));
         $this->assertEquals($expectedMessage, $this->session->getValue('warning'));
     }
 
@@ -172,6 +165,27 @@ class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
             'password' => '123456',
             'name' => 'suxx store',
             'email' => 'suxx@store.com'
+        ];
+    }
+
+    /**
+     * @dataProvider formFieldValuesProvider
+     * @param $fieldName
+     * @param $fieldValue
+     */
+    public function testFormFieldsCanBeRepopulated($fieldName, $fieldValue)
+    {
+        $this->populate->set($fieldName, $fieldValue);
+        $this->assertSame($fieldValue, $this->session->getValue('populate')->get($fieldName));
+    }
+
+    public function formFieldValuesProvider() : array
+    {
+        return [
+            ['username', 'suxx'],
+            ['password', '123456'],
+            ['name', 'suxx store'],
+            ['email', 'suxx@store.com'],
         ];
     }
 }

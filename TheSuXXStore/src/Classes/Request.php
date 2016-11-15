@@ -8,31 +8,20 @@ class SuxxRequest
     private $input;
 
     /**
-     * @var array
+     * @var SuxxUploadedFile
      */
-    private $files;
+    private $file;
 
     /**
      * @var array
      */
     private $server;
 
-    /**
-     * @var string
-     */
-    private $picture;
-
-    public function __construct(array $request, array $server, array $files)
+    public function __construct(array $request, array $server, SuxxUploadedFile $file)
     {
         $this->input = $request;
-        $this->files = $files;
+        $this->file = $file;
         $this->server = $server;
-
-        if ($this->hasFile('picture')) {
-            $this->picture = $this->getFilename();
-        } else {
-            $this->picture = '';
-        }
     }
 
     public function getRequestUri() : string
@@ -55,24 +44,9 @@ class SuxxRequest
         return ($this->getRequestMethod() == 'GET');
     }
 
-    public function getFilename() : string
+    public function getUploadedFile() : SuxxUploadedFile
     {
-        return $this->files['picture']['name'];
-    }
-
-    public function getFilePath() : string
-    {
-        return $this->files['picture']['tmp_name'];
-    }
-
-    public function hasFile(string $key) : bool
-    {
-        return isset($this->files[$key]);
-    }
-
-    public function getFile() : string
-    {
-        return $this->picture;
+        return $this->file->getUploadedFile();
     }
 
     public function getValue($key, $default = null)

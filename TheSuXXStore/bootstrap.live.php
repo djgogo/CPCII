@@ -22,7 +22,8 @@ $twig = new Twig_Environment($loader, ['cache' => false]);
 /**
  * Create Request, Response and Session Objects
  */
-$request = new SuxxRequest($_REQUEST, $_SERVER, $_FILES);
+$uploadedFile = new SuxxUploadedFile($_FILES);
+$request = new SuxxRequest($_REQUEST, $_SERVER, $uploadedFile);
 $session = new SuxxSession($_SESSION);
 $response = new SuxxResponse();
 

@@ -34,6 +34,7 @@ class SuxxCommentTableDataGateway
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+        return false;
     }
 
     public function findCommentsByPid(int $id)
@@ -46,5 +47,6 @@ class SuxxCommentTableDataGateway
         } catch (PDOException $e) {
             sprintf("%s, Kommentare mit Id %s konnten nicht ausgelesen werden", $e->getMessage(), $id);
         }
+        return false;
     }
 }

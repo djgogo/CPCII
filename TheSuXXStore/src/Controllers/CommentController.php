@@ -8,24 +8,15 @@ class SuxxCommentController implements SuxxController
     private $session;
 
     /**
-     * @var SuxxCommentTableDataGateway
+     * @var SuxxCommentFormCommand
      */
-    private $commentDataGateway;
-
-    /**
-     * @var SuxxFileBackend
-     */
-    private $backend;
+    private $commentFormCommand;
 
     public function __construct(
         SuxxSession $session,
-        SuxxCommentFormCommand $commentFormCommand,
-        SuxxCommentTableDataGateway $commentDataGateway,
-        SuxxFileBackend $backend)
+        SuxxCommentFormCommand $commentFormCommand)
     {
         $this->session = $session;
-        $this->commentDataGateway = $commentDataGateway;
-        $this->backend = $backend;
         $this->commentFormCommand = $commentFormCommand;
     }
 

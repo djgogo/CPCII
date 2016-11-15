@@ -89,7 +89,7 @@ class SuxxAuthenticationFormCommand extends SuxxAbstractFormCommand
         return false;
     }
 
-    protected function repopulateForm()
+    public function repopulateForm()
     {
         if ($this->username !== '') {
             $this->populate->set('username', $this->username);

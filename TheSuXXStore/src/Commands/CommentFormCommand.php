@@ -57,7 +57,7 @@ class SuxxCommentFormCommand extends SuxxAbstractFormCommand
 
         $this->request = $request;
         $this->comment = $request->getValue('comment');
-        $this->picture = $request->getFile();
+        $this->picture = $request->getUploadedFile()->getFilename();
 
         $this->validateRequest();
         if (!$this->hasErrors()) {
@@ -75,7 +75,7 @@ class SuxxCommentFormCommand extends SuxxAbstractFormCommand
 
         if ($this->picture !== '') {
             try {
-                new SuxxFileUpload();
+                new SuxxFileUpload($this->request->getUploadedFile());
             } catch (\InvalidUploadedFileException $e) {
                 $this->error->set('file', 'Das Bild ist ungültig - Dateiupload konnte nicht ausgeführt werden!');
             }
@@ -101,7 +101,7 @@ class SuxxCommentFormCommand extends SuxxAbstractFormCommand
 
         if ($this->picture) {
             $targetPath = __DIR__ . '/../../html/images/Comments/' . $cid . '_' . $this->picture;
-            $originalPath = $this->request->getFilePath();
+            $originalPath = $this->request->getUploadedFile()->getFilePath();
             $this->backend->moveUploadedFileTo($originalPath, $targetPath);
         }
     }

@@ -2,6 +2,7 @@
 
 /**
  * @covers SuxxRequest
+ * @uses SuxxUploadedFile
  */
 class SuxxRequestTest extends PHPUnit_Framework_TestCase
 {
@@ -13,17 +14,17 @@ class SuxxRequestTest extends PHPUnit_Framework_TestCase
     /**
      * @var array
      */
-    private $files;
-
-    /**
-     * @var array
-     */
     private $server;
 
     /**
      * @var SuxxRequest
      */
     private $request;
+
+    /**
+     * @var PHPUnit_Framework_MockObject_MockObject | SuxxUploadedFile
+     */
+    private $file;
 
     protected function setUp()
     {
@@ -33,22 +34,16 @@ class SuxxRequestTest extends PHPUnit_Framework_TestCase
             'comment' => 'Test Kommentar'
         ];
 
-        $this->files = [
-            'picture' => [
-                'name' => 'smiley.jpg',
-                'type' => 'image/jpeg',
-                'tmp_name' => '/tmp/phpF7UTQj',
-                'error' => 0,
-                'size' => 4447
-            ]
-        ];
-
         $this->server = [
             'REQUEST_URI' => '/suxx/comment',
             'REQUEST_METHOD' => 'POST'
         ];
 
-        $this->request = new SuxxRequest($this->input, $this->server, $this->files);
+        $this->file = $this->getMockBuilder(SuxxUploadedFile::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->request = new SuxxRequest($this->input, $this->server, $this->file);
     }
 
 
@@ -72,19 +67,9 @@ class SuxxRequestTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->request->isGetRequest());
     }
 
-    public function testHasFileReturnsRightBoolean()
+    public function testUploadedFileCanBeRetrieved()
     {
-        $this->assertTrue($this->request->hasFile('picture'));
-    }
-
-    public function testFilenameCanBeRetrieved()
-    {
-        $this->assertEquals($this->request->getFilename(), $this->request->getFile());
-    }
-
-    public function testFilePathCanBeRetrieved()
-    {
-        $this->assertEquals($this->request->getFilePath(), $this->request->getFilePath());
+        $this->assertInstanceOf(SuxxUploadedFile::class, $this->request->getUploadedFile());
     }
 
     public function testValueCanBeRetrieved()

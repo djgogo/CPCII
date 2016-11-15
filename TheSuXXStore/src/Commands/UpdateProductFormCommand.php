@@ -28,6 +28,11 @@ class SuxxUpdateProductFormCommand extends SuxxAbstractFormCommand
     private $error;
 
     /**
+     * @var int
+     */
+    private $pid;
+
+    /**
      * @var string
      */
     private $label;
@@ -55,7 +60,7 @@ class SuxxUpdateProductFormCommand extends SuxxAbstractFormCommand
             $this->session->deleteValue('error');
         }
 
-        $this->request = $request;
+        $this->pid = $request->getValue('product-id');
         $this->label = $request->getValue('label');
         $this->price = $request->getValue('price');
 
@@ -81,7 +86,7 @@ class SuxxUpdateProductFormCommand extends SuxxAbstractFormCommand
     public function performAction()
     {
         $row = [
-            'pid' => $this->request->getValue('product-id'),
+            'pid' => $this->pid,
             'label' => $this->label,
             'price' => $this->price
         ];

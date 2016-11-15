@@ -83,12 +83,7 @@ class SuxxFactory
 
     public function getCommentController() : SuxxCommentController
     {
-        return new SuxxCommentController($this->session, $this->getCommentFormCommand(), $this->getCommentTableGateway(), $this->getFileBackend());
-    }
-
-    public function getErrorController() : SuxxErrorController
-    {
-        return new SuxxErrorController();
+        return new SuxxCommentController($this->session, $this->getCommentFormCommand());
     }
 
     public function get404Controller() : Suxx404Controller
