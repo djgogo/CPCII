@@ -4,6 +4,7 @@
  * @covers SuxxCommentController
  * @uses SuxxRequest
  * @uses SuxxResponse
+ * @uses SuxxCommentFormCommand
  */
 class SuxxCommentControllerTest extends PHPUnit_Framework_TestCase
 {

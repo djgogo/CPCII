@@ -58,7 +58,7 @@ class SuxxFactory
 
     public function getLoginController() : SuxxLoginController
     {
-        return new SuxxLoginController($this->session, $this->getAuthenticationFormCommand(), $this->getProductTableGateway());
+        return new SuxxLoginController($this->session, $this->getAuthenticationFormCommand());
     }
 
     public function getLogoutController() : SuxxLogoutController

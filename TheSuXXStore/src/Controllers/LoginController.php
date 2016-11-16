@@ -12,19 +12,13 @@ class SuxxLoginController implements SuxxController
      */
     private $authenticationFormCommand;
 
-    /**
-     * @var SuxxProductTableDataGateway
-     */
-    private $dataGateway;
 
     public function __construct(
         SuxxSession $session,
-        SuxxAuthenticationFormCommand $authenticationFormCommand,
-        SuxxProductTableDataGateway $dataGateway)
+        SuxxAuthenticationFormCommand $authenticationFormCommand)
     {
         $this->session = $session;
         $this->authenticationFormCommand = $authenticationFormCommand;
-        $this->dataGateway = $dataGateway;
     }
 
     public function execute(SuxxRequest $request, SuxxResponse $response)
