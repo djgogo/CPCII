@@ -1,5 +1,7 @@
 <?php
 
+use Fancy\SuxxFileBackend;
+
 class SuxxCommentFormCommand extends SuxxAbstractFormCommand
 {
     /**
@@ -18,7 +20,7 @@ class SuxxCommentFormCommand extends SuxxAbstractFormCommand
     private $dataGateway;
 
     /**
-     * @var SuxxFileBackend
+     * @var \Fancy\SuxxFileBackend
      */
     private $backend;
 
@@ -100,9 +102,11 @@ class SuxxCommentFormCommand extends SuxxAbstractFormCommand
         }
 
         if ($this->picture) {
+            //@codeCoverageIgnoreStart
             $targetPath = __DIR__ . '/../../html/images/Comments/' . $cid . '_' . $this->picture;
             $originalPath = $this->request->getUploadedFile()->getFilePath();
             $this->backend->moveUploadedFileTo($originalPath, $targetPath);
+            //@codeCoverageIgnoreEnd
         }
     }
 
@@ -114,6 +118,9 @@ class SuxxCommentFormCommand extends SuxxAbstractFormCommand
         return false;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     protected function repopulateForm()
     {
     }

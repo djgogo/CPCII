@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @codeCoverageIgnore
+ */
 class SuxxLogoutController implements SuxxController
 {
     public function execute(SuxxRequest $request, SuxxResponse $response)

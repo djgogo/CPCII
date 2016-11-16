@@ -62,11 +62,30 @@ class SuxxUpdateProductFormCommandTest extends PHPUnit_Framework_TestCase
 
         $updateProductFormCommand = new SuxxUpdateProductFormCommand($this->dataGateway, $this->session, $this->populate, $this->error);
         $this->assertFalse($updateProductFormCommand->execute($request));
+
+        $updateProductFormCommand->repopulateForm();
         $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($field));
     }
 
     public function testHappyPath()
     {
+        $request = ['label' => 'Test Product', 'price' => '123'];
+        $request = new SuxxRequest($request, array(), $this->file);
+
+        $this->dataGateway
+            ->expects($this->once())
+            ->method('update')
+            ->willReturn(true);
+
+        $updateProductFormCommand = new SuxxUpdateProductFormCommand($this->dataGateway, $this->session, $this->populate, $this->error);
+        $this->assertTrue($updateProductFormCommand->execute($request));
+        $this->assertEquals('Datensatz wurde geändert', $this->session->getValue('message'));
+    }
+
+    public function testExecutionCanDeleteSessionErrorIfSet()
+    {
+        $this->session->setValue('error', 'test');
+
         $request = ['label' => 'Test Product', 'price' => '123'];
         $request = new SuxxRequest($request, array(), $this->file);
 

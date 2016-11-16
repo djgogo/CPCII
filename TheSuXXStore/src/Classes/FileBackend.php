@@ -1,10 +1,13 @@
 <?php
+namespace Fancy;
 
 class SuxxFileBackend
 {
     public function moveUploadedFileTo($source, $destination)
     {
+        //@codeCoverageIgnoreStart
         $spl = new \SplFileInfo($destination);
+        //@codeCoverageIgnoreEnd
 
         if (!$this->directoryExists($spl->getPath())) {
             throw new \InvalidFileBackendException('Das angegebene Directory existiert nicht!');

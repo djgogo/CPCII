@@ -40,6 +40,12 @@ class SuxxUploadedFileTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('smiley.jpg', $this->uploadedFile->getFilename());
     }
 
+    public function testGetFilenameReturnsBlankIfNotSet()
+    {
+        $uploadedFile = new SuxxUploadedFile(array());
+        $this->assertEquals('', $uploadedFile->getFilename());
+    }
+
     public function testFilePathCanBeRetrieved()
     {
         $this->assertEquals('/var/www/Exercises/TheSuXXStore/tests/TestFiles/smiley', $this->uploadedFile->getFilePath());

@@ -82,6 +82,24 @@ class SuxxAuthenticationFormCommandTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Willkommen - Du bist eingeloggt!', $this->session->getValue('message'));
     }
 
+    public function testExecutionCanDeleteSessionErrorIfSet()
+    {
+        $this->session->setValue('error', 'test');
+
+        $request = ['username' => 'suxx', 'password' => '123456'];
+        $request = new SuxxRequest($request, array(), $this->file);
+
+        $this->authenticator
+            ->expects($this->once())
+            ->method('authenticate')
+            ->with($request->getValue('username'), $request->getValue('password'))
+            ->willReturn(true);
+
+        $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
+        $this->assertTrue($authenticationFormCommand->execute($request));
+        $this->assertEquals('Willkommen - Du bist eingeloggt!', $this->session->getValue('message'));
+    }
+
     public function testAuthenticationFailsWithWrongCredentials()
     {
         $request = ['username' => 'suxx', 'password' => 'wrong Password'];

@@ -1,10 +1,12 @@
 <?php
 
+use Fancy\SuxxFileBackend;
+
 /**
  * @covers SuxxCommentFormCommand
  * @uses SuxxSession
  * @uses SuxxFormError
- * @uses SuxxFileBackend
+ * @uses \Fancy\SuxxFileBackend
  * @uses SuxxRequest
  * @uses SuxxUploadedFile
  * @uses SuxxFileUpload
@@ -17,7 +19,7 @@ class SuxxCommentFormCommandTest extends PHPUnit_Framework_TestCase
     private $session;
 
     /**
-     * @var SuxxFileBackend
+     * @var \Fancy\SuxxFileBackend
      */
     private $backend;
 
@@ -88,6 +90,25 @@ class SuxxCommentFormCommandTest extends PHPUnit_Framework_TestCase
     public function testHappyPath()
     {
         $expectedMessage = 'Vielen Dank für Deinen Kommentar';
+
+        $request = ['comment' => 'Test Kommentar', 'picture' => ''];
+        $request = new SuxxRequest($request, array(), $this->file);
+
+        $this->dataGateway
+            ->expects($this->once())
+            ->method('insert')
+            ->willReturn(1);
+
+        $commentFormCommand = new SuxxCommentFormCommand($this->dataGateway, $this->session, $this->backend, $this->error);
+        $this->assertTrue($commentFormCommand->execute($request));
+        $this->assertEquals($expectedMessage, $this->session->getValue('message'));
+    }
+
+    public function testExecutionCanDeleteSessionErrorIfSet()
+    {
+        $expectedMessage = 'Vielen Dank für Deinen Kommentar';
+
+        $this->session->setValue('error', 'test');
 
         $request = ['comment' => 'Test Kommentar', 'picture' => ''];
         $request = new SuxxRequest($request, array(), $this->file);

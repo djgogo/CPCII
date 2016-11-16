@@ -1,5 +1,8 @@
 <?php
 
+use Fancy\SuxxFileBackend;
+use Suxx\SuxxLoginController;
+
 class SuxxFactory
 {
     /**
@@ -135,7 +138,7 @@ class SuxxFactory
     }
 
     /**
-     * Forms Errorhandling and Repopulate
+     * Forms Error Handling and Re-Population
      */
     protected function getFormError() : SuxxFormError
     {
@@ -148,9 +151,9 @@ class SuxxFactory
     }
 
     /**
-     * FileBackends
+     * File Backend's
      */
-    protected function getFileBackend() : SuxxFileBackend
+    protected function getFileBackend() : \Fancy\SuxxFileBackend
     {
         return new SuxxFileBackend();
     }

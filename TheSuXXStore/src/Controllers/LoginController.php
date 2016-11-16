@@ -1,37 +1,40 @@
 <?php
 
-class SuxxLoginController implements SuxxController
+namespace Suxx
 {
-    /**
-     * @var SuxxSession
-     */
-    private $session;
-
-    /**
-     * @var SuxxAuthenticationFormCommand
-     */
-    private $authenticationFormCommand;
-
-
-    public function __construct(
-        SuxxSession $session,
-        SuxxAuthenticationFormCommand $authenticationFormCommand)
+    class SuxxLoginController implements \SuxxController
     {
-        $this->session = $session;
-        $this->authenticationFormCommand = $authenticationFormCommand;
-    }
+        /**
+         * @var \SuxxSession
+         */
+        private $session;
 
-    public function execute(SuxxRequest $request, SuxxResponse $response)
-    {
-        $result = $this->authenticationFormCommand->execute($request);
+        /**
+         * @var \SuxxAuthenticationFormCommand
+         */
+        private $authenticationFormCommand;
 
-        if ($result === false) {
-            return 'login.twig';
+
+        public function __construct(
+            \SuxxSession $session,
+            \SuxxAuthenticationFormCommand $authenticationFormCommand)
+        {
+            $this->session = $session;
+            $this->authenticationFormCommand = $authenticationFormCommand;
         }
 
-        session_regenerate_id();
-        $_SESSION = $this->session->getSessionData();
-        $response->setRedirect('/');
-    }
+        public function execute(\SuxxRequest $request, \SuxxResponse $response)
+        {
+            $result = $this->authenticationFormCommand->execute($request);
 
+            if ($result === false) {
+                return 'login.twig';
+            }
+
+            session_regenerate_id();
+            $_SESSION = $this->session->getSessionData();
+            $response->setRedirect('/');
+        }
+
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class PDOFactory extends AbstractPdo
+class PDOFactory
 {
     /**
      * @var string
@@ -41,6 +41,22 @@ class PDOFactory extends AbstractPdo
             $this->instance = $this->getPdo($this->host, $this->dbName, $this->user, $this->pass);
         }
         return $this->instance;
+    }
+
+    private function getPdo($host, $dbName, $user, $pass) : PDO
+    {
+        try {
+            $db = new PDO(
+                "mysql:host=$host;dbname=$dbName",
+                $user,
+                $pass
+            );
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $db;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        return null;
     }
 }
 

@@ -128,6 +128,25 @@ class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedMessage, $this->session->getValue('message'));
     }
 
+    public function testExecutionCanDeleteSessionErrorIfSet()
+    {
+        $this->session->setValue('error', 'test');
+
+        $expectedMessage = 'Vielen Dank für die Anmeldung - Loggen Sie sich bitte ein';
+
+        $request = $this->getValidRequestArray();
+        $request = new SuxxRequest($request, array(), $this->file);
+
+        $this->registrator
+            ->expects($this->once())
+            ->method('register')
+            ->willReturn(true);
+
+        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+        $this->assertTrue($registrationFormCommand->execute($request));
+        $this->assertEquals($expectedMessage, $this->session->getValue('message'));
+    }
+
     public function testRegistrationFailsTriggersErrorMessage()
     {
         $expectedMessage = 'Anmeldung fehlgeschlagen!';
