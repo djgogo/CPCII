@@ -26,6 +26,9 @@ class SuxxFactory
         return $this->pdoFactory->getDbHandler();
     }
 
+    /**
+     * Routers
+     */
     public function getRouters() : array
     {
         return [
@@ -97,17 +100,17 @@ class SuxxFactory
     /**
      * TableDataGateways
      */
-    protected function getProductTableGateway() : SuxxProductTableDataGateway
+    public function getProductTableGateway() : SuxxProductTableDataGateway
     {
         return new SuxxProductTableDataGateway($this->getDatabase());
     }
 
-    protected function getCommentTableGateway() : SuxxCommentTableDataGateway
+    public function getCommentTableGateway() : SuxxCommentTableDataGateway
     {
         return new SuxxCommentTableDataGateway($this->getDatabase());
     }
 
-    protected function getUserTableGateway() : SuxxUserTableDataGateway
+    public function getUserTableGateway() : SuxxUserTableDataGateway
     {
         return new SuxxUserTableDataGateway($this->getDatabase());
     }
@@ -140,12 +143,12 @@ class SuxxFactory
     /**
      * Forms Error Handling and Re-Population
      */
-    protected function getFormError() : SuxxFormError
+    public function getFormError() : SuxxFormError
     {
         return new SuxxFormError($this->session);
     }
 
-    protected function getFormPopulate() : SuxxFormPopulate
+    public function getFormPopulate() : SuxxFormPopulate
     {
         return new SuxxFormPopulate($this->session);
     }
@@ -153,7 +156,7 @@ class SuxxFactory
     /**
      * File Backend's
      */
-    protected function getFileBackend() : \Fancy\SuxxFileBackend
+    public function getFileBackend() : \Fancy\SuxxFileBackend
     {
         return new SuxxFileBackend();
     }

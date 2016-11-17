@@ -56,7 +56,7 @@ class PDOFactory
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        return null;
+        throw new SuxxInvalidPdoAttributeException('Wrong mySql Credentials - Access denied!');
     }
 }
 

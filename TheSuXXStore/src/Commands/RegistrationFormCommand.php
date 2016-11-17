@@ -106,7 +106,8 @@ class SuxxRegistrationFormCommand extends SuxxAbstractFormCommand
             'password' => $this->password,
             'email' => $this->email,
             'name' => $this->name,
-            'description' => 'Suxx Account'
+            'description' => 'Suxx Account',
+            'picture' => ''
         ];
 
         if ($this->registrator->register($row)) {

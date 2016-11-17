@@ -16,12 +16,13 @@ class SuxxUserTableDataGateway
         $hashedPassword = password_hash($row['password'], PASSWORD_DEFAULT);
         try {
             $stmt = $this->pdo->prepare(
-                'INSERT INTO user (username, passwd, email, name, descr) 
+                'INSERT INTO user (username, passwd, email, name, descr, picture) 
             VALUES (:username, 
                     :passwd, 
                     :email, 
                     :name, 
-                    :descr)'
+                    :descr,
+                    :picture)'
             );
 
             $stmt->bindParam(':username', $row['username'], PDO::PARAM_STR);
@@ -29,6 +30,7 @@ class SuxxUserTableDataGateway
             $stmt->bindParam(':email', $row['email'], PDO::PARAM_STR);
             $stmt->bindParam(':name', $row['name'], PDO::PARAM_STR);
             $stmt->bindParam(':descr', $row['description'], PDO::PARAM_STR);
+            $stmt->bindParam(':picture', $row['picture'], PDO::PARAM_STR);
 
             return $stmt->execute();
 
@@ -38,7 +40,7 @@ class SuxxUserTableDataGateway
         return false;
     }
 
-    public function findUserByCredentials(string $username, string $password): bool
+    public function findUserByCredentials(string $username, string $password) : bool
     {
         try {
             $stmt = $this->pdo->prepare("SELECT passwd FROM user WHERE username=:username LIMIT 1");
@@ -61,7 +63,7 @@ class SuxxUserTableDataGateway
         return false;
     }
 
-    public function findUserByUsername(string $username)
+    public function findUserByUsername(string $username) : bool
     {
         try {
             $stmt = $this->pdo->prepare("SELECT * FROM user WHERE username=:username LIMIT 1");
@@ -70,7 +72,7 @@ class SuxxUserTableDataGateway
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($userRow !== false) {
-                if ($username === $userRow['USERNAME']) {
+                if ($username === $userRow['username']) {
                     return true;
                 } else {
                     return false;

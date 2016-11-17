@@ -31,6 +31,26 @@ class SuxxFactoryTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider provideRouterNames
+     * @param $router
+     * @param $instance
+     */
+    public function testRoutersCanBeRetrieved($router, $instance)
+    {
+        $this->assertInstanceOf($instance, $this->factory->getRouters()[$router]);
+    }
+
+    public function provideRouterNames()
+    {
+        return [
+            [0, SuxxStaticPageRouter::class],
+            [1, SuxxPostRequestRouter::class],
+            [2, SuxxAuthenticationRouter::class],
+            [3, SuxxError404Router::class],
+        ];
+    }
+
+    /**
      * @dataProvider provideInstanceNames
      * @param $method
      * @param $instance
@@ -50,19 +70,20 @@ class SuxxFactoryTest extends PHPUnit_Framework_TestCase
             ['getLoginController', \Suxx\SuxxLoginController::class],
             ['getLogoutController', SuxxLogoutController::class],
             ['getProductController', SuxxProductController::class],
+            ['getUpdateProductViewController', SuxxUpdateProductViewController::class],
             ['getUpdateProductController', SuxxUpdateProductController::class],
             ['getCommentController', SuxxCommentController::class],
             ['get404Controller', Suxx404Controller::class],
-//            ['getProductTableGateway', SuxxProductTableDataGateway::class],
-//            ['getCommentTableGateway', SuxxCommentTableDataGateway::class],
-//            ['getUserTableGateway', SuxxUserTableDataGateway::class],
+            ['getProductTableGateway', SuxxProductTableDataGateway::class],
+            ['getCommentTableGateway', SuxxCommentTableDataGateway::class],
+            ['getUserTableGateway', SuxxUserTableDataGateway::class],
             ['getCommentFormCommand', SuxxCommentFormCommand::class],
             ['getAuthenticationFormCommand', SuxxAuthenticationFormCommand::class],
             ['getRegistrationFormCommand', SuxxRegistrationFormCommand::class],
             ['getUpdateProductFormCommand', SuxxUpdateProductFormCommand::class],
-//            ['getFormError', SuxxFormError::class],
-//            ['getFormPopulate', SuxxFormPopulate::class],
-//            ['getFileBackend', \Fancy\SuxxFileBackend::class],
+            ['getFormError', SuxxFormError::class],
+            ['getFormPopulate', SuxxFormPopulate::class],
+            ['getFileBackend', \Fancy\SuxxFileBackend::class],
         ];
     }
 }

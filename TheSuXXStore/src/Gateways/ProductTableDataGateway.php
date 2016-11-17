@@ -70,7 +70,7 @@ class SuxxProductTableDataGateway
         }
     }
 
-    public function update(array $row) : string
+    public function update(array $row) : bool
     {
         try {
             $stmt = $this->pdo->prepare(
