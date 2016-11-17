@@ -15,9 +15,14 @@ erstellt und wird regelmäßig automatisiert getestet. Seine Arbeit folgt den Pr
 Entwicklung. Er kann ITAufgaben im Kontext der Firma einordnen und hat verstanden, dass interne Qualität nicht verhandelbar ist. 
 Projektwerte wie Transparenz, Verbindlichkeit und Rhythmus sind ihm vertraut und werden von ihm gelebt. 
 
-Lean: keine Verschwendung, Verantwortung übertragen, das Ganze sehen.
-Agile: flexible, schlanke Prozesse, Fokus auf die gesteckten Ziele, die technische und soziale Seite.
-Craftsmanship: lebenslang lernen und üben, sauber programmieren, verantwortlich arbeiten, Wissen mit Kollegen und Community teilen.
+Lean
+keine Verschwendung, Verantwortung übertragen, das Ganze sehen.
+
+Agile
+flexible, schlanke Prozesse, Fokus auf die gesteckten Ziele, die technische und soziale Seite.
+
+Craftsmanship
+lebenslang lernen und üben, sauber programmieren, verantwortlich arbeiten, Wissen mit Kollegen und Community teilen.
 
 folgende Prinzipien (SOLID) wurden angewendet
 - Single Responsibility Prinzip
