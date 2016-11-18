@@ -1,0 +1,37 @@
+<h2>Products</h2>
+
+<form class="form-group pull-right col-lg-4" action="/" method="get">
+    <div class="input-group">
+        <label for="search" class="sr-only">Search</label>
+        <input type="text" id="search" name="search" class="search form-control" placeholder="Search Product">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Go!</button>
+      </span>
+    </div>
+</form>
+
+<table id="products" class="display table table-striped" cellspacing="0" width="100%">
+    <thead>
+    <tr><th></th>
+        <th>Product-Id</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Created</th>
+        <th><a href="?sort={% if session.getValue('sort') == 'ASC' %}DESC{% else %}ASC{% endif %}">Updated</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for product in response.products %}
+    <tr><td><img src="../images/Products/Small/{{ product.pid|e('html_attr') }}_small_{{ product.img|e('html_attr') }}" /></td>
+        <td>{{ product.pid }}</td>
+        <td><a href="/suxx/product?pid={{ product.pid|e('html_attr') }}">{{ product.label|e('html_attr') }}</a></td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.created|date("d.m.Y") }}</td>
+        <td>{{ product.updated|date("d.m.Y H:i:s") }}</td>
+        <td><a href="/suxx/updateproductview?pid={{ product.pid|e('html_attr') }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

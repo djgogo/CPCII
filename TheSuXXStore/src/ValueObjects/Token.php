@@ -1,0 +1,38 @@
+<?php
+
+class SuxxToken
+{
+    /**
+     * @var string
+     */
+    private $tokenValue = '';
+
+    public function __construct($value = null)
+    {
+        if ($value !== null) {
+            $this->tokenValue = $value;
+        } else {
+            $this->setValue();
+        }
+    }
+
+    private function setValue()
+    {
+        $source = file_get_contents('/dev/urandom', false, null, null, 64);
+        $source .= uniqid(uniqid(mt_rand(0, PHP_INT_MAX), true), true);
+        for ($t = 0; $t < 64; $t++) {
+            $source .= chr((mt_rand() ^ mt_rand()) % 256);
+        }
+        $this->tokenValue = sha1(hash('sha512', $source, true));
+    }
+
+    public function isEqualTo(SuxxToken $token) : bool
+    {
+        return $this->tokenValue === (string)$token;
+    }
+
+    public function __toString() : string
+    {
+        return $this->tokenValue;
+    }
+}
