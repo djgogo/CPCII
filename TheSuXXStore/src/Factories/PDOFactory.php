@@ -54,9 +54,8 @@ class PDOFactory
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            throw new SuxxInvalidPdoAttributeException('Wrong mySql Credentials - Access denied!', 0, $e);
         }
-        throw new SuxxInvalidPdoAttributeException('Wrong mySql Credentials - Access denied!');
     }
 }
 

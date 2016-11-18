@@ -12,10 +12,16 @@ class SuxxCommentTableDataGatewayTest extends PHPUnit_Framework_TestCase
      */
     private $gateway;
 
+    /**
+     * @var PHPUnit_Framework_MockObject_MockObject | SuxxErrorLogger
+     */
+    private $logger;
+
     protected function setUp()
     {
+        $this->logger = $this->getMockBuilder(SuxxErrorLogger::class)->disableOriginalConstructor()->getMock();
         $this->pdo = $this->initDatabase();
-        $this->gateway = new SuxxCommentTableDataGateway($this->pdo);
+        $this->gateway = new SuxxCommentTableDataGateway($this->pdo, $this->logger);
     }
 
     public function testCommentCanBeInserted()

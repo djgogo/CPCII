@@ -6,9 +6,15 @@ class SuxxUserTableDataGateway
      */
     private $pdo;
 
-    public function __construct(PDO $pdo)
+    /**
+     * @var SuxxErrorLogger
+     */
+    private $logger;
+
+    public function __construct(PDO $pdo, SuxxErrorLogger $logger)
     {
         $this->pdo = $pdo;
+        $this->logger = $logger;
     }
 
     public function insert(array $row)
@@ -35,9 +41,10 @@ class SuxxUserTableDataGateway
             return $stmt->execute();
 
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            throw new SuxxCommentTableGatewayException(
+                $this->logger->log('Benutzer konnte nicht eingefügt werden.', $e)
+            );
         }
-        return false;
     }
 
     public function findUserByCredentials(string $username, string $password) : bool
@@ -58,7 +65,9 @@ class SuxxUserTableDataGateway
             }
 
         } catch (PDOException $e) {
-            printf("%s, User: %s was not found in the Database", $e->getMessage(), $username);
+            throw new SuxxCommentTableGatewayException(
+                $this->logger->log('Benutzer konnte nicht gefunden werden.', $e)
+            );
         }
         return false;
     }
@@ -80,7 +89,9 @@ class SuxxUserTableDataGateway
             }
 
         } catch (PDOException $e) {
-            printf("%s, User with Username %s was not found in the Database", $e->getMessage(), $username);
+            throw new SuxxCommentTableGatewayException(
+                $this->logger->log('Benutzer konnte nicht gefunden werden.', $e)
+            );
         }
         return false;
     }

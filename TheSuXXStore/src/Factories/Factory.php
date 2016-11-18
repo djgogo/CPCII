@@ -107,12 +107,12 @@ class SuxxFactory
 
     public function getCommentTableGateway() : SuxxCommentTableDataGateway
     {
-        return new SuxxCommentTableDataGateway($this->getDatabase());
+        return new SuxxCommentTableDataGateway($this->getDatabase(), new SuxxErrorLogger());
     }
 
     public function getUserTableGateway() : SuxxUserTableDataGateway
     {
-        return new SuxxUserTableDataGateway($this->getDatabase());
+        return new SuxxUserTableDataGateway($this->getDatabase(), new SuxxErrorLogger());
     }
 
     /**
