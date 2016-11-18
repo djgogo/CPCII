@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 08. Nov 2016 um 08:34
+-- Erstellungszeit: 18. Nov 2016 um 12:40
 -- Server-Version: 5.5.51
 -- PHP-Version: 7.0.11
 
@@ -78,7 +78,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`pid`, `label`, `img`, `price`, `created`, `updated`) VALUES
-(1, 'Technics RP DJ 1210', 'Technics_RP_DJ_1210.jpg', 150, '2016-10-26 11:00:00', '2016-11-07 16:03:16'),
+(1, 'Technics RP DJ 1210', 'Technics_RP_DJ_1210.jpg', 150, '2016-10-26 11:00:00', '2016-11-10 07:25:30'),
 (2, 'Technics SL-1210 Plattenspieler', 'technics_sl1210mk2.jpg', 1260, '2016-10-31 15:11:28', '2016-11-04 14:59:32');
 
 -- --------------------------------------------------------
@@ -88,21 +88,21 @@ INSERT INTO `products` (`pid`, `label`, `img`, `price`, `created`, `updated`) VA
 --
 
 CREATE TABLE `user` (
-  `UID` int(11) NOT NULL,
-  `USERNAME` varchar(30) NOT NULL,
-  `PASSWD` varchar(255) NOT NULL,
-  `EMAIL` varchar(80) NOT NULL,
-  `NAME` varchar(80) NOT NULL,
-  `DESCR` text NOT NULL,
-  `PICTURE` varchar(80) NOT NULL,
-  `CREATED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `uid` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `passwd` varchar(255) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `name` varchar(80) NOT NULL,
+  `descr` text NOT NULL,
+  `picture` varchar(80) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `user`
 --
 
-INSERT INTO `user` (`UID`, `USERNAME`, `PASSWD`, `EMAIL`, `NAME`, `DESCR`, `PICTURE`, `CREATED`) VALUES
+INSERT INTO `user` (`uid`, `username`, `passwd`, `email`, `name`, `descr`, `picture`, `created`) VALUES
 (10, 'petersacco', '$2y$10$H81dsPPsAbkT10oShO5AruHZsobbzAL5c7urFXg1dBZEzvSXPWGfi', 'peter@sacco.ch', 'Peter Sacco', 'Suxx Account', '', '2016-10-21 10:53:42'),
 (11, 'gogo', '$2y$10$2SR0l.bZHmDEU/Flhr8gxeSFDlryH3WuLYw73dqIXoegXl/Qj0T9O', 'gogo@musiq.ch', 'Gogo', 'Suxx Account', '', '2016-10-21 15:05:50'),
 (12, 'test', '$2y$10$SdxetgoS9CyCdcjq8RTY4Owiz0BoaT57YV7QkbKlizAdDWXyZttim', 'test@muster.ch', 'Test Muster', 'Suxx Account', '', '2016-10-24 08:05:09'),
@@ -130,8 +130,8 @@ ALTER TABLE `products`
 -- Indizes für die Tabelle `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`UID`),
-  ADD UNIQUE KEY `USERNAME` (`USERNAME`);
+  ADD PRIMARY KEY (`uid`),
+  ADD UNIQUE KEY `USERNAME` (`username`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -141,7 +141,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT für Tabelle `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `cid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT für Tabelle `products`
 --
@@ -151,7 +151,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
