@@ -28,7 +28,7 @@ class SuxxPostRequestRouter
         $path = parse_url($uri)['path'];
 
         if ($this->hasCsrfError($request)) {
-            return $this->factory->getErrorController();
+            return $this->factory->getHomeController();
         }
 
         switch ($path) {

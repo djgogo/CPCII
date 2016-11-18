@@ -44,9 +44,9 @@ class SuxxFileUpload
 
     private function ensureAllowedMimeType()
     {
-        $result = $this->file->getImageSize();
+        $mimeType = $this->file->getMimeType();
 
-        if (!in_array($result['mime'], $this->allowedMimeTypes)) {
+        if (!in_array($mimeType, $this->allowedMimeTypes)) {
             throw new \InvalidUploadedFileException('Der übergebene Dateityp ist ungültig!');
         }
     }

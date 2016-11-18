@@ -20,6 +20,7 @@ class PDOFactoryTest extends PHPUnit_Framework_TestCase
     public function testPdoIsAlwaysTheSameObject()
     {
         $this->assertSame($this->pdoFactory->getDbHandler(), $this->pdoFactory->getDbHandler());
+        $this->assertInstanceOf(PDO::class, $this->pdoFactory->getDbHandler());
     }
 
     public function testGetDbHandlerWithWrongCredentialsThrowsException()

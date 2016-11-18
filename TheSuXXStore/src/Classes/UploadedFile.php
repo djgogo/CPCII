@@ -41,6 +41,11 @@ class SuxxUploadedFile
         return getimagesize($this->getFilePath());
     }
 
+    public function getMimeType() : string
+    {
+        return $this->files['picture']['type'];
+    }
+
     public function getUploadedFile() : SuxxUploadedFile
     {
         return $this;

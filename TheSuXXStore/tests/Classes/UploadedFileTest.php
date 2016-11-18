@@ -56,6 +56,11 @@ class SuxxUploadedFileTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(4447, $this->uploadedFile->getSize());
     }
 
+    public function testMimeTypeCanBeRetrieved()
+    {
+        $this->assertEquals('image/jpeg', $this->uploadedFile->getMimeType());
+    }
+
     public function testImageSizeCanBeRetrieved()
     {
         $this->assertArrayHasKey('mime', $this->uploadedFile->getImageSize());

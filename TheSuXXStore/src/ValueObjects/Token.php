@@ -26,7 +26,7 @@ class SuxxToken
         $this->tokenValue = sha1(hash('sha512', $source, true));
     }
 
-    public function isEqualTo(Token $token) : bool
+    public function isEqualTo(SuxxToken $token) : bool
     {
         return $this->tokenValue === (string)$token;
     }
