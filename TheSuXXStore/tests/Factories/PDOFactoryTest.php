@@ -9,7 +9,7 @@ class PDOFactoryTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore');
+        $this->pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore', new SuxxErrorLogger());
     }
 
     public function testDatabaseHandlerPdoCanBeRetrieved()
@@ -26,7 +26,7 @@ class PDOFactoryTest extends PHPUnit_Framework_TestCase
     public function testGetDbHandlerWithWrongCredentialsThrowsException()
     {
         $this->expectException(SuxxInvalidPdoAttributeException::class);
-        $wrongPdo = new PDOFactory('localhost', 'suxx', 'anyUser', 'anyPassword');
+        $wrongPdo = new PDOFactory('localhost', 'suxx', 'anyUser', 'anyPassword', new SuxxErrorLogger());
         $wrongPdo->getDbHandler();
     }
 }
