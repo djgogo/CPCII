@@ -76,7 +76,7 @@ class SuxxFactoryTest extends PHPUnit_Framework_TestCase
             ['get404Controller', Suxx404Controller::class],
             ['getProductTableGateway', SuxxProductTableDataGateway::class],
             ['getCommentTableGateway', SuxxCommentTableDataGateway::class],
-            ['getUserTableGateway', SuxxUserTableDataGateway::class],
+            ['getUserTableGateway', \Suxx\SuxxUserTableDataGateway::class],
             ['getCommentFormCommand', SuxxCommentFormCommand::class],
             ['getAuthenticationFormCommand', SuxxAuthenticationFormCommand::class],
             ['getRegistrationFormCommand', SuxxRegistrationFormCommand::class],

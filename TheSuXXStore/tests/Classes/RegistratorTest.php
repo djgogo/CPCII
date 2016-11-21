@@ -1,8 +1,9 @@
 <?php
+use Suxx\SuxxUserTableDataGateway;
 
 /**
  * @covers SuxxRegistrator
- * @uses SuxxUserTableDataGateway
+ * @uses \Suxx\SuxxUserTableDataGateway
  */
 class SuxxRegistratorTest extends \PHPUnit_Framework_TestCase
 {

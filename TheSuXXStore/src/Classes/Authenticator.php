@@ -1,5 +1,7 @@
 <?php
 
+use Suxx\SuxxUserTableDataGateway;
+
 class SuxxAuthenticator
 {
     /**

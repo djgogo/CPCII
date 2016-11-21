@@ -31,7 +31,7 @@ $response = new SuxxResponse();
  * Create Database Handler and the Factory
  */
 //$pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore');
-$pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234');
+$pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234', new SuxxErrorLogger());
 $factory  = new SuxxFactory($pdoFactory, $session);
 
 /**

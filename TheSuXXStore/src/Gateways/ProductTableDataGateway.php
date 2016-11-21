@@ -7,9 +7,15 @@ class SuxxProductTableDataGateway
      */
     private $pdo;
 
-    public function __construct(PDO $pdo)
+    /**
+     * @var SuxxErrorLogger
+     */
+    private $logger;
+
+    public function __construct(PDO $pdo, SuxxErrorLogger $logger)
     {
         $this->pdo = $pdo;
+        $this->logger = $logger;
     }
 
     public function getAllProducts()
@@ -19,7 +25,9 @@ class SuxxProductTableDataGateway
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS, 'SuxxProduct');
         } catch (PDOException $e) {
-            sprintf("%s, Error in products-table", $e->getMessage());
+            throw new SuxxProductTableGatewayException(
+                $this->logger->log('Fehler beim lesen der Produkt Tabelle.', $e)
+            );
         }
     }
 
@@ -30,7 +38,9 @@ class SuxxProductTableDataGateway
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS, 'SuxxProduct');
         } catch (PDOException $e) {
-            sprintf("%s, Error in products-table", $e->getMessage());
+            throw new SuxxProductTableGatewayException(
+                $this->logger->log('Fehler beim lesen der Produkt Tabelle.', $e)
+            );
         }
     }
 
@@ -41,7 +51,9 @@ class SuxxProductTableDataGateway
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS, 'SuxxProduct');
         } catch (PDOException $e) {
-            sprintf("%s, Error in products-table", $e->getMessage());
+            throw new SuxxProductTableGatewayException(
+                $this->logger->log('Fehler beim lesen der Produkt Tabelle.', $e)
+            );
         }
     }
 
@@ -54,7 +66,9 @@ class SuxxProductTableDataGateway
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS, 'SuxxProduct');
         } catch (PDOException $e) {
-            sprintf("%s, Error in products-table", $e->getMessage());
+            throw new SuxxProductTableGatewayException(
+                $this->logger->log('Fehler beim lesen der Produkt Tabelle.', $e)
+            );
         }
     }
 
@@ -66,7 +80,9 @@ class SuxxProductTableDataGateway
             $stmt->execute();
             return $stmt->fetchObject('SuxxProduct');
         } catch (PDOException $e) {
-            sprintf("%s, Benutzer mit Id %s konnte nicht ausgelesen werden", $e->getMessage(), $id);
+            throw new SuxxProductTableGatewayException(
+                $this->logger->log('Fehler beim lesen der Produkt Tabelle.', $e)
+            );
         }
     }
 
@@ -85,8 +101,9 @@ class SuxxProductTableDataGateway
             return true;
 
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            throw new SuxxProductTableGatewayException(
+                $this->logger->log('Fehler beim updaten der Produkt Tabelle.', $e)
+            );
         }
-        return false;
     }
 }

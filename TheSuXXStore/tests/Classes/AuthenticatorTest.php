@@ -1,13 +1,14 @@
 <?php
+use Suxx\SuxxUserTableDataGateway;
 
 /**
  * @covers SuxxAuthenticator
- * @uses SuxxUserTableDataGateway
+ * @uses \Suxx\SuxxUserTableDataGateway
  */
 class AuthenticatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var SuxxUserTableDataGateway
+     * @var \Suxx\SuxxUserTableDataGateway
      */
     private $database;
 
