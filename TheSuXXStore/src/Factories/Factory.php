@@ -2,6 +2,7 @@
 
 use Fancy\SuxxFileBackend;
 use Suxx\SuxxLoginController;
+use Suxx\SuxxUserTableDataGateway;
 
 class SuxxFactory
 {
@@ -102,17 +103,17 @@ class SuxxFactory
      */
     public function getProductTableGateway() : SuxxProductTableDataGateway
     {
-        return new SuxxProductTableDataGateway($this->getDatabase());
+        return new SuxxProductTableDataGateway($this->getDatabase(), new SuxxErrorLogger());
     }
 
     public function getCommentTableGateway() : SuxxCommentTableDataGateway
     {
-        return new SuxxCommentTableDataGateway($this->getDatabase());
+        return new SuxxCommentTableDataGateway($this->getDatabase(), new SuxxErrorLogger());
     }
 
     public function getUserTableGateway() : SuxxUserTableDataGateway
     {
-        return new SuxxUserTableDataGateway($this->getDatabase());
+        return new SuxxUserTableDataGateway($this->getDatabase(), new SuxxErrorLogger());
     }
 
     /**

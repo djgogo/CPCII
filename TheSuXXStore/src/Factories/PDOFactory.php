@@ -27,12 +27,18 @@ class PDOFactory
      */
     private $instance = null;
 
-    public function __construct(string $host, string $dbName, string $user, string $pass)
+    /**
+     * @var SuxxErrorLogger
+     */
+    private $logger;
+
+    public function __construct(string $host, string $dbName, string $user, string $pass, SuxxErrorLogger $logger)
     {
         $this->host = $host;
         $this->dbName = $dbName;
         $this->user = $user;
         $this->pass = $pass;
+        $this->logger = $logger;
     }
 
     public function getDbHandler() : PDO
@@ -54,9 +60,11 @@ class PDOFactory
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            //throw new SuxxInvalidPdoAttributeException('Wrong mySql Credentials - Access denied!', 0, $e);
+            throw new \SuxxInvalidPdoAttributeException(
+                $this->logger->log('Wrong mySql Credentials or mySql Database down', $e)
+            );
         }
-        throw new SuxxInvalidPdoAttributeException('Wrong mySql Credentials - Access denied!');
     }
 }
 

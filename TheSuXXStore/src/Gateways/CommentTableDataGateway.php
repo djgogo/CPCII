@@ -7,9 +7,15 @@ class SuxxCommentTableDataGateway
      */
     private $pdo;
 
-    public function __construct(PDO $pdo)
+    /**
+     * @var SuxxErrorLogger
+     */
+    private $logger;
+
+    public function __construct(PDO $pdo, SuxxErrorLogger $logger)
     {
         $this->pdo = $pdo;
+        $this->logger = $logger;
     }
 
     public function insert(array $row) : string
@@ -32,12 +38,13 @@ class SuxxCommentTableDataGateway
             return $this->pdo->lastInsertId();
 
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            throw new SuxxCommentTableGatewayException(
+                $this->logger->log('Kommentar konnte nicht eingefügt werden.', $e)
+            );
         }
-        return false;
     }
 
-    public function findCommentsByPid(int $id)
+    public function findCommentsByPid(int $id) : array
     {
         try {
             $stmt = $this->pdo->prepare("SELECT * FROM comments WHERE pid=:pid");
@@ -45,8 +52,9 @@ class SuxxCommentTableDataGateway
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS, 'SuxxComment');
         } catch (PDOException $e) {
-            sprintf("%s, Kommentare mit Id %s konnten nicht ausgelesen werden", $e->getMessage(), $id);
+            throw new SuxxCommentTableGatewayException(
+                $this->logger->log('Kommentare konnten nicht ausgelesen werden.', $e)
+            );
         }
-        return false;
     }
 }
