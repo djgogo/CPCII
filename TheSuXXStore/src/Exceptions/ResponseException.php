@@ -1,6 +1,8 @@
 <?php
 
-class SuxxResponseException extends Exception
-{
-}
+namespace Suxx\Exceptions {
 
+    class ResponseException extends \Exception
+    {
+    }
+}

@@ -1,64 +1,69 @@
 <?php
 
-class SuxxRequest
-{
-    /**
-     * @var array
-     */
-    private $input;
+namespace Suxx\Http {
 
-    /**
-     * @var SuxxUploadedFile
-     */
-    private $file;
+    use Suxx\FileHandlers\UploadedFile;
 
-    /**
-     * @var array
-     */
-    private $server;
-
-    public function __construct(array $request, array $server, SuxxUploadedFile $file)
+    class Request
     {
-        $this->input = $request;
-        $this->file = $file;
-        $this->server = $server;
-    }
+        /**
+         * @var array
+         */
+        private $input;
 
-    public function getRequestUri() : string
-    {
-        return $this->server['REQUEST_URI'];
-    }
+        /**
+         * @var UploadedFile
+         */
+        private $file;
 
-    public function getRequestMethod() : string
-    {
-        return $this->server['REQUEST_METHOD'];
-    }
+        /**
+         * @var array
+         */
+        private $server;
 
-    public function isPostRequest() : bool
-    {
-        return ($this->getRequestMethod() == 'POST');
-    }
-
-    public function isGetRequest() : bool
-    {
-        return ($this->getRequestMethod() == 'GET');
-    }
-
-    public function getUploadedFile() : SuxxUploadedFile
-    {
-        return $this->file->getUploadedFile();
-    }
-
-    public function getValue($key, $default = null)
-    {
-        if (isset($this->input[$key])) {
-            return $this->escape($this->input[$key]);
+        public function __construct(array $request, array $server, UploadedFile $file)
+        {
+            $this->input = $request;
+            $this->file = $file;
+            $this->server = $server;
         }
-        return $default;
-    }
 
-    private function escape(string $string) : string
-    {
-        return htmlspecialchars($string, ENT_QUOTES);
+        public function getRequestUri() : string
+        {
+            return $this->server['REQUEST_URI'];
+        }
+
+        public function getRequestMethod() : string
+        {
+            return $this->server['REQUEST_METHOD'];
+        }
+
+        public function isPostRequest() : bool
+        {
+            return ($this->getRequestMethod() == 'POST');
+        }
+
+        public function isGetRequest() : bool
+        {
+            return ($this->getRequestMethod() == 'GET');
+        }
+
+        public function getUploadedFile() : UploadedFile
+        {
+            return $this->file->getUploadedFile();
+        }
+
+        public function getValue($key, $default = null)
+        {
+            if (isset($this->input[$key])) {
+                return $this->escape($this->input[$key]);
+            }
+            return $default;
+        }
+
+        private function escape(string $string) : string
+        {
+            return htmlspecialchars($string, ENT_QUOTES);
+        }
     }
 }

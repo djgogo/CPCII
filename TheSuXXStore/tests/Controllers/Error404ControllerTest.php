@@ -1,31 +1,37 @@
 <?php
 
-/**
- * @covers Suxx404Controller
- * @uses SuxxRequest
- * @uses SuxxResponse
- */
-class Suxx404ControllerTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxRequest
-     */
-    private $request;
+namespace Suxx\Controllers {
+
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxResponse
+     * @covers Suxx\Controllers\Error404Controller
+     * @uses   Suxx\Http\Request
+     * @uses   Suxx\Http\Response
      */
-    private $response;
-
-    public function setUp()
+    class Error404ControllerTest extends \PHPUnit_Framework_TestCase
     {
-        $this->request = $this->getMockBuilder(SuxxRequest::class)->disableOriginalConstructor()->getMock();
-        $this->response = $this->getMockBuilder(SuxxResponse::class)->disableOriginalConstructor()->getMock();
-    }
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Request
+         */
+        private $request;
 
-    public function testExecutionReturns404template()
-    {
-        $controller = new Suxx404Controller();
-        $this->assertEquals('404errorview.twig', $controller->execute($this->request, $this->response));
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Response
+         */
+        private $response;
+
+        public function setUp()
+        {
+            $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
+            $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
+        }
+
+        public function testExecutionReturns404template()
+        {
+            $controller = new Error404Controller();
+            $this->assertEquals('404errorview.twig', $controller->execute($this->request, $this->response));
+        }
     }
 }

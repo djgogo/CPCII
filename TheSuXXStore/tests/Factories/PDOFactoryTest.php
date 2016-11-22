@@ -1,32 +1,42 @@
 <?php
 
-class PDOFactoryTest extends PHPUnit_Framework_TestCase
-{
+namespace Suxx\Factories {
+
+    use Suxx\Exceptions\InvalidPdoAttributeException;
+    use Suxx\Loggers\ErrorLogger;
+
     /**
-     * @var PDOFactory
+     * Class PDOFactoryTest
+     * @package Suxx\Factories
      */
-    private $pdoFactory;
-
-    protected function setUp()
+    class PDOFactoryTest extends \PHPUnit_Framework_TestCase
     {
-        $this->pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore', new SuxxErrorLogger());
-    }
+        /**
+         * @var PDOFactory
+         */
+        private $pdoFactory;
 
-    public function testDatabaseHandlerPdoCanBeRetrieved()
-    {
-        $this->assertInstanceOf(PDO::class, $this->pdoFactory->getDbHandler());
-    }
+        protected function setUp()
+        {
+            $this->pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore', new ErrorLogger());
+        }
 
-    public function testPdoIsAlwaysTheSameObject()
-    {
-        $this->assertSame($this->pdoFactory->getDbHandler(), $this->pdoFactory->getDbHandler());
-        $this->assertInstanceOf(PDO::class, $this->pdoFactory->getDbHandler());
-    }
+        public function testDatabaseHandlerPdoCanBeRetrieved()
+        {
+            $this->assertInstanceOf(\PDO::class, $this->pdoFactory->getDbHandler());
+        }
 
-    public function testGetDbHandlerWithWrongCredentialsThrowsException()
-    {
-        $this->expectException(SuxxInvalidPdoAttributeException::class);
-        $wrongPdo = new PDOFactory('localhost', 'suxx', 'anyUser', 'anyPassword', new SuxxErrorLogger());
-        $wrongPdo->getDbHandler();
+        public function testPdoIsAlwaysTheSameObject()
+        {
+            $this->assertSame($this->pdoFactory->getDbHandler(), $this->pdoFactory->getDbHandler());
+            $this->assertInstanceOf(\PDO::class, $this->pdoFactory->getDbHandler());
+        }
+
+        public function testGetDbHandlerWithWrongCredentialsThrowsException()
+        {
+            $this->expectException(InvalidPdoAttributeException::class);
+            $wrongPdo = new PDOFactory('localhost', 'suxx', 'anyUser', 'anyPassword', new ErrorLogger());
+            $wrongPdo->getDbHandler();
+        }
     }
 }

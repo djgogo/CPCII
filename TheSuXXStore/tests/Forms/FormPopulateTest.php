@@ -1,50 +1,55 @@
 <?php
 
-/**
- * @covers SuxxFormPopulate
- * @uses SuxxSession
- */
-class SuxxFormPopulateTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxSession
-     */
-    private $session;
+namespace Suxx\Forms {
+
+    use Suxx\Http\Session;
 
     /**
-     * @var SuxxFormPopulate
+     * @covers Suxx\Forms\FormPopulate
+     * @uses   Suxx\Http\Session
      */
-    private $formPopulate;
-
-    protected function setUp()
+    class FormPopulateTest extends \PHPUnit_Framework_TestCase
     {
-        $this->session = $this->getMockBuilder(SuxxSession::class)->disableOriginalConstructor()->getMock();
-        $this->formPopulate = new SuxxFormPopulate($this->session);
-    }
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Session
+         */
+        private $session;
 
-    public function testFormDataCanBeSetAndRetrieved()
-    {
-        $this->formPopulate->set('formfield', 'formvalue');
-        $this->assertEquals('formvalue', $this->formPopulate->get('formfield'));
-    }
+        /**
+         * @var FormPopulate
+         */
+        private $formPopulate;
 
-    public function testHasReturnsRightBoolean()
-    {
-        $this->formPopulate->set('formfield', 'formvalue');
-        $this->assertTrue($this->formPopulate->has('formfield'));
-    }
+        protected function setUp()
+        {
+            $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
+            $this->formPopulate = new FormPopulate($this->session);
+        }
 
-    public function testFormDataCanBeRemoved()
-    {
-        $this->formPopulate->set('formfield', 'formvalue');
-        $this->assertTrue($this->formPopulate->has('formfield'));
+        public function testFormDataCanBeSetAndRetrieved()
+        {
+            $this->formPopulate->set('formfield', 'formvalue');
+            $this->assertEquals('formvalue', $this->formPopulate->get('formfield'));
+        }
 
-        $this->formPopulate->remove('formfield');
-        $this->assertFalse($this->formPopulate->has('formfield'));
-    }
+        public function testHasReturnsRightBoolean()
+        {
+            $this->formPopulate->set('formfield', 'formvalue');
+            $this->assertTrue($this->formPopulate->has('formfield'));
+        }
 
-    public function testGetFormDataReturnsNullIfNotFound()
-    {
-        $this->assertEquals(null, $this->formPopulate->get('anyField'));
+        public function testFormDataCanBeRemoved()
+        {
+            $this->formPopulate->set('formfield', 'formvalue');
+            $this->assertTrue($this->formPopulate->has('formfield'));
+
+            $this->formPopulate->remove('formfield');
+            $this->assertFalse($this->formPopulate->has('formfield'));
+        }
+
+        public function testGetFormDataReturnsNullIfNotFound()
+        {
+            $this->assertEquals(null, $this->formPopulate->get('anyField'));
+        }
     }
 }

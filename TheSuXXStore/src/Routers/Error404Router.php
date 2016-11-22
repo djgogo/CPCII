@@ -1,18 +1,25 @@
 <?php
 
-class SuxxError404Router
+namespace Suxx\Routers
 {
-    /**
-     * @var Factory
-     */
-    private $factory;
+    use Suxx\Factories\Factory;
+    use Suxx\Http\Request;
 
-    public function __construct(SuxxFactory $factory)
+    class Error404Router
     {
-        $this->factory = $factory;
-    }
-    public function route(SuxxRequest $request) {
-        return $this->factory->get404Controller();
+        /**
+         * @var Factory
+         */
+        private $factory;
+
+        public function __construct(Factory $factory)
+        {
+            $this->factory = $factory;
+        }
+
+        public function route(Request $request)
+        {
+            return $this->factory->getError404Controller();
+        }
     }
 }
-

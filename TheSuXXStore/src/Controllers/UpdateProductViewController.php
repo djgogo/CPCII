@@ -1,44 +1,53 @@
 <?php
 
-class SuxxUpdateProductViewController implements SuxxController
-{
-    /**
-     * @var SuxxProductTableDataGateway
-     */
-    private $productDataGateway;
+namespace Suxx\Controllers {
 
-    /**
-     * @var SuxxSession
-     */
-    private $session;
+    use Suxx\Forms\FormPopulate;
+    use Suxx\Gateways\ProductTableDataGateway;
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
+    use Suxx\Http\Session;
 
-    /**
-     * @var SuxxFormPopulate
-     */
-    private $populate;
-
-    public function __construct(SuxxSession $session, SuxxProductTableDataGateway $productDataGateway, SuxxFormPopulate $formPopulate)
+    class UpdateProductViewController implements Controller
     {
-        $this->productDataGateway = $productDataGateway;
-        $this->session = $session;
-        $this->populate = $formPopulate;
-    }
+        /**
+         * @var ProductTableDataGateway
+         */
+        private $productDataGateway;
 
-    public function execute(SuxxRequest $request, SuxxResponse $response)
-    {
-        if ($request->getValue('product') === '') {
-            return '404errorview.twig';
+        /**
+         * @var Session
+         */
+        private $session;
+
+        /**
+         * @var FormPopulate
+         */
+        private $populate;
+
+        public function __construct(Session $session, ProductTableDataGateway $productDataGateway, FormPopulate $formPopulate)
+        {
+            $this->productDataGateway = $productDataGateway;
+            $this->session = $session;
+            $this->populate = $formPopulate;
         }
 
-        $response->setProduct($this->productDataGateway->findProductById($request->getValue('pid')));
-        $this->populate->set('label', $response->getProduct()->getLabel());
-        $this->populate->set('price', $response->getProduct()->getPrice());
+        public function execute(Request $request, Response $response)
+        {
+            if ($request->getValue('product') === '') {
+                return '404errorview.twig';
+            }
 
-        if ($this->session->isset('error')) {
-            $this->session->deleteValue('error');
+            $response->setProduct($this->productDataGateway->findProductById($request->getValue('pid')));
+            $this->populate->set('label', $response->getProduct()->getLabel());
+            $this->populate->set('price', $response->getProduct()->getPrice());
+
+            if ($this->session->isset('error')) {
+                $this->session->deleteValue('error');
+            }
+
+            return 'updateproduct.twig';
         }
 
-        return 'updateproduct.twig';
     }
-
 }

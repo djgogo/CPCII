@@ -1,52 +1,59 @@
 <?php
 
-class SuxxAuthenticationRouter
+namespace Suxx\Routers
 {
-    /**
-     * @var Factory
-     */
-    private $factory;
+    use Suxx\Factories\Factory;
+    use Suxx\Http\Session;
+    use Suxx\Http\Request;
 
-    /**
-     * @var SuxxSession
-     */
-    private $session;
-
-    public function __construct(SuxxFactory $factory, SuxxSession $session)
+    class AuthenticationRouter
     {
-        $this->factory = $factory;
-        $this->session = $session;
-    }
+        /**
+         * @var Factory
+         */
+        private $factory;
 
-    public function route(SuxxRequest $request)
-    {
-        if (!$request->isPostRequest()) {
-            return null;
+        /**
+         * @var Session
+         */
+        private $session;
+
+        public function __construct(Factory $factory, Session $session)
+        {
+            $this->factory = $factory;
+            $this->session = $session;
         }
 
-        $uri = $request->getRequestUri();
-        $path = parse_url($uri)['path'];
-
-        if ($this->hasCsrfError($request->getValue('csrf'))) {
-            return $this->factory->getHomeController();
-        }
-
-        switch ($path) {
-            case '/suxx/login':
-                return $this->factory->getLoginController();
-            case '/suxx/register':
-                return $this->factory->getRegisterController();
-            default:
+        public function route(Request $request)
+        {
+            if (!$request->isPostRequest()) {
                 return null;
-        }
-    }
+            }
 
-    protected function hasCsrfError(string $csrfToken)
-    {
-        if ($csrfToken != $this->session->getValue('token')) {
-            $this->session->setValue('error', 'Das übergebene Formular hat kein gültiges CSRF-Token!');
-            return true;
+            $uri = $request->getRequestUri();
+            $path = parse_url($uri)['path'];
+
+            if ($this->hasCsrfError($request->getValue('csrf'))) {
+                return $this->factory->getHomeController();
+            }
+
+            switch ($path) {
+                case '/suxx/login':
+                    return $this->factory->getLoginController();
+                case '/suxx/register':
+                    return $this->factory->getRegisterController();
+                default:
+                    return null;
+            }
         }
-        return false;
+
+        protected function hasCsrfError(string $csrfToken)
+        {
+            if ($csrfToken != $this->session->getValue('token')) {
+                $this->session->setValue('error', 'Das übergebene Formular hat kein gültiges CSRF-Token!');
+                return true;
+            }
+            return false;
+        }
     }
 }

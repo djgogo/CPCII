@@ -1,64 +1,67 @@
 <?php
 
-class SuxxProduct
-{
-    /**
-     * @var int
-     */
-    private $pid;
+namespace Suxx\Entities {
 
-    /**
-     * @var string
-     */
-    private $label;
-
-    /**
-     * @var string
-     */
-    private $img;
-
-    /**
-     * @var int
-     */
-    private $price;
-
-    /**
-     * @var string
-     */
-    private $created;
-
-    /**
-     * @var string
-     */
-    private $updated;
-
-    public function getPid() : int
+    class Product
     {
-        return $this->pid;
-    }
+        /**
+         * @var int
+         */
+        private $pid;
 
-    public function getLabel() : string
-    {
-        return $this->label;
-    }
+        /**
+         * @var string
+         */
+        private $label;
 
-    public function getImg() : string
-    {
-        return $this->img;
-    }
+        /**
+         * @var string
+         */
+        private $img;
 
-    public function getPrice() : int
-    {
-        return $this->price;
-    }
+        /**
+         * @var int
+         */
+        private $price;
 
-    public function getCreated() : string
-    {
-        return $this->created;
-    }
+        /**
+         * @var string
+         */
+        private $created;
 
-    public function getUpdated() : string
-    {
-        return $this->updated;
+        /**
+         * @var string
+         */
+        private $updated;
+
+        public function getPid() : int
+        {
+            return $this->pid;
+        }
+
+        public function getLabel() : string
+        {
+            return $this->label;
+        }
+
+        public function getImg() : string
+        {
+            return $this->img;
+        }
+
+        public function getPrice() : int
+        {
+            return $this->price;
+        }
+
+        public function getCreated() : string
+        {
+            return $this->created;
+        }
+
+        public function getUpdated() : string
+        {
+            return $this->updated;
+        }
     }
 }

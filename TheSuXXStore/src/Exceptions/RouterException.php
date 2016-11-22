@@ -1,6 +1,8 @@
 <?php
 
-class SuxxRouterException extends Exception
-{
-}
+namespace Suxx\Exceptions {
 
+    class RouterException extends \Exception
+    {
+    }
+}

@@ -1,79 +1,87 @@
 <?php
 
-/**
- * @covers SuxxRegisterController
- * @uses SuxxRequest
- * @uses SuxxResponse
- * @uses SuxxRegistrationFormCommand
- * @uses SuxxProductTableDataGateway
- */
-class SuxxRegisterControllerTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxRequest
-     */
-    private $request;
+namespace Suxx\Controllers {
+
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
+    use Suxx\Commands\RegistrationFormCommand;
+    use Suxx\Gateways\ProductTableDataGateway;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxResponse
+     * @covers Suxx\Controllers\RegisterController
+     * @uses   Suxx\Http\Request
+     * @uses   Suxx\Http\Response
+     * @uses   Suxx\Commands\RegistrationFormCommand
+     * @uses   Suxx\Gateways\ProductTableDataGateway
      */
-    private $response;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxRegistrationFormCommand
-     */
-    private $registrationFormCommand;
-
-    /**
-     * @var SuxxRegisterController
-     */
-    private $registerController;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxProductTableDataGateway
-     */
-    private $productDataGateway;
-
-
-    protected function setUp()
+    class RegisterControllerTest extends \PHPUnit_Framework_TestCase
     {
-        $this->request = $this->getMockBuilder(SuxxRequest::class)->disableOriginalConstructor()->getMock();
-        $this->response = $this->getMockBuilder(SuxxResponse::class)->disableOriginalConstructor()->getMock();
-        $this->productDataGateway = $this->getMockBuilder(SuxxProductTableDataGateway::class)->disableOriginalConstructor()->getMock();
-        $this->registrationFormCommand = $this->getMockBuilder(SuxxRegistrationFormCommand::class)->disableOriginalConstructor()->getMock();
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Request
+         */
+        private $request;
 
-        $this->registerController = new SuxxRegisterController($this->registrationFormCommand, $this->productDataGateway);
-    }
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Response
+         */
+        private $response;
 
-    public function testControllerCanBeExecutedAndReturnsRightTemplate()
-    {
-        $this->registrationFormCommand
-            ->expects($this->once())
-            ->method('execute')
-            ->with($this->request)
-            ->willReturn(true);
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | RegistrationFormCommand
+         */
+        private $registrationFormCommand;
 
-        $this->response
-            ->expects($this->once())
-            ->method('setProducts')
-            ->with(array());
+        /**
+         * @var RegisterController
+         */
+        private $registerController;
 
-        $this->productDataGateway
-            ->expects($this->once())
-            ->method('getAllProducts')
-            ->willReturn(array());
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | ProductTableDataGateway
+         */
+        private $productDataGateway;
 
-        $this->assertEquals('base.twig', $this->registerController->execute($this->request, $this->response));
-    }
 
-    public function testControllerReturnsRightTemplateOnError()
-    {
-        $this->registrationFormCommand
-            ->expects($this->once())
-            ->method('execute')
-            ->with($this->request)
-            ->willReturn(false);
+        protected function setUp()
+        {
+            $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
+            $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
+            $this->productDataGateway = $this->getMockBuilder(ProductTableDataGateway::class)->disableOriginalConstructor()->getMock();
+            $this->registrationFormCommand = $this->getMockBuilder(RegistrationFormCommand::class)->disableOriginalConstructor()->getMock();
 
-        $this->assertEquals('register.twig', $this->registerController->execute($this->request, $this->response));
+            $this->registerController = new RegisterController($this->registrationFormCommand, $this->productDataGateway);
+        }
+
+        public function testControllerCanBeExecutedAndReturnsRightTemplate()
+        {
+            $this->registrationFormCommand
+                ->expects($this->once())
+                ->method('execute')
+                ->with($this->request)
+                ->willReturn(true);
+
+            $this->response
+                ->expects($this->once())
+                ->method('setProducts')
+                ->with(array());
+
+            $this->productDataGateway
+                ->expects($this->once())
+                ->method('getAllProducts')
+                ->willReturn(array());
+
+            $this->assertEquals('base.twig', $this->registerController->execute($this->request, $this->response));
+        }
+
+        public function testControllerReturnsRightTemplateOnError()
+        {
+            $this->registrationFormCommand
+                ->expects($this->once())
+                ->method('execute')
+                ->with($this->request)
+                ->willReturn(false);
+
+            $this->assertEquals('register.twig', $this->registerController->execute($this->request, $this->response));
+        }
     }
 }

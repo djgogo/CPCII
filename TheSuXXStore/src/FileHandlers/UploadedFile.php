@@ -1,53 +1,56 @@
 <?php
 
-class SuxxUploadedFile
-{
-    /**
-     * @var array
-     */
-    private $files;
+namespace Suxx\FileHandlers {
 
-    public function __construct(array $files)
+    class UploadedFile
     {
-        $this->files = $files;
-    }
+        /**
+         * @var array
+         */
+        private $files;
 
-    public function hasFile($key) : bool
-    {
-        return isset($this->files[$key]);
-    }
-
-    public function getFilename() : string
-    {
-        if ($this->hasFile('picture')) {
-            return $this->files['picture']['name'];
+        public function __construct(array $files)
+        {
+            $this->files = $files;
         }
 
-        return '';
-    }
+        public function hasFile($key) : bool
+        {
+            return isset($this->files[$key]);
+        }
 
-    public function getFilePath() : string
-    {
-        return $this->files['picture']['tmp_name'];
-    }
+        public function getFilename() : string
+        {
+            if ($this->hasFile('picture')) {
+                return $this->files['picture']['name'];
+            }
 
-    public function getSize() : int
-    {
-        return $this->files['picture']['size'];
-    }
+            return '';
+        }
 
-    public function getImageSize()
-    {
-        return getimagesize($this->getFilePath());
-    }
+        public function getFilePath() : string
+        {
+            return $this->files['picture']['tmp_name'];
+        }
 
-    public function getMimeType() : string
-    {
-        return $this->files['picture']['type'];
-    }
+        public function getSize() : int
+        {
+            return $this->files['picture']['size'];
+        }
 
-    public function getUploadedFile() : SuxxUploadedFile
-    {
-        return $this;
+        public function getImageSize()
+        {
+            return getimagesize($this->getFilePath());
+        }
+
+        public function getMimeType() : string
+        {
+            return $this->files['picture']['type'];
+        }
+
+        public function getUploadedFile() : UploadedFile
+        {
+            return $this;
+        }
     }
 }

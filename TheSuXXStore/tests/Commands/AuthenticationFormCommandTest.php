@@ -1,148 +1,158 @@
 <?php
 
-/**
- * @covers SuxxAuthenticationFormCommand
- * @uses SuxxAuthenticator
- * @uses SuxxSession
- * @uses SuxxFormError
- * @uses SuxxFormPopulate
- * @uses SuxxRequest
- */
-class SuxxAuthenticationFormCommandTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxAuthenticator
-     */
-    private $authenticator;
+namespace Suxx\Commands {
+
+    use Suxx\Authentication\Authenticator;
+    use Suxx\FileHandlers\UploadedFile;
+    use Suxx\Forms\FormError;
+    use Suxx\Forms\FormPopulate;
+    use Suxx\Http\Request;
+    use Suxx\Http\Session;
 
     /**
-     * @var SuxxSession
+     * @covers Suxx\Commands\AuthenticationFormCommand
+     * @uses   Suxx\Authentication\Authenticator
+     * @uses   Suxx\Http\Session
+     * @uses   Suxx\Forms\FormError
+     * @uses   Suxx\Forms\FormPopulate
+     * @uses   Suxx\Http\Request
      */
-    private $session;
-
-    /**
-     * @var SuxxFormPopulate
-     */
-    private $populate;
-
-    /**
-     * @var SuxxFormError
-     */
-    private $error;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxUploadedFile
-     */
-    private $file;
-
-    protected function setUp()
+    class AuthenticationFormCommandTest extends \PHPUnit_Framework_TestCase
     {
-        $this->authenticator = $this->getMockBuilder(SuxxAuthenticator::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Authenticator
+         */
+        private $authenticator;
 
-        $this->file = $this->getMockBuilder(SuxxUploadedFile::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        /**
+         * @var Session
+         */
+        private $session;
 
-        $this->session = new SuxxSession(array());
-        $this->populate = new SuxxFormPopulate($this->session);
-        $this->error = new SuxxFormError($this->session);
-    }
+        /**
+         * @var FormPopulate
+         */
+        private $populate;
 
-    /**
-     * @dataProvider formFieldProvider
-     * @param $fieldToEmpty
-     * @param $expectedErrorMessage
-     */
-    public function testEmptyFormFieldTriggersError($fieldToEmpty, $expectedErrorMessage)
-    {
-        $request = ['username' => 'suxx', 'password' => '123456'];
-        $request[$fieldToEmpty] = '';
-        $request = new SuxxRequest($request, array(), $this->file);
+        /**
+         * @var FormError
+         */
+        private $error;
 
-        $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
-        $this->assertFalse($authenticationFormCommand->execute($request));
-        $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($fieldToEmpty));
-    }
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | UploadedFile
+         */
+        private $file;
 
-    public function testHappyPath()
-    {
-        $request = ['username' => 'suxx', 'password' => '123456'];
-        $request = new SuxxRequest($request, array(), $this->file);
+        protected function setUp()
+        {
+            $this->authenticator = $this->getMockBuilder(Authenticator::class)
+                ->disableOriginalConstructor()
+                ->getMock();
 
-        $this->authenticator
-            ->expects($this->once())
-            ->method('authenticate')
-            ->with($request->getValue('username'), $request->getValue('password'))
-            ->willReturn(true);
+            $this->file = $this->getMockBuilder(UploadedFile::class)
+                ->disableOriginalConstructor()
+                ->getMock();
 
-        $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
-        $this->assertTrue($authenticationFormCommand->execute($request));
-        $this->assertEquals('Willkommen - Du bist eingeloggt!', $this->session->getValue('message'));
-    }
+            $this->session = new Session(array());
+            $this->populate = new FormPopulate($this->session);
+            $this->error = new FormError($this->session);
+        }
 
-    public function testExecutionCanDeleteSessionErrorIfSet()
-    {
-        $this->session->setValue('error', 'test');
+        /**
+         * @dataProvider formFieldProvider
+         * @param $fieldToEmpty
+         * @param $expectedErrorMessage
+         */
+        public function testEmptyFormFieldTriggersError($fieldToEmpty, $expectedErrorMessage)
+        {
+            $request = ['username' => 'suxx', 'password' => '123456'];
+            $request[$fieldToEmpty] = '';
+            $request = new Request($request, array(), $this->file);
 
-        $request = ['username' => 'suxx', 'password' => '123456'];
-        $request = new SuxxRequest($request, array(), $this->file);
+            $authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
+            $this->assertFalse($authenticationFormCommand->execute($request));
+            $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($fieldToEmpty));
+        }
 
-        $this->authenticator
-            ->expects($this->once())
-            ->method('authenticate')
-            ->with($request->getValue('username'), $request->getValue('password'))
-            ->willReturn(true);
+        public function testHappyPath()
+        {
+            $request = ['username' => 'suxx', 'password' => '123456'];
+            $request = new Request($request, array(), $this->file);
 
-        $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
-        $this->assertTrue($authenticationFormCommand->execute($request));
-        $this->assertEquals('Willkommen - Du bist eingeloggt!', $this->session->getValue('message'));
-    }
+            $this->authenticator
+                ->expects($this->once())
+                ->method('authenticate')
+                ->with($request->getValue('username'), $request->getValue('password'))
+                ->willReturn(true);
 
-    public function testAuthenticationFailsWithWrongCredentials()
-    {
-        $request = ['username' => 'suxx', 'password' => 'wrong Password'];
-        $request = new SuxxRequest($request, array(), $this->file);
+            $authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
+            $this->assertTrue($authenticationFormCommand->execute($request));
+            $this->assertEquals('Willkommen - Du bist eingeloggt!', $this->session->getValue('message'));
+        }
 
-        $this->authenticator
-            ->expects($this->once())
-            ->method('authenticate')
-            ->with($request->getValue('username'), $request->getValue('password'))
-            ->willReturn(false);
+        public function testExecutionCanDeleteSessionErrorIfSet()
+        {
+            $this->session->setValue('error', 'test');
 
-        $authenticationFormCommand = new SuxxAuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
-        $this->assertTrue($authenticationFormCommand->execute($request));
-        $this->assertEquals('Log-In fehlgeschlagen!', $this->session->getValue('warning'));
-    }
+            $request = ['username' => 'suxx', 'password' => '123456'];
+            $request = new Request($request, array(), $this->file);
 
-    /**
-     * @return array
-     */
-    public function formFieldProvider() : array
-    {
-        return [
-            ['username', 'Bitte geben Sie einen Usernamen ein'],
-            ['password', 'Bitte geben Sie ein Passwort ein'],
-        ];
-    }
+            $this->authenticator
+                ->expects($this->once())
+                ->method('authenticate')
+                ->with($request->getValue('username'), $request->getValue('password'))
+                ->willReturn(true);
 
-    /**
-     * @dataProvider formFieldValuesProvider
-     * @param $fieldName
-     * @param $fieldValue
-     */
-    public function testFormFieldsCanBeRepopulated($fieldName, $fieldValue)
-    {
-        $this->populate->set($fieldName, $fieldValue);
-        $this->assertSame($fieldValue, $this->session->getValue('populate')->get($fieldName));
-    }
+            $authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
+            $this->assertTrue($authenticationFormCommand->execute($request));
+            $this->assertEquals('Willkommen - Du bist eingeloggt!', $this->session->getValue('message'));
+        }
 
-    public function formFieldValuesProvider() : array
-    {
-        return [
-            ['username', 'suxx'],
-            ['password', '123456'],
-        ];
+        public function testAuthenticationFailsWithWrongCredentials()
+        {
+            $request = ['username' => 'suxx', 'password' => 'wrong Password'];
+            $request = new Request($request, array(), $this->file);
+
+            $this->authenticator
+                ->expects($this->once())
+                ->method('authenticate')
+                ->with($request->getValue('username'), $request->getValue('password'))
+                ->willReturn(false);
+
+            $authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
+            $this->assertTrue($authenticationFormCommand->execute($request));
+            $this->assertEquals('Log-In fehlgeschlagen!', $this->session->getValue('warning'));
+        }
+
+        /**
+         * @return array
+         */
+        public function formFieldProvider() : array
+        {
+            return [
+                ['username', 'Bitte geben Sie einen Usernamen ein'],
+                ['password', 'Bitte geben Sie ein Passwort ein'],
+            ];
+        }
+
+        /**
+         * @dataProvider formFieldValuesProvider
+         * @param $fieldName
+         * @param $fieldValue
+         */
+        public function testFormFieldsCanBeRepopulated($fieldName, $fieldValue)
+        {
+            $this->populate->set($fieldName, $fieldValue);
+            $this->assertSame($fieldValue, $this->session->getValue('populate')->get($fieldName));
+        }
+
+        public function formFieldValuesProvider() : array
+        {
+            return [
+                ['username', 'suxx'],
+                ['password', '123456'],
+            ];
+        }
     }
 }

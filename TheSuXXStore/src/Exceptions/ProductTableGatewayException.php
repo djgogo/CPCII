@@ -1,6 +1,8 @@
 <?php
 
-class SuxxProductTableGatewayException extends \Exception
-{
-}
+namespace Suxx\Exceptions {
 
+    class ProductTableGatewayException extends \Exception
+    {
+    }
+}

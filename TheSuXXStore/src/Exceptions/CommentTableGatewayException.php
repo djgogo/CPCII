@@ -1,6 +1,8 @@
 <?php
 
-class SuxxCommentTableGatewayException extends Exception
-{
-}
+namespace Suxx\Exceptions {
 
+    class CommentTableGatewayException extends \Exception
+    {
+    }
+}

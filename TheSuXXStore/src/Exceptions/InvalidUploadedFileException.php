@@ -1,5 +1,8 @@
 <?php
 
-class InvalidUploadedFileException extends Exception
-{
+namespace Suxx\Exceptions {
+
+    class InvalidUploadedFileException extends \Exception
+    {
+    }
 }

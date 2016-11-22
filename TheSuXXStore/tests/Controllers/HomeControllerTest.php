@@ -1,184 +1,193 @@
 <?php
 
-/**
- * @covers SuxxHomeController
- * @uses SuxxRequest
- * @uses SuxxResponse
- */
-class SuxxHomeControllerTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxRequest
-     */
-    private $request;
+namespace Suxx\Controllers {
+
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
+    use Suxx\Http\Session;
+    use Suxx\Gateways\ProductTableDataGateway;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxResponse
+     * @covers  Suxx\Controllers\HomeController
+     * @uses    Suxx\Http\Request
+     * @uses    Suxx\Http\Response
+     * @uses    Suxx\Http\Session;
+     * @uses    Suxx\Gateways\ProductTableDataGateway
      */
-    private $response;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxSession
-     */
-    private $session;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxProductTableDataGateway
-     */
-    private $dataGateway;
-
-    /**
-     * @var SuxxHomeController
-     */
-    private $homeController;
-
-    public function setUp()
+    class HomeControllerTest extends \PHPUnit_Framework_TestCase
     {
-        $this->request = $this->getMockBuilder(SuxxRequest::class)->disableOriginalConstructor()->getMock();
-        $this->response = $this->getMockBuilder(SuxxResponse::class)->disableOriginalConstructor()->getMock();
-        $this->session = $this->getMockBuilder(SuxxSession::class)->disableOriginalConstructor()->getMock();
-        $this->dataGateway = $this->getMockBuilder(SuxxProductTableDataGateway::class)->disableOriginalConstructor()->getMock();
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Request
+         */
+        private $request;
 
-        $this->homeController = new SuxxHomeController($this->session, $this->dataGateway);
-    }
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Response
+         */
+        private $response;
 
-    public function testHomeControllerCanBeExecutedWithDefaultCaseAndReturnsBaseTemplate()
-    {
-        $this->request
-            ->expects($this->at(0))
-            ->method('getValue')
-            ->with('sort')
-            ->willReturn('');
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Session
+         */
+        private $session;
 
-        $this->request
-            ->expects($this->at(1))
-            ->method('getValue')
-            ->with('search')
-            ->willReturn(false);
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | ProductTableDataGateway
+         */
+        private $dataGateway;
 
-        $this->response
-            ->expects($this->once())
-            ->method('setProducts');
+        /**
+         * @var HomeController
+         */
+        private $homeController;
 
-        $this->dataGateway
-            ->expects($this->once())
-            ->method('getAllProducts')
-            ->willReturn(array());
+        public function setUp()
+        {
+            $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
+            $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
+            $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
+            $this->dataGateway = $this->getMockBuilder(ProductTableDataGateway::class)->disableOriginalConstructor()->getMock();
 
-        $this->session
-            ->expects($this->once())
-            ->method('setValue')
-            ->with('sort', '');
+            $this->homeController = new HomeController($this->session, $this->dataGateway);
+        }
 
-        $this->assertEquals('base.twig', $this->homeController->execute($this->request, $this->response));
-    }
+        public function testHomeControllerCanBeExecutedWithDefaultCaseAndReturnsBaseTemplate()
+        {
+            $this->request
+                ->expects($this->at(0))
+                ->method('getValue')
+                ->with('sort')
+                ->willReturn('');
 
-    public function testHomeControllerWithSortAscendingCanBeExecuted()
-    {
-        $this->request
-            ->expects($this->at(0))
-            ->method('getValue')
-            ->with('sort')
-            ->willReturn('ASC');
+            $this->request
+                ->expects($this->at(1))
+                ->method('getValue')
+                ->with('search')
+                ->willReturn(false);
 
-        $this->request
-            ->expects($this->at(1))
-            ->method('getValue')
-            ->with('search')
-            ->willReturn(false);
+            $this->response
+                ->expects($this->once())
+                ->method('setProducts');
 
-        $this->response
-            ->expects($this->once())
-            ->method('setProducts');
+            $this->dataGateway
+                ->expects($this->once())
+                ->method('getAllProducts')
+                ->willReturn(array());
 
-        $this->dataGateway
-            ->expects($this->once())
-            ->method('getAllProductsOrderedByUpdatedAscending')
-            ->willReturn(array());
+            $this->session
+                ->expects($this->once())
+                ->method('setValue')
+                ->with('sort', '');
 
-        $this->session
-            ->expects($this->once())
-            ->method('setValue')
-            ->with('sort', 'ASC');
+            $this->assertEquals('base.twig', $this->homeController->execute($this->request, $this->response));
+        }
 
-        $this->assertEquals('base.twig', $this->homeController->execute($this->request, $this->response));
-    }
+        public function testHomeControllerWithSortAscendingCanBeExecuted()
+        {
+            $this->request
+                ->expects($this->at(0))
+                ->method('getValue')
+                ->with('sort')
+                ->willReturn('ASC');
 
-    public function testHomeControllerWithSortDescendingCanBeExecuted()
-    {
-        $this->request
-            ->expects($this->at(0))
-            ->method('getValue')
-            ->with('sort')
-            ->willReturn('DESC');
+            $this->request
+                ->expects($this->at(1))
+                ->method('getValue')
+                ->with('search')
+                ->willReturn(false);
 
-        $this->request
-            ->expects($this->at(1))
-            ->method('getValue')
-            ->with('search')
-            ->willReturn(false);
+            $this->response
+                ->expects($this->once())
+                ->method('setProducts');
 
-        $this->response
-            ->expects($this->once())
-            ->method('setProducts');
+            $this->dataGateway
+                ->expects($this->once())
+                ->method('getAllProductsOrderedByUpdatedAscending')
+                ->willReturn(array());
 
-        $this->dataGateway
-            ->expects($this->once())
-            ->method('getAllProductsOrderedByUpdatedDescending')
-            ->willReturn(array());
+            $this->session
+                ->expects($this->once())
+                ->method('setValue')
+                ->with('sort', 'ASC');
 
-        $this->session
-            ->expects($this->once())
-            ->method('setValue')
-            ->with('sort', 'DESC');
+            $this->assertEquals('base.twig', $this->homeController->execute($this->request, $this->response));
+        }
 
-        $this->assertEquals('base.twig', $this->homeController->execute($this->request, $this->response));
-    }
+        public function testHomeControllerWithSortDescendingCanBeExecuted()
+        {
+            $this->request
+                ->expects($this->at(0))
+                ->method('getValue')
+                ->with('sort')
+                ->willReturn('DESC');
 
-    public function testHomeControllerCanBeExecutedWithSearchProduct()
-    {
-        $this->request
-            ->expects($this->at(0))
-            ->method('getValue')
-            ->with('sort')
-            ->willReturn('');
+            $this->request
+                ->expects($this->at(1))
+                ->method('getValue')
+                ->with('search')
+                ->willReturn(false);
 
-        $this->response
-            ->expects($this->at(0))
-            ->method('setProducts');
+            $this->response
+                ->expects($this->once())
+                ->method('setProducts');
 
-        $this->dataGateway
-            ->expects($this->once())
-            ->method('getAllProducts')
-            ->willReturn(array());
+            $this->dataGateway
+                ->expects($this->once())
+                ->method('getAllProductsOrderedByUpdatedDescending')
+                ->willReturn(array());
 
-        $this->session
-            ->expects($this->once())
-            ->method('setValue')
-            ->with('sort', '');
+            $this->session
+                ->expects($this->once())
+                ->method('setValue')
+                ->with('sort', 'DESC');
 
-        $this->request
-            ->expects($this->at(1))
-            ->method('getValue')
-            ->with('search')
-            ->willReturn(true);
+            $this->assertEquals('base.twig', $this->homeController->execute($this->request, $this->response));
+        }
 
-        $this->response
-            ->expects($this->at(1))
-            ->method('setProducts');
+        public function testHomeControllerCanBeExecutedWithSearchProduct()
+        {
+            $this->request
+                ->expects($this->at(0))
+                ->method('getValue')
+                ->with('sort')
+                ->willReturn('');
 
-        $this->dataGateway
-            ->expects($this->once())
-            ->method('getSearchedProduct')
-            ->willReturn(array());
+            $this->response
+                ->expects($this->at(0))
+                ->method('setProducts');
 
-        $this->request
-            ->expects($this->at(2))
-            ->method('getValue')
-            ->with('search')
-            ->willReturn('search String');
+            $this->dataGateway
+                ->expects($this->once())
+                ->method('getAllProducts')
+                ->willReturn(array());
 
-        $this->assertEquals('base.twig', $this->homeController->execute($this->request, $this->response));
+            $this->session
+                ->expects($this->once())
+                ->method('setValue')
+                ->with('sort', '');
+
+            $this->request
+                ->expects($this->at(1))
+                ->method('getValue')
+                ->with('search')
+                ->willReturn(true);
+
+            $this->response
+                ->expects($this->at(1))
+                ->method('setProducts');
+
+            $this->dataGateway
+                ->expects($this->once())
+                ->method('getSearchedProduct')
+                ->willReturn(array());
+
+            $this->request
+                ->expects($this->at(2))
+                ->method('getValue')
+                ->with('search')
+                ->willReturn('search String');
+
+            $this->assertEquals('base.twig', $this->homeController->execute($this->request, $this->response));
+        }
     }
 }
-

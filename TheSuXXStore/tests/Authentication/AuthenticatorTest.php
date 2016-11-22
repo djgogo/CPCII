@@ -1,41 +1,45 @@
 <?php
-use Suxx\SuxxUserTableDataGateway;
 
-/**
- * @covers SuxxAuthenticator
- * @uses \Suxx\SuxxUserTableDataGateway
- */
-class AuthenticatorTest extends \PHPUnit_Framework_TestCase
+namespace Suxx\Authentication
 {
-    /**
-     * @var \Suxx\SuxxUserTableDataGateway
-     */
-    private $database;
+    use Suxx\Gateways\UserTableDataGateway;
 
     /**
-     * @var Authenticator
+     * @covers Suxx\Authentication\Authenticator
+     * @uses   Suxx\Gateways\UserTableDataGateway
      */
-    private $authenticator;
-
-    protected function setUp()
+    class AuthenticatorTest extends \PHPUnit_Framework_TestCase
     {
-        $this->database = $this->getMockBuilder(SuxxUserTableDataGateway::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | UserTableDataGateway
+         */
+        private $database;
 
-        $this->authenticator = new SuxxAuthenticator($this->database);
-    }
+        /**
+         * @var Authenticator
+         */
+        private $authenticator;
 
-    public function testUserCanBeAuthenticated()
-    {
-        $username = 'suxx';
-        $password = '123456';
+        protected function setUp()
+        {
+            $this->database = $this->getMockBuilder(UserTableDataGateway::class)
+                ->disableOriginalConstructor()
+                ->getMock();
 
-        $this->database
-            ->expects($this->once())
-            ->method('findUserByCredentials')
-            ->willReturn(true);
+            $this->authenticator = new Authenticator($this->database);
+        }
 
-        $this->assertTrue($this->authenticator->authenticate($username, $password));
+        public function testUserCanBeAuthenticated()
+        {
+            $username = 'suxx';
+            $password = '123456';
+
+            $this->database
+                ->expects($this->once())
+                ->method('findUserByCredentials')
+                ->willReturn(true);
+
+            $this->assertTrue($this->authenticator->authenticate($username, $password));
+        }
     }
 }

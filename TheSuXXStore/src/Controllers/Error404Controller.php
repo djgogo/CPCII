@@ -1,11 +1,11 @@
 <?php
 
-namespace Suxx\Controllers {
-
+namespace Suxx\Controllers
+{
     use Suxx\Http\Request;
     use Suxx\Http\Response;
 
-        class Suxx404Controller implements Controller
+        class Error404Controller implements Controller
     {
         public function execute(Request $request, Response $response)
         {

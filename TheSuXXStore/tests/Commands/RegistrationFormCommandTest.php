@@ -1,210 +1,221 @@
 <?php
 
-/**
- * @covers SuxxRegistrationFormCommand
- * @uses SuxxRegistrator
- * @uses SuxxSession
- * @uses SuxxFormError
- * @uses SuxxFormPopulate
- * @uses SuxxRequest
- * @uses Email
- */
-class SuxxRegistrationFormCommandTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxRegistrator
-     */
-    private $registrator;
+namespace Suxx\Commands {
+
+    use Suxx\Authentication\Registrator;
+    use Suxx\FileHandlers\UploadedFile;
+    use Suxx\Forms\FormError;
+    use Suxx\Forms\FormPopulate;
+    use Suxx\Http\Request;
+    use Suxx\Http\Session;
+    use Suxx\ValueObjects\Email;
 
     /**
-     * @var SuxxSession
+     * @covers SuxxRegistrationFormCommand
+     * @uses   SuxxRegistrator
+     * @uses   SuxxSession
+     * @uses   SuxxFormError
+     * @uses   SuxxFormPopulate
+     * @uses   SuxxRequest
+     * @uses   Email
      */
-    private $session;
-
-    /**
-     * @var SuxxFormPopulate
-     */
-    private $populate;
-
-    /**
-     * @var SuxxFormError
-     */
-    private $error;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxUploadedFile
-     */
-    private $file;
-
-    protected function setUp()
+    class RegistrationFormCommandTest extends \PHPUnit_Framework_TestCase
     {
-        $this->registrator = $this->getMockBuilder(SuxxRegistrator::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Registrator
+         */
+        private $registrator;
 
-        $this->file = $this->getMockBuilder(SuxxUploadedFile::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        /**
+         * @var Session
+         */
+        private $session;
 
-        $this->session = new SuxxSession(array());
-        $this->populate = new SuxxFormPopulate($this->session);
-        $this->error = new SuxxFormError($this->session);
-    }
+        /**
+         * @var FormPopulate
+         */
+        private $populate;
 
-    /**
-     * @dataProvider formFieldProvider
-     * @param $fieldToEmpty
-     * @param $expectedErrorMessage
-     */
-    public function testEmptyFormFieldTriggersError($fieldToEmpty, $expectedErrorMessage)
-    {
-        $request = $this->getValidRequestArray();
-        $request[$fieldToEmpty] = '';
-        $request = new SuxxRequest($request, array(), $this->file);
+        /**
+         * @var FormError
+         */
+        private $error;
 
-        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertFalse($registrationFormCommand->execute($request));
-        $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($fieldToEmpty));
-    }
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | UploadedFile
+         */
+        private $file;
 
-    public function testInvalidPasswordTriggersError()
-    {
-        $expectedErrorMessage = 'Das Passwort muss mindestens 6 Zeichen lang sein';
+        protected function setUp()
+        {
+            $this->registrator = $this->getMockBuilder(Registrator::class)
+                ->disableOriginalConstructor()
+                ->getMock();
 
-        $request = $this->getValidRequestArray();
-        $request['password'] = 123;
-        $request = new SuxxRequest($request, array(), $this->file);
+            $this->file = $this->getMockBuilder(UploadedFile::class)
+                ->disableOriginalConstructor()
+                ->getMock();
 
-        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertFalse($registrationFormCommand->execute($request));
-        $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('password'));
-    }
+            $this->session = new Session(array());
+            $this->populate = new FormPopulate($this->session);
+            $this->error = new FormError($this->session);
+        }
 
-    public function testInvalidEmailTriggersError()
-    {
-        $expectedErrorMessage = 'Bitte geben Sie eine gültige Email-Adresse ein';
+        /**
+         * @dataProvider formFieldProvider
+         * @param $fieldToEmpty
+         * @param $expectedErrorMessage
+         */
+        public function testEmptyFormFieldTriggersError($fieldToEmpty, $expectedErrorMessage)
+        {
+            $request = $this->getValidRequestArray();
+            $request[$fieldToEmpty] = '';
+            $request = new Request($request, array(), $this->file);
 
-        $request = $this->getValidRequestArray();
-        $request['email'] = 'wrong Email';
-        $request = new SuxxRequest($request, array(), $this->file);
+            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+            $this->assertFalse($registrationFormCommand->execute($request));
+            $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($fieldToEmpty));
+        }
 
-        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertFalse($registrationFormCommand->execute($request));
-        $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('email'));
-    }
+        public function testInvalidPasswordTriggersError()
+        {
+            $expectedErrorMessage = 'Das Passwort muss mindestens 6 Zeichen lang sein';
 
-    public function testAlreadyExistingUsernameTriggersError()
-    {
-        $expectedErrorMessage = 'Username bereits vergeben!';
+            $request = $this->getValidRequestArray();
+            $request['password'] = 123;
+            $request = new Request($request, array(), $this->file);
 
-        $request = $this->getValidRequestArray();
-        $request['username'] = 'test';
-        $request = new SuxxRequest($request, array(), $this->file);
+            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+            $this->assertFalse($registrationFormCommand->execute($request));
+            $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('password'));
+        }
 
-        $this->registrator
-            ->expects($this->once())
-            ->method('usernameExists')
-            ->willReturn(true);
+        public function testInvalidEmailTriggersError()
+        {
+            $expectedErrorMessage = 'Bitte geben Sie eine gültige Email-Adresse ein';
 
-        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertFalse($registrationFormCommand->execute($request));
-        $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('username'));
-    }
+            $request = $this->getValidRequestArray();
+            $request['email'] = 'wrong Email';
+            $request = new Request($request, array(), $this->file);
 
-    public function testHappyPath()
-    {
-        $expectedMessage = 'Vielen Dank für die Anmeldung - Loggen Sie sich bitte ein';
+            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+            $this->assertFalse($registrationFormCommand->execute($request));
+            $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('email'));
+        }
 
-        $request = $this->getValidRequestArray();
-        $request = new SuxxRequest($request, array(), $this->file);
+        public function testAlreadyExistingUsernameTriggersError()
+        {
+            $expectedErrorMessage = 'Username bereits vergeben!';
 
-        $this->registrator
-            ->expects($this->once())
-            ->method('register')
-            ->willReturn(true);
+            $request = $this->getValidRequestArray();
+            $request['username'] = 'test';
+            $request = new Request($request, array(), $this->file);
 
-        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertTrue($registrationFormCommand->execute($request));
-        $this->assertEquals($expectedMessage, $this->session->getValue('message'));
-    }
+            $this->registrator
+                ->expects($this->once())
+                ->method('usernameExists')
+                ->willReturn(true);
 
-    public function testExecutionCanDeleteSessionErrorIfSet()
-    {
-        $this->session->setValue('error', 'test');
+            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+            $this->assertFalse($registrationFormCommand->execute($request));
+            $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('username'));
+        }
 
-        $expectedMessage = 'Vielen Dank für die Anmeldung - Loggen Sie sich bitte ein';
+        public function testHappyPath()
+        {
+            $expectedMessage = 'Vielen Dank für die Anmeldung - Loggen Sie sich bitte ein';
 
-        $request = $this->getValidRequestArray();
-        $request = new SuxxRequest($request, array(), $this->file);
+            $request = $this->getValidRequestArray();
+            $request = new Request($request, array(), $this->file);
 
-        $this->registrator
-            ->expects($this->once())
-            ->method('register')
-            ->willReturn(true);
+            $this->registrator
+                ->expects($this->once())
+                ->method('register')
+                ->willReturn(true);
 
-        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertTrue($registrationFormCommand->execute($request));
-        $this->assertEquals($expectedMessage, $this->session->getValue('message'));
-    }
+            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+            $this->assertTrue($registrationFormCommand->execute($request));
+            $this->assertEquals($expectedMessage, $this->session->getValue('message'));
+        }
 
-    public function testRegistrationFailsTriggersErrorMessage()
-    {
-        $expectedMessage = 'Anmeldung fehlgeschlagen!';
+        public function testExecutionCanDeleteSessionErrorIfSet()
+        {
+            $this->session->setValue('error', 'test');
 
-        $request = $this->getValidRequestArray();
-        $request = new SuxxRequest($request, array(), $this->file);
+            $expectedMessage = 'Vielen Dank für die Anmeldung - Loggen Sie sich bitte ein';
 
-        $this->registrator
-            ->expects($this->once())
-            ->method('register')
-            ->willReturn(false);
+            $request = $this->getValidRequestArray();
+            $request = new Request($request, array(), $this->file);
 
-        $registrationFormCommand = new SuxxRegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-        $this->assertTrue($registrationFormCommand->execute($request));
-        $this->assertEquals($expectedMessage, $this->session->getValue('warning'));
-    }
+            $this->registrator
+                ->expects($this->once())
+                ->method('register')
+                ->willReturn(true);
 
-    /**
-     * @return array
-     */
-    public function formFieldProvider() : array
-    {
-        return [
-            ['username', 'Bitte geben Sie einen Usernamen ein'],
-            ['password', 'Bitte geben Sie ein Passwort ein'],
-            ['name', 'Bitte geben Sie einen Namen ein'],
-            ['email', 'Bitte geben Sie eine gültige Email-Adresse ein'],
-        ];
-    }
+            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+            $this->assertTrue($registrationFormCommand->execute($request));
+            $this->assertEquals($expectedMessage, $this->session->getValue('message'));
+        }
 
-    private function getValidRequestArray() : array
-    {
-        return [
-            'username' => 'suxx',
-            'password' => '123456',
-            'name' => 'suxx store',
-            'email' => 'suxx@store.com'
-        ];
-    }
+        public function testRegistrationFailsTriggersErrorMessage()
+        {
+            $expectedMessage = 'Anmeldung fehlgeschlagen!';
 
-    /**
-     * @dataProvider formFieldValuesProvider
-     * @param $fieldName
-     * @param $fieldValue
-     */
-    public function testFormFieldsCanBeRepopulated($fieldName, $fieldValue)
-    {
-        $this->populate->set($fieldName, $fieldValue);
-        $this->assertSame($fieldValue, $this->session->getValue('populate')->get($fieldName));
-    }
+            $request = $this->getValidRequestArray();
+            $request = new Request($request, array(), $this->file);
 
-    public function formFieldValuesProvider() : array
-    {
-        return [
-            ['username', 'suxx'],
-            ['password', '123456'],
-            ['name', 'suxx store'],
-            ['email', 'suxx@store.com'],
-        ];
+            $this->registrator
+                ->expects($this->once())
+                ->method('register')
+                ->willReturn(false);
+
+            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
+            $this->assertTrue($registrationFormCommand->execute($request));
+            $this->assertEquals($expectedMessage, $this->session->getValue('warning'));
+        }
+
+        /**
+         * @return array
+         */
+        public function formFieldProvider() : array
+        {
+            return [
+                ['username', 'Bitte geben Sie einen Usernamen ein'],
+                ['password', 'Bitte geben Sie ein Passwort ein'],
+                ['name', 'Bitte geben Sie einen Namen ein'],
+                ['email', 'Bitte geben Sie eine gültige Email-Adresse ein'],
+            ];
+        }
+
+        private function getValidRequestArray() : array
+        {
+            return [
+                'username' => 'suxx',
+                'password' => '123456',
+                'name' => 'suxx store',
+                'email' => 'suxx@store.com'
+            ];
+        }
+
+        /**
+         * @dataProvider formFieldValuesProvider
+         * @param $fieldName
+         * @param $fieldValue
+         */
+        public function testFormFieldsCanBeRepopulated($fieldName, $fieldValue)
+        {
+            $this->populate->set($fieldName, $fieldValue);
+            $this->assertSame($fieldValue, $this->session->getValue('populate')->get($fieldName));
+        }
+
+        public function formFieldValuesProvider() : array
+        {
+            return [
+                ['username', 'suxx'],
+                ['password', '123456'],
+                ['name', 'suxx store'],
+                ['email', 'suxx@store.com'],
+            ];
+        }
     }
 }

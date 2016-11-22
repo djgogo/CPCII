@@ -1,5 +1,14 @@
 <?php
 
+use Suxx\Factories\Factory;
+use Suxx\Factories\PDOFactory;
+use Suxx\FileHandlers\UploadedFile;
+use Suxx\Http\Request;
+use Suxx\Http\Response;
+use Suxx\Http\Session;
+use Suxx\Loggers\ErrorLogger;
+use Suxx\ValueObjects\Token;
+
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
 require __DIR__ . '/src/autoload.php';
@@ -10,7 +19,7 @@ session_start();
  * Create CSRF Protection Token
  */
 if (empty($_SESSION['token'])) {
-    $_SESSION['token'] = new SuxxToken();
+    $_SESSION['token'] = new Token();
 }
 
 /**
@@ -22,17 +31,17 @@ $twig = new Twig_Environment($loader, ['cache' => false]);
 /**
  * Create Request, Response and Session Objects
  */
-$uploadedFile = new SuxxUploadedFile($_FILES);
-$request = new SuxxRequest($_REQUEST, $_SERVER, $uploadedFile);
-$session = new SuxxSession($_SESSION);
-$response = new SuxxResponse();
+$uploadedFile = new UploadedFile($_FILES);
+$request = new Request($_REQUEST, $_SERVER, $uploadedFile);
+$session = new Session($_SESSION);
+$response = new Response();
 
 /**
  * Create Database Handler and the Factory
  */
 //$pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore');
-$pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234', new SuxxErrorLogger());
-$factory  = new SuxxFactory($pdoFactory, $session);
+$pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234', new ErrorLogger());
+$factory  = new Factory($pdoFactory, $session);
 
 /**
  * Get the Router and Controller for execution

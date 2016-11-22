@@ -1,5 +1,8 @@
 <?php
 
-class InvalidEmailException extends InvalidArgumentException
-{
+namespace Suxx\Exceptions {
+
+    class InvalidEmailException extends \InvalidArgumentException
+    {
+    }
 }

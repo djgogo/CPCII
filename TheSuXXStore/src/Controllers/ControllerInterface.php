@@ -1,6 +1,12 @@
 <?php
 
-interface SuxxController
+namespace Suxx\Controllers
 {
-    public function execute(SuxxRequest $request, SuxxResponse $response);
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
+
+    interface Controller
+    {
+        public function execute(Request $request, Response $response);
+    }
 }
