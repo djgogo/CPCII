@@ -1,97 +1,103 @@
 <?php
 
-class SuxxResponse
-{
-    /**
-     * @var array
-     */
-    private $data = array();
+namespace Suxx\Http {
 
-    /**
-     * @var array
-     */
-    private $products;
+    use Suxx\Entities\Product;
+    use Suxx\Exceptions\ResponseException;
 
-    /**
-     * @var SuxxProduct
-     */
-    private $product;
-
-    /**
-     * @var array
-     */
-    private $comments;
-
-    /**
-     * @var string
-     */
-    private $redirect;
-
-    public function setValue($key, $value)
+    class Response
     {
-        $this->data[$key] = $value;
-    }
+        /**
+         * @var array
+         */
+        private $data = array();
 
-    public function getValue(string $key) : string
-    {
-        if (!isset($this->data[$key])) {
-            throw new SuxxResponseException("Key '$key' does not exist");
+        /**
+         * @var array
+         */
+        private $products;
+
+        /**
+         * @var Product
+         */
+        private $product;
+
+        /**
+         * @var array
+         */
+        private $comments;
+
+        /**
+         * @var string
+         */
+        private $redirect;
+
+        public function setValue($key, $value)
+        {
+            $this->data[$key] = $value;
         }
-        return $this->escape($this->data[$key]);
-    }
 
-    public function isset(string $key) : bool
-    {
-        return isset($this->data[$key]);
-    }
+        public function getValue(string $key) : string
+        {
+            if (!isset($this->data[$key])) {
+                throw new ResponseException("Key '$key' does not exist");
+            }
+            return $this->escape($this->data[$key]);
+        }
 
-    public function getProduct() : SuxxProduct
-    {
-        return $this->product;
-    }
+        public function isset(string $key) : bool
+        {
+            return isset($this->data[$key]);
+        }
 
-    public function setProduct(SuxxProduct $product)
-    {
-        $this->product = $product;
-    }
+        public function getProduct() : Product
+        {
+            return $this->product;
+        }
 
-    public function getProducts() : array
-    {
-        return $this->products;
-    }
+        public function setProduct(Product $product)
+        {
+            $this->product = $product;
+        }
 
-    public function setProducts(array $products)
-    {
-        $this->products = $products;
-    }
+        public function getProducts() : array
+        {
+            return $this->products;
+        }
 
-    public function getComments() : array
-    {
-        return $this->comments;
-    }
+        public function setProducts(array $products)
+        {
+            $this->products = $products;
+        }
 
-    public function setComments(array $comments)
-    {
-        $this->comments = $comments;
-    }
+        public function getComments() : array
+        {
+            return $this->comments;
+        }
 
-    public function setRedirect(string $path)
-    {
-        $this->redirect = $path;
-    }
+        public function setComments(array $comments)
+        {
+            $this->comments = $comments;
+        }
 
-    public function getRedirect() : string
-    {
-        return $this->redirect;
-    }
+        public function setRedirect(string $path)
+        {
+            $this->redirect = $path;
+        }
 
-    public function hasRedirect() : bool
-    {
-        return isset($this->redirect);
-    }
+        public function getRedirect() : string
+        {
+            return $this->redirect;
+        }
 
-    private function escape(string $string) : string
-    {
-        return htmlspecialchars($string, ENT_QUOTES);
+        public function hasRedirect() : bool
+        {
+            return isset($this->redirect);
+        }
+
+        private function escape(string $string) : string
+        {
+            return htmlspecialchars($string, ENT_QUOTES);
+        }
     }
 }

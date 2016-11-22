@@ -1,45 +1,50 @@
 <?php
 
-class SuxxFormError implements SuxxFormInterface
+namespace Suxx\Forms
 {
-    /**
-     * @var array
-     */
-    private $data = [];
+    use Suxx\Http\Session;
 
-    /**
-     * @var SuxxSession
-     */
-    private $session;
-
-    public function __construct(SuxxSession $session)
+    class FormError implements FormInterface
     {
-        $this->session = $session;
-    }
+        /**
+         * @var array
+         */
+        private $data = [];
 
-    public function set(string $key, string $value)
-    {
-        $this->data[$key] = $value;
-        $this->session->setValue('error', $this);
-    }
+        /**
+         * @var Session
+         */
+        private $session;
 
-    public function has(string $key)
-    {
-        return array_key_exists($key, $this->data);
-    }
-
-    public function remove(string $key)
-    {
-        if ($this->has($key)) {
-            unset($this->data[$key]);
+        public function __construct(Session $session)
+        {
+            $this->session = $session;
         }
-    }
 
-    public function get(string $key, $default = null)
-    {
-        if ($this->has($key)) {
-            return $this->data[$key];
+        public function set(string $key, string $value)
+        {
+            $this->data[$key] = $value;
+            $this->session->setValue('error', $this);
         }
-        return $default;
+
+        public function has(string $key)
+        {
+            return array_key_exists($key, $this->data);
+        }
+
+        public function remove(string $key)
+        {
+            if ($this->has($key)) {
+                unset($this->data[$key]);
+            }
+        }
+
+        public function get(string $key, $default = null)
+        {
+            if ($this->has($key)) {
+                return $this->data[$key];
+            }
+            return $default;
+        }
     }
 }

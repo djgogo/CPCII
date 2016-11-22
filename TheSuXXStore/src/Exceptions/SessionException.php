@@ -1,6 +1,8 @@
 <?php
 
-class SuxxSessionException extends Exception
-{
-}
+namespace Suxx\Exceptions {
 
+    class SessionException extends \Exception
+    {
+    }
+}

@@ -1,69 +1,71 @@
 <?php
 
-/**
- * @covers SuxxComment
- */
-class SuxxCommentTest extends \PHPUnit_Framework_TestCase
-{
-    /**
-     * @var SuxxComment
-     */
-    private $comment;
+namespace Suxx\Entities {
 
     /**
-     * @var ReflectionClass
+     * @covers Suxx\Entities\Comment
      */
-    private $magic;
-
-    protected function setUp()
+    class CommentTest extends \PHPUnit_Framework_TestCase
     {
-        $this->comment = new SuxxComment();
-        $this->magic = new ReflectionClass($this->comment);
-    }
+        /**
+         * @var Comment
+         */
+        private $comment;
 
-    public function testCidCanBeRetrieved()
-    {
-        $reflectionProperty = $this->magic->getProperty('cid');
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($this->comment, 123);
+        /**
+         * @var \ReflectionClass
+         */
+        private $magic;
 
-        $this->assertEquals(123, $this->comment->getCid());
-    }
+        protected function setUp()
+        {
+            $this->comment = new Comment();
+            $this->magic = new \ReflectionClass($this->comment);
+        }
 
-    public function testPidCanBeRetrieved()
-    {
-        $reflectionProperty = $this->magic->getProperty('pid');
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($this->comment, 123);
+        public function testCidCanBeRetrieved()
+        {
+            $reflectionProperty = $this->magic->getProperty('cid');
+            $reflectionProperty->setAccessible(true);
+            $reflectionProperty->setValue($this->comment, 123);
 
-        $this->assertEquals(123, $this->comment->getPid());
-    }
+            $this->assertEquals(123, $this->comment->getCid());
+        }
 
-    public function testAuthorCanBeRetrieved()
-    {
-        $reflectionProperty = $this->magic->getProperty('author');
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($this->comment, 'John Doe');
+        public function testPidCanBeRetrieved()
+        {
+            $reflectionProperty = $this->magic->getProperty('pid');
+            $reflectionProperty->setAccessible(true);
+            $reflectionProperty->setValue($this->comment, 123);
 
-        $this->assertEquals('John Doe', $this->comment->getAuthor());
-    }
+            $this->assertEquals(123, $this->comment->getPid());
+        }
 
-    public function testCommentCanBeRetrieved()
-    {
-        $reflectionProperty = $this->magic->getProperty('comment');
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($this->comment, 'Bla Bla');
+        public function testAuthorCanBeRetrieved()
+        {
+            $reflectionProperty = $this->magic->getProperty('author');
+            $reflectionProperty->setAccessible(true);
+            $reflectionProperty->setValue($this->comment, 'John Doe');
 
-        $this->assertEquals('Bla Bla', $this->comment->getComment());
-    }
+            $this->assertEquals('John Doe', $this->comment->getAuthor());
+        }
 
-    public function testPictureCanBeRetrieved()
-    {
-        $reflectionProperty = $this->magic->getProperty('picture');
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($this->comment, 'bla.jpg');
+        public function testCommentCanBeRetrieved()
+        {
+            $reflectionProperty = $this->magic->getProperty('comment');
+            $reflectionProperty->setAccessible(true);
+            $reflectionProperty->setValue($this->comment, 'Bla Bla');
 
-        $this->assertEquals('bla.jpg', $this->comment->getPicture());
+            $this->assertEquals('Bla Bla', $this->comment->getComment());
+        }
+
+        public function testPictureCanBeRetrieved()
+        {
+            $reflectionProperty = $this->magic->getProperty('picture');
+            $reflectionProperty->setAccessible(true);
+            $reflectionProperty->setValue($this->comment, 'bla.jpg');
+
+            $this->assertEquals('bla.jpg', $this->comment->getPicture());
+        }
     }
 }
-

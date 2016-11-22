@@ -1,34 +1,42 @@
 <?php
 
-class SuxxUpdateProductController implements SuxxController
-{
-    /**
-     * @var SuxxProductTableDataGateway
-     */
-    private $productDataGateway;
+namespace Suxx\Controllers {
 
-    /**
-     * @var SuxxUpdateProductFormCommand
-     */
-    private $updateProductFormCommand;
+    use Suxx\Commands\UpdateProductFormCommand;
+    use Suxx\Gateways\ProductTableDataGateway;
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
 
-    public function __construct(SuxxUpdateProductFormCommand $updateProductFormCommand, SuxxProductTableDataGateway $productDataGateway)
+    class UpdateProductController implements Controller
     {
-        $this->productDataGateway = $productDataGateway;
-        $this->updateProductFormCommand = $updateProductFormCommand;
-    }
+        /**
+         * @var ProductTableDataGateway
+         */
+        private $productDataGateway;
 
-    public function execute(SuxxRequest $request, SuxxResponse $response)
-    {
-        $result = $this->updateProductFormCommand->execute($request);
+        /**
+         * @var UpdateProductFormCommand
+         */
+        private $updateProductFormCommand;
 
-        if ($result === false) {
-            $response->setProduct($this->productDataGateway->findProductById($request->getValue('product-id')));
-            $this->updateProductFormCommand->repopulateForm();
-            return 'updateproduct.twig';
+        public function __construct(UpdateProductFormCommand $updateProductFormCommand, ProductTableDataGateway $productDataGateway)
+        {
+            $this->productDataGateway = $productDataGateway;
+            $this->updateProductFormCommand = $updateProductFormCommand;
         }
 
-        $response->setProducts($this->productDataGateway->getAllProducts());
-        $response->setRedirect('/');
+        public function execute(Request $request, Response $response)
+        {
+            $result = $this->updateProductFormCommand->execute($request);
+
+            if ($result === false) {
+                $response->setProduct($this->productDataGateway->findProductById($request->getValue('product-id')));
+                $this->updateProductFormCommand->repopulateForm();
+                return 'updateproduct.twig';
+            }
+
+            $response->setProducts($this->productDataGateway->getAllProducts());
+            $response->setRedirect('/');
+        }
     }
 }

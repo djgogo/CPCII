@@ -1,27 +1,29 @@
 <?php
 
-use Suxx\SuxxUserTableDataGateway;
+namespace Suxx\Authentication {
 
-class SuxxRegistrator
-{
-    /**
-     * @var UserTableDataGateway
-     */
-    private $userGateway;
+    use Suxx\Gateways\UserTableDataGateway;
 
-    public function __construct(SuxxUserTableDataGateway $userGateway)
+    class Registrator
     {
-        $this->userGateway = $userGateway;
-    }
+        /**
+         * @var UserTableDataGateway
+         */
+        private $userGateway;
 
-    public function register($row) : bool
-    {
-        return $this->userGateway->insert($row);
-    }
+        public function __construct(UserTableDataGateway $userGateway)
+        {
+            $this->userGateway = $userGateway;
+        }
 
-    public function usernameExists(string $username)
-    {
-        return $this->userGateway->findUserByUsername($username);
+        public function register($row) : bool
+        {
+            return $this->userGateway->insert($row);
+        }
+
+        public function usernameExists(string $username)
+        {
+            return $this->userGateway->findUserByUsername($username);
+        }
     }
 }
-

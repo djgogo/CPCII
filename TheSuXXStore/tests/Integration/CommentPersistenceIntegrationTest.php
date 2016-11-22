@@ -1,66 +1,77 @@
 <?php
 
-class SuxxCommentPersistenceIntegrationTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | PDO
-     */
-    private $pdo;
+namespace Suxx\Integration {
+
+    use Suxx\Exceptions\CommentTableGatewayException;
+    use Suxx\Gateways\CommentTableDataGateway;
+    use Suxx\Loggers\ErrorLogger;
 
     /**
-     * @var SuxxCommentTableDataGateway
+     * @covers  Suxx\Gateways\CommentTableDataGateway
+     * @uses    Suxx\Loggers\ErrorLogger
      */
-    private $gateway;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxErrorLogger
-     */
-    private $logger;
-
-    /**
-     * @var PDOException
-     */
-    private $e;
-
-    protected function setUp()
+    class CommentPersistenceIntegrationTest extends \PHPUnit_Framework_TestCase
     {
-        $this->logger = $this->getMockBuilder(SuxxErrorLogger::class)->disableOriginalConstructor()->getMock();
-        $this->pdo = $this->getMockBuilder(PDO::class)->disableOriginalConstructor()->getMock();
-        $this->e = new PDOException();
-        $this->gateway = new SuxxCommentTableDataGateway($this->pdo, $this->logger);
-    }
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | \PDO
+         */
+        private $pdo;
 
-    public function testIfInsertFailsThrowsExceptionAndErrorWillBeLogged()
-    {
-        $this->expectException(SuxxCommentTableGatewayException::class);
+        /**
+         * @var CommentTableDataGateway
+         */
+        private $gateway;
 
-        $this->pdo
-            ->expects($this->once())
-            ->method('prepare')
-            ->will($this->throwException($this->e));
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | ErrorLogger
+         */
+        private $logger;
 
-        $this->logger
-            ->expects($this->once())
-            ->method('log')
-            ->with('Kommentar konnte nicht eingefügt werden.', $this->e);
+        /**
+         * @var \PDOException
+         */
+        private $e;
 
-        $this->gateway->insert(array());
-    }
+        protected function setUp()
+        {
+            $this->logger = $this->getMockBuilder(ErrorLogger::class)->disableOriginalConstructor()->getMock();
+            $this->pdo = $this->getMockBuilder(\PDO::class)->disableOriginalConstructor()->getMock();
+            $this->e = new \PDOException();
+            $this->gateway = new CommentTableDataGateway($this->pdo, $this->logger);
+        }
 
-    public function testIfCommentsCouldNotBeFoundThrowsExceptionAndWillBeLogged()
-    {
-        $this->expectException(SuxxCommentTableGatewayException::class);
+        public function testIfInsertFailsThrowsExceptionAndErrorWillBeLogged()
+        {
+            $this->expectException(CommentTableGatewayException::class);
 
-        $this->pdo
-            ->expects($this->once())
-            ->method('prepare')
-            ->will($this->throwException($this->e));
+            $this->pdo
+                ->expects($this->once())
+                ->method('prepare')
+                ->will($this->throwException($this->e));
 
-        $this->logger
-            ->expects($this->once())
-            ->method('log')
-            ->with('Kommentare konnten nicht ausgelesen werden.', $this->e);
+            $this->logger
+                ->expects($this->once())
+                ->method('log')
+                ->with('Kommentar konnte nicht eingefügt werden.', $this->e);
 
-        $this->gateway->findCommentsByPid(0);
+            $this->gateway->insert(array());
+        }
+
+        public function testIfCommentsCouldNotBeFoundThrowsExceptionAndWillBeLogged()
+        {
+            $this->expectException(CommentTableGatewayException::class);
+
+            $this->pdo
+                ->expects($this->once())
+                ->method('prepare')
+                ->will($this->throwException($this->e));
+
+            $this->logger
+                ->expects($this->once())
+                ->method('log')
+                ->with('Kommentare konnten nicht ausgelesen werden.', $this->e);
+
+            $this->gateway->findCommentsByPid(0);
+        }
     }
 }

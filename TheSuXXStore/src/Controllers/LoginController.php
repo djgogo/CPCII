@@ -1,29 +1,34 @@
 <?php
 
-namespace Suxx
+namespace Suxx\Controllers
 {
-    class SuxxLoginController implements \SuxxController
+    use Suxx\Commands\AuthenticationFormCommand;
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
+    use Suxx\Http\Session;
+
+    class LoginController implements Controller
     {
         /**
-         * @var \SuxxSession
+         * @var Session
          */
         private $session;
 
         /**
-         * @var \SuxxAuthenticationFormCommand
+         * @var AuthenticationFormCommand
          */
         private $authenticationFormCommand;
 
 
         public function __construct(
-            \SuxxSession $session,
-            \SuxxAuthenticationFormCommand $authenticationFormCommand)
+            Session $session,
+            AuthenticationFormCommand $authenticationFormCommand)
         {
             $this->session = $session;
             $this->authenticationFormCommand = $authenticationFormCommand;
         }
 
-        public function execute(\SuxxRequest $request, \SuxxResponse $response)
+        public function execute(Request $request, Response $response)
         {
             $result = $this->authenticationFormCommand->execute($request);
 

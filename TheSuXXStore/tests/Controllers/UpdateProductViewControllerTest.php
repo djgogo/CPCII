@@ -1,186 +1,205 @@
 <?php
 
-class SuxxUpdateProductViewControllerTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxRequest
-     */
-    private $request;
+namespace Suxx\Controllers {
+
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
+    use Suxx\Gateways\ProductTableDataGateway;
+    use Suxx\Http\Session;
+    use Suxx\Forms\FormPopulate;
+    use Suxx\Entities\Product;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxResponse
+     * @covers  Suxx\Controllers\UpdateProductViewController
+     * @uses    Suxx\Http\Request
+     * @uses    Suxx\Http\Response
+     * @uses    Suxx\Gateways\ProductTableDataGateway
+     * @uses    Suxx\Http\Session
+     * @uses    Suxx\Forms\FormPopulate
+     * @uses    Suxx\Entities\Product
      */
-    private $response;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxProductTableDataGateway
-     */
-    private $productDataGateway;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxSession
-     */
-    private $session;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxFormPopulate
-     */
-    private $formPopulate;
-
-    /**
-     * @var SuxxUpdateProductViewController
-     */
-    private $updateProductViewController;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxProduct
-     */
-    private $product;
-
-    protected function setUp()
+    class UpdateProductViewControllerTest extends \PHPUnit_Framework_TestCase
     {
-        $this->request = $this->getMockBuilder(SuxxRequest::class)->disableOriginalConstructor()->getMock();
-        $this->response = $this->getMockBuilder(SuxxResponse::class)->disableOriginalConstructor()->getMock();
-        $this->productDataGateway = $this->getMockBuilder(SuxxProductTableDataGateway::class)->disableOriginalConstructor()->getMock();
-        $this->session = $this->getMockBuilder(SuxxSession::class)->disableOriginalConstructor()->getMock();
-        $this->formPopulate = $this->getMockBuilder(SuxxFormPopulate::class)->disableOriginalConstructor()->getMock();
-        $this->product = $this->getMockBuilder(SuxxProduct::class)->disableOriginalConstructor()->getMock();
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Request
+         */
+        private $request;
 
-        $this->updateProductViewController = new SuxxUpdateProductViewController($this->session, $this->productDataGateway, $this->formPopulate);
-    }
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Response
+         */
+        private $response;
 
-    public function testControllerCanBeExecutedAndReturnsRightTemplate()
-    {
-        $this->request
-            ->expects($this->at(0))
-            ->method('getValue')
-            ->with('product')
-            ->willReturn(1);
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | ProductTableDataGateway
+         */
+        private $productDataGateway;
 
-        $this->response
-            ->expects($this->once())
-            ->method('setProduct')
-            ->with($this->product);
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Session
+         */
+        private $session;
 
-        $this->productDataGateway
-            ->expects($this->once())
-            ->method('findProductById')
-            ->with(1)
-            ->willReturn($this->product);
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | FormPopulate
+         */
+        private $formPopulate;
 
-        $this->request
-            ->expects($this->at(1))
-            ->method('getValue')
-            ->with('pid')
-            ->willReturn(1);
+        /**
+         * @var UpdateProductViewController
+         */
+        private $updateProductViewController;
 
-        $this->formPopulate
-            ->expects($this->at(0))
-            ->method('set')
-            ->with('label', 'Test Produkt');
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Product
+         */
+        private $product;
 
-        $this->response
-            ->expects($this->exactly(2))
-            ->method('getProduct')
-            ->willReturn($this->product);
+        protected function setUp()
+        {
+            $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
+            $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
+            $this->productDataGateway = $this->getMockBuilder(ProductTableDataGateway::class)->disableOriginalConstructor()->getMock();
+            $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
+            $this->formPopulate = $this->getMockBuilder(FormPopulate::class)->disableOriginalConstructor()->getMock();
+            $this->product = $this->getMockBuilder(Product::class)->disableOriginalConstructor()->getMock();
 
-        $this->product
-            ->expects($this->once())
-            ->method('getLabel')
-            ->willReturn('Test Produkt');
+            $this->updateProductViewController = new UpdateProductViewController($this->session, $this->productDataGateway, $this->formPopulate);
+        }
 
-        $this->formPopulate
-            ->expects($this->at(1))
-            ->method('set')
-            ->with('price', 123);
+        public function testControllerCanBeExecutedAndReturnsRightTemplate()
+        {
+            $this->request
+                ->expects($this->at(0))
+                ->method('getValue')
+                ->with('product')
+                ->willReturn(1);
 
-        $this->product
-            ->expects($this->once())
-            ->method('getPrice')
-            ->willReturn(123);
+            $this->response
+                ->expects($this->once())
+                ->method('setProduct')
+                ->with($this->product);
 
-        $this->session
-            ->expects($this->once())
-            ->method('isset')
-            ->with('error')
-            ->willReturn(false);
+            $this->productDataGateway
+                ->expects($this->once())
+                ->method('findProductById')
+                ->with(1)
+                ->willReturn($this->product);
 
-        $this->assertEquals('updateproduct.twig', $this->updateProductViewController->execute($this->request, $this->response));
-    }
+            $this->request
+                ->expects($this->at(1))
+                ->method('getValue')
+                ->with('pid')
+                ->willReturn(1);
 
-    public function testExecutionWithoutProductIdReturnsErrorView()
-    {
+            $this->formPopulate
+                ->expects($this->at(0))
+                ->method('set')
+                ->with('label', 'Test Produkt');
 
-        $this->request
-            ->expects($this->at(0))
-            ->method('getValue')
-            ->with('product')
-            ->willReturn('');
+            $this->response
+                ->expects($this->exactly(2))
+                ->method('getProduct')
+                ->willReturn($this->product);
 
-        $this->assertEquals('404errorview.twig', $this->updateProductViewController->execute($this->request, $this->response));
-    }
+            $this->product
+                ->expects($this->once())
+                ->method('getLabel')
+                ->willReturn('Test Produkt');
 
-    public function testSessionErrorCanBeDeleted()
-    {
-        $this->request
-            ->expects($this->at(0))
-            ->method('getValue')
-            ->with('product')
-            ->willReturn(1);
+            $this->formPopulate
+                ->expects($this->at(1))
+                ->method('set')
+                ->with('price', 123);
 
-        $this->response
-            ->expects($this->once())
-            ->method('setProduct')
-            ->with($this->product);
+            $this->product
+                ->expects($this->once())
+                ->method('getPrice')
+                ->willReturn(123);
 
-        $this->productDataGateway
-            ->expects($this->once())
-            ->method('findProductById')
-            ->with(1)
-            ->willReturn($this->product);
+            $this->session
+                ->expects($this->once())
+                ->method('isset')
+                ->with('error')
+                ->willReturn(false);
 
-        $this->request
-            ->expects($this->at(1))
-            ->method('getValue')
-            ->with('pid')
-            ->willReturn(1);
+            $this->assertEquals('updateproduct.twig', $this->updateProductViewController->execute($this->request, $this->response));
+        }
 
-        $this->formPopulate
-            ->expects($this->at(0))
-            ->method('set')
-            ->with('label', 'Test Produkt');
+        public function testExecutionWithoutProductIdReturnsErrorView()
+        {
 
-        $this->response
-            ->expects($this->exactly(2))
-            ->method('getProduct')
-            ->willReturn($this->product);
+            $this->request
+                ->expects($this->at(0))
+                ->method('getValue')
+                ->with('product')
+                ->willReturn('');
 
-        $this->product
-            ->expects($this->once())
-            ->method('getLabel')
-            ->willReturn('Test Produkt');
+            $this->assertEquals('404errorview.twig', $this->updateProductViewController->execute($this->request, $this->response));
+        }
 
-        $this->formPopulate
-            ->expects($this->at(1))
-            ->method('set')
-            ->with('price', 123);
+        public function testSessionErrorCanBeDeleted()
+        {
+            $this->request
+                ->expects($this->at(0))
+                ->method('getValue')
+                ->with('product')
+                ->willReturn(1);
 
-        $this->product
-            ->expects($this->once())
-            ->method('getPrice')
-            ->willReturn(123);
+            $this->response
+                ->expects($this->once())
+                ->method('setProduct')
+                ->with($this->product);
 
-        $this->session
-            ->expects($this->once())
-            ->method('isset')
-            ->with('error')
-            ->willReturn(true);
+            $this->productDataGateway
+                ->expects($this->once())
+                ->method('findProductById')
+                ->with(1)
+                ->willReturn($this->product);
 
-        $this->session
-            ->expects($this->once())
-            ->method('deleteValue')
-            ->with('error');
+            $this->request
+                ->expects($this->at(1))
+                ->method('getValue')
+                ->with('pid')
+                ->willReturn(1);
 
-        $this->assertEquals('updateproduct.twig', $this->updateProductViewController->execute($this->request, $this->response));
+            $this->formPopulate
+                ->expects($this->at(0))
+                ->method('set')
+                ->with('label', 'Test Produkt');
+
+            $this->response
+                ->expects($this->exactly(2))
+                ->method('getProduct')
+                ->willReturn($this->product);
+
+            $this->product
+                ->expects($this->once())
+                ->method('getLabel')
+                ->willReturn('Test Produkt');
+
+            $this->formPopulate
+                ->expects($this->at(1))
+                ->method('set')
+                ->with('price', 123);
+
+            $this->product
+                ->expects($this->once())
+                ->method('getPrice')
+                ->willReturn(123);
+
+            $this->session
+                ->expects($this->once())
+                ->method('isset')
+                ->with('error')
+                ->willReturn(true);
+
+            $this->session
+                ->expects($this->once())
+                ->method('deleteValue')
+                ->with('error');
+
+            $this->assertEquals('updateproduct.twig', $this->updateProductViewController->execute($this->request, $this->response));
+        }
     }
 }

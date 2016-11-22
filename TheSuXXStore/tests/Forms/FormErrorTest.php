@@ -1,50 +1,55 @@
 <?php
 
-/**
- * @covers SuxxFormError
- * @uses SuxxSession
- */
-class SuxxFormErrorTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxSession
-     */
-    private $session;
+namespace Suxx\Forms {
+
+    use Suxx\Http\Session;
 
     /**
-     * @var SuxxFormError
+     * @covers Suxx\Forms\FormError
+     * @uses   Suxx\Http\Session
      */
-    private $formError;
-
-    protected function setUp()
+    class FormErrorTest extends \PHPUnit_Framework_TestCase
     {
-        $this->session = $this->getMockBuilder(SuxxSession::class)->disableOriginalConstructor()->getMock();
-        $this->formError = new SuxxFormError($this->session);
-    }
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Session
+         */
+        private $session;
 
-    public function testFormDataCanBeSetAndRetrieved()
-    {
-        $this->formError->set('formfield', 'formvalue');
-        $this->assertEquals('formvalue', $this->formError->get('formfield'));
-    }
+        /**
+         * @var FormError
+         */
+        private $formError;
 
-    public function testHasReturnsRightBoolean()
-    {
-        $this->formError->set('formfield', 'formvalue');
-        $this->assertTrue($this->formError->has('formfield'));
-    }
+        protected function setUp()
+        {
+            $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
+            $this->formError = new FormError($this->session);
+        }
 
-    public function testFormDataCanBeRemoved()
-    {
-        $this->formError->set('formfield', 'formvalue');
-        $this->assertTrue($this->formError->has('formfield'));
+        public function testFormDataCanBeSetAndRetrieved()
+        {
+            $this->formError->set('formfield', 'formvalue');
+            $this->assertEquals('formvalue', $this->formError->get('formfield'));
+        }
 
-        $this->formError->remove('formfield');
-        $this->assertFalse($this->formError->has('formfield'));
-    }
+        public function testHasReturnsRightBoolean()
+        {
+            $this->formError->set('formfield', 'formvalue');
+            $this->assertTrue($this->formError->has('formfield'));
+        }
 
-    public function testGetFormDataReturnsNullIfNotFound()
-    {
-        $this->assertEquals(null, $this->formError->get('anyField'));
+        public function testFormDataCanBeRemoved()
+        {
+            $this->formError->set('formfield', 'formvalue');
+            $this->assertTrue($this->formError->has('formfield'));
+
+            $this->formError->remove('formfield');
+            $this->assertFalse($this->formError->has('formfield'));
+        }
+
+        public function testGetFormDataReturnsNullIfNotFound()
+        {
+            $this->assertEquals(null, $this->formError->get('anyField'));
+        }
     }
 }

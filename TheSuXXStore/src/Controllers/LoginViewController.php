@@ -1,22 +1,30 @@
 <?php
 
-class SuxxLoginViewController implements SuxxController
-{
-    /**
-     * @var SuxxSession
-     */
-    private $session;
+namespace Suxx\Controllers {
 
-    public function __construct(SuxxSession $session)
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
+    use Suxx\Http\Session;
+
+    class LoginViewController implements Controller
     {
-        $this->session = $session;
-    }
-    public function execute(SuxxRequest $request, SuxxResponse $response)
-    {
-        if ($this->session->isset('error')) {
-            $this->session->deleteValue('error');
+        /**
+         * @var Session
+         */
+        private $session;
+
+        public function __construct(Session $session)
+        {
+            $this->session = $session;
         }
 
-        return 'login.twig';
+        public function execute(Request $request, Response $response)
+        {
+            if ($this->session->isset('error')) {
+                $this->session->deleteValue('error');
+            }
+
+            return 'login.twig';
+        }
     }
 }

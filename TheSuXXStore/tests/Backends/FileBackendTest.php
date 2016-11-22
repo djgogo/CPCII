@@ -1,6 +1,9 @@
 <?php
-namespace Fancy
+
+namespace Suxx\Backends
 {
+    use Suxx\Exceptions\InvalidFileBackendException;
+
     $calledSource = null;
     $calledDestination = null;
 
@@ -13,18 +16,18 @@ namespace Fancy
     }
 
     /**
-     * @covers \Fancy\SuxxFileBackend
+     * @covers Suxx\Backends\FileBackend
      */
-    class SuxxFileBackendTest extends \PHPUnit_Framework_TestCase
+    class FileBackendTest extends \PHPUnit_Framework_TestCase
     {
         /**
-         * @var SuxxFileBackend
+         * @var FileBackend
          */
         private $fileBackend;
 
         protected function setUp()
         {
-            $this->fileBackend = new SuxxFileBackend();
+            $this->fileBackend = new FileBackend();
         }
 
         public function testFileCanBeMovedToTargetDestination()
@@ -48,7 +51,7 @@ namespace Fancy
 
         public function testIfDirectoryDoesNotExistsThrowsException()
         {
-            $this->expectException(\InvalidFileBackendException::class);
+            $this->expectException(InvalidFileBackendException::class);
 
             $source = '/tmp/source.txt';
             $destination = '/wrongDirectory';

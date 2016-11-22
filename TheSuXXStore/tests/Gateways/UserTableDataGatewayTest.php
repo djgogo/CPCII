@@ -1,16 +1,17 @@
 <?php
 
-namespace Suxx {
+namespace Suxx\Gateways {
 
-    use Suxx\SuxxUserTableDataGateway;
+    use Suxx\Loggers\ErrorLogger;
 
     /**
-     * @covers Suxx\SuxxUserTableDataGateway
+     * @covers  Suxx\Gateways\UserTableDataGateway
+     * @uses    Suxx\Loggers\ErrorLogger
      */
-    class SuxxUserTableDataGatewayTest extends \PHPUnit_Framework_TestCase
+    class UserTableDataGatewayTest extends \PHPUnit_Framework_TestCase
     {
         /**
-         * @var \Suxx\SuxxUserTableDataGateway
+         * @var UserTableDataGateway
          */
         private $gateway;
 
@@ -20,15 +21,15 @@ namespace Suxx {
         private $pdo;
 
         /**
-         * @var \PHPUnit_Framework_MockObject_MockObject | \SuxxErrorLogger
+         * @var \PHPUnit_Framework_MockObject_MockObject | ErrorLogger
          */
         private $logger;
 
         protected function setUp()
         {
-            $this->logger = $this->getMockBuilder(\SuxxErrorLogger::class)->disableOriginalConstructor()->getMock();
+            $this->logger = $this->getMockBuilder(ErrorLogger::class)->disableOriginalConstructor()->getMock();
             $this->pdo = $this->initDatabase();
-            $this->gateway = new SuxxUserTableDataGateway($this->pdo, $this->logger);
+            $this->gateway = new UserTableDataGateway($this->pdo, $this->logger);
         }
 
         public function testUserCanBeInserted()

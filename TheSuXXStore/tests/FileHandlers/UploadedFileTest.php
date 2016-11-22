@@ -1,73 +1,76 @@
 <?php
 
-/**
- * @covers SuxxUploadedFile
- */
-class SuxxUploadedFileTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var array
-     */
-    private $files;
+namespace Suxx\FileHandlers {
 
     /**
-     * @var SuxxUploadedFile
+     * @covers Suxx\FileHandlers\UploadedFile
      */
-    private $uploadedFile;
-
-    protected function setUp()
+    class UploadedFileTest extends \PHPUnit_Framework_TestCase
     {
-        $this->files = [
-            'picture' => [
-                'name' => 'smiley.jpg',
-                'type' => 'image/jpeg',
-                'tmp_name' => '/var/www/Exercises/TheSuXXStore/tests/TestFiles/smiley',
-                'error' => 0,
-                'size' => 4447
-            ]
-        ];
+        /**
+         * @var array
+         */
+        private $files;
 
-        $this->uploadedFile = new SuxxUploadedFile($this->files);
-    }
+        /**
+         * @var UploadedFile
+         */
+        private $uploadedFile;
 
-    public function testHasFileReturnsRightBoolean()
-    {
-        $this->assertTrue($this->uploadedFile->hasFile('picture'));
-    }
+        protected function setUp()
+        {
+            $this->files = [
+                'picture' => [
+                    'name' => 'smiley.jpg',
+                    'type' => 'image/jpeg',
+                    'tmp_name' => '/var/www/Exercises/TheSuXXStore/tests/TestFiles/smiley',
+                    'error' => 0,
+                    'size' => 4447
+                ]
+            ];
 
-    public function testFilenameCanBeRetrieved()
-    {
-        $this->assertEquals('smiley.jpg', $this->uploadedFile->getFilename());
-    }
+            $this->uploadedFile = new UploadedFile($this->files);
+        }
 
-    public function testGetFilenameReturnsBlankIfNotSet()
-    {
-        $uploadedFile = new SuxxUploadedFile(array());
-        $this->assertEquals('', $uploadedFile->getFilename());
-    }
+        public function testHasFileReturnsRightBoolean()
+        {
+            $this->assertTrue($this->uploadedFile->hasFile('picture'));
+        }
 
-    public function testFilePathCanBeRetrieved()
-    {
-        $this->assertEquals('/var/www/Exercises/TheSuXXStore/tests/TestFiles/smiley', $this->uploadedFile->getFilePath());
-    }
+        public function testFilenameCanBeRetrieved()
+        {
+            $this->assertEquals('smiley.jpg', $this->uploadedFile->getFilename());
+        }
 
-    public function testSizeCanBeRetrieved()
-    {
-        $this->assertEquals(4447, $this->uploadedFile->getSize());
-    }
+        public function testGetFilenameReturnsBlankIfNotSet()
+        {
+            $uploadedFile = new UploadedFile(array());
+            $this->assertEquals('', $uploadedFile->getFilename());
+        }
 
-    public function testMimeTypeCanBeRetrieved()
-    {
-        $this->assertEquals('image/jpeg', $this->uploadedFile->getMimeType());
-    }
+        public function testFilePathCanBeRetrieved()
+        {
+            $this->assertEquals('/var/www/Exercises/TheSuXXStore/tests/TestFiles/smiley', $this->uploadedFile->getFilePath());
+        }
 
-    public function testImageSizeCanBeRetrieved()
-    {
-        $this->assertArrayHasKey('mime', $this->uploadedFile->getImageSize());
-    }
+        public function testSizeCanBeRetrieved()
+        {
+            $this->assertEquals(4447, $this->uploadedFile->getSize());
+        }
 
-    public function testUploadedFileCanBeRetrieved()
-    {
-        $this->assertInstanceOf(SuxxUploadedFile::class, $this->uploadedFile->getUploadedFile());
+        public function testMimeTypeCanBeRetrieved()
+        {
+            $this->assertEquals('image/jpeg', $this->uploadedFile->getMimeType());
+        }
+
+        public function testImageSizeCanBeRetrieved()
+        {
+            $this->assertArrayHasKey('mime', $this->uploadedFile->getImageSize());
+        }
+
+        public function testUploadedFileCanBeRetrieved()
+        {
+            $this->assertInstanceOf(UploadedFile::class, $this->uploadedFile->getUploadedFile());
+        }
     }
 }

@@ -1,34 +1,42 @@
 <?php
 
-class SuxxRegisterController implements SuxxController
-{
-    /**
-     * @var SuxxRegistrationFormCommand
-     */
-    private $registrationFormCommand;
+namespace Suxx\Controllers {
 
-    /**
-     * @var SuxxProductTableDataGateway
-     */
-    private $dataGateway;
+    use Suxx\Commands\RegistrationFormCommand;
+    use Suxx\Gateways\ProductTableDataGateway;
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
 
-    public function __construct(
-        SuxxRegistrationFormCommand $registrationFormCommand,
-        SuxxProductTableDataGateway $dataGateway)
+    class RegisterController implements Controller
     {
-        $this->registrationFormCommand = $registrationFormCommand;
-        $this->dataGateway = $dataGateway;
-    }
+        /**
+         * @var RegistrationFormCommand
+         */
+        private $registrationFormCommand;
 
-    public function execute(SuxxRequest $request, SuxxResponse $response)
-    {
-        $result = $this->registrationFormCommand->execute($request);
+        /**
+         * @var ProductTableDataGateway
+         */
+        private $dataGateway;
 
-        if ($result === false) {
-            return 'register.twig';
+        public function __construct(
+            RegistrationFormCommand $registrationFormCommand,
+            ProductTableDataGateway $dataGateway)
+        {
+            $this->registrationFormCommand = $registrationFormCommand;
+            $this->dataGateway = $dataGateway;
         }
 
-        $response->setProducts($this->dataGateway->getAllProducts());
-        return 'base.twig';
+        public function execute(Request $request, Response $response)
+        {
+            $result = $this->registrationFormCommand->execute($request);
+
+            if ($result === false) {
+                return 'register.twig';
+            }
+
+            $response->setProducts($this->dataGateway->getAllProducts());
+            return 'base.twig';
+        }
     }
 }

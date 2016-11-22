@@ -1,6 +1,11 @@
 <?php
 
-namespace Suxx {
+namespace Suxx\Controllers {
+
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
+    use Suxx\Http\Session;
+    use Suxx\Commands\AuthenticationFormCommand;
 
     $isCalled = false;
     function session_regenerate_id()
@@ -10,47 +15,47 @@ namespace Suxx {
     }
 
     /**
-     * @covers \Suxx\SuxxLoginController
-     * @uses   SuxxRequest
-     * @uses   SuxxResponse
-     * @uses   SuxxSession
-     * @uses   SuxxAuthenticationFormCommand
+     * @covers Suxx\Controllers\LoginController
+     * @uses   Suxx\Http\Request
+     * @uses   Suxx\Http\Response
+     * @uses   Suxx\Http\Session
+     * @uses   Suxx\Commands\AuthenticationFormCommand
      */
-    class SuxxLoginControllerTest extends \PHPUnit_Framework_TestCase
+    class LoginControllerTest extends \PHPUnit_Framework_TestCase
     {
         /**
-         * @var \PHPUnit_Framework_MockObject_MockObject | \SuxxRequest
+         * @var \PHPUnit_Framework_MockObject_MockObject | Request
          */
         private $request;
 
         /**
-         * @var \PHPUnit_Framework_MockObject_MockObject | \SuxxResponse
+         * @var \PHPUnit_Framework_MockObject_MockObject | Response
          */
         private $response;
 
         /**
-         * @var \PHPUnit_Framework_MockObject_MockObject | \SuxxSession
+         * @var \PHPUnit_Framework_MockObject_MockObject | Session
          */
         private $session;
 
         /**
-         * @var \PHPUnit_Framework_MockObject_MockObject | \SuxxAuthenticationFormCommand
+         * @var \PHPUnit_Framework_MockObject_MockObject | AuthenticationFormCommand
          */
         private $authenticationFormCommand;
 
         /**
-         * @var \Suxx\SuxxLoginController
+         * @var LoginController
          */
         private $loginController;
 
         protected function setUp()
         {
-            $this->request = $this->getMockBuilder(\SuxxRequest::class)->disableOriginalConstructor()->getMock();
-            $this->response = $this->getMockBuilder(\SuxxResponse::class)->disableOriginalConstructor()->getMock();
-            $this->session = $this->getMockBuilder(\SuxxSession::class)->disableOriginalConstructor()->getMock();
-            $this->authenticationFormCommand = $this->getMockBuilder(\SuxxAuthenticationFormCommand::class)->disableOriginalConstructor()->getMock();
+            $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
+            $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
+            $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
+            $this->authenticationFormCommand = $this->getMockBuilder(AuthenticationFormCommand::class)->disableOriginalConstructor()->getMock();
 
-            $this->loginController = new SuxxLoginController($this->session, $this->authenticationFormCommand);
+            $this->loginController = new LoginController($this->session, $this->authenticationFormCommand);
         }
 
         public function testControllerCanBeExecutedAndSetsRightRedirect()

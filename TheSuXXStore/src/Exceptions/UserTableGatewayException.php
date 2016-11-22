@@ -1,6 +1,8 @@
 <?php
 
-class SuxxUserTableGatewayException extends \Exception
-{
-}
+namespace Suxx\Exceptions {
 
+    class UserTableGatewayException extends \Exception
+    {
+    }
+}

@@ -1,66 +1,73 @@
 <?php
 
-/**
- * @covers SuxxRegisterViewController
- * @uses SuxxRequest
- * @uses SuxxResponse
- * @uses SuxxSession
- */
-class SuxxRegisterViewControllerTest extends PHPUnit_Framework_TestCase
-{
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxRequest
-     */
-    private $request;
+namespace Suxx\Controllers {
+
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
+    use Suxx\Http\Session;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxResponse
+     * @covers Suxx\Controllers\RegisterViewController
+     * @uses   Suxx\Http\Request
+     * @uses   Suxx\Http\Response
+     * @uses   Suxx\Http\Session
      */
-    private $response;
-
-    /**
-     * @var PHPUnit_Framework_MockObject_MockObject | SuxxSession
-     */
-    private $session;
-
-    /**
-     * @var SuxxRegisterViewController
-     */
-    private $registerViewController;
-
-    protected function setUp()
+    class RegisterViewControllerTest extends \PHPUnit_Framework_TestCase
     {
-        $this->request = $this->getMockBuilder(SuxxRequest::class)->disableOriginalConstructor()->getMock();
-        $this->response = $this->getMockBuilder(SuxxResponse::class)->disableOriginalConstructor()->getMock();
-        $this->session = $this->getMockBuilder(SuxxSession::class)->disableOriginalConstructor()->getMock();
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Request
+         */
+        private $request;
 
-        $this->registerViewController = new SuxxRegisterViewController($this->session);
-    }
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Response
+         */
+        private $response;
 
-    public function testControllerCanBeExecutedAndReturnsRightTemplate()
-    {
-        $this->session
-            ->expects($this->once())
-            ->method('isset')
-            ->with('error')
-            ->willReturn(false);
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | Session
+         */
+        private $session;
 
-        $this->assertEquals('register.twig', $this->registerViewController->execute($this->request, $this->response));
-    }
+        /**
+         * @var RegisterViewController
+         */
+        private $registerViewController;
 
-    public function testControllerCanDeleteSessionErrorValue()
-    {
-        $this->session
-            ->expects($this->once())
-            ->method('isset')
-            ->with('error')
-            ->willReturn(true);
+        protected function setUp()
+        {
+            $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
+            $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
+            $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
 
-        $this->session
-            ->expects($this->once())
-            ->method('deleteValue')
-            ->with('error');
+            $this->registerViewController = new RegisterViewController($this->session);
+        }
 
-        $this->assertEquals('register.twig', $this->registerViewController->execute($this->request, $this->response));
+        public function testControllerCanBeExecutedAndReturnsRightTemplate()
+        {
+            $this->session
+                ->expects($this->once())
+                ->method('isset')
+                ->with('error')
+                ->willReturn(false);
+
+            $this->assertEquals('register.twig', $this->registerViewController->execute($this->request, $this->response));
+        }
+
+        public function testControllerCanDeleteSessionErrorValue()
+        {
+            $this->session
+                ->expects($this->once())
+                ->method('isset')
+                ->with('error')
+                ->willReturn(true);
+
+            $this->session
+                ->expects($this->once())
+                ->method('deleteValue')
+                ->with('error');
+
+            $this->assertEquals('register.twig', $this->registerViewController->execute($this->request, $this->response));
+        }
     }
 }

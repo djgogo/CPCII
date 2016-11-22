@@ -1,70 +1,75 @@
 <?php
 
-class PDOFactory
-{
-    /**
-     * @var string
-     */
-    private $host;
+namespace Suxx\Factories {
 
-    /**
-     * @var string
-     */
-    private $dbName;
+    use Suxx\Exceptions\InvalidPdoAttributeException;
+    use Suxx\Loggers\ErrorLogger;
 
-    /**
-     * @var string
-     */
-    private $user;
-
-    /**
-     * @var string
-     */
-    private $pass;
-
-    /**
-     * @var PDO
-     */
-    private $instance = null;
-
-    /**
-     * @var SuxxErrorLogger
-     */
-    private $logger;
-
-    public function __construct(string $host, string $dbName, string $user, string $pass, SuxxErrorLogger $logger)
+    class PDOFactory
     {
-        $this->host = $host;
-        $this->dbName = $dbName;
-        $this->user = $user;
-        $this->pass = $pass;
-        $this->logger = $logger;
-    }
+        /**
+         * @var string
+         */
+        private $host;
 
-    public function getDbHandler() : PDO
-    {
-        if ($this->instance === null) {
-            $this->instance = $this->getPdo($this->host, $this->dbName, $this->user, $this->pass);
+        /**
+         * @var string
+         */
+        private $dbName;
+
+        /**
+         * @var string
+         */
+        private $user;
+
+        /**
+         * @var string
+         */
+        private $pass;
+
+        /**
+         * @var \PDO
+         */
+        private $instance = null;
+
+        /**
+         * @var ErrorLogger
+         */
+        private $logger;
+
+        public function __construct(string $host, string $dbName, string $user, string $pass, ErrorLogger $logger)
+        {
+            $this->host = $host;
+            $this->dbName = $dbName;
+            $this->user = $user;
+            $this->pass = $pass;
+            $this->logger = $logger;
         }
-        return $this->instance;
-    }
 
-    private function getPdo($host, $dbName, $user, $pass) : PDO
-    {
-        try {
-            $db = new PDO(
-                "mysql:host=$host;dbname=$dbName",
-                $user,
-                $pass
-            );
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $db;
-        } catch (PDOException $e) {
-            //throw new SuxxInvalidPdoAttributeException('Wrong mySql Credentials - Access denied!', 0, $e);
-            throw new \SuxxInvalidPdoAttributeException(
-                $this->logger->log('Wrong mySql Credentials or mySql Database down', $e)
-            );
+        public function getDbHandler() : \PDO
+        {
+            if ($this->instance === null) {
+                $this->instance = $this->getPdo($this->host, $this->dbName, $this->user, $this->pass);
+            }
+            return $this->instance;
+        }
+
+        private function getPdo($host, $dbName, $user, $pass) : \PDO
+        {
+            try {
+                $db = new \PDO(
+                    "mysql:host=$host;dbname=$dbName",
+                    $user,
+                    $pass
+                );
+                $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                return $db;
+            } catch (\PDOException $e) {
+                //throw new SuxxInvalidPdoAttributeException('Wrong mySql Credentials - Access denied!', 0, $e);
+                throw new InvalidPdoAttributeException(
+                    $this->logger->log('Wrong mySql Credentials or mySql Database down', $e)
+                );
+            }
         }
     }
 }
-

@@ -1,35 +1,43 @@
 <?php
 
-class SuxxCommentController implements SuxxController
+namespace Suxx\Controllers
 {
-    /**
-     * @var SuxxSession
-     */
-    private $session;
+    use Suxx\Commands\CommentFormCommand;
+    use Suxx\Http\Request;
+    use Suxx\Http\Response;
+    use Suxx\Http\Session;
 
-    /**
-     * @var SuxxCommentFormCommand
-     */
-    private $commentFormCommand;
-
-    public function __construct(
-        SuxxSession $session,
-        SuxxCommentFormCommand $commentFormCommand)
+    class CommentController implements Controller
     {
-        $this->session = $session;
-        $this->commentFormCommand = $commentFormCommand;
-    }
+        /**
+         * @var Session
+         */
+        private $session;
 
-    public function execute(SuxxRequest $request, SuxxResponse $response)
-    {
-        $result = $this->commentFormCommand->execute($request);
+        /**
+         * @var CommentFormCommand
+         */
+        private $commentFormCommand;
 
-        if ($result === false) {
-            header('Location: /suxx/product?pid=' . $request->getValue('product'), 302);
+        public function __construct(
+            Session $session,
+            CommentFormCommand $commentFormCommand)
+        {
+            $this->session = $session;
+            $this->commentFormCommand = $commentFormCommand;
         }
 
-        $_SESSION = $this->session->getSessionData();
-        header('Location: /suxx/product?pid=' . $request->getValue('product'), 302);
+        public function execute(Request $request, Response $response)
+        {
+            $result = $this->commentFormCommand->execute($request);
 
+            if ($result === false) {
+                header('Location: /suxx/product?pid=' . $request->getValue('product'), 302);
+            }
+
+            $_SESSION = $this->session->getSessionData();
+            header('Location: /suxx/product?pid=' . $request->getValue('product'), 302);
+
+        }
     }
 }

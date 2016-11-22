@@ -1,48 +1,53 @@
 <?php
 
-class SuxxSession
-{
-    /**
-     * @var array
-     */
-    public $data;
+namespace Suxx\Http {
 
-    public function __construct(array $session)
-    {
-        $this->data = $session;
-    }
+    use Suxx\Exceptions\SessionException;
 
-    public function setValue(string $key, $value)
+    class Session
     {
-        $this->data[$key] = $value;
-    }
+        /**
+         * @var array
+         */
+        public $data;
 
-    public function getValue(string $key, $default = null)
-    {
-        if (isset($this->data[$key])) {
-            return $this->data[$key];
+        public function __construct(array $session)
+        {
+            $this->data = $session;
         }
-        return $default;
-    }
 
-    public function deleteValue(string $key)
-    {
-        if (!isset($this->data[$key])) {
-            throw new SuxxSessionException("Key '$key' does not exist");
+        public function setValue(string $key, $value)
+        {
+            $this->data[$key] = $value;
         }
-        unset($this->data[$key]);
-    }
 
-    public function getSessionData() : array
-    {
-        if ($this->data !== null) {
-            return $this->data;
+        public function getValue(string $key, $default = null)
+        {
+            if (isset($this->data[$key])) {
+                return $this->data[$key];
+            }
+            return $default;
         }
-        return array();
-    }
 
-    public function isset(string $key) : bool
-    {
-        return isset($this->data[$key]);
+        public function deleteValue(string $key)
+        {
+            if (!isset($this->data[$key])) {
+                throw new SessionException("Key '$key' does not exist");
+            }
+            unset($this->data[$key]);
+        }
+
+        public function getSessionData() : array
+        {
+            if ($this->data !== null) {
+                return $this->data;
+            }
+            return array();
+        }
+
+        public function isset(string $key) : bool
+        {
+            return isset($this->data[$key]);
+        }
     }
 }

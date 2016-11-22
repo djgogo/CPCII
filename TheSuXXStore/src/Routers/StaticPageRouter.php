@@ -1,42 +1,47 @@
 <?php
 
-class SuxxStaticPageRouter
+namespace Suxx\Routers
 {
-    /**
-     * @var SuxxFactory
-     */
-    private $factory;
+    use Suxx\Factories\Factory;
+    use Suxx\Http\Request;
 
-    public function __construct(SuxxFactory $factory)
+    class StaticPageRouter
     {
-        $this->factory = $factory;
-    }
+        /**
+         * @var Factory
+         */
+        private $factory;
 
-    public function route(SuxxRequest $request)
-    {
-        if (!$request->isGetRequest()) {
-            return null;
+        public function __construct(Factory $factory)
+        {
+            $this->factory = $factory;
         }
 
-        $uri = $request->getRequestUri();
-        $path = parse_url($uri)['path'];
-
-        switch ($path) {
-            case '/':
-                return $this->factory->getHomeController();
-            case '/loginview':
-                return $this->factory->getLoginViewController();
-            case '/registerview':
-                return $this->factory->getRegisterViewController();
-            case '/suxx/product':
-                return $this->factory->getProductController();
-            case '/suxx/updateproductview':
-                return $this->factory->getUpdateProductViewController();
-            case '/suxx/logout':
-                return $this->factory->getLogoutController();
-            default:
+        public function route(Request $request)
+        {
+            if (!$request->isGetRequest()) {
                 return null;
+            }
+
+            $uri = $request->getRequestUri();
+            $path = parse_url($uri)['path'];
+
+            switch ($path) {
+                case '/':
+                    return $this->factory->getHomeController();
+                case '/loginview':
+                    return $this->factory->getLoginViewController();
+                case '/registerview':
+                    return $this->factory->getRegisterViewController();
+                case '/suxx/product':
+                    return $this->factory->getProductController();
+                case '/suxx/updateproductview':
+                    return $this->factory->getUpdateProductViewController();
+                case '/suxx/logout':
+                    return $this->factory->getLogoutController();
+                default:
+                    return null;
+            }
         }
     }
 }
-

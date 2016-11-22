@@ -1,26 +1,32 @@
 <?php
 
-class SuxxTokenTest extends PHPUnit_Framework_TestCase
-{
+namespace Suxx\ValueObjects {
+
     /**
-     * @var SuxxToken
+     * @covers  Suxx\ValueObjects\Token
      */
-    private $token;
-
-    protected function setUp()
+    class TokenTest extends \PHPUnit_Framework_TestCase
     {
-        $this->token = new SuxxToken('1234abcd');
-    }
+        /**
+         * @var Token
+         */
+        private $token;
 
-    public function testLength()
-    {
-        $token = new SuxxToken();
-        $this->assertSame(40, strlen((string)$token));
-    }
+        protected function setUp()
+        {
+            $this->token = new Token('1234abcd');
+        }
 
-    public function testTokenCanBeComparedIfIsEqualToAnother()
-    {
-        $token1 = new SuxxToken('1234abcd');
-        $this->assertTrue($this->token->isEqualTo($token1));
+        public function testLength()
+        {
+            $token = new Token();
+            $this->assertSame(40, strlen((string)$token));
+        }
+
+        public function testTokenCanBeComparedIfIsEqualToAnother()
+        {
+            $token1 = new Token('1234abcd');
+            $this->assertTrue($this->token->isEqualTo($token1));
+        }
     }
 }

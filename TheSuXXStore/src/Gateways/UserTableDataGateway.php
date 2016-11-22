@@ -1,8 +1,11 @@
 <?php
 
-namespace Suxx {
+namespace Suxx\Gateways
+{
+    use Suxx\Exceptions\UserTableGatewayException;
+    use Suxx\Loggers\ErrorLogger;
 
-    class SuxxUserTableDataGateway
+    class UserTableDataGateway
     {
         /**
          * @var \PDO
@@ -10,11 +13,11 @@ namespace Suxx {
         private $pdo;
 
         /**
-         * @var \SuxxErrorLogger
+         * @var ErrorLogger
          */
         private $logger;
 
-        public function __construct(\PDO $pdo, \SuxxErrorLogger $logger)
+        public function __construct(\PDO $pdo, ErrorLogger $logger)
         {
             $this->pdo = $pdo;
             $this->logger = $logger;
@@ -44,7 +47,7 @@ namespace Suxx {
                 return $stmt->execute();
 
             } catch (\PDOException $e) {
-                throw new \SuxxUserTableGatewayException(
+                throw new UserTableGatewayException(
                     $this->logger->log('Benutzer konnte nicht eingefügt werden.', $e)
                 );
             }
@@ -68,7 +71,7 @@ namespace Suxx {
                 }
 
             } catch (\PDOException $e) {
-                throw new \SuxxUserTableGatewayException(
+                throw new UserTableGatewayException(
                     $this->logger->log('Benutzer konnte nicht gefunden werden.', $e)
                 );
             }
@@ -92,7 +95,7 @@ namespace Suxx {
                 }
 
             } catch (\PDOException $e) {
-                throw new \SuxxUserTableGatewayException(
+                throw new UserTableGatewayException(
                     $this->logger->log('Benutzer konnte nicht gefunden werden.', $e)
                 );
             }

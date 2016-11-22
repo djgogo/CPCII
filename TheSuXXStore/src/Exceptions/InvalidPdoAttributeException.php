@@ -1,5 +1,8 @@
 <?php
 
-class SuxxInvalidPdoAttributeException extends InvalidArgumentException
-{
+namespace Suxx\Exceptions {
+
+    class InvalidPdoAttributeException extends \InvalidArgumentException
+    {
+    }
 }

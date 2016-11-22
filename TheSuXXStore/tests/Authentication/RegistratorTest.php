@@ -1,59 +1,62 @@
 <?php
-use Suxx\SuxxUserTableDataGateway;
 
-/**
- * @covers SuxxRegistrator
- * @uses \Suxx\SuxxUserTableDataGateway
- */
-class SuxxRegistratorTest extends \PHPUnit_Framework_TestCase
-{
-    /**
-     * @var SuxxUserTableDataGateway
-     */
-    private $database;
+namespace Suxx\Authentication {
+
+    use Suxx\Gateways\UserTableDataGateway;
 
     /**
-     * @var SuxxRegistrator
+     * @covers Suxx\Authentication\Registrator
+     * @uses   Suxx\Gateways\UserTableDataGateway
      */
-    private $registrator;
-
-    protected function setUp()
+    class RegistratorTest extends \PHPUnit_Framework_TestCase
     {
-        $this->database = $this->getMockBuilder(SuxxUserTableDataGateway::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | UserTableDataGateway
+         */
+        private $database;
 
-        $this->registrator = new SuxxRegistrator($this->database);
-    }
+        /**
+         * @var Registrator
+         */
+        private $registrator;
 
-    public function testUserCanBeRegistered()
-    {
-        $row = [
-            'username' => 'foo',
-            'password' => '123456',
-            'email' => 'foo@bar.com',
-            'name' => 'foo bar',
-            'description' => 'Suxx Account'
-        ];
+        protected function setUp()
+        {
+            $this->database = $this->getMockBuilder(UserTableDataGateway::class)
+                ->disableOriginalConstructor()
+                ->getMock();
 
-        $this->database
-            ->expects($this->once())
-            ->method('insert')
-            ->willReturn(true);
+            $this->registrator = new Registrator($this->database);
+        }
 
-        $this->assertTrue($this->registrator->register($row));
-    }
+        public function testUserCanBeRegistered()
+        {
+            $row = [
+                'username' => 'foo',
+                'password' => '123456',
+                'email' => 'foo@bar.com',
+                'name' => 'foo bar',
+                'description' => 'Suxx Account'
+            ];
 
-    public function testUsernameCanBeFound()
-    {
-        $username = 'harrypotter';
+            $this->database
+                ->expects($this->once())
+                ->method('insert')
+                ->willReturn(true);
 
-        $this->database
-            ->expects($this->once())
-            ->method('findUserByUsername')
-            ->willReturn(true);
+            $this->assertTrue($this->registrator->register($row));
+        }
 
-        $this->assertTrue($this->registrator->usernameExists($username));
+        public function testUsernameCanBeFound()
+        {
+            $username = 'harrypotter';
+
+            $this->database
+                ->expects($this->once())
+                ->method('findUserByUsername')
+                ->willReturn(true);
+
+            $this->assertTrue($this->registrator->usernameExists($username));
+        }
     }
 }
-

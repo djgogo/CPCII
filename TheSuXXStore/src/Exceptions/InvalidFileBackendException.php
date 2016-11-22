@@ -1,5 +1,8 @@
 <?php
 
-class InvalidFileBackendException extends Exception
-{
+namespace Suxx\Exceptions {
+
+    class InvalidFileBackendException extends \Exception
+    {
+    }
 }
