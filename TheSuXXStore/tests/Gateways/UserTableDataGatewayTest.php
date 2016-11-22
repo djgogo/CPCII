@@ -5,7 +5,7 @@ namespace Suxx\Gateways {
     use Suxx\Loggers\ErrorLogger;
 
     /**
-     * @covers  Suxx\SuxxUserTableDataGateway
+     * @covers  Suxx\Gateways\UserTableDataGateway
      * @uses    Suxx\Loggers\ErrorLogger
      */
     class UserTableDataGatewayTest extends \PHPUnit_Framework_TestCase

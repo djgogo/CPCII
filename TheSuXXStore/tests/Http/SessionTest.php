@@ -1,54 +1,59 @@
 <?php
 
-/**
- * @covers SuxxSession
- */
-class SuxxSessionTest extends PHPUnit_Framework_TestCase
-{
+namespace Suxx\Http {
+
+    use Suxx\Exceptions\SessionException;
+
     /**
-     * @var SuxxSession
+     * @covers Suxx\Http\Session
      */
-    private $session;
-
-    protected function setUp()
+    class SessionTest extends \PHPUnit_Framework_TestCase
     {
-        $this->session = new SuxxSession(array());
-    }
+        /**
+         * @var Session
+         */
+        private $session;
 
-    public function testValueCanBeSetAndRetrieved()
-    {
-        $this->session->setValue('user', 'Harry Potter');
-        $this->assertEquals('Harry Potter', $this->session->getValue('user'));
-    }
+        protected function setUp()
+        {
+            $this->session = new Session(array());
+        }
 
-    public function testValueCanBeDeleted()
-    {
-        $this->session->setValue('user', 'Harry Potter');
-        $this->session->deleteValue('user');
-        $this->assertEquals(null, $this->session->getValue('user'));
-    }
+        public function testValueCanBeSetAndRetrieved()
+        {
+            $this->session->setValue('user', 'Harry Potter');
+            $this->assertEquals('Harry Potter', $this->session->getValue('user'));
+        }
 
-    public function testDeleteValueThrowsExceptionIfNotFound()
-    {
-        $this->expectException(SuxxSessionException::class);
-        $this->session->deleteValue('wrong Key');
-    }
+        public function testValueCanBeDeleted()
+        {
+            $this->session->setValue('user', 'Harry Potter');
+            $this->session->deleteValue('user');
+            $this->assertEquals(null, $this->session->getValue('user'));
+        }
 
-    public function testSessionDataCanBeRetrieved()
-    {
-        $this->session->setValue('user', 'Harry Potter');
-        $this->assertEquals(['user' => 'Harry Potter'], $this->session->getSessionData());
-    }
+        public function testDeleteValueThrowsExceptionIfNotFound()
+        {
+            $this->expectException(SessionException::class);
+            $this->session->deleteValue('wrong Key');
+        }
 
-    public function testGetSessionReturnsArrayIfNull()
-    {
-        $this->session->data = null;
-        $this->assertEquals([], $this->session->getSessionData());
-    }
+        public function testSessionDataCanBeRetrieved()
+        {
+            $this->session->setValue('user', 'Harry Potter');
+            $this->assertEquals(['user' => 'Harry Potter'], $this->session->getSessionData());
+        }
 
-    public function testIssetReturnsRightBoolean()
-    {
-        $this->session->setValue('user', 'Harry Potter');
-        $this->assertTrue($this->session->isset('user'));
+        public function testGetSessionReturnsArrayIfNull()
+        {
+            $this->session->data = null;
+            $this->assertEquals([], $this->session->getSessionData());
+        }
+
+        public function testIssetReturnsRightBoolean()
+        {
+            $this->session->setValue('user', 'Harry Potter');
+            $this->assertTrue($this->session->isset('user'));
+        }
     }
 }

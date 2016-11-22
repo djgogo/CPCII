@@ -1,10 +1,16 @@
 <?php
 
-namespace Suxx {
+namespace Suxx\Integration {
 
-    use Suxx\SuxxUserTableDataGateway;
+    use Suxx\Exceptions\UserTableGatewayException;
+    use Suxx\Gateways\UserTableDataGateway;
+    use Suxx\Loggers\ErrorLogger;
 
-    class SuxxUserPersistenceIntegrationTest extends \PHPUnit_Framework_TestCase
+    /**
+     * @covers Suxx\Gateways\UserTableDataGateway
+     * @uses   Suxx\Loggers\ErrorLogger
+     */
+    class UserPersistenceIntegrationTest extends \PHPUnit_Framework_TestCase
     {
         /**
          * @var \PHPUnit_Framework_MockObject_MockObject | \PDO
@@ -12,12 +18,12 @@ namespace Suxx {
         private $pdo;
 
         /**
-         * @var \Suxx\SuxxUserTableDataGateway
+         * @var UserTableDataGateway
          */
         private $gateway;
 
         /**
-         * @var \PHPUnit_Framework_MockObject_MockObject | \SuxxErrorLogger
+         * @var \PHPUnit_Framework_MockObject_MockObject | ErrorLogger
          */
         private $logger;
 
@@ -28,10 +34,10 @@ namespace Suxx {
 
         protected function setUp()
         {
-            $this->logger = $this->getMockBuilder(\SuxxErrorLogger::class)->disableOriginalConstructor()->getMock();
+            $this->logger = $this->getMockBuilder(ErrorLogger::class)->disableOriginalConstructor()->getMock();
             $this->pdo = $this->getMockBuilder(\PDO::class)->disableOriginalConstructor()->getMock();
             $this->e = new \PDOException();
-            $this->gateway = new SuxxUserTableDataGateway($this->pdo, $this->logger);
+            $this->gateway = new UserTableDataGateway($this->pdo, $this->logger);
         }
 
         public function testIfInsertUserFailsThrowsExceptionAndErrorWillBeLogged()
@@ -40,7 +46,7 @@ namespace Suxx {
                 'password' => '123456'
             ];
 
-            $this->expectException(\SuxxUserTableGatewayException::class);
+            $this->expectException(UserTableGatewayException::class);
 
             $this->pdo
                 ->expects($this->once())
@@ -57,7 +63,7 @@ namespace Suxx {
 
         public function testIfUserCredentialsCouldNotBeFoundThrowsExceptionAndWillBeLogged()
         {
-            $this->expectException(\SuxxUserTableGatewayException::class);
+            $this->expectException(UserTableGatewayException::class);
 
             $this->pdo
                 ->expects($this->once())
@@ -74,7 +80,7 @@ namespace Suxx {
 
         public function testIfUserNameCouldNotBeFoundThrowsExceptionAndWillBeLogged()
         {
-            $this->expectException(\SuxxUserTableGatewayException::class);
+            $this->expectException(UserTableGatewayException::class);
 
             $this->pdo
                 ->expects($this->once())

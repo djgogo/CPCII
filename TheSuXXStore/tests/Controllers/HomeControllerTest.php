@@ -11,7 +11,7 @@ namespace Suxx\Controllers {
      * @covers  Suxx\Controllers\HomeController
      * @uses    Suxx\Http\Request
      * @uses    Suxx\Http\Response
-     * @uses    Suxx\Http\Session;
+     * @uses    Suxx\Http\Session
      * @uses    Suxx\Gateways\ProductTableDataGateway
      */
     class HomeControllerTest extends \PHPUnit_Framework_TestCase

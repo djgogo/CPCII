@@ -16,6 +16,7 @@ namespace Suxx\Commands {
      * @uses   Suxx\Backends\FileBackend
      * @uses   Suxx\Http\Request
      * @uses   Suxx\FileHandlers\UploadedFile
+     * @uses   Suxx\ValueObjects\FileUpload
      */
     class CommentFormCommandTest extends \PHPUnit_Framework_TestCase
     {

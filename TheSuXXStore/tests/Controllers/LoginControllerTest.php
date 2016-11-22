@@ -15,7 +15,7 @@ namespace Suxx\Controllers {
     }
 
     /**
-     * @covers \Suxx\Controllers\SuxxLoginController
+     * @covers Suxx\Controllers\LoginController
      * @uses   Suxx\Http\Request
      * @uses   Suxx\Http\Response
      * @uses   Suxx\Http\Session

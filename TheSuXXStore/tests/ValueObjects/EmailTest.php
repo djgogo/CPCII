@@ -1,16 +1,24 @@
 <?php
 
-class EmailTest extends PHPUnit_Framework_TestCase
-{
-    public function testEmailCanNotBeInvalid()
-    {
-        $this->expectException(InvalidEmailException::class);
+namespace Suxx\ValueObjects {
 
-        new Email('invalid');
-    }
+    use Suxx\Exceptions\InvalidEmailException;
 
-    public function testValidEmailCanBeCreated()
+    /**
+     * @covers Suxx\ValueObjects\Email
+     */
+    class EmailTest extends \PHPUnit_Framework_TestCase
     {
-        $this->assertEquals('foo@bar.com', new Email('foo@bar.com'));
+        public function testEmailCanNotBeInvalid()
+        {
+            $this->expectException(InvalidEmailException::class);
+
+            new Email('invalid');
+        }
+
+        public function testValidEmailCanBeCreated()
+        {
+            $this->assertEquals('foo@bar.com', new Email('foo@bar.com'));
+        }
     }
 }

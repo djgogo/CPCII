@@ -11,13 +11,13 @@ namespace Suxx\Commands {
     use Suxx\ValueObjects\Email;
 
     /**
-     * @covers SuxxRegistrationFormCommand
-     * @uses   SuxxRegistrator
-     * @uses   SuxxSession
-     * @uses   SuxxFormError
-     * @uses   SuxxFormPopulate
-     * @uses   SuxxRequest
-     * @uses   Email
+     * @covers Suxx\Commands\RegistrationFormCommand
+     * @uses   Suxx\Authentication\Registrator
+     * @uses   Suxx\Http\Session
+     * @uses   Suxx\Forms\FormError
+     * @uses   Suxx\Forms\FormPopulate
+     * @uses   Suxx\Http\Request
+     * @uses   Suxx\ValueObjects\Email
      */
     class RegistrationFormCommandTest extends \PHPUnit_Framework_TestCase
     {
