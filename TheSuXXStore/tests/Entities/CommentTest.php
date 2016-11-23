@@ -15,17 +15,17 @@ namespace Suxx\Entities {
         /**
          * @var \ReflectionClass
          */
-        private $magic;
+        private $reflection;
 
         protected function setUp()
         {
             $this->comment = new Comment();
-            $this->magic = new \ReflectionClass($this->comment);
+            $this->reflection = new \ReflectionClass($this->comment);
         }
 
         public function testCidCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('cid');
+            $reflectionProperty = $this->reflection->getProperty('cid');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->comment, 123);
 
@@ -34,7 +34,7 @@ namespace Suxx\Entities {
 
         public function testPidCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('pid');
+            $reflectionProperty = $this->reflection->getProperty('pid');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->comment, 123);
 
@@ -43,7 +43,7 @@ namespace Suxx\Entities {
 
         public function testAuthorCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('author');
+            $reflectionProperty = $this->reflection->getProperty('author');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->comment, 'John Doe');
 
@@ -52,7 +52,7 @@ namespace Suxx\Entities {
 
         public function testCommentCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('comment');
+            $reflectionProperty = $this->reflection->getProperty('comment');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->comment, 'Bla Bla');
 
@@ -61,7 +61,7 @@ namespace Suxx\Entities {
 
         public function testPictureCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('picture');
+            $reflectionProperty = $this->reflection->getProperty('picture');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->comment, 'bla.jpg');
 

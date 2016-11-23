@@ -60,6 +60,8 @@ namespace Suxx\Controllers {
 
         public function testControllerCanBeExecutedAndSetsRightRedirect()
         {
+            global $isCalled;
+
             $this->authenticationFormCommand
                 ->expects($this->once())
                 ->method('execute')
@@ -77,10 +79,13 @@ namespace Suxx\Controllers {
                 ->with('/');
 
             $this->loginController->execute($this->request, $this->response);
+            $this->assertTrue($isCalled);
         }
 
         public function testControllerReturnsRightTemplateOnError()
         {
+            global $isCalled;
+
             $this->authenticationFormCommand
                 ->expects($this->once())
                 ->method('execute')
@@ -88,6 +93,7 @@ namespace Suxx\Controllers {
                 ->willReturn(false);
 
             $this->assertEquals('login.twig', $this->loginController->execute($this->request, $this->response));
+            $this->assertTrue($isCalled);
         }
     }
 }

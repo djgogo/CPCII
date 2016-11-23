@@ -21,7 +21,7 @@ namespace Suxx\Authentication {
             return $this->userGateway->insert($row);
         }
 
-        public function usernameExists(string $username)
+        public function usernameExists(string $username) : bool
         {
             return $this->userGateway->findUserByUsername($username);
         }

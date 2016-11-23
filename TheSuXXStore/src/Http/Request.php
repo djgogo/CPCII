@@ -2,6 +2,7 @@
 
 namespace Suxx\Http {
 
+    use Suxx\Exceptions\RequestValueNotFoundException;
     use Suxx\FileHandlers\UploadedFile;
 
     class Request
@@ -50,20 +51,20 @@ namespace Suxx\Http {
 
         public function getUploadedFile() : UploadedFile
         {
-            return $this->file->getUploadedFile();
+            return $this->file;
         }
 
-        public function getValue($key, $default = null)
+        public function hasValue($key) : bool
         {
-            if (isset($this->input[$key])) {
-                return $this->escape($this->input[$key]);
+            return isset($this->input[$key]);
+        }
+
+        public function getValue($key) : string
+        {
+            if (!$this->hasValue($key)) {
+                throw new RequestValueNotFoundException('Value Not Found');
             }
-            return $default;
-        }
-
-        private function escape(string $string) : string
-        {
-            return htmlspecialchars($string, ENT_QUOTES);
+            return $this->input[$key];
         }
     }
 }

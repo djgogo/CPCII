@@ -92,7 +92,7 @@ namespace Suxx\Commands {
             }
         }
 
-        protected function performAction()
+        public function performAction()
         {
             $row = [
                 'pid' => $this->request->getValue('product'),
@@ -110,11 +110,9 @@ namespace Suxx\Commands {
             }
 
             if ($this->picture) {
-                //@codeCoverageIgnoreStart
                 $targetPath = __DIR__ . '/../../html/images/Comments/' . $cid . '_' . $this->picture;
                 $originalPath = $this->request->getUploadedFile()->getFilePath();
                 $this->backend->moveUploadedFileTo($originalPath, $targetPath);
-                //@codeCoverageIgnoreEnd
             }
         }
 

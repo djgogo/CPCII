@@ -2,6 +2,7 @@
 
 namespace Suxx\Http {
 
+    use Suxx\Exceptions\RequestValueNotFoundException;
     use Suxx\FileHandlers\UploadedFile;
 
     /**
@@ -81,8 +82,10 @@ namespace Suxx\Http {
             $this->assertEquals('1', $this->request->getValue('product'));
         }
 
-        public function testValueReturnsNullIfNotFound()
+        public function testIfValueNotFoundThrowsException()
         {
+            $this->expectException(RequestValueNotFoundException::class);
+
             $this->assertEquals(null, $this->request->getValue('Wrong Key'));
         }
 

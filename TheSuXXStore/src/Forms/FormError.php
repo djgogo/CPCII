@@ -27,7 +27,7 @@ namespace Suxx\Forms
             $this->session->setValue('error', $this);
         }
 
-        public function has(string $key)
+        public function has(string $key) : bool
         {
             return array_key_exists($key, $this->data);
         }
@@ -39,12 +39,12 @@ namespace Suxx\Forms
             }
         }
 
-        public function get(string $key, $default = null)
+        public function get(string $key) : string
         {
             if ($this->has($key)) {
                 return $this->data[$key];
             }
-            return $default;
+            return '';
         }
     }
 }

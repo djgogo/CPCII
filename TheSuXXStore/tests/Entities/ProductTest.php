@@ -15,17 +15,17 @@ namespace Suxx\Entities {
         /**
          * @var \ReflectionClass
          */
-        private $magic;
+        private $reflection;
 
         protected function setUp()
         {
             $this->product = new Product();
-            $this->magic = new \ReflectionClass($this->product);
+            $this->reflection = new \ReflectionClass($this->product);
         }
 
         public function testPidCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('pid');
+            $reflectionProperty = $this->reflection->getProperty('pid');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->product, 123);
 
@@ -34,7 +34,7 @@ namespace Suxx\Entities {
 
         public function testLabelCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('label');
+            $reflectionProperty = $this->reflection->getProperty('label');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->product, 'Technics SL-1210');
 
@@ -43,7 +43,7 @@ namespace Suxx\Entities {
 
         public function testImageCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('img');
+            $reflectionProperty = $this->reflection->getProperty('img');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->product, 'bla.jpg');
 
@@ -52,7 +52,7 @@ namespace Suxx\Entities {
 
         public function testPriceCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('price');
+            $reflectionProperty = $this->reflection->getProperty('price');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->product, '6666');
 
@@ -61,7 +61,7 @@ namespace Suxx\Entities {
 
         public function testCreatedCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('created');
+            $reflectionProperty = $this->reflection->getProperty('created');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->product, '2016-11-04 00:00:00');
 
@@ -70,7 +70,7 @@ namespace Suxx\Entities {
 
         public function testUpdatedCanBeRetrieved()
         {
-            $reflectionProperty = $this->magic->getProperty('updated');
+            $reflectionProperty = $this->reflection->getProperty('updated');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->product, '2016-11-09 00:00:00');
 

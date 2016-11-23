@@ -67,10 +67,5 @@ namespace Suxx\FileHandlers {
         {
             $this->assertArrayHasKey('mime', $this->uploadedFile->getImageSize());
         }
-
-        public function testUploadedFileCanBeRetrieved()
-        {
-            $this->assertInstanceOf(UploadedFile::class, $this->uploadedFile->getUploadedFile());
-        }
     }
 }

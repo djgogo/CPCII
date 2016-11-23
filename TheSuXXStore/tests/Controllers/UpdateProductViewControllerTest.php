@@ -69,12 +69,6 @@ namespace Suxx\Controllers {
 
         public function testControllerCanBeExecutedAndReturnsRightTemplate()
         {
-            $this->request
-                ->expects($this->at(0))
-                ->method('getValue')
-                ->with('product')
-                ->willReturn(1);
-
             $this->response
                 ->expects($this->once())
                 ->method('setProduct')
@@ -87,7 +81,7 @@ namespace Suxx\Controllers {
                 ->willReturn($this->product);
 
             $this->request
-                ->expects($this->at(1))
+                ->expects($this->once())
                 ->method('getValue')
                 ->with('pid')
                 ->willReturn(1);
@@ -126,26 +120,8 @@ namespace Suxx\Controllers {
             $this->assertEquals('updateproduct.twig', $this->updateProductViewController->execute($this->request, $this->response));
         }
 
-        public function testExecutionWithoutProductIdReturnsErrorView()
-        {
-
-            $this->request
-                ->expects($this->at(0))
-                ->method('getValue')
-                ->with('product')
-                ->willReturn('');
-
-            $this->assertEquals('404errorview.twig', $this->updateProductViewController->execute($this->request, $this->response));
-        }
-
         public function testSessionErrorCanBeDeleted()
         {
-            $this->request
-                ->expects($this->at(0))
-                ->method('getValue')
-                ->with('product')
-                ->willReturn(1);
-
             $this->response
                 ->expects($this->once())
                 ->method('setProduct')
@@ -158,7 +134,7 @@ namespace Suxx\Controllers {
                 ->willReturn($this->product);
 
             $this->request
-                ->expects($this->at(1))
+                ->expects($this->once())
                 ->method('getValue')
                 ->with('pid')
                 ->willReturn(1);

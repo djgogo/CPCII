@@ -42,7 +42,7 @@ namespace Suxx\Http {
             if (!isset($this->data[$key])) {
                 throw new ResponseException("Key '$key' does not exist");
             }
-            return $this->escape($this->data[$key]);
+            return $this->data[$key];
         }
 
         public function isset(string $key) : bool
@@ -93,11 +93,6 @@ namespace Suxx\Http {
         public function hasRedirect() : bool
         {
             return isset($this->redirect);
-        }
-
-        private function escape(string $string) : string
-        {
-            return htmlspecialchars($string, ENT_QUOTES);
         }
     }
 }

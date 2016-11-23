@@ -44,6 +44,11 @@ namespace Suxx\Commands {
          */
         private $file;
 
+        /**
+         * @var AuthenticationFormCommand
+         */
+        private $authenticationFormCommand;
+
         protected function setUp()
         {
             $this->authenticator = $this->getMockBuilder(Authenticator::class)
@@ -57,6 +62,7 @@ namespace Suxx\Commands {
             $this->session = new Session(array());
             $this->populate = new FormPopulate($this->session);
             $this->error = new FormError($this->session);
+            $this->authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
         }
 
         /**
@@ -70,8 +76,7 @@ namespace Suxx\Commands {
             $request[$fieldToEmpty] = '';
             $request = new Request($request, array(), $this->file);
 
-            $authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
-            $this->assertFalse($authenticationFormCommand->execute($request));
+            $this->assertFalse($this->authenticationFormCommand->execute($request));
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($fieldToEmpty));
         }
 
@@ -86,8 +91,7 @@ namespace Suxx\Commands {
                 ->with($request->getValue('username'), $request->getValue('password'))
                 ->willReturn(true);
 
-            $authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
-            $this->assertTrue($authenticationFormCommand->execute($request));
+            $this->assertTrue($this->authenticationFormCommand->execute($request));
             $this->assertEquals('Willkommen - Du bist eingeloggt!', $this->session->getValue('message'));
         }
 
@@ -104,8 +108,7 @@ namespace Suxx\Commands {
                 ->with($request->getValue('username'), $request->getValue('password'))
                 ->willReturn(true);
 
-            $authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
-            $this->assertTrue($authenticationFormCommand->execute($request));
+            $this->assertTrue($this->authenticationFormCommand->execute($request));
             $this->assertEquals('Willkommen - Du bist eingeloggt!', $this->session->getValue('message'));
         }
 
@@ -120,8 +123,7 @@ namespace Suxx\Commands {
                 ->with($request->getValue('username'), $request->getValue('password'))
                 ->willReturn(false);
 
-            $authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
-            $this->assertTrue($authenticationFormCommand->execute($request));
+            $this->assertTrue($this->authenticationFormCommand->execute($request));
             $this->assertEquals('Log-In fehlgeschlagen!', $this->session->getValue('warning'));
         }
 

@@ -26,7 +26,7 @@ namespace Suxx\Commands {
         private $session;
 
         /**
-         * @var FileBackend
+         * @var \PHPUnit_Framework_MockObject_MockObject | FileBackend
          */
         private $backend;
 
@@ -45,6 +45,11 @@ namespace Suxx\Commands {
          */
         private $file;
 
+        /**
+         * @var CommentFormCommand
+         */
+        private $commentFormCommand;
+
         protected function setUp()
         {
             $this->dataGateway = $this->getMockBuilder(CommentTableDataGateway::class)
@@ -55,9 +60,13 @@ namespace Suxx\Commands {
                 ->disableOriginalConstructor()
                 ->getMock();
 
+            $this->backend = $this->getMockBuilder(FileBackend::class)
+                ->disableOriginalConstructor()
+                ->getMock();
+
             $this->session = new Session(array());
-            $this->backend = new FileBackend();
             $this->error = new FormError($this->session);
+            $this->commentFormCommand = new CommentFormCommand($this->dataGateway, $this->session, $this->backend, $this->error);
         }
 
         public function testEmptyFormFieldTriggersError()
@@ -68,8 +77,8 @@ namespace Suxx\Commands {
             $request['comment'] = '';
             $request = new Request($request, array(), $this->file);
 
-            $commentFormCommand = new CommentFormCommand($this->dataGateway, $this->session, $this->backend, $this->error);
-            $this->assertFalse($commentFormCommand->execute($request));
+
+            $this->assertFalse($this->commentFormCommand->execute($request));
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('comment'));
         }
 
@@ -89,8 +98,7 @@ namespace Suxx\Commands {
                 ->method('getFilename')
                 ->willReturn('Virus.php');
 
-            $commentFormCommand = new CommentFormCommand($this->dataGateway, $this->session, $this->backend, $this->error);
-            $this->assertFalse($commentFormCommand->execute($request));
+            $this->assertFalse($this->commentFormCommand->execute($request));
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('file'));
         }
 
@@ -98,7 +106,7 @@ namespace Suxx\Commands {
         {
             $expectedMessage = 'Vielen Dank für Deinen Kommentar';
 
-            $request = ['comment' => 'Test Kommentar', 'picture' => ''];
+            $request = ['comment' => 'Test Kommentar', 'product' => 1, 'picture' => ''];
             $request = new Request($request, array(), $this->file);
 
             $this->dataGateway
@@ -106,8 +114,7 @@ namespace Suxx\Commands {
                 ->method('insert')
                 ->willReturn(1);
 
-            $commentFormCommand = new CommentFormCommand($this->dataGateway, $this->session, $this->backend, $this->error);
-            $this->assertTrue($commentFormCommand->execute($request));
+            $this->assertTrue($this->commentFormCommand->execute($request));
             $this->assertEquals($expectedMessage, $this->session->getValue('message'));
         }
 
@@ -117,7 +124,7 @@ namespace Suxx\Commands {
 
             $this->session->setValue('error', 'test');
 
-            $request = ['comment' => 'Test Kommentar', 'picture' => ''];
+            $request = ['comment' => 'Test Kommentar', 'product' => 1, 'picture' => ''];
             $request = new Request($request, array(), $this->file);
 
             $this->dataGateway
@@ -125,8 +132,7 @@ namespace Suxx\Commands {
                 ->method('insert')
                 ->willReturn(1);
 
-            $commentFormCommand = new CommentFormCommand($this->dataGateway, $this->session, $this->backend, $this->error);
-            $this->assertTrue($commentFormCommand->execute($request));
+            $this->assertTrue($this->commentFormCommand->execute($request));
             $this->assertEquals($expectedMessage, $this->session->getValue('message'));
         }
 
@@ -134,7 +140,7 @@ namespace Suxx\Commands {
         {
             $expectedMessage = 'Kommentar fehlgeschlagen!';
 
-            $request = ['comment' => 'Test Kommentar', 'picture' => ''];
+            $request = ['comment' => 'Test Kommentar', 'product' => 1, 'picture' => ''];
             $request = new Request($request, array(), $this->file);
 
             $this->dataGateway
@@ -142,10 +148,35 @@ namespace Suxx\Commands {
                 ->method('insert')
                 ->willReturn('');
 
-            $commentFormCommand = new CommentFormCommand($this->dataGateway, $this->session, $this->backend, $this->error);
-            $this->assertTrue($commentFormCommand->execute($request));
+            $this->assertTrue($this->commentFormCommand->execute($request));
             $this->assertEquals($expectedMessage, $this->session->getValue('warning'));
         }
 
+        public function testHappyPathWithUploadedFileCouldBeMoved()
+        {
+            $files = [
+                'picture' => [
+                    'name' => 'smiley.jpg',
+                    'type' => 'image/jpeg',
+                    'tmp_name' => '/var/www/Exercises/TheSuXXStore/tests/TestFiles/smiley',
+                    'error' => 0,
+                    'size' => 4447
+                ]
+            ];
+
+            $request = ['comment' => 'Test Kommentar', 'product' => 1, 'picture' => 'smiley.jpg'];
+            $request = new Request($request, array(), new UploadedFile($files));
+
+            $this->dataGateway
+                ->expects($this->once())
+                ->method('insert')
+                ->willReturn(1);
+
+            $this->backend
+                ->expects($this->once())
+                ->method('moveUploadedFileTo');
+
+            $this->assertTrue($this->commentFormCommand->execute($request));
+        }
     }
 }
