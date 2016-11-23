@@ -5,6 +5,7 @@ namespace Suxx\Factories {
     use Suxx\Exceptions\InvalidPdoAttributeException;
     use Suxx\Loggers\ErrorLogger;
 
+    // Covers Fehlt
     /**
      * Class PDOFactoryTest
      * @package Suxx\Factories

@@ -71,6 +71,7 @@ namespace Suxx\Gateways
                 }
 
             } catch (\PDOException $e) {
+                // Verstehe ich nicht.
                 throw new UserTableGatewayException(
                     $this->logger->log('Benutzer konnte nicht gefunden werden.', $e)
                 );
@@ -95,6 +96,7 @@ namespace Suxx\Gateways
                 }
 
             } catch (\PDOException $e) {
+                // Verstehe ich nicht.
                 throw new UserTableGatewayException(
                     $this->logger->log('Benutzer konnte nicht gefunden werden.', $e)
                 );

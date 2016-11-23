@@ -50,7 +50,7 @@ namespace Suxx\FileHandlers {
 
         public function getUploadedFile() : UploadedFile
         {
-            return $this;
+            return $this; //Wow. diese Methode macht absolut null sinn :)
         }
     }
 }

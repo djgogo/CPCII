@@ -124,7 +124,7 @@ namespace Suxx\Gateways {
             $stmt->execute();
 
             if ($stmt->rowCount() != 1) {
-                var_dump('Database could not be initialized!');
+                var_dump('Database could not be initialized!'); //besser: $this->fail('datenbank tot') oder so..
             }
 
             return $pdo;

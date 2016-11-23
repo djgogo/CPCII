@@ -110,6 +110,7 @@ namespace Suxx\Commands {
             }
 
             if ($this->picture) {
+                // Wieso keine Coverage für das? Das wäre doch noch wichtig das zu testen..
                 //@codeCoverageIgnoreStart
                 $targetPath = __DIR__ . '/../../html/images/Comments/' . $cid . '_' . $this->picture;
                 $originalPath = $this->request->getUploadedFile()->getFilePath();

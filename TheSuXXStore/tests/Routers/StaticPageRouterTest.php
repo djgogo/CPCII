@@ -55,7 +55,7 @@ namespace Suxx\Routers {
         public function testRouterReturnsNullIfNotGetRequest()
         {
             $request = new Request(
-                ['csrf' => '1234567890'],
+                ['csrf' => '1234567890'], //was macht das csrf hier?
                 ['REQUEST_URI' => '/suxx', 'REQUEST_METHOD' => 'POST'],
                 $this->file
             );
@@ -66,7 +66,7 @@ namespace Suxx\Routers {
         public function testRouterReturnsNullIfInvalidRequestUri()
         {
             $request = new Request(
-                ['csrf' => '1234567890'],
+                ['csrf' => '1234567890'], //was macht das csrf hier?
                 ['REQUEST_URI' => '/invalid', 'REQUEST_METHOD' => 'GET'],
                 $this->file
             );

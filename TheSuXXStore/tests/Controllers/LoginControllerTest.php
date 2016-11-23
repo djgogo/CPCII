@@ -7,6 +7,7 @@ namespace Suxx\Controllers {
     use Suxx\Http\Session;
     use Suxx\Commands\AuthenticationFormCommand;
 
+    // Keine zusicherung auf $isCalled ..?
     $isCalled = false;
     function session_regenerate_id()
     {

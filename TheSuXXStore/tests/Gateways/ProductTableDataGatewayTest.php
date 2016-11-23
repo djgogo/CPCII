@@ -4,7 +4,7 @@ namespace Suxx\Gateways {
 
     use Suxx\Entities\Product;
     use Suxx\Loggers\ErrorLogger;
-
+//covers
     class SuxxProductTableDataGatewayTest extends \PHPUnit_Framework_TestCase
     {
         /**
@@ -131,7 +131,7 @@ namespace Suxx\Gateways {
             $result = $query->fetchAll(\PDO::FETCH_COLUMN);
 
             if (count($result) != 2) {
-                var_dump('Database could not be initialized!');
+                var_dump('Database could not be initialized!'); //$this->fail() ...
             }
 
             return $pdo;

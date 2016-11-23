@@ -52,6 +52,7 @@ namespace Suxx\Controllers {
         }
 
         /**
+         * // Warum seperateprocess?
          * @runInSeparateProcess
          */
         public function testCommentControllerCanBeExecutedAndSendsHeader()
@@ -70,6 +71,7 @@ namespace Suxx\Controllers {
         }
 
         /**
+         * // Warum seperateprocess?
          * @runInSeparateProcess
          */
         public function testCommentControllerSendsLocationHeaderOnError()
