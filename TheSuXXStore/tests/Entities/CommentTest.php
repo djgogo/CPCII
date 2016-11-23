@@ -15,7 +15,7 @@ namespace Suxx\Entities {
         /**
          * @var \ReflectionClass
          */
-        private $magic;
+        private $magic;  // Darfst du gerne in was sinnvolle umbenennen ;)
 
         protected function setUp()
         {

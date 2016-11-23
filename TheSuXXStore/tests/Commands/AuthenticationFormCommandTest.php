@@ -70,7 +70,7 @@ namespace Suxx\Commands {
             $request[$fieldToEmpty] = '';
             $request = new Request($request, array(), $this->file);
 
-            $authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error);
+            $authenticationFormCommand = new AuthenticationFormCommand($this->authenticator, $this->session, $this->populate, $this->error); //Wieso wird das nicht im setup initialisiert?
             $this->assertFalse($authenticationFormCommand->execute($request));
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($fieldToEmpty));
         }

@@ -17,6 +17,7 @@ namespace Suxx\Http {
         protected function setUp()
         {
             $this->session = new Session(array());
+            //setup sollte die Session mit werden befüllen. wieso ein leeres array?
         }
 
         public function testValueCanBeSetAndRetrieved()

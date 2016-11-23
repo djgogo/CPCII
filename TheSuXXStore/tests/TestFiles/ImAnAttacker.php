@@ -1,2 +1,2 @@
 <?php
-echo 'You got attacked!';
+echo 'You got attacked!'; //hilfe!!!! :)

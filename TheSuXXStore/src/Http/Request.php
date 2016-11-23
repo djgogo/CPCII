@@ -58,10 +58,11 @@ namespace Suxx\Http {
             if (isset($this->input[$key])) {
                 return $this->escape($this->input[$key]);
             }
+            // Ich hätte wenn $default nicht gesetzt ist und man einen wert will lieber eine exception statt "null" und dann fliegts später aufs gesicht.
             return $default;
         }
 
-        private function escape(string $string) : string
+        private function escape(string $string) : string //brauchts das noch? wieso?
         {
             return htmlspecialchars($string, ENT_QUOTES);
         }

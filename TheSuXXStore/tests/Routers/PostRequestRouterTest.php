@@ -78,7 +78,7 @@ namespace Suxx\Routers {
             $this->assertEquals(null, $this->postRequestRouter->route($request));
         }
 
-        public function testInvalidCsrfTokenReturnsHomeController()
+        public function testInvalidCsrfTokenReturnsHomeController() //interssantes verhalten. wieso nicht einfach abbrechen an der stelle? ohne gültiges csrf token die homepage auszuliefern ist irgendwie implizit.. lieber loggen und 500er oder so..
         {
             $request = new Request(
                 ['csrf' => 'session hi-jackers token'],

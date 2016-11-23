@@ -2,11 +2,11 @@
 
 namespace Suxx\Loggers
 {
-    class ErrorLogger
+    class ErrorLogger //Logerinterface, wodurch man alternative logger verwenden kann? (z.b. graylog, datenbank, email, ...)
     {
         public function log(string $message, \Exception $e = null)
         {
-            $datetime = new \DateTime();
+            $datetime = new \DateTime(); //dependency?
             $datetime->setTimezone(new \DateTimeZone('Europe/Zurich'));
 
             $logEntry = $datetime->format('Y/m/d H:i:s') . ' / ' .
@@ -16,7 +16,7 @@ namespace Suxx\Loggers
                 $e->getFile() . ' / ' .
                 $e->getLine();
 
-            error_log($logEntry . PHP_EOL, 3, __DIR__ . '/../../logs/error.log');
+            error_log($logEntry . PHP_EOL, 3, __DIR__ . '/../../logs/error.log'); //log pfad als depencency / konfigurierbar?
         }
     }
 }

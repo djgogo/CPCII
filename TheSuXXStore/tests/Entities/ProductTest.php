@@ -15,7 +15,7 @@ namespace Suxx\Entities {
         /**
          * @var \ReflectionClass
          */
-        private $magic;
+        private $magic; // Darfst du gerne in was sinnvolle umbenennen ;)
 
         protected function setUp()
         {
@@ -25,6 +25,7 @@ namespace Suxx\Entities {
 
         public function testPidCanBeRetrieved()
         {
+            // Folgende 3 Zeilen in eine Private Methode statt copy pasta?
             $reflectionProperty = $this->magic->getProperty('pid');
             $reflectionProperty->setAccessible(true);
             $reflectionProperty->setValue($this->product, 123);

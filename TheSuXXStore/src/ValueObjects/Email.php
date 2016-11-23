@@ -21,6 +21,7 @@ namespace Suxx\ValueObjects
             $this->email = $email;
         }
 
+        // Die Docblöcke kannst du dir sparen wenn du type annotations verwendest.
         /**
          * @param string $email
          */
