@@ -5,6 +5,7 @@ namespace Suxx\Routers
     use Suxx\Factories\Factory;
     use Suxx\Http\Request;
     use Suxx\Http\Session;
+    use Suxx\Loggers\ErrorLogger;
 
     class PostRequestRouter
     {
@@ -18,10 +19,16 @@ namespace Suxx\Routers
          */
         private $session;
 
-        public function __construct(Factory $factory, Session $session)
+        /**
+         * @var ErrorLogger
+         */
+        private $logger;
+
+        public function __construct(Factory $factory, Session $session, ErrorLogger $logger)
         {
             $this->factory = $factory;
             $this->session = $session;
+            $this->logger = $logger;
         }
 
         public function route(Request $request)
@@ -34,7 +41,7 @@ namespace Suxx\Routers
             $path = parse_url($uri)['path'];
 
             if ($this->hasCsrfError($request)) {
-                return $this->factory->getHomeController();
+                return $this->factory->getError500Controller();
             }
 
             switch ($path) {
@@ -50,7 +57,8 @@ namespace Suxx\Routers
         protected function hasCsrfError(Request $request)
         {
             if ($request->getValue('csrf') != $this->session->getValue('token')) {
-                $this->session->setValue('error', 'Das übergebene Formular hat kein gültiges CSRF-Token!');
+                $message = 'Das übergebene Formular hat kein gültiges CSRF-Token!';
+                $this->logger->logMessage($message, debug_backtrace());
                 return true;
             }
             return false;

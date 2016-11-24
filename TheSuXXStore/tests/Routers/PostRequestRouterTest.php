@@ -2,11 +2,13 @@
 
 namespace Suxx\Routers {
 
+    use Suxx\Controllers\Error500Controller;
     use Suxx\Controllers\HomeController;
     use Suxx\Factories\Factory;
     use Suxx\Http\Request;
     use Suxx\Http\Session;
     use Suxx\FileHandlers\UploadedFile;
+    use Suxx\Loggers\ErrorLogger;
 
     /**
      * @covers  Suxx\Routers\PostRequestRouter
@@ -14,6 +16,7 @@ namespace Suxx\Routers {
      * @uses    Suxx\Http\Session
      * @uses    Suxx\FileHandlers\UploadedFile
      * @uses    Suxx\Http\Request
+     * @uses    Suxx\Loggers\ErrorLogger
      */
     class PostRequestRouterTest extends \PHPUnit_Framework_TestCase
     {
@@ -37,12 +40,18 @@ namespace Suxx\Routers {
          */
         private $postRequestRouter;
 
+        /**
+         * @var \PHPUnit_Framework_MockObject_MockObject | ErrorLogger
+         */
+        private $errorLogger;
+
         protected function setUp()
         {
             $this->factory = $this->getMockBuilder(Factory::class)->disableOriginalConstructor()->getMock();
             $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
             $this->file = $this->getMockBuilder(UploadedFile::class)->disableOriginalConstructor()->getMock();
-            $this->postRequestRouter = new PostRequestRouter($this->factory, $this->session);
+            $this->errorLogger = $this->getMockBuilder(ErrorLogger::class)->disableOriginalConstructor()->getMock();
+            $this->postRequestRouter = new PostRequestRouter($this->factory, $this->session, $this->errorLogger);
         }
 
         /**
@@ -78,7 +87,7 @@ namespace Suxx\Routers {
             $this->assertEquals(null, $this->postRequestRouter->route($request));
         }
 
-        public function testInvalidCsrfTokenReturnsHomeController()
+        public function testInvalidCsrfTokenReturnsError500Controller()
         {
             $request = new Request(
                 ['csrf' => 'session hi-jackers token'],
@@ -86,7 +95,7 @@ namespace Suxx\Routers {
                 $this->file
             );
 
-            $this->assertInstanceOf(HomeController::class, $this->postRequestRouter->route($request));
+            $this->assertInstanceOf(Error500Controller::class, $this->postRequestRouter->route($request));
         }
 
         public function testRouterReturnsNullIfInvalidRequestUri()

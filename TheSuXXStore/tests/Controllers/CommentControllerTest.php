@@ -4,13 +4,11 @@ namespace Suxx\Controllers {
 
     use Suxx\Http\Request;
     use Suxx\Http\Response;
-    use Suxx\Http\Session;
     use Suxx\Commands\CommentFormCommand;
 
     /**
      * @covers Suxx\Controllers\CommentController
      * @uses   Suxx\Http\Request
-     * @uses   Suxx\Http\Session
      * @uses   Suxx\Http\Response
      * @uses   Suxx\Commands\CommentFormCommand
      */
@@ -32,11 +30,6 @@ namespace Suxx\Controllers {
         private $commentFormCommand;
 
         /**
-         * @var \PHPUnit_Framework_MockObject_MockObject | Session
-         */
-        private $session;
-
-        /**
          * @var CommentController
          */
         private $commentController;
@@ -45,42 +38,30 @@ namespace Suxx\Controllers {
         {
             $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
             $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
-            $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
             $this->commentFormCommand = $this->getMockBuilder(CommentFormCommand::class)->disableOriginalConstructor()->getMock();
 
-            $this->commentController = new CommentController($this->session, $this->commentFormCommand);
+            $this->commentController = new CommentController($this->commentFormCommand);
         }
 
-        /**
-         * @runInSeparateProcess
-         */
-        public function testCommentControllerCanBeExecutedAndSendsHeader()
+        public function testCommentControllerCanBeExecutedAndSetsRedirect()
         {
             $this->commentFormCommand
                 ->expects($this->once())
                 ->method('execute')
                 ->willReturn(true);
 
-            $this->session
+            $this->response
                 ->expects($this->once())
-                ->method('getSessionData');
+                ->method('setRedirect')
+                ->with('/suxx/product?pid=1');
+
+            $this->request
+                ->expects($this->once())
+                ->method('getValue')
+                ->with('product')
+                ->willReturn(1);
 
             $this->commentController->execute($this->request, $this->response);
-            $this->assertContains('Location: /suxx/product?pid=', xdebug_get_headers());
-        }
-
-        /**
-         * @runInSeparateProcess
-         */
-        public function testCommentControllerSendsLocationHeaderOnError()
-        {
-            $this->commentFormCommand
-                ->expects($this->once())
-                ->method('execute')
-                ->willReturn(false);
-
-            $this->commentController->execute($this->request, $this->response);
-            $this->assertContains('Location: /suxx/product?pid=', xdebug_get_headers());
         }
     }
 }

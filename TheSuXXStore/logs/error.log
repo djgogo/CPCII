@@ -78,3 +78,39 @@
 2016/11/23 16:06:23 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
 2016/11/23 16:06:59 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
 2016/11/23 16:07:20 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 08:28:13 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 08:29:13 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 08:30:11 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 08:34:25 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 08:40:36 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 08:40:58 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 08:48:56 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 08:52:58 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 08:58:59 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 09:02:06 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 09:02:38 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 09:04:23 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 09:09:39 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 10:35:12 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 10:40:21 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 11:00:57 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 11:03:35 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 11:07:02 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 11:07:47 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 11:12:54 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 11:13:32 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 11:15:33 / Wrong mySql Credentials or mySql Database down / SQLSTATE[HY000] [1045] Access denied for user 'anyUser'@'localhost' (using password: YES)/1045 / /var/www/Exercises/TheSuXXStore/src/Factories/PDOFactory.php / 61
+2016/11/24 12:32:26 / Das übergebene Formular hat kein gültiges CSRF-Token!
+2016/11/24 12:32:43 / Das übergebene Formular hat kein gültiges CSRF-Token!
+2016/11/24 13:20:06 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php/43
+2016/11/24 13:21:52 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php/43
+2016/11/24 13:21:55 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php/43
+2016/11/24 13:53:56 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php/43
+2016/11/24 13:56:47 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php/43
+2016/11/24 14:21:32 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43
+2016/11/24 14:21:59 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43
+2016/11/24 14:24:57 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43
+2016/11/24 14:25:04 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43
+2016/11/24 14:25:13 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43
+2016/11/24 14:25:16 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43
+2016/11/24 14:31:58 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43

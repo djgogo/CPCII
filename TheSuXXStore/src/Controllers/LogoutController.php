@@ -18,13 +18,6 @@ namespace Suxx\Controllers {
             session_destroy();
 
             /**
-             * Delete Session-Id
-             */
-            if (isset($_SESSION['id'])) {
-                unset($_SESSION['id']);
-            }
-
-            /**
              * Delete Session-Cookie (PHPSESSID)
              */
             if (isset($_COOKIE[session_name()])) {

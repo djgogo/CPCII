@@ -32,18 +32,12 @@ namespace Suxx\Factories {
          */
         private $instance = null;
 
-        /**
-         * @var ErrorLogger
-         */
-        private $logger;
-
-        public function __construct(string $host, string $dbName, string $user, string $pass, ErrorLogger $logger)
+        public function __construct(string $host, string $dbName, string $user, string $pass)
         {
             $this->host = $host;
             $this->dbName = $dbName;
             $this->user = $user;
             $this->pass = $pass;
-            $this->logger = $logger;
         }
 
         public function getDbHandler() : \PDO
@@ -65,10 +59,7 @@ namespace Suxx\Factories {
                 $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
                 return $db;
             } catch (\PDOException $e) {
-                //throw new SuxxInvalidPdoAttributeException('Wrong mySql Credentials - Access denied!', 0, $e);
-                throw new InvalidPdoAttributeException(
-                    $this->logger->log('Wrong mySql Credentials or mySql Database down', $e)
-                );
+                throw new InvalidPdoAttributeException('Wrong mySql Credentials - Access denied!', 0, $e);
             }
         }
     }

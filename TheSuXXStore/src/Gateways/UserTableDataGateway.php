@@ -47,9 +47,9 @@ namespace Suxx\Gateways
                 return $stmt->execute();
 
             } catch (\PDOException $e) {
-                throw new UserTableGatewayException(
-                    $this->logger->log('Benutzer konnte nicht eingefügt werden.', $e)
-                );
+                $message = 'Benutzer konnte nicht eingefügt werden.';
+                $this->logger->log($message, $e);
+                throw new UserTableGatewayException($message);
             }
         }
 
@@ -71,9 +71,9 @@ namespace Suxx\Gateways
                 }
 
             } catch (\PDOException $e) {
-                throw new UserTableGatewayException(
-                    $this->logger->log('Benutzer konnte nicht gefunden werden.', $e)
-                );
+                $message = 'Benutzer konnte nicht gefunden werden.';
+                $this->logger->log($message, $e);
+                throw new UserTableGatewayException($message);
             }
             return false;
         }
@@ -95,9 +95,9 @@ namespace Suxx\Gateways
                 }
 
             } catch (\PDOException $e) {
-                throw new UserTableGatewayException(
-                    $this->logger->log('Benutzer konnte nicht gefunden werden.', $e)
-                );
+                $message = 'Benutzer konnte nicht gefunden werden.';
+                $this->logger->log($message, $e);
+                throw new UserTableGatewayException($message);
             }
             return false;
         }

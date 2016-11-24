@@ -4,3 +4,4 @@ bootstrap
 vendor
 build
 phpunit.xml
+logs

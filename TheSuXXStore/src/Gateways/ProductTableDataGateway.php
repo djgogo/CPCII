@@ -31,9 +31,9 @@ namespace Suxx\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Product::class);
             } catch (\PDOException $e) {
-                throw new ProductTableGatewayException(
-                    $this->logger->log('Fehler beim lesen der Produkt Tabelle.', $e)
-                );
+                $message = 'Fehler beim lesen der Produkt Tabelle.';
+                $this->logger->log($message, $e);
+                throw new ProductTableGatewayException($message);
             }
         }
 
@@ -44,9 +44,9 @@ namespace Suxx\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Product::class);
             } catch (\PDOException $e) {
-                throw new ProductTableGatewayException(
-                    $this->logger->log('Fehler beim lesen der Produkt Tabelle.', $e)
-                );
+                $message = 'Fehler beim lesen der Produkt Tabelle.';
+                $this->logger->log($message, $e);
+                throw new ProductTableGatewayException($message);
             }
         }
 
@@ -57,9 +57,9 @@ namespace Suxx\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Product::class);
             } catch (\PDOException $e) {
-                throw new ProductTableGatewayException(
-                    $this->logger->log('Fehler beim lesen der Produkt Tabelle.', $e)
-                );
+                $message = 'Fehler beim lesen der Produkt Tabelle.';
+                $this->logger->log($message, $e);
+                throw new ProductTableGatewayException($message);
             }
         }
 
@@ -72,9 +72,9 @@ namespace Suxx\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Product::class);
             } catch (\PDOException $e) {
-                throw new ProductTableGatewayException(
-                    $this->logger->log('Fehler beim lesen der Produkt Tabelle.', $e)
-                );
+                $message = 'Fehler beim lesen der Produkt Tabelle.';
+                $this->logger->log($message, $e);
+                throw new ProductTableGatewayException($message);
             }
         }
 
@@ -86,9 +86,9 @@ namespace Suxx\Gateways {
                 $stmt->execute();
                 return $stmt->fetchObject(Product::class);
             } catch (\PDOException $e) {
-                throw new ProductTableGatewayException(
-                    $this->logger->log('Fehler beim lesen der Produkt Tabelle.', $e)
-                );
+                $message = 'Fehler beim lesen der Produkt Tabelle.';
+                $this->logger->log($message, $e);
+                throw new ProductTableGatewayException($message);
             }
         }
 
@@ -107,9 +107,9 @@ namespace Suxx\Gateways {
                 return true;
 
             } catch (\PDOException $e) {
-                throw new ProductTableGatewayException(
-                    $this->logger->log('Fehler beim updaten der Produkt Tabelle.', $e)
-                );
+                $message = 'Fehler beim ändern eines Datensatzes der Produkt Tabelle.';
+                $this->logger->log($message, $e);
+                throw new ProductTableGatewayException($message);
             }
         }
     }
