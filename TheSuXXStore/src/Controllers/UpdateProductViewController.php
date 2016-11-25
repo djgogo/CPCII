@@ -34,6 +34,12 @@ namespace Suxx\Controllers {
 
         public function execute(Request $request, Response $response)
         {
+            if ($request->hasValue('product')) {
+                if ($request->getValue('product') === '') {
+                    return '404errorview.twig';
+                }
+            }
+
             $response->setProduct($this->productDataGateway->findProductById($request->getValue('pid')));
             $this->populate->set('label', $response->getProduct()->getLabel());
             $this->populate->set('price', $response->getProduct()->getPrice());

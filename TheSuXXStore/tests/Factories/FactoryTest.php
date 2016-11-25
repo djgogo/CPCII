@@ -110,6 +110,7 @@ namespace Suxx\Factories {
                 ['getUpdateProductController', \Suxx\Controllers\UpdateProductController::class],
                 ['getCommentController', \Suxx\Controllers\CommentController::class],
                 ['getError404Controller', \Suxx\Controllers\Error404Controller::class],
+                ['getError500Controller', \Suxx\Controllers\Error500Controller::class],
                 ['getProductTableGateway', \Suxx\Gateways\ProductTableDataGateway::class],
                 ['getCommentTableGateway', \Suxx\Gateways\CommentTableDataGateway::class],
                 ['getUserTableGateway', \Suxx\Gateways\UserTableDataGateway::class],
