@@ -29,19 +29,17 @@ namespace Suxx\Loggers
                 $e->getFile() . ' / ' .
                 $e->getLine();
 
-            error_log($logEntry . PHP_EOL, 3, __DIR__ . $this->path);
+            error_log($logEntry . PHP_EOL, 3, $this->path);
         }
 
         public function logMessage(string $message, $b = [])
         {
-            var_dump($this->path); exit;
-
             $logEntry = $this->dateTime->format('Y/m/d H:i:s') . ' / ' .
                 $message . ' / ' .
                 $b[0]['file'] . ' / ' .
                 $b[0]['line'];
 
-            error_log($logEntry . PHP_EOL, 3, __DIR__ . $this->path);
+            error_log($logEntry . PHP_EOL, 3, $this->path);
         }
     }
 }

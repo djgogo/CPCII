@@ -27,22 +27,22 @@ namespace Suxx\Loggers {
         public function setUp()
         {
             $this->dateTime = new \DateTime();
-            //$this->path = '/../TestFiles/testError.log';
-            $this->path = '/var/www/Exercises/TheSuXXStore/tests/TestFiles/testError.log';
+            $this->path = __DIR__ . '/../TestFiles/errorTest.log';
             $this->e = new \Exception();
 
             $this->errorLogger = new ErrorLogger($this->dateTime, $this->path);
         }
 
-//        public function testLoggingExceptionWorks()
-//        {
-//            $expectedString = 'Test';
-//            $this->errorLogger->log('Test Exception Logging', $this->e);
-//
-//            $this->assertEquals($expectedString, file_get_contents($this->path));
-//
-//            unlink($this->path);
-//        }
+        public function testLoggingExceptionWorks()
+        {
+            $expectedString = 'Test Exception Logging / /0 / /var/www/Exercises/TheSuXXStore/tests/Loggers/ErrorLoggerTest.php / 31';
+            $this->errorLogger->log('Test Exception Logging', $this->e);
+
+            $logStringWithoutDateTime = trim(substr(file_get_contents($this->path), 22));
+            $this->assertEquals($expectedString, $logStringWithoutDateTime);
+
+            unlink($this->path);
+        }
 
         public function testLoggingMessageWorks()
         {
@@ -50,10 +50,11 @@ namespace Suxx\Loggers {
                     ['file' => '/testFile', 'line' => '99']
                 ];
 
-            $expectedString = 'Test';
+            $expectedString = 'Test Message Logging / /testFile / 99';
             $this->errorLogger->logMessage('Test Message Logging', $backTrace);
 
-            $this->assertEquals($expectedString, file_get_contents($this->path));
+            $logStringWithoutDateTime = trim(substr(file_get_contents($this->path), 22));
+            $this->assertEquals($expectedString, $logStringWithoutDateTime);
 
             unlink($this->path);
         }

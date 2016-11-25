@@ -114,3 +114,5 @@
 2016/11/24 14:25:13 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43
 2016/11/24 14:25:16 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43
 2016/11/24 14:31:58 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43
+2016/11/25 07:55:59 / Test Message Logging / /testFile / 99
+2016/11/25 08:53:10 / Das übergebene Formular hat kein gültiges CSRF-Token! / /var/www/Exercises/TheSuXXStore/src/Routers/PostRequestRouter.php / 43
