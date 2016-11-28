@@ -5,6 +5,10 @@ namespace GetText
 {
     use GetText\Exceptions\GetTextFileException;
 
+    /**
+     * POParser parses only following States: msgid, msgstr
+     * and creates a new array with the Values, msgid as $key, msgstr as $value
+     */
     class PoParser
     {
         /**
@@ -27,7 +31,7 @@ namespace GetText
             $this->filePath = $filePath;
         }
 
-        public function parse()
+        public function parse() : array
         {
             $handle = $this->load($this->filePath);
 
@@ -35,15 +39,16 @@ namespace GetText
                 while (!feof($handle)) {
                     $line = fgets($handle);
 
-                    /**
-                     * allow only lines with State: msgid and msgstr
-                     */
                     if ($line != '' && $line[0] === 'm') {
-                        $this->processLine(trim($line));
+                        if ($this->isProcessable($line)) {
+                            $this->processLine(trim($line));
+                        }
                     }
                 }
                 fclose($handle);
             }
+
+            return $this->data;
         }
 
         private function load($filePath)
@@ -97,9 +102,42 @@ namespace GetText
             return substr($str, 1, -1);
         }
 
-        public function printPoFile()
+        private function replaceUnderlines($str) : string
         {
-            print_r($this->data);
+            return str_replace('_', ' ', $str);
+        }
+
+        private function isProcessable($line) : bool
+        {
+            /**
+             * Regex Explanation
+             * \s = any whitespace character
+             * / = start and ending delimiters
+             */
+            $split = preg_split('/\s/', $line, 2);
+            $key = $split[0];
+
+            /**
+             * allow only lines with State: msgid and msgstr
+             */
+            if ($key === 'msgid' || $key === 'msgstr') {
+                return true;
+            }
+
+            return false;
+        }
+
+        public function getPoData() : array
+        {
+            return $this->data;
+        }
+
+        public function printPoData()
+        {
+            foreach ($this->data as $key => $value) {
+                printf("msgId:  %s\n", $this->replaceUnderlines($key));
+                printf("msgStr: %s\n\n", $value);
+            }
         }
     }
 }
