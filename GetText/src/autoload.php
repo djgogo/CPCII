@@ -8,7 +8,10 @@ spl_autoload_register(
         if ($classes === null) {
             $classes = array(
                 'gettext\\exceptions\\gettextfileexception' => '/Exceptions/GetTextFileException.php',
-                'gettext\\poparser' => '/PoParser.php'
+                'gettext\\poparser' => '/PoParser.php',
+                'gettext\\v2\\gettextentry' => '/V2/GetTextEntry.php',
+                'gettext\\v2\\poparser' => '/V2/PoParser.php',
+                'gettext\\v2\\poprocessor' => '/V2/PoProcessor.php'
             );
         }
         $cn = strtolower($class);
