@@ -40,9 +40,7 @@ namespace GetText
                     $line = fgets($handle);
 
                     if ($line != '' && $line[0] === 'm') {
-                        if ($this->isProcessable($line)) {
-                            $this->processLine(trim($line));
-                        }
+                        $this->processLine(trim($line));
                     }
                 }
                 fclose($handle);
@@ -55,9 +53,13 @@ namespace GetText
         {
             if (empty($filePath)) {
                 throw new GetTextFileException('Input file not defined.');
-            } elseif (!file_exists($filePath)) {
+            }
+
+            if (!file_exists($filePath)) {
                 throw new GetTextFileException('File does not exist' . $filePath);
-            } elseif (substr($filePath, strrpos($filePath, '.')) !== '.po') {
+            }
+
+            if (substr($filePath, strrpos($filePath, '.')) !== '.po') {
                 throw new GetTextFileException('The specified file is not a PO file.');
             }
 
@@ -72,13 +74,14 @@ namespace GetText
 
         private function processLine($line)
         {
-            $state = 'msgid';
+            $split = explode(' ', $line, 2);
+            $state = $split[0];
+            $value = $split[1];
 
-            if (substr($line, 0, 6) === 'msgstr') {
-                $state = 'msgstr';
+            if ($state != 'msgid' && $state != 'msgstr') {
+                return;
             }
 
-            $value = str_replace($state . ' ', '', $line);
             $value = $this->deQuote($value);
 
             if ($value === '') {
@@ -105,31 +108,6 @@ namespace GetText
         private function replaceUnderlines($str) : string
         {
             return str_replace('_', ' ', $str);
-        }
-
-        private function isProcessable($line) : bool
-        {
-            /**
-             * Regex Explanation
-             * \s = any whitespace character
-             * / = start and ending delimiters
-             */
-            $split = preg_split('/\s/', $line, 2);
-            $key = $split[0];
-
-            /**
-             * allow only lines with State: msgid and msgstr
-             */
-            if ($key === 'msgid' || $key === 'msgstr') {
-                return true;
-            }
-
-            return false;
-        }
-
-        public function getPoData() : array
-        {
-            return $this->data;
         }
 
         public function printPoData()

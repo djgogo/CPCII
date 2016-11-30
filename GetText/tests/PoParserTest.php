@@ -33,12 +33,6 @@ namespace GetText
             $this->assertContains('test', $result);
         }
 
-        public function testPoDataCanBeRetrieved()
-        {
-            $result = $this->parser->parse();
-            $this->assertEquals($result, $this->parser->getPoData());
-        }
-
         public function testParserThrowsExceptionIfFileNotFound()
         {
             $this->expectException(GetTextFileException::class);
