@@ -3,7 +3,6 @@
 namespace Suxx\Factories {
 
     use Suxx\Exceptions\InvalidPdoAttributeException;
-    use Suxx\Loggers\ErrorLogger;
 
     /**
      * Class PDOFactoryTest
@@ -18,7 +17,7 @@ namespace Suxx\Factories {
 
         protected function setUp()
         {
-            $this->pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore', new ErrorLogger());
+            $this->pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore');
         }
 
         public function testDatabaseHandlerPdoCanBeRetrieved()
@@ -35,7 +34,7 @@ namespace Suxx\Factories {
         public function testGetDbHandlerWithWrongCredentialsThrowsException()
         {
             $this->expectException(InvalidPdoAttributeException::class);
-            $wrongPdo = new PDOFactory('localhost', 'suxx', 'anyUser', 'anyPassword', new ErrorLogger());
+            $wrongPdo = new PDOFactory('localhost', 'suxx', 'anyUser', 'anyPassword');
             $wrongPdo->getDbHandler();
         }
     }

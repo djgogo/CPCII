@@ -137,7 +137,7 @@ namespace Suxx\Integration {
             $this->logger
                 ->expects($this->once())
                 ->method('log')
-                ->with('Fehler beim updaten der Produkt Tabelle.', $this->e);
+                ->with('Fehler beim ändern eines Datensatzes der Produkt Tabelle.', $this->e);
 
             $this->gateway->update(array());
         }

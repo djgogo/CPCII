@@ -11,6 +11,7 @@ namespace Suxx\Factories
     use Suxx\Commands\UpdateProductFormCommand;
     use Suxx\Controllers\CommentController;
     use Suxx\Controllers\Error404Controller;
+    use Suxx\Controllers\Error500Controller;
     use Suxx\Controllers\HomeController;
     use Suxx\Controllers\LoginController;
     use Suxx\Controllers\LoginViewController;
@@ -44,10 +45,16 @@ namespace Suxx\Factories
          */
         private $session;
 
-        public function __construct(PDOFactory $pdoFactory, Session $session)
+        /**
+         * @var string
+         */
+        private $errorLogPath;
+
+        public function __construct(PDOFactory $pdoFactory, Session $session, string $errorLogPath)
         {
             $this->pdoFactory = $pdoFactory;
             $this->session = $session;
+            $this->errorLogPath = $errorLogPath;
         }
 
         public function getDatabase() : \PDO
@@ -62,7 +69,7 @@ namespace Suxx\Factories
         {
             return [
                 new StaticPageRouter($this),
-                new PostRequestRouter($this, $this->session),
+                new PostRequestRouter($this, $this->session, $this->getErrorLogger()),
                 new AuthenticationRouter($this, $this->session),
                 new Error404Router($this),
             ];
@@ -93,7 +100,7 @@ namespace Suxx\Factories
 
         public function getLoginController() : LoginController
         {
-            return new LoginController($this->session, $this->getAuthenticationFormCommand());
+            return new LoginController($this->getAuthenticationFormCommand());
         }
 
         public function getLogoutController() : LogoutController
@@ -118,7 +125,7 @@ namespace Suxx\Factories
 
         public function getCommentController() : CommentController
         {
-            return new CommentController($this->session, $this->getCommentFormCommand());
+            return new CommentController($this->getCommentFormCommand());
         }
 
         public function getError404Controller() : Error404Controller
@@ -126,22 +133,27 @@ namespace Suxx\Factories
             return new Error404Controller();
         }
 
+        public function getError500Controller() : Error500Controller
+        {
+            return new Error500Controller();
+        }
+
         /**
          * TableDataGateways
          */
         public function getProductTableGateway() : ProductTableDataGateway
         {
-            return new ProductTableDataGateway($this->getDatabase(), new ErrorLogger());
+            return new ProductTableDataGateway($this->getDatabase(), $this->getErrorLogger());
         }
 
         public function getCommentTableGateway() : CommentTableDataGateway
         {
-            return new CommentTableDataGateway($this->getDatabase(), new ErrorLogger());
+            return new CommentTableDataGateway($this->getDatabase(), $this->getErrorLogger());
         }
 
         public function getUserTableGateway() : UserTableDataGateway
         {
-            return new UserTableDataGateway($this->getDatabase(), new ErrorLogger());
+            return new UserTableDataGateway($this->getDatabase(), $this->getErrorLogger());
         }
 
         /**
@@ -188,6 +200,17 @@ namespace Suxx\Factories
         public function getFileBackend() : FileBackend
         {
             return new FileBackend();
+        }
+
+        /**
+         * Logger's
+         */
+        public function getErrorLogger() : ErrorLogger
+        {
+            $datetime = new \DateTime();
+            $datetime->setTimezone(new \DateTimeZone('Europe/Zurich'));
+
+            return new ErrorLogger($datetime, $this->errorLogPath);
         }
     }
 }

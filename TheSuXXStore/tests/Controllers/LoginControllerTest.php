@@ -18,7 +18,6 @@ namespace Suxx\Controllers {
      * @covers Suxx\Controllers\LoginController
      * @uses   Suxx\Http\Request
      * @uses   Suxx\Http\Response
-     * @uses   Suxx\Http\Session
      * @uses   Suxx\Commands\AuthenticationFormCommand
      */
     class LoginControllerTest extends \PHPUnit_Framework_TestCase
@@ -34,11 +33,6 @@ namespace Suxx\Controllers {
         private $response;
 
         /**
-         * @var \PHPUnit_Framework_MockObject_MockObject | Session
-         */
-        private $session;
-
-        /**
          * @var \PHPUnit_Framework_MockObject_MockObject | AuthenticationFormCommand
          */
         private $authenticationFormCommand;
@@ -52,24 +46,20 @@ namespace Suxx\Controllers {
         {
             $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
             $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
-            $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
             $this->authenticationFormCommand = $this->getMockBuilder(AuthenticationFormCommand::class)->disableOriginalConstructor()->getMock();
 
-            $this->loginController = new LoginController($this->session, $this->authenticationFormCommand);
+            $this->loginController = new LoginController($this->authenticationFormCommand);
         }
 
         public function testControllerCanBeExecutedAndSetsRightRedirect()
         {
+            global $isCalled;
+
             $this->authenticationFormCommand
                 ->expects($this->once())
                 ->method('execute')
                 ->with($this->request)
                 ->willReturn(true);
-
-            $this->session
-                ->expects($this->once())
-                ->method('getSessionData')
-                ->willReturn(array());
 
             $this->response
                 ->expects($this->once())
@@ -77,10 +67,13 @@ namespace Suxx\Controllers {
                 ->with('/');
 
             $this->loginController->execute($this->request, $this->response);
+            $this->assertTrue($isCalled);
         }
 
         public function testControllerReturnsRightTemplateOnError()
         {
+            global $isCalled;
+
             $this->authenticationFormCommand
                 ->expects($this->once())
                 ->method('execute')
@@ -88,6 +81,7 @@ namespace Suxx\Controllers {
                 ->willReturn(false);
 
             $this->assertEquals('login.twig', $this->loginController->execute($this->request, $this->response));
+            $this->assertTrue($isCalled);
         }
     }
 }

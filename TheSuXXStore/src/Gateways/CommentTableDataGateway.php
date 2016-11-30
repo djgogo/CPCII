@@ -44,9 +44,9 @@ namespace Suxx\Gateways {
                 return $this->pdo->lastInsertId();
 
             } catch (\PDOException $e) {
-                throw new CommentTableGatewayException(
-                    $this->logger->log('Kommentar konnte nicht eingefügt werden.', $e)
-                );
+                $message = 'Kommentar konnte nicht eingefügt werden.';
+                $this->logger->log($message, $e);
+                throw new CommentTableGatewayException($message);
             }
         }
 
@@ -58,9 +58,9 @@ namespace Suxx\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Comment::class);
             } catch (\PDOException $e) {
-                throw new CommentTableGatewayException(
-                    $this->logger->log('Kommentare konnten nicht ausgelesen werden.', $e)
-                );
+                $message = 'Kommentare konnten nicht ausgelesen werden.';
+                $this->logger->log($message, $e);
+                throw new CommentTableGatewayException($message);
             }
         }
     }

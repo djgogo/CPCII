@@ -14,7 +14,11 @@ namespace Suxx\Backends {
             if (!$this->directoryExists($spl->getPath())) {
                 throw new InvalidFileBackendException('Das angegebene Directory existiert nicht!');
             }
-            move_uploaded_file($source, $destination);
+
+            $result = move_uploaded_file($source, $destination);
+            if ($result === false) {
+                throw new InvalidFileBackendException('Das File konnte nicht bewegt werden oder ist ungültig!');
+            }
         }
 
         public function directoryExists($directory) : bool

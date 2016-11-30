@@ -4,7 +4,12 @@ namespace Suxx\Gateways {
 
     use Suxx\Loggers\ErrorLogger;
 
-    class SuxxCommentTableDataGatewayTest extends \PHPUnit_Framework_TestCase
+    /**
+     * @covers Suxx\Gateways\CommentTableDataGateway
+     * @uses Suxx\Loggers\ErrorLogger
+     * @uses Suxx\Entities\Comment
+     */
+    class CommentTableDataGatewayTest extends \PHPUnit_Framework_TestCase
     {
         /**
          * @var \PDO
@@ -103,7 +108,7 @@ namespace Suxx\Gateways {
             $result = $query->fetchAll(\PDO::FETCH_COLUMN);
 
             if (count($result) != 2) {
-                var_dump('Database could not be initialized!');
+                throw new \Exception('Database could not be initialized!');
             }
 
             return $pdo;

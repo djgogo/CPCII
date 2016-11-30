@@ -27,21 +27,20 @@ namespace Suxx\Controllers
 
         public function execute(Request $request, Response $response)
         {
-            switch ($request->getValue('sort')) {
-                case 'ASC':
+            if ($request->hasValue('sort')) {
+                if ($request->getValue('sort') === 'ASC') {
                     $response->setProducts($this->dataGateway->getAllProductsOrderedByUpdatedAscending());
                     $this->session->setValue('sort', 'ASC');
-                    break;
-                case 'DESC':
+                } elseif ($request->getValue('sort') === 'DESC') {
                     $response->setProducts($this->dataGateway->getAllProductsOrderedByUpdatedDescending());
                     $this->session->setValue('sort', 'DESC');
-                    break;
-                default:
-                    $response->setProducts($this->dataGateway->getAllProducts());
-                    $this->session->setValue('sort', '');
+                }
+            } else {
+                $response->setProducts($this->dataGateway->getAllProducts());
+                $this->session->setValue('sort', '');
             }
 
-            if ($request->getValue('search')) {
+            if ($request->hasValue('search')) {
                 $response->setProducts($this->dataGateway->getSearchedProduct($request->getValue('search')));
             }
 

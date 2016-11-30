@@ -11,8 +11,12 @@ use Suxx\ValueObjects\Token;
 
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
+
 require __DIR__ . '/src/autoload.php';
 require __DIR__ . '/vendor/autoload.php';
+
+$errorLogPath = __DIR__ . '/logs/error.log';
+
 session_start();
 
 /**
@@ -40,8 +44,8 @@ $response = new Response();
  * Create Database Handler and the Factory
  */
 //$pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore');
-$pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234', new ErrorLogger());
-$factory  = new Factory($pdoFactory, $session);
+$pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234');
+$factory  = new Factory($pdoFactory, $session, $errorLogPath);
 
 /**
  * Get the Router and Controller for execution

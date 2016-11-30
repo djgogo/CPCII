@@ -11,9 +11,6 @@ namespace Suxx\ValueObjects
          */
         private $email;
 
-        /**
-         * @param string $email
-         */
         public function __construct(string $email)
         {
             $this->ensureValid($email);
@@ -21,9 +18,6 @@ namespace Suxx\ValueObjects
             $this->email = $email;
         }
 
-        /**
-         * @param string $email
-         */
         private function ensureValid(string $email)
         {
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -31,9 +25,6 @@ namespace Suxx\ValueObjects
             }
         }
 
-        /**
-         * @return string
-         */
         function __toString() : string
         {
             return $this->email;

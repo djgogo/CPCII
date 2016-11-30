@@ -55,13 +55,13 @@ namespace Suxx\Controllers {
         {
             $this->request
                 ->expects($this->at(0))
-                ->method('getValue')
+                ->method('hasValue')
                 ->with('sort')
-                ->willReturn('');
+                ->willReturn(false);
 
             $this->request
                 ->expects($this->at(1))
-                ->method('getValue')
+                ->method('hasValue')
                 ->with('search')
                 ->willReturn(false);
 
@@ -86,15 +86,15 @@ namespace Suxx\Controllers {
         {
             $this->request
                 ->expects($this->at(0))
+                ->method('hasValue')
+                ->with('sort')
+                ->willReturn(true);
+
+            $this->request
+                ->expects($this->once())
                 ->method('getValue')
                 ->with('sort')
                 ->willReturn('ASC');
-
-            $this->request
-                ->expects($this->at(1))
-                ->method('getValue')
-                ->with('search')
-                ->willReturn(false);
 
             $this->response
                 ->expects($this->once())
@@ -117,15 +117,15 @@ namespace Suxx\Controllers {
         {
             $this->request
                 ->expects($this->at(0))
+                ->method('hasValue')
+                ->with('sort')
+                ->willReturn(true);
+
+            $this->request
+                ->expects($this->exactly(2))
                 ->method('getValue')
                 ->with('sort')
                 ->willReturn('DESC');
-
-            $this->request
-                ->expects($this->at(1))
-                ->method('getValue')
-                ->with('search')
-                ->willReturn(false);
 
             $this->response
                 ->expects($this->once())
@@ -148,9 +148,9 @@ namespace Suxx\Controllers {
         {
             $this->request
                 ->expects($this->at(0))
-                ->method('getValue')
+                ->method('hasValue')
                 ->with('sort')
-                ->willReturn('');
+                ->willReturn(false);
 
             $this->response
                 ->expects($this->at(0))
@@ -168,7 +168,7 @@ namespace Suxx\Controllers {
 
             $this->request
                 ->expects($this->at(1))
-                ->method('getValue')
+                ->method('hasValue')
                 ->with('search')
                 ->willReturn(true);
 

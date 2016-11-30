@@ -44,6 +44,11 @@ namespace Suxx\Commands {
          */
         private $file;
 
+        /**
+         * @var UpdateProductFormCommand
+         */
+        private $updateProductFormCommand;
+
         protected function setUp()
         {
             $this->dataGateway = $this->getMockBuilder(ProductTableDataGateway::class)
@@ -57,6 +62,7 @@ namespace Suxx\Commands {
             $this->session = new Session(array());
             $this->populate = new FormPopulate($this->session);
             $this->error = new FormError($this->session);
+            $this->updateProductFormCommand = new UpdateProductFormCommand($this->dataGateway, $this->session, $this->populate, $this->error);
         }
 
         /**
@@ -66,20 +72,18 @@ namespace Suxx\Commands {
          */
         public function testEmptyFormFieldTriggersError($field, $expectedErrorMessage)
         {
-            $request = ['label' => 'Test Product', 'price' => '123'];
+            $request = ['label' => 'Test Product', 'product-id' => 1, 'price' => '123'];
             $request[$field] = '';
             $request = new Request($request, array(), $this->file);
+            $this->assertFalse($this->updateProductFormCommand->execute($request));
 
-            $updateProductFormCommand = new UpdateProductFormCommand($this->dataGateway, $this->session, $this->populate, $this->error);
-            $this->assertFalse($updateProductFormCommand->execute($request));
-
-            $updateProductFormCommand->repopulateForm();
+            $this->updateProductFormCommand->repopulateForm();
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($field));
         }
 
         public function testHappyPath()
         {
-            $request = ['label' => 'Test Product', 'price' => '123'];
+            $request = ['label' => 'Test Product', 'product-id' => 1, 'price' => '123'];
             $request = new Request($request, array(), $this->file);
 
             $this->dataGateway
@@ -87,8 +91,7 @@ namespace Suxx\Commands {
                 ->method('update')
                 ->willReturn(true);
 
-            $updateProductFormCommand = new UpdateProductFormCommand($this->dataGateway, $this->session, $this->populate, $this->error);
-            $this->assertTrue($updateProductFormCommand->execute($request));
+            $this->assertTrue($this->updateProductFormCommand->execute($request));
             $this->assertEquals('Datensatz wurde geändert', $this->session->getValue('message'));
         }
 
@@ -96,7 +99,7 @@ namespace Suxx\Commands {
         {
             $this->session->setValue('error', 'test');
 
-            $request = ['label' => 'Test Product', 'price' => '123'];
+            $request = ['label' => 'Test Product', 'product-id' => 1, 'price' => '123'];
             $request = new Request($request, array(), $this->file);
 
             $this->dataGateway
@@ -104,14 +107,13 @@ namespace Suxx\Commands {
                 ->method('update')
                 ->willReturn(true);
 
-            $updateProductFormCommand = new UpdateProductFormCommand($this->dataGateway, $this->session, $this->populate, $this->error);
-            $this->assertTrue($updateProductFormCommand->execute($request));
+            $this->assertTrue($this->updateProductFormCommand->execute($request));
             $this->assertEquals('Datensatz wurde geändert', $this->session->getValue('message'));
         }
 
         public function testUpdateProductFailsTriggersWarningMessage()
         {
-            $request = ['label' => 'Test Product', 'price' => '123'];
+            $request = ['label' => 'Test Product', 'product-id' => 1, 'price' => '123'];
             $request = new Request($request, array(), $this->file);
 
             $this->dataGateway
@@ -119,8 +121,7 @@ namespace Suxx\Commands {
                 ->method('update')
                 ->willReturn(false);
 
-            $updateProductFormCommand = new UpdateProductFormCommand($this->dataGateway, $this->session, $this->populate, $this->error);
-            $this->assertTrue($updateProductFormCommand->execute($request));
+            $this->assertTrue($this->updateProductFormCommand->execute($request));
             $this->assertEquals('Aenderung fehlgeschlagen!', $this->session->getValue('warning'));
         }
 

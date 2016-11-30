@@ -47,10 +47,5 @@ namespace Suxx\FileHandlers {
         {
             return $this->files['picture']['type'];
         }
-
-        public function getUploadedFile() : UploadedFile
-        {
-            return $this;
-        }
     }
 }

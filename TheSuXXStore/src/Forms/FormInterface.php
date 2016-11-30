@@ -10,6 +10,6 @@ namespace Suxx\Forms
 
         public function remove(string $key);
 
-        public function get(string $key, $default = null);
+        public function get(string $key);
     }
 }

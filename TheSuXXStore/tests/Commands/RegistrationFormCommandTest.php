@@ -46,6 +46,11 @@ namespace Suxx\Commands {
          */
         private $file;
 
+        /**
+         * @var RegistrationFormCommand
+         */
+        private $registrationFormCommand;
+
         protected function setUp()
         {
             $this->registrator = $this->getMockBuilder(Registrator::class)
@@ -59,6 +64,7 @@ namespace Suxx\Commands {
             $this->session = new Session(array());
             $this->populate = new FormPopulate($this->session);
             $this->error = new FormError($this->session);
+            $this->registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
         }
 
         /**
@@ -72,8 +78,8 @@ namespace Suxx\Commands {
             $request[$fieldToEmpty] = '';
             $request = new Request($request, array(), $this->file);
 
-            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-            $this->assertFalse($registrationFormCommand->execute($request));
+
+            $this->assertFalse($this->registrationFormCommand->execute($request));
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($fieldToEmpty));
         }
 
@@ -85,8 +91,7 @@ namespace Suxx\Commands {
             $request['password'] = 123;
             $request = new Request($request, array(), $this->file);
 
-            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-            $this->assertFalse($registrationFormCommand->execute($request));
+            $this->assertFalse($this->registrationFormCommand->execute($request));
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('password'));
         }
 
@@ -98,8 +103,7 @@ namespace Suxx\Commands {
             $request['email'] = 'wrong Email';
             $request = new Request($request, array(), $this->file);
 
-            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-            $this->assertFalse($registrationFormCommand->execute($request));
+            $this->assertFalse($this->registrationFormCommand->execute($request));
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('email'));
         }
 
@@ -116,8 +120,7 @@ namespace Suxx\Commands {
                 ->method('usernameExists')
                 ->willReturn(true);
 
-            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-            $this->assertFalse($registrationFormCommand->execute($request));
+            $this->assertFalse($this->registrationFormCommand->execute($request));
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get('username'));
         }
 
@@ -133,8 +136,7 @@ namespace Suxx\Commands {
                 ->method('register')
                 ->willReturn(true);
 
-            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-            $this->assertTrue($registrationFormCommand->execute($request));
+            $this->assertTrue($this->registrationFormCommand->execute($request));
             $this->assertEquals($expectedMessage, $this->session->getValue('message'));
         }
 
@@ -152,8 +154,7 @@ namespace Suxx\Commands {
                 ->method('register')
                 ->willReturn(true);
 
-            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-            $this->assertTrue($registrationFormCommand->execute($request));
+            $this->assertTrue($this->registrationFormCommand->execute($request));
             $this->assertEquals($expectedMessage, $this->session->getValue('message'));
         }
 
@@ -169,8 +170,7 @@ namespace Suxx\Commands {
                 ->method('register')
                 ->willReturn(false);
 
-            $registrationFormCommand = new RegistrationFormCommand($this->registrator, $this->session, $this->populate, $this->error);
-            $this->assertTrue($registrationFormCommand->execute($request));
+            $this->assertTrue($this->registrationFormCommand->execute($request));
             $this->assertEquals($expectedMessage, $this->session->getValue('warning'));
         }
 

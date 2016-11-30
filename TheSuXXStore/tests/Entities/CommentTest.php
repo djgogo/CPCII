@@ -15,57 +15,35 @@ namespace Suxx\Entities {
         /**
          * @var \ReflectionClass
          */
-        private $magic;
+        private $reflection;
 
         protected function setUp()
         {
             $this->comment = new Comment();
-            $this->magic = new \ReflectionClass($this->comment);
+            $this->reflection = new \ReflectionClass($this->comment);
         }
 
-        public function testCidCanBeRetrieved()
+        /**
+         * @dataProvider provideProductValues
+         */
+        public function testPictureCanBeRetrieved($property, $value, $method)
         {
-            $reflectionProperty = $this->magic->getProperty('cid');
+            $reflectionProperty = $this->reflection->getProperty($property);
             $reflectionProperty->setAccessible(true);
-            $reflectionProperty->setValue($this->comment, 123);
+            $reflectionProperty->setValue($this->comment, $value);
 
-            $this->assertEquals(123, $this->comment->getCid());
+            $this->assertEquals($value, $this->comment->{$method}());
         }
 
-        public function testPidCanBeRetrieved()
+        public function provideProductValues()
         {
-            $reflectionProperty = $this->magic->getProperty('pid');
-            $reflectionProperty->setAccessible(true);
-            $reflectionProperty->setValue($this->comment, 123);
-
-            $this->assertEquals(123, $this->comment->getPid());
-        }
-
-        public function testAuthorCanBeRetrieved()
-        {
-            $reflectionProperty = $this->magic->getProperty('author');
-            $reflectionProperty->setAccessible(true);
-            $reflectionProperty->setValue($this->comment, 'John Doe');
-
-            $this->assertEquals('John Doe', $this->comment->getAuthor());
-        }
-
-        public function testCommentCanBeRetrieved()
-        {
-            $reflectionProperty = $this->magic->getProperty('comment');
-            $reflectionProperty->setAccessible(true);
-            $reflectionProperty->setValue($this->comment, 'Bla Bla');
-
-            $this->assertEquals('Bla Bla', $this->comment->getComment());
-        }
-
-        public function testPictureCanBeRetrieved()
-        {
-            $reflectionProperty = $this->magic->getProperty('picture');
-            $reflectionProperty->setAccessible(true);
-            $reflectionProperty->setValue($this->comment, 'bla.jpg');
-
-            $this->assertEquals('bla.jpg', $this->comment->getPicture());
+            return [
+                ['cid', 123, 'getCid'],
+                ['pid', 123, 'getPid'],
+                ['author', 'John Doe', 'getAuthor'],
+                ['comment', 'Bla Bla', 'getComment'],
+                ['picture', 'bla.jpg', 'getPicture']
+            ];
         }
     }
 }
