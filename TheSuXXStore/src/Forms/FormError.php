@@ -39,12 +39,12 @@ namespace Suxx\Forms
             }
         }
 
-        public function get(string $key) : string
+        public function get(string $key, string $default = '') : string
         {
             if ($this->has($key)) {
                 return $this->data[$key];
             }
-            return '';
+            return $default;
         }
     }
 }
