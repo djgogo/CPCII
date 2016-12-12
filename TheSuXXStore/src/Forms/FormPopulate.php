@@ -46,7 +46,7 @@ namespace Suxx\Forms
                 unset($this->data[$key]);
                 return $value;
             }
-            return '$default;
+            return $default;
         }
     }
 }

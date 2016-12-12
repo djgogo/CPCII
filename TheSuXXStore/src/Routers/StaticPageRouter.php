@@ -24,7 +24,7 @@ namespace Suxx\Routers
             }
 
             $uri = $request->getRequestUri();
-            $path = parse_url($uri)['path'];
+            $path = parse_url($uri, PHP_URL_PATH);
 
             switch ($path) {
                 case '/':

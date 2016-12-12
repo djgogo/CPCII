@@ -38,7 +38,7 @@ namespace Suxx\Routers
             }
 
             $uri = $request->getRequestUri();
-            $path = parse_url($uri)['path'];
+            $path = parse_url($uri, PHP_URL_PATH);
 
             if ($this->hasCsrfError($request)) {
                 return $this->factory->getError500Controller();
