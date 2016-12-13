@@ -10,8 +10,9 @@ spl_autoload_register(
                 'gettext\\exceptions\\gettextfileexception' => '/Exceptions/GetTextFileException.php',
                 'gettext\\poparser' => '/PoParser.php',
                 'gettext\\v2\\gettextentry' => '/V2/GetTextEntry.php',
+                'gettext\\v2\\pdofactory' => '/V2/PDOFactory.php',
                 'gettext\\v2\\poparser' => '/V2/PoParser.php',
-                'gettext\\v2\\poprocessor' => '/V2/PoProcessor.php'
+                'gettext\\v2\\potomysqlimporter' => '/V2/PoToMySqlImporter.php'
             );
         }
         $cn = strtolower($class);
