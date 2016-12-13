@@ -7,7 +7,8 @@ namespace GetText\V2
 
     /**
      * POParser parses only following States: msgid, msgstr
-     * and creates a new array with the Values, msgid as $key, msgstr as $value
+     * and creates a new array with GettextEntry Objects holding following Attributes:
+     * msgid with the $key, msgstr with the $value
      */
     class PoParser
     {
@@ -116,6 +117,11 @@ namespace GetText\V2
                 printf("msgId:  %s\n", $entry->getMsgId());
                 printf("msgStr: %s\n\n", $entry->getMsgStr());
             }
+        }
+
+        public function getProcessedTranslations() : int
+        {
+            return count($this->entries);
         }
     }
 }
