@@ -7,14 +7,15 @@ namespace GetText
 
     /**
      * POParser parses only following States: msgid, msgstr
-     * and creates a new array with the Values, msgid as $key, msgstr as $value
+     * and creates a new array with GettextEntry Objects holding following Attributes:
+     * msgid with the $key, msgstr with the $value
      */
     class PoParser
     {
         /**
-         * @var array
+         * @var GetTextEntry[]
          */
-        private $data = [];
+        private $entries;
 
         /**
          * @var string
@@ -46,7 +47,7 @@ namespace GetText
                 fclose($handle);
             }
 
-            return $this->data;
+            return $this->entries;
         }
 
         private function load($filePath)
@@ -89,15 +90,19 @@ namespace GetText
             }
 
             if ($state === 'msgstr') {
-                $this->addToData($value);
+                $this->addToEntries($this->replaceUnderlines($this->msgId), $value);
             } else {
                 $this->msgId = $value;
             }
         }
 
-        private function addToData($value)
+        private function addToEntries($msgId, $value)
         {
-            $this->data[$this->msgId] = $value;
+            $getTextEntry = new GetTextEntry();
+            $getTextEntry->setMsgId($msgId);
+            $getTextEntry->setMsgStr($value);
+
+            $this->entries[] = $getTextEntry;
         }
 
         private function deQuote($str) : string
@@ -112,10 +117,15 @@ namespace GetText
 
         public function printPoData()
         {
-            foreach ($this->data as $key => $value) {
-                printf("msgId:  %s\n", $this->replaceUnderlines($key));
-                printf("msgStr: %s\n\n", $value);
+            foreach ($this->entries as $entry) {
+                printf("msgId:  %s\n", $entry->getMsgId());
+                printf("msgStr: %s\n\n", $entry->getMsgStr());
             }
+        }
+
+        public function getProcessedTranslations() : int
+        {
+            return count($this->entries);
         }
     }
 }

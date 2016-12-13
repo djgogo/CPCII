@@ -8,11 +8,11 @@ spl_autoload_register(
         if ($classes === null) {
             $classes = array(
                 'gettext\\exceptions\\gettextfileexception' => '/Exceptions/GetTextFileException.php',
+                'gettext\\gettextentry' => '/GetTextEntry.php',
+                'gettext\\mysqltopoexporter' => '/MySqlToPoExporter.php',
+                'gettext\\pdofactory' => '/PDOFactory.php',
                 'gettext\\poparser' => '/PoParser.php',
-                'gettext\\v2\\gettextentry' => '/V2/GetTextEntry.php',
-                'gettext\\v2\\pdofactory' => '/V2/PDOFactory.php',
-                'gettext\\v2\\poparser' => '/V2/PoParser.php',
-                'gettext\\v2\\potomysqlimporter' => '/V2/PoToMySqlImporter.php'
+                'gettext\\potomysqlimporter' => '/PoToMySqlImporter.php'
             );
         }
         $cn = strtolower($class);

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types = 1);
 
-namespace GetText\V2
+namespace GetText
 {
     class PoToMySqlImporter
     {
         /**
-         * @var PDOFactory
+         * @var \PDO
          */
         private $pdo;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace GetText\V2 {
+namespace GetText {
 
     class PDOFactory
     {
