@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-use GetText\V2\PoParser;
+use GetText\PoParser;
 
 require_once __DIR__ . '/bootstrap.php';
 

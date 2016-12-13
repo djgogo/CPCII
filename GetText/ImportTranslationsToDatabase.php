@@ -1,9 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-use GetText\V2\PDOFactory;
-use GetText\V2\PoToMySqlImporter;
-use GetText\V2\PoParser;
+use GetText\PDOFactory;
+use GetText\PoToMySqlImporter;
+use GetText\PoParser;
 
 require_once __DIR__ . '/bootstrap.php';
 
