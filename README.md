@@ -7,6 +7,7 @@ Module:
 - Testing
 
 ca. 60 Programming Tasks
+
 TheSuxxStore - Komplette funktionstüchtige Applikation mit allen Security Features und ohne Dependencies.
 
 Der CPC II kann eine Aufgabe mit OOP wirtschaftlich, nachhaltig und wartbar lösen. Ausgehend von einer vorhandenen Architektur kann er 
