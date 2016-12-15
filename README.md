@@ -8,7 +8,7 @@ Module:
 
 ca. 60 Programming Tasks
 
-TheSuxxStore - Komplette funktionstüchtige Applikation mit allen Security Features und ohne Dependencies.
+TheSuxxStore - Vollumfänglich funktionstüchtige Web-Applikation mit allen Security Features. Ohne Frameworks, ohne Dependencies.
 
 Der CPC II kann eine Aufgabe mit OOP wirtschaftlich, nachhaltig und wartbar lösen. Ausgehend von einer vorhandenen Architektur kann er 
 Softwarekomponenten entwickeln, vermitteln und umsetzen. Er versteht es, eine den Anforderungen entsprechende Arbeitsumgebung aufzubauen 
