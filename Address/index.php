@@ -4,6 +4,7 @@ use Address\Http\Request;
 use Address\Http\Session;
 use Address\Http\Response;
 use Address\Factories\Factory;
+use Address\Factories\PDOFactory;
 
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
@@ -31,9 +32,9 @@ $response = new Response();
 /**
  * Create Database Handler and the Factory
  */
-//$pdoFactory = new PDOFactory('localhost', 'suxx', 'suxxuser', 'thesuxxstore');
-//$pdoFactory = new PDOFactory('localhost', 'suxx', 'root', '1234');
-$factory  = new Factory($session);
+//$pdoFactory = new PDOFactory('localhost', 'Cart', 'addressuser', '1234');
+$pdoFactory = new PDOFactory('localhost', 'Cart', 'root', '1234', 'utf8');
+$factory  = new Factory($session, $pdoFactory, $errorLogPath);
 
 /**
  * Get the Router and Controller for execution
@@ -51,4 +52,13 @@ foreach ($routers as $router) {
  */
 $view = $controller->execute($request, $response);
 
-echo $twig->render($view);
+/**
+ * Render or Redirect
+ */
+if ($response->hasRedirect()) {
+    $_SESSION = $session->getSessionData();
+    header('Location: ' . $response->getRedirect(), 302);
+} else {
+    echo $twig->render($view, array('request' => $request, 'session' => $session, 'response' => $response));
+    $_SESSION = $session->getSessionData();
+}

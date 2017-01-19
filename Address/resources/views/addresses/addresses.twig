@@ -1,0 +1,38 @@
+<h2>Addresses</h2>
+
+<form class="form-group pull-right col-lg-4" action="/" method="get">
+    <div class="input-group">
+        <label for="search" class="sr-only">Search</label>
+        <input type="text" id="search" name="search" class="search form-control" placeholder="Search Address">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Go!</button>
+      </span>
+    </div>
+</form>
+
+<table id="addresses" class="display table table-striped" cellspacing="0" width="100%">
+    <thead>
+    <tr><th>Id</th>
+        <th>Address1</th>
+        <th>Address2</th>
+        <th>Postal-Code</th>
+        <th>City</th>
+        <th>Created</th>
+        <th><a href="?sort={% if session.getValue('sort') == 'ASC' %}DESC{% else %}ASC{% endif %}">Updated</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for address in response.addresses %}
+        <tr><td>{{ address.id }}</td>
+            <td><a href="/address?id={{ address.id|e('html_attr') }}">{{ address.address1|e('html_attr') }}</a></td>
+            <td>{{ address.address2 }}</td>
+            <td>{{ address.postal_code }}</td>
+            <td>{{ address.city }}</td>
+            <td>{{ address.created|date("d.m.Y H:i:s") }}</td>
+            <td>{{ address.updated|date("d.m.Y H:i:s") }}</td>
+            <td><a href="/updateaddressview?id={{ address.id|e('html_attr') }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

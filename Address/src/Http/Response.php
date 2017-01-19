@@ -2,6 +2,7 @@
 
 namespace Address\Http {
 
+    use Adddress\Entities\Address;
     use Address\Exceptions\ResponseException;
 
     class Response
@@ -11,6 +12,12 @@ namespace Address\Http {
 
         /** @var string */
         private $redirect;
+
+        /** @var array */
+        private $addresses;
+
+        /** @var Address */
+        private $address;
 
         public function setValue($key, $value)
         {
@@ -43,6 +50,26 @@ namespace Address\Http {
         public function hasRedirect(): bool
         {
             return isset($this->redirect);
+        }
+
+        public function setAddress(Address $address)
+        {
+            $this->address = $address;
+        }
+
+        public function getAddress(): Address
+        {
+            return $this->address;
+        }
+
+        public function setAddresses(array $addresses)
+        {
+            $this->addresses = $addresses;
+        }
+
+        public function getAddresses(): array
+        {
+            return $this->addresses;
         }
     }
 }
