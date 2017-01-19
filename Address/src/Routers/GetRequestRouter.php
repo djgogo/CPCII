@@ -27,6 +27,8 @@ namespace Address\Routers
             switch ($path) {
                 case '/':
                     return $this->factory->getHomeController();
+                case '/about':
+                    return $this->factory->getAboutController();
                 case '/address/addr':
 //                    return $this->factory->getAddressController();
                 case '/address/updateaddressview':

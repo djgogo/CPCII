@@ -2,6 +2,8 @@
 
 namespace Address\Factories
 {
+
+    use Address\Controllers\AboutController;
     use Address\Controllers\Error404Controller;
     use Address\Controllers\HomeController;
     use Address\Http\Session;
@@ -37,6 +39,11 @@ namespace Address\Factories
         public function getHomeController() : HomeController
         {
             return new HomeController($this->session);
+        }
+
+        public function getAboutController() : AboutController
+        {
+            return new AboutController();
         }
 
         public function getError404Controller() : Error404Controller
