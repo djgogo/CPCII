@@ -6,7 +6,7 @@ namespace Address\Routers
     use Address\Factories\Factory;
     use Address\Http\Request;
 
-    class Error404Router
+    class Error404Router implements RouterInterface
     {
         /**
          * @var Factory
@@ -18,7 +18,7 @@ namespace Address\Routers
             $this->factory = $factory;
         }
 
-        public function route(Request $request): \ControllerInterface
+        public function route(Request $request)
         {
             return $this->factory->getError404Controller();
         }

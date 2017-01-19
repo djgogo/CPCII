@@ -18,7 +18,7 @@ session_start();
 /**
  * Create Templating Engine (Twig)
  */
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/resources');
+$loader = new Twig_Loader_Filesystem(__DIR__ . '/resources/views');
 $twig = new Twig_Environment($loader, ['cache' => false]);
 
 /**

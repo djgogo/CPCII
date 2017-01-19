@@ -3,10 +3,9 @@
 namespace Address\Routers
 {
     use Address\Http\Request;
-    use Address\Controllers\Controller;
 
-    interface Router
+    interface RouterInterface
     {
-        public function route(Request $request): Controller;
+        public function route(Request $request);
     }
 }

@@ -6,7 +6,7 @@ namespace Address\Controllers
     use Address\Http\Response;
     use Address\Http\Session;
 
-    class HomeController implements Controller
+    class HomeController implements ControllerInterface
     {
         /**
          * @var Session

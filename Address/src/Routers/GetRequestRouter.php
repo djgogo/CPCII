@@ -5,7 +5,7 @@ namespace Address\Routers
     use Address\Factories\Factory;
     use Address\Http\Request;
 
-    class GetRequestRouter implements Router
+    class GetRequestRouter implements RouterInterface
     {
         /** @var Factory */
         private $factory;

@@ -16,20 +16,18 @@
         <!-- Latest compiled and minified JS -->
         <link rel="stylesheet" href="bootstrap/js/bootstrap.min.js">
 
-        <!-- Custom styles -->
-        {% block stylesheets %}{% endblock %}
+        <!-- Custom Style CSS -->
+        <link rel="stylesheet" href="css/app.css">
 
     </head>
 
     <body>
 
-        {% include 'templates/partials/navigation.twig' %}
-
-        <div class="container">
+        <div class="container" class="container">
+            {% include 'templates/partials/navigation.twig' %}
             {% block content %}{% endblock %}
+            {% include 'templates/partials/footer.twig' %}
         </div>
-
-        {% include 'templates/partials/footer.twig' %}
 
         <!-- Latest compiled and minified JQuery -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
