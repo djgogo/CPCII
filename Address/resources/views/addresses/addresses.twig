@@ -1,4 +1,4 @@
-<h2>Addresses</h2>
+<h3>Addresses</h3>
 
 <form class="form-group pull-right col-lg-4" action="/" method="get">
     <div class="input-group">
@@ -30,7 +30,7 @@
             <td>{{ address.city }}</td>
             <td>{{ address.created|date("d.m.Y H:i:s") }}</td>
             <td>{{ address.updated|date("d.m.Y H:i:s") }}</td>
-            <td><a href="/updateaddress?id={{ address.id|e('html_attr') }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><a href="/updateaddressview?id={{ address.id|e('html_attr') }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
             <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
     {% endfor %}

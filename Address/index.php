@@ -5,7 +5,11 @@ use Address\Http\Session;
 use Address\Http\Response;
 use Address\Factories\Factory;
 use Address\Factories\PDOFactory;
+use Address\ValueObjects\Token;
 
+/**
+ * only for development/debugging - delete following two lines in production version
+ */
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
 
@@ -15,6 +19,13 @@ require __DIR__ . '/vendor/autoload.php';
 $errorLogPath = __DIR__ . '/logs/error.log';
 
 session_start();
+
+/**
+ * Create CSRF Protection Token
+ */
+if (empty($_SESSION['token'])) {
+    $_SESSION['token'] = new Token();
+}
 
 /**
  * Create Templating Engine (Twig)

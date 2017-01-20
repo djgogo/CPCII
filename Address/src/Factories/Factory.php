@@ -3,14 +3,21 @@
 namespace Address\Factories
 {
 
+    use Address\Commands\UpdateAddressFormCommand;
     use Address\Controllers\AboutController;
     use Address\Controllers\Error404Controller;
+    use Address\Controllers\Error500Controller;
     use Address\Controllers\HomeController;
+    use Address\Controllers\UpdateAddressController;
+    use Address\Controllers\UpdateAddressViewController;
+    use Address\Forms\FormError;
+    use Address\Forms\FormPopulate;
     use Address\Gateways\AddressTableDataGateway;
     use Address\Http\Session;
     use Address\Loggers\ErrorLogger;
     use Address\Routers\Error404Router;
     use Address\Routers\GetRequestRouter;
+    use Address\Routers\PostRequestRouter;
 
     class Factory
     {
@@ -42,6 +49,7 @@ namespace Address\Factories
         {
             return [
                 new GetRequestRouter($this),
+                new PostRequestRouter($this, $this->session, $this->getErrorLogger()),
                 new Error404Router($this),
             ];
         }
@@ -59,9 +67,24 @@ namespace Address\Factories
             return new AboutController();
         }
 
+        public function getUpdateAddressViewController(): UpdateAddressViewController
+        {
+            return new UpdateAddressViewController($this->session, $this->getAddressTableGateway(), $this->getFormPopulate());
+        }
+
+        public function getUpdateAddressController(): UpdateAddressController
+        {
+            return new UpdateAddressController($this->getUpdateAddressFormCommand(), $this->getAddressTableGateway());
+        }
+
         public function getError404Controller(): Error404Controller
         {
             return new Error404Controller();
+        }
+
+        public function getError500Controller(): Error500Controller
+        {
+            return new Error500Controller();
         }
 
         /**
@@ -70,6 +93,27 @@ namespace Address\Factories
         public function getAddressTableGateway(): AddressTableDataGateway
         {
             return new AddressTableDataGateway($this->getDatabase(), $this->getErrorLogger());
+        }
+
+        /**
+         * FormCommands
+         */
+        public function getUpdateAddressFormCommand(): UpdateAddressFormCommand
+        {
+            return new UpdateAddressFormCommand($this->getAddressTableGateway(), $this->session, $this->getFormPopulate(), $this->getFormError());
+        }
+
+        /**
+         * Forms Error Handling and Re-Population
+         */
+        public function getFormError(): FormError
+        {
+            return new FormError($this->session);
+        }
+
+        public function getFormPopulate(): FormPopulate
+        {
+            return new FormPopulate($this->session);
         }
 
         /**
