@@ -25,7 +25,22 @@ namespace Address\Controllers
 
         public function execute(Request $request, Response $response)
         {
-            $response->setAddresses($this->dataGateway->getAllAddresses());
+            if ($request->hasValue('sort')) {
+                if ($request->getValue('sort') === 'ASC') {
+                    $response->setAddresses($this->dataGateway->getAllAddressesOrderedByUpdatedAscending());
+                    $this->session->setValue('sort', 'ASC');
+                } elseif ($request->getValue('sort') === 'DESC') {
+                    $response->setAddresses($this->dataGateway->getAllAddressesOrderedByUpdatedDescending());
+                    $this->session->setValue('sort', 'DESC');
+                }
+            } else {
+                $response->setAddresses($this->dataGateway->getAllAddresses());
+                $this->session->setValue('sort', '');
+            }
+
+            if ($request->hasValue('search')) {
+                $response->setAddresses($this->dataGateway->getSearchedAddress($request->getValue('search')));
+            }
 
             return 'home.twig';
         }

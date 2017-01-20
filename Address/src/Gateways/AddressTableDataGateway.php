@@ -62,7 +62,7 @@ namespace Address\Gateways {
         public function getSearchedAddress(string $searchString)
         {
             try {
-                $stmt = $this->pdo->prepare('SELECT * FROM addresses WHERE label LIKE :search ');
+                $stmt = $this->pdo->prepare('SELECT * FROM addresses WHERE address1 LIKE :search ');
                 $search = '%' . $searchString . '%';
                 $stmt->bindParam(':search', $search, \PDO::PARAM_STR);
                 $stmt->execute();
