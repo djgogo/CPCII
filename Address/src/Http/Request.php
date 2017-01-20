@@ -40,8 +40,7 @@ namespace Address\Http {
 
         public function isLoggedIn(): bool
         {
-            return true;
-            //return isset($_SERVER['PHP_AUTH_USER']);
+            return isset($_SERVER['PHP_AUTH_USER']);
         }
 
         public function hasValue($key): bool
