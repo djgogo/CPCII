@@ -29,9 +29,9 @@ namespace Address\Routers
                     return $this->factory->getHomeController();
                 case '/about':
                     return $this->factory->getAboutController();
-                case '/address/addr':
+                case '/address':
 //                    return $this->factory->getAddressController();
-                case '/address/updateaddressview':
+                case '/updateaddress':
 //                    return $this->factory->getUpdateAddressViewController();
                 default:
                     return null;

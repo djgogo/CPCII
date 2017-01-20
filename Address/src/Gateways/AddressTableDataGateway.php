@@ -92,7 +92,7 @@ namespace Address\Gateways {
         {
             try {
                 $stmt = $this->pdo->prepare(
-                    'UPDATE addresses SET address1=:address1, address2=:address2, city=:city, postal_code=:postal_Code WHERE id=:id'
+                    'UPDATE addresses SET address1=:address1, address2=:address2, city=:city, postal_code=:postal_code WHERE id=:id'
                 );
 
                 $stmt->bindParam(':id', $row['id'], \PDO::PARAM_INT);

@@ -17,13 +17,13 @@ namespace Adddress\Entities {
         private $city;
 
         /** @var int */
-        private $postal_code;
+        private $postalCode;
 
         /** @var string */
-        private $created_at;
+        private $created;
 
         /** @var string */
-        private $updated_at;
+        private $updated;
 
         public function getId(): int
         {
@@ -47,17 +47,17 @@ namespace Adddress\Entities {
 
         public function getPostalCode(): int
         {
-            return $this->postal_code;
+            return $this->postalCode;
         }
 
-        public function getCreatedAt(): string
+        public function getCreated(): string
         {
-            return $this->created_at;
+            return $this->created;
         }
 
-        public function getUpdatedAt(): string
+        public function getUpdated(): string
         {
-            return $this->updated_at;
+            return $this->updated;
         }
     }
 }
