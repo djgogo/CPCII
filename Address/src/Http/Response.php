@@ -3,13 +3,10 @@
 namespace Address\Http {
 
     use Adddress\Entities\Address;
-    use Address\Exceptions\ResponseException;
+    use Adddress\Entities\Text;
 
     class Response
     {
-        /** @var array */
-        private $data = array();
-
         /** @var string */
         private $redirect;
 
@@ -19,23 +16,11 @@ namespace Address\Http {
         /** @var Address */
         private $address;
 
-        public function setValue($key, $value)
-        {
-            $this->data[$key] = $value;
-        }
+        /** @var array */
+        private $texts;
 
-        public function getValue(string $key): string
-        {
-            if (!isset($this->data[$key])) {
-                throw new ResponseException("Key '$key' does not exist");
-            }
-            return $this->data[$key];
-        }
-
-        public function isset(string $key): bool
-        {
-            return isset($this->data[$key]);
-        }
+        /** @var Text */
+        private $text;
 
         public function setRedirect(string $path)
         {
@@ -70,6 +55,26 @@ namespace Address\Http {
         public function getAddresses(): array
         {
             return $this->addresses;
+        }
+
+        public function setText(Text $text)
+        {
+            $this->text = $text;
+        }
+
+        public function getText(): Text
+        {
+            return $this->text;
+        }
+
+        public function setTexts(array $texts)
+        {
+            $this->texts = $texts;
+        }
+
+        public function getTexts(): array
+        {
+            return $this->texts;
         }
     }
 }

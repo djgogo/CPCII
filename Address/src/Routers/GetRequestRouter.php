@@ -27,10 +27,14 @@ namespace Address\Routers
             switch ($path) {
                 case '/':
                     return $this->factory->getHomeController();
+                case '/text':
+                    return $this->factory->getTextController();
                 case '/about':
                     return $this->factory->getAboutController();
                 case '/updateaddressview':
                     return $this->factory->getUpdateAddressViewController();
+                case '/updatetextview':
+                    return $this->factory->getUpdateTextViewController();
                 default:
                     return null;
             }

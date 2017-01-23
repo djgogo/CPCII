@@ -4,15 +4,20 @@ namespace Address\Factories
 {
 
     use Address\Commands\UpdateAddressFormCommand;
+    use Address\Commands\UpdateTextFormCommand;
     use Address\Controllers\AboutController;
     use Address\Controllers\Error404Controller;
     use Address\Controllers\Error500Controller;
     use Address\Controllers\HomeController;
+    use Address\Controllers\TextController;
     use Address\Controllers\UpdateAddressController;
     use Address\Controllers\UpdateAddressViewController;
+    use Address\Controllers\UpdateTextController;
+    use Address\Controllers\UpdateTextViewController;
     use Address\Forms\FormError;
     use Address\Forms\FormPopulate;
     use Address\Gateways\AddressTableDataGateway;
+    use Address\Gateways\TextTableDataGateway;
     use Address\Http\Session;
     use Address\Loggers\ErrorLogger;
     use Address\Routers\Error404Router;
@@ -62,6 +67,11 @@ namespace Address\Factories
             return new HomeController($this->session, $this->getAddressTableGateway());
         }
 
+        public function getTextController(): TextController
+        {
+            return new TextController($this->session, $this->getTextTableGateway());
+        }
+
         public function getAboutController(): AboutController
         {
             return new AboutController();
@@ -75,6 +85,16 @@ namespace Address\Factories
         public function getUpdateAddressController(): UpdateAddressController
         {
             return new UpdateAddressController($this->getUpdateAddressFormCommand(), $this->getAddressTableGateway());
+        }
+
+        public function getUpdateTextViewController(): UpdateTextViewController
+        {
+            return new UpdateTextViewController($this->session, $this->getTextTableGateway(), $this->getFormPopulate());
+        }
+
+        public function getUpdateTextController(): UpdateTextController
+        {
+            return new UpdateTextController($this->getUpdateTextFormCommand(), $this->getTextTableGateway());
         }
 
         public function getError404Controller(): Error404Controller
@@ -95,12 +115,22 @@ namespace Address\Factories
             return new AddressTableDataGateway($this->getDatabase(), $this->getErrorLogger());
         }
 
+        public function getTextTableGateway(): TextTableDataGateway
+        {
+            return new TextTableDataGateway($this->getDatabase(), $this->getErrorLogger());
+        }
+
         /**
          * FormCommands
          */
         public function getUpdateAddressFormCommand(): UpdateAddressFormCommand
         {
             return new UpdateAddressFormCommand($this->getAddressTableGateway(), $this->session, $this->getFormPopulate(), $this->getFormError());
+        }
+
+        public function getUpdateTextFormCommand(): UpdateTextFormCommand
+        {
+            return new UpdateTextFormCommand($this->getTextTableGateway(), $this->session, $this->getFormPopulate(), $this->getFormError());
         }
 
         /**

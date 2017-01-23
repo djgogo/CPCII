@@ -34,9 +34,9 @@ namespace Address\Controllers {
 
         public function execute(Request $request, Response $response)
         {
-            if ($request->hasValue('address')) {
-                if ($request->getValue('address') === '') {
-                    return '404.twig';
+            if ($request->hasValue('id')) {
+                if ($request->getValue('id') === '') {
+                    return 'templates/errors/404.twig';
                 }
             }
 

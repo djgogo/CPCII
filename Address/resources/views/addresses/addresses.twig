@@ -13,12 +13,17 @@
 <table id="addresses" class="display table table-striped" cellspacing="0" width="100%">
     <thead>
     <tr><th>Id</th>
-        <th>Address1</th>
-        <th>Address2</th>
+        <th>Name</th>
+        <th>Address</th>
         <th>Postal-Code</th>
         <th>City</th>
         <th>Created</th>
-        <th><a href="?sort={% if session.getValue('sort') == 'ASC' %}DESC{% else %}ASC{% endif %}">Updated</a></th>
+        <th><a href="?sort={% if session.getValue('sort') == 'ASC' %}DESC{% else %}ASC{% endif %}"
+               title="{% if session.getValue('sort') == 'ASC' %}
+                           Click für Sortierung Absteigend
+                           {% else %}
+                           Click für Sortierung Aufsteigend
+                           {% endif %}">Updated</a></th>
     </tr>
     </thead>
     <tbody>
@@ -30,7 +35,8 @@
             <td>{{ address.city }}</td>
             <td>{{ address.created|date("d.m.Y H:i:s") }}</td>
             <td>{{ address.updated|date("d.m.Y H:i:s") }}</td>
-            <td><a href="/updateaddressview?id={{ address.id|e('html_attr') }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><a href="/updateaddressview?id={{ address.id|e('html_attr') }}" class="btn btn-primary btn-xs" title="Für Texte ändern hier clicken">
+                    <span class="glyphicon glyphicon-pencil"></span></a></td>
             <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
     {% endfor %}

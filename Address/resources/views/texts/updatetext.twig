@@ -1,0 +1,47 @@
+{% extends "templates/app.twig" %}
+
+{% block content %}
+
+    {{ include('templates/partials/message.twig') }}
+
+    <h2>Update Text No {{ response.text.id }}</h2>
+
+    {% if request.isLoggedIn() %}
+        <form class="form-horizontal" method="post" action="/updatetext">
+
+            {# CSRF Protection Token #}
+            <input type="hidden" name="csrf" value="{{ session.getValue('token') }}">
+            <input type="hidden" name="id" value="{{ response.text.id }}">
+
+            <div class="form-group {% if session.getValue('error').get('text1') %}has-error{% endif %}">
+                <label for="text1" class="col-sm-2 control-label">Text 1</label>
+                <div class="col-sm-6">
+                    <textarea class="form-control" id="text1" name="text1" rows="6">{{ session.getValue('populate').get('text1')|e('html_attr') }}</textarea>
+                    {% if session.getValue('error').get('text1') %}
+                        <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('text1') }}</small></span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group {% if session.getValue('error').get('text2') %}has-error{% endif %}">
+                <label for="text2" class="col-sm-2 control-label">Text 2</label>
+                <div class="col-sm-6">
+                    <textarea class="form-control" id="text2" name="text2" rows="6">{{ session.getValue('populate').get('text2')|e('html_attr') }}</textarea>
+                    {% if session.getValue('error').get('text2') %}
+                        <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('text2') }}</small></span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-4">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+
+        </form>
+    {% else %}
+        <a href="/" class="btn btn-primary btn-lg active" role="button">You have to login to update a Text Entry</a>
+    {% endif %}
+
+{% endblock %}
