@@ -26,7 +26,7 @@
             <div class="form-group {% if session.getValue('error').get('text2') %}has-error{% endif %}">
                 <label for="text2" class="col-sm-2 control-label">Text 2</label>
                 <div class="col-sm-6">
-                    <textarea class="form-control" id="text2" name="text2" rows="6">{{ session.getValue('populate').get('text2')|e('html_attr') }}</textarea>
+                    <textarea class="form-control" id="text2" name="text2" rows="10">{{ session.getValue('populate').get('text2')|e('html_attr') }}</textarea>
                     {% if session.getValue('error').get('text2') %}
                         <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('text2') }}</small></span>
                     {% endif %}
