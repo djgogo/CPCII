@@ -20,7 +20,7 @@ namespace Address\Gateways {
             $this->logger = $logger;
         }
 
-        public function getAllTexts()
+        public function getAllTexts(): array
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM texts");
@@ -33,7 +33,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getAllTextsOrderedByUpdatedAscending()
+        public function getAllTextsOrderedByUpdatedAscending(): Text
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM texts ORDER BY updated ASC");
@@ -46,7 +46,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getAllTextsOrderedByUpdatedDescending()
+        public function getAllTextsOrderedByUpdatedDescending(): Text
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM texts ORDER BY updated DESC");
@@ -59,7 +59,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getSearchedText(string $searchString)
+        public function getSearchedText(string $searchString): Text
         {
             try {
                 $stmt = $this->pdo->prepare('SELECT * FROM texts WHERE text1 LIKE :search OR text2 LIKE :search ');
@@ -74,7 +74,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function findTextById(int $id)
+        public function findTextById(int $id): Text
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM texts WHERE id=:id LIMIT 1");

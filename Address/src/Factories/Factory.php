@@ -6,6 +6,7 @@ namespace Address\Factories
     use Address\Commands\UpdateAddressFormCommand;
     use Address\Commands\UpdateTextFormCommand;
     use Address\Controllers\AboutController;
+    use Address\Controllers\DeleteAddressController;
     use Address\Controllers\Error404Controller;
     use Address\Controllers\Error500Controller;
     use Address\Controllers\HomeController;
@@ -85,6 +86,11 @@ namespace Address\Factories
         public function getUpdateAddressController(): UpdateAddressController
         {
             return new UpdateAddressController($this->getUpdateAddressFormCommand(), $this->getAddressTableGateway());
+        }
+
+        public function getDeleteAddressController(): DeleteAddressController
+        {
+            return new DeleteAddressController($this->session, $this->getAddressTableGateway());
         }
 
         public function getUpdateTextViewController(): UpdateTextViewController

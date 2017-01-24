@@ -16,7 +16,8 @@
     </thead>
     <tbody>
     {% for address in response.addresses %}
-        <tr><td>{{ address.id }}</td>
+        <tr>
+            <td>{{ address.id }}</td>
             <td><a href="/address?id={{ address.id|e('html_attr') }}">{{ address.address1|e('html_attr') }}</a></td>
             <td>{{ address.address2 }}</td>
             <td>{{ address.postalCode }}</td>
@@ -25,9 +26,13 @@
             <td>{{ address.updated|date("d.m.Y H:i:s") }}</td>
             <td><a href="/updateaddressview?id={{ address.id|e('html_attr') }}" class="btn btn-primary btn-xs" title="Adresse ändern hier clicken">
                     <span class="glyphicon glyphicon-pencil"></span></a></td>
-            <td><a href="/deleteaddress?id={{ address.id|e('html_attr') }}" class="btn btn-danger btn-xs" title="Adresse löschen hier clicken">
-                    <span class="glyphicon glyphicon-trash"></span></a></td>
+            <td><a href="#" data-target="#deleteConfirmation" data-recordId="{{ address.id }}" data-recordTitle="Something cool" class="deleteAddress btn btn-danger btn-xs" data-toggle="modal"
+                   title="Adresse löschen hier clicken"><span class="glyphicon glyphicon-trash"></span></a></td>
+
         </tr>
     {% endfor %}
     </tbody>
 </table>
+
+<!-- Modal HTML -->
+{% include 'addresses/deleteaddressmodal.twig' %}

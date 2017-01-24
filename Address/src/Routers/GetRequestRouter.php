@@ -35,6 +35,8 @@ namespace Address\Routers
                     return $this->factory->getUpdateAddressViewController();
                 case '/updatetextview':
                     return $this->factory->getUpdateTextViewController();
+                case '/deleteaddress':
+                    return $this->factory->getDeleteAddressController();
                 default:
                     return null;
             }

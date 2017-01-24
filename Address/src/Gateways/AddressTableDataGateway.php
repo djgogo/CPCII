@@ -20,7 +20,7 @@ namespace Address\Gateways {
             $this->logger = $logger;
         }
 
-        public function getAllAddresses()
+        public function getAllAddresses(): array
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM addresses");
@@ -33,7 +33,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getAllAddressesOrderedByUpdatedAscending()
+        public function getAllAddressesOrderedByUpdatedAscending(): Address
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM addresses ORDER BY updated ASC");
@@ -46,7 +46,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getAllAddressesOrderedByUpdatedDescending()
+        public function getAllAddressesOrderedByUpdatedDescending(): Address
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM addresses ORDER BY updated DESC");
@@ -59,7 +59,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getSearchedAddress(string $searchString)
+        public function getSearchedAddress(string $searchString): Address
         {
             try {
                 $stmt = $this->pdo->prepare('SELECT * FROM addresses WHERE address1 LIKE :search ');
@@ -74,7 +74,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function findAddressById(int $id)
+        public function findAddressById(int $id): Address
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM addresses WHERE id=:id LIMIT 1");
@@ -107,6 +107,24 @@ namespace Address\Gateways {
 
             } catch (\PDOException $e) {
                 $message = 'Fehler beim ändern eines Datensatzes der Adress Tabelle.';
+                $this->logger->log($message, $e);
+                throw new AddressTableGatewayException($message);
+            }
+        }
+
+        public function delete(string $id): bool
+        {
+            try {
+                $stmt = $this->pdo->prepare(
+                    'DELETE FROM addresses WHERE id=:id'
+                );
+
+                $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+                $stmt->execute();
+                return true;
+
+            } catch (\PDOException $e) {
+                $message = 'Fehler beim löschen eines Datensatzes der Adress Tabelle.';
                 $this->logger->log($message, $e);
                 throw new AddressTableGatewayException($message);
             }
