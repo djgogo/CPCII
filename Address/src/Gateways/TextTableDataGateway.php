@@ -33,7 +33,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getAllTextsOrderedByUpdatedAscending(): Text
+        public function getAllTextsOrderedByUpdatedAscending(): array
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM texts ORDER BY updated ASC");
@@ -46,7 +46,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getAllTextsOrderedByUpdatedDescending(): Text
+        public function getAllTextsOrderedByUpdatedDescending(): array
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM texts ORDER BY updated DESC");
@@ -59,7 +59,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getSearchedText(string $searchString): Text
+        public function getSearchedText(string $searchString): array
         {
             try {
                 $stmt = $this->pdo->prepare('SELECT * FROM texts WHERE text1 LIKE :search OR text2 LIKE :search ');

@@ -33,7 +33,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getAllAddressesOrderedByUpdatedAscending(): Address
+        public function getAllAddressesOrderedByUpdatedAscending(): array
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM addresses ORDER BY updated ASC");
@@ -46,7 +46,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getAllAddressesOrderedByUpdatedDescending(): Address
+        public function getAllAddressesOrderedByUpdatedDescending(): array
         {
             try {
                 $stmt = $this->pdo->prepare("SELECT * FROM addresses ORDER BY updated DESC");
@@ -59,7 +59,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function getSearchedAddress(string $searchString): Address
+        public function getSearchedAddress(string $searchString): array
         {
             try {
                 $stmt = $this->pdo->prepare('SELECT * FROM addresses WHERE address1 LIKE :search ');
