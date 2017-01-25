@@ -2,8 +2,8 @@
 
 namespace Address\Http {
 
-    use Adddress\Entities\Address;
-    use Adddress\Entities\Text;
+    use Address\Entities\Address;
+    use Address\Entities\Text;
 
     class Response
     {

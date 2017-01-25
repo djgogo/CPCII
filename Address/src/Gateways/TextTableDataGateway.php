@@ -2,7 +2,7 @@
 
 namespace Address\Gateways {
 
-    use Adddress\Entities\Text;
+    use Address\Entities\Text;
     use Address\Exceptions\TextTableGatewayException;
     use Address\Loggers\ErrorLogger;
 

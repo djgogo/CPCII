@@ -7,6 +7,7 @@ namespace Address\Commands {
     use Address\Gateways\AddressTableDataGateway;
     use Address\Http\Session;
     use Address\Http\Request;
+    use Address\ValueObjects\Zip;
 
     class UpdateAddressFormCommand extends AbstractFormCommand
     {
@@ -83,8 +84,10 @@ namespace Address\Commands {
                 $this->error->set('city', 'Bitte geben Sie einen Wohnort ein.');
             }
 
-            if ($this->postalCode === '') {
-                $this->error->set('postalCode', 'Bitte geben Sie eine Postleitzahl ein.');
+            try {
+                new Zip($this->postalCode);
+            } catch (\InvalidArgumentException $e) {
+                $this->error->set('postalCode', 'Bitte geben Sie eine gültige Postleitzahl ein.');
             }
         }
 

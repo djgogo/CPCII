@@ -1,6 +1,6 @@
 <?php
 
-namespace Adddress\Entities {
+namespace Address\Entities {
 
     class Text
     {

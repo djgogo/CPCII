@@ -68,15 +68,15 @@ namespace Address\Commands {
             }
 
             if (strlen($this->text1) > 1024 ) {
-                $this->error->set('text1', 'Die Textlänge darf maximal 1024 Zeichen beinhalten.');
+                $this->error->set('text1', 'Der Text darf maximal 1024 Zeichen lang sein.');
             }
 
             if ($this->text2 === '') {
-                $this->error->set('text2', 'Bitte geben Sie eine Text ein.');
+                $this->error->set('text2', 'Bitte geben Sie einen Text ein.');
             }
 
             if (strlen($this->text2) > 1024 ) {
-                $this->error->set('text2', 'Die Textlänge darf maximal 1024 Zeichen beinhalten.');
+                $this->error->set('text2', 'Der Text darf maximal 1024 Zeichen lang sein.');
             }
         }
 
