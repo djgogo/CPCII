@@ -23,7 +23,7 @@ namespace Address\Forms
             $this->session->setValue('populate', $this);
         }
 
-        public function has(string $key)
+        public function has(string $key): bool
         {
             return array_key_exists($key, $this->data);
         }
