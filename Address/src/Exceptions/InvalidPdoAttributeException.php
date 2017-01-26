@@ -2,7 +2,7 @@
 
 namespace Address\Exceptions {
 
-    class InvalidPdoAttributeException extends \InvalidArgumentException
+    class InvalidPdoAttributeException extends \Exception
     {
     }
 }

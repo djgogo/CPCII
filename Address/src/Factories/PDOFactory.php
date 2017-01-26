@@ -54,7 +54,7 @@ namespace Address\Factories {
                 return $db;
 
             } catch (\PDOException $e) {
-                throw new \Exception('Wrong mySql Credentials or mySql Database down', 0, $e);
+                throw new InvalidPdoAttributeException('Wrong mySql Credentials or mySql Database down', 0, $e);
             }
         }
     }

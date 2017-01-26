@@ -26,7 +26,7 @@ namespace Address\Controllers {
             if ($this->addressDataGateway->delete($request->getValue('id'))) {
                 $this->session->setValue('message', 'Datensatz wurde gelöscht');
             } else {
-                $this->session->setValue('warning', 'Löschung fehlgeschlagen!');
+                $this->session->setValue('warning', 'Löschen des Datensatzes fehlgeschlagen!');
             }
 
             $response->setAddresses($this->addressDataGateway->getAllAddresses());

@@ -40,7 +40,7 @@ namespace Address\Controllers {
                 }
             }
 
-            $response->setAddress($this->addressDataGateway->findAddressById($request->getValue('id')));
+            $response->setAddress($this->addressDataGateway->findAddressById((int) $request->getValue('id')));
             $this->populate->set('address1', $response->getAddress()->getAddress1());
             $this->populate->set('address2', $response->getAddress()->getAddress2());
             $this->populate->set('city', $response->getAddress()->getCity());
