@@ -3,6 +3,7 @@
 namespace Address\Gateways {
 
     use Address\Entities\Address;
+    use Address\Exceptions\AddressTableGatewayException;
     use Address\Loggers\ErrorLogger;
 
     /**
@@ -12,19 +13,13 @@ namespace Address\Gateways {
      */
     class AddressTableDataGatewayTest extends \PHPUnit_Framework_TestCase
     {
-        /**
-         * @var \PDO
-         */
+        /** @var \PDO */
         private $pdo;
 
-        /**
-         * @var AddressTableDataGateway
-         */
+        /** @var AddressTableDataGateway */
         private $gateway;
 
-        /**
-         * @var \PHPUnit_Framework_MockObject_MockObject | ErrorLogger
-         */
+        /** @var ErrorLogger | \PHPUnit_Framework_MockObject_MockObject */
         private $logger;
 
         protected function setUp()
@@ -68,7 +63,7 @@ namespace Address\Gateways {
         public function testAddressCanBeUpdated()
         {
             $row = [
-                'Id' => 1,
+                'id' => 1,
                 'address1' => 'changed Name',
                 'address2' => 'changed address',
                 'city' => 'Galaxy',
@@ -82,19 +77,27 @@ namespace Address\Gateways {
             $this->assertEquals('changed address', $address->getAddress2());
         }
 
+        public function testAddressCanBeDeleted()
+        {
+            $this->assertTrue($this->gateway->delete(2));
+            
+            $this->expectException(AddressTableGatewayException::class);
+            $this->gateway->findAddressById(2);
+        }
+
         private function initDatabase()
         {
             $pdo = new \PDO('sqlite::memory:');
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $pdo->query(
                 'CREATE TABLE addresses (
-                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 address1 VARCHAR(255) NOT NULL,
                 address2 VARCHAR(255) NOT NULL,
                 city VARCHAR(255) NOT NULL,
                 postalCode INT(11) NOT NULL,
                 created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                updated DATETIME NOT NULL)'
+                updated TIMESTAMP NOT NULL)'
             );
 
             // Insert First Row
@@ -102,8 +105,9 @@ namespace Address\Gateways {
             $address21 = 'Milky Way';
             $city1 = 'Galaxy';
             $postalCode1 = 1234;
-            $created1 = '2017-01-26 12:00:00';
-            $updated1 = date("Y-m-d H:i:s");
+            $created1 = date("Y-m-d H:i:s");
+            $updated1 = '2017-01-26 12:00:00';
+
 
             $stmt = $pdo->prepare(
                 'INSERT INTO addresses (address1, address2, city, postalCode, created, updated) 
@@ -123,8 +127,8 @@ namespace Address\Gateways {
             $address22 = 'Mars Ave.';
             $city2 = 'Naboo';
             $postalCode2 = 5678;
-            $created2 = '2017-01-26 12:00:00';
-            $updated2 = date("Y-m-d H:i:s");
+            $created2 = date("Y-m-d H:i:s");
+            $updated2 = '2017-01-26 18:00:00';
 
             $stmt = $pdo->prepare(
                 'INSERT INTO addresses (address1, address2, city, postalCode, created, updated) 
@@ -140,9 +144,7 @@ namespace Address\Gateways {
             $stmt->execute();
 
             $query = $pdo->query('SELECT * FROM addresses');
-            //$result = $query->fetchAll(\PDO::FETCH_COLUMN);
-            $result = $query->fetchAll();
-            var_dump($result); exit;
+            $result = $query->fetchAll(\PDO::FETCH_COLUMN);
             if (count($result) != 2) {
                 throw new \Exception('Database could not be initialized!');
             }

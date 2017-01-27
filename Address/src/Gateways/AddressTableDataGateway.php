@@ -27,7 +27,7 @@ namespace Address\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Address::class);
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Address Tabelle.';
+                $message = 'Fehler beim lesen aller Datensätze der Address Tabelle.';
                 $this->logger->log($message, $e);
                 throw new AddressTableGatewayException($message);
             }
@@ -40,7 +40,7 @@ namespace Address\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Address::class);
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Address Tabelle.';
+                $message = 'Fehler beim lesen aller Datensätze der Address Tabelle aufsteigend sortiert.';
                 $this->logger->log($message, $e);
                 throw new AddressTableGatewayException($message);
             }
@@ -53,7 +53,7 @@ namespace Address\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Address::class);
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Address Tabelle.';
+                $message = 'Fehler beim lesen aller Datensätze der Address Tabelle absteigend sortiert.';
                 $this->logger->log($message, $e);
                 throw new AddressTableGatewayException($message);
             }
@@ -68,7 +68,7 @@ namespace Address\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Address::class);
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Address Tabelle.';
+                $message = 'Fehler beim lesen der Address Tabelle mit Search-Parameter.';
                 $this->logger->log($message, $e);
                 throw new AddressTableGatewayException($message);
             }
@@ -80,9 +80,13 @@ namespace Address\Gateways {
                 $stmt = $this->pdo->prepare("SELECT * FROM addresses WHERE id=:id LIMIT 1");
                 $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
                 $stmt->execute();
-                return $stmt->fetchObject(Address::class);
+                $result = $stmt->fetchObject(Address::class);
+                if ($result == false) {
+                    throw new \PDOException();
+                }
+                return $result;
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Address Tabelle.';
+                $message = 'Fehler beim lesen der Address Tabelle mit Id-Parameter.';
                 $this->logger->log($message, $e);
                 throw new AddressTableGatewayException($message);
             }

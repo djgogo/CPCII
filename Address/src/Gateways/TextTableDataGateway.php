@@ -27,7 +27,7 @@ namespace Address\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Text::class);
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Text Tabelle.';
+                $message = 'Fehler beim lesen aller Datensätze der Text Tabelle.';
                 $this->logger->log($message, $e);
                 throw new TextTableGatewayException($message);
             }
@@ -40,7 +40,7 @@ namespace Address\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Text::class);
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Text Tabelle.';
+                $message = 'Fehler beim lesen aller Datensätze der Text Tabelle aufsteigend sortiert.';
                 $this->logger->log($message, $e);
                 throw new TextTableGatewayException($message);
             }
@@ -53,7 +53,7 @@ namespace Address\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Text::class);
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Text Tabelle.';
+                $message = 'Fehler beim lesen aller Datensätze der Text Tabelle absteigend sortiert.';
                 $this->logger->log($message, $e);
                 throw new TextTableGatewayException($message);
             }
@@ -68,7 +68,7 @@ namespace Address\Gateways {
                 $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Text::class);
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Text Tabelle.';
+                $message = 'Fehler beim lesen der Text Tabelle mit Search-Parameter.';
                 $this->logger->log($message, $e);
                 throw new TextTableGatewayException($message);
             }
@@ -82,7 +82,7 @@ namespace Address\Gateways {
                 $stmt->execute();
                 return $stmt->fetchObject(Text::class);
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Text Tabelle.';
+                $message = 'Fehler beim lesen der Text Tabelle mit Id-Parameter.';
                 $this->logger->log($message, $e);
                 throw new TextTableGatewayException($message);
             }

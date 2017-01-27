@@ -14,12 +14,22 @@ namespace Address\Http {
             $this->data = $session;
         }
 
+        /** @param mixed $value */
         public function setValue(string $key, $value)
         {
             $this->data[$key] = $value;
         }
 
-        public function getValue(string $key, $default = null)
+        public function isset(string $key): bool
+        {
+            return isset($this->data[$key]);
+        }
+
+        /**
+         * No Exception thrown if Key not found. Template message.twig needs an empty keyValue or null if not set.
+         * @return mixed|string
+         */
+        public function getValue(string $key, $default = '')
         {
             if (isset($this->data[$key])) {
                 return $this->data[$key];
@@ -35,17 +45,12 @@ namespace Address\Http {
             unset($this->data[$key]);
         }
 
-        public function getSessionData() : array
+        public function getSessionData(): array
         {
             if ($this->data !== null) {
                 return $this->data;
             }
             return array();
-        }
-
-        public function isset(string $key) : bool
-        {
-            return isset($this->data[$key]);
         }
     }
 }
