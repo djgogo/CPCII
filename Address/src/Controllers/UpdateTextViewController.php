@@ -1,6 +1,7 @@
 <?php
 
-namespace Address\Controllers {
+namespace Address\Controllers
+{
 
     use Address\Forms\FormPopulate;
     use Address\Gateways\TextTableDataGateway;
@@ -10,19 +11,13 @@ namespace Address\Controllers {
 
     class UpdateTextViewController implements ControllerInterface
     {
-        /**
-         * @var TextTableDataGateway
-         */
+        /** @var TextTableDataGateway */
         private $textDataGateway;
 
-        /**
-         * @var Session
-         */
+        /** @var Session */
         private $session;
 
-        /**
-         * @var FormPopulate
-         */
+        /** @var FormPopulate */
         private $populate;
 
         public function __construct(Session $session, TextTableDataGateway $textDataGateway, FormPopulate $formPopulate)

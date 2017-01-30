@@ -1,6 +1,7 @@
 <?php
 
-namespace Address\Commands {
+namespace Address\Commands
+{
 
     use Address\Forms\FormError;
     use Address\Forms\FormPopulate;
@@ -109,7 +110,7 @@ namespace Address\Commands {
             }
         }
 
-        public function hasErrors() : bool
+        public function hasErrors(): bool
         {
             if ($this->session->isset('error')) {
                 return true;
@@ -137,4 +138,3 @@ namespace Address\Commands {
         }
     }
 }
-

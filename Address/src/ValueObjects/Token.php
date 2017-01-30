@@ -4,9 +4,7 @@ namespace Address\ValueObjects
 {
     class Token
     {
-        /**
-         * @var string
-         */
+        /** @var null|string */
         private $tokenValue = '';
 
         public function __construct($value = null)
@@ -28,12 +26,12 @@ namespace Address\ValueObjects
             $this->tokenValue = sha1(hash('sha512', $source, true));
         }
 
-        public function isEqualTo(Token $token) : bool
+        public function isEqualTo(Token $token): bool
         {
             return $this->tokenValue === (string)$token;
         }
 
-        public function __toString() : string
+        public function __toString(): string
         {
             return $this->tokenValue;
         }

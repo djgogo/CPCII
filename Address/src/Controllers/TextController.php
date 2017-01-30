@@ -2,6 +2,7 @@
 
 namespace Address\Controllers
 {
+
     use Address\Gateways\TextTableDataGateway;
     use Address\Http\Request;
     use Address\Http\Response;
@@ -9,9 +10,7 @@ namespace Address\Controllers
 
     class TextController implements ControllerInterface
     {
-        /**
-         * @var Session
-         */
+        /** @var Session */
         private $session;
 
         /** @var TextTableDataGateway */

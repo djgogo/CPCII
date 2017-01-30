@@ -8,9 +8,7 @@ namespace Address\Routers
 
     class Error404Router implements RouterInterface
     {
-        /**
-         * @var Factory
-         */
+        /** @var Factory */
         private $factory;
 
         public function __construct(Factory $factory)

@@ -4,24 +4,15 @@ namespace Address\ValueObjects {
 
     class Zip
     {
-        /**
-         * @var int
-         */
+        /** @var int */
         private $zip;
 
-        /**
-         * @param int $zip
-         */
-        public function __construct($zip)
+        public function __construct(int $zip)
         {
             $this->setZip($zip);
         }
 
-        /**
-         * @param int $zip
-         * @throws \InvalidArgumentException
-         */
-        private function setZip($zip)
+        private function setZip(int $zip)
         {
             $zip = trim($zip);
 
@@ -32,10 +23,7 @@ namespace Address\ValueObjects {
             $this->zip = $zip;
         }
 
-        /**
-         * @return string
-         */
-        public function __toString()
+        public function __toString(): string
         {
             return (string) $this->zip;
         }

@@ -1,6 +1,7 @@
 <?php
 
-namespace Address\Controllers {
+namespace Address\Controllers
+{
 
     use Address\Commands\UpdateAddressFormCommand;
     use Address\Gateways\AddressTableDataGateway;
@@ -9,14 +10,10 @@ namespace Address\Controllers {
 
     class UpdateAddressController implements ControllerInterface
     {
-        /**
-         * @var AddressTableDataGateway
-         */
+        /** @var AddressTableDataGateway */
         private $addressDataGateway;
 
-        /**
-         * @var UpdateAddressFormCommand
-         */
+        /** @var UpdateAddressFormCommand */
         private $updateAddressFormCommand;
 
         public function __construct(UpdateAddressFormCommand $updateAddressFormCommand, AddressTableDataGateway $addressDataGateway)

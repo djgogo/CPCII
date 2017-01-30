@@ -26,7 +26,7 @@ namespace Address\Http {
         }
 
         /**
-         * No Exception thrown if Key not found. Template message.twig needs an empty keyValue or null if not set.
+         * No Exception will be thrown if Key not found. Template message.twig needs an empty key-value or null if not set.
          * @return mixed|string
          */
         public function getValue(string $key, $default = '')

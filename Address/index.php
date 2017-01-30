@@ -52,6 +52,7 @@ $factory  = new Factory($session, $pdoFactory, $errorLogPath);
  */
 $routers = $factory->getRouters();
 foreach ($routers as $router) {
+    /** @var $router Address\Routers\RouterInterface */
     $controller = $router->route($request);
     if ($controller != null) {
         break;
@@ -60,6 +61,7 @@ foreach ($routers as $router) {
 
 /**
  * Get the View and execute
+ * @var $controller Address\Controllers\ControllerInterface
  */
 $view = $controller->execute($request, $response);
 

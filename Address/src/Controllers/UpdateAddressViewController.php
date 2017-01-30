@@ -1,6 +1,7 @@
 <?php
 
-namespace Address\Controllers {
+namespace Address\Controllers
+{
 
     use Address\Forms\FormPopulate;
     use Address\Gateways\AddressTableDataGateway;
@@ -10,19 +11,13 @@ namespace Address\Controllers {
 
     class UpdateAddressViewController implements ControllerInterface
     {
-        /**
-         * @var AddressTableDataGateway
-         */
+        /** @var AddressTableDataGateway */
         private $addressDataGateway;
 
-        /**
-         * @var Session
-         */
+        /** @var Session */
         private $session;
 
-        /**
-         * @var FormPopulate
-         */
+        /** @var FormPopulate */
         private $populate;
 
         public function __construct(Session $session, AddressTableDataGateway $addressDataGateway, FormPopulate $formPopulate)
@@ -52,6 +47,5 @@ namespace Address\Controllers {
 
             return 'addresses/updateaddress.twig';
         }
-
     }
 }

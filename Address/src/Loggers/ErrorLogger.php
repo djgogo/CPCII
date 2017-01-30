@@ -26,7 +26,7 @@ namespace Address\Loggers
                 $e->getLine();
 
             /**
-             * message-type 3: message wird an die Datei destination angefügt.
+             * message-type 3: message wird an die Datei (destination) angefügt.
              * Ein Zeilenumbruch wird nicht automatisch an das Ende des message-Strings angehängt.
              */
             error_log($logEntry . PHP_EOL, 3, $this->path);

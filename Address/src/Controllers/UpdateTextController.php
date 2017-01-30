@@ -1,6 +1,7 @@
 <?php
 
-namespace Address\Controllers {
+namespace Address\Controllers
+{
 
     use Address\Commands\UpdateTextFormCommand;
     use Address\Gateways\TextTableDataGateway;
@@ -9,14 +10,10 @@ namespace Address\Controllers {
 
     class UpdateTextController implements ControllerInterface
     {
-        /**
-         * @var TextTableDataGateway
-         */
+        /** @var TextTableDataGateway */
         private $textDataGateway;
 
-        /**
-         * @var UpdateTextFormCommand
-         */
+        /** @var UpdateTextFormCommand */
         private $updateTextFormCommand;
 
         public function __construct(UpdateTextFormCommand $updateTextFormCommand, TextTableDataGateway $textDataGateway)

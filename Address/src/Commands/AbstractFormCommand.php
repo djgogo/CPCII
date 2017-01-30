@@ -1,6 +1,7 @@
 <?php
 
-namespace Address\Commands {
+namespace Address\Commands
+{
 
     use Address\Http\Request;
 
@@ -13,4 +14,3 @@ namespace Address\Commands {
         abstract protected function repopulateForm();
     }
 }
-

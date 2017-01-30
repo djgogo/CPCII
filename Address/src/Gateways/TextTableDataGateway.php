@@ -80,7 +80,11 @@ namespace Address\Gateways {
                 $stmt = $this->pdo->prepare("SELECT * FROM texts WHERE id=:id LIMIT 1");
                 $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
                 $stmt->execute();
-                return $stmt->fetchObject(Text::class);
+                $result = $stmt->fetchObject(Text::class);
+                if ($result == false) {
+                    throw new \PDOException();
+                }
+                return $result;
             } catch (\PDOException $e) {
                 $message = 'Fehler beim lesen der Text Tabelle mit Id-Parameter.';
                 $this->logger->log($message, $e);

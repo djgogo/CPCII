@@ -1,6 +1,7 @@
 <?php
 
-namespace Address\Controllers {
+namespace Address\Controllers
+{
 
     use Address\Gateways\AddressTableDataGateway;
     use Address\Http\Request;
