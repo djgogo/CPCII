@@ -6,6 +6,15 @@ use Address\Http\Response;
 use Address\Factories\Factory;
 use Address\Factories\PDOFactory;
 use Address\ValueObjects\Token;
+use Address\Configuration\Configuration;
+
+require __DIR__ . '/src/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
+
+/**
+ * Configuration
+ */
+$configuration = new Configuration(__DIR__ . '/conf/config.php');
 
 /**
  * only for development/debugging - delete following two lines in production version
@@ -13,54 +22,55 @@ use Address\ValueObjects\Token;
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
 
-require __DIR__ . '/src/autoload.php';
-require __DIR__ . '/vendor/autoload.php';
-
-$errorLogPath = __DIR__ . '/logs/error.log';
-
 session_start();
 
 /**
- * Create CSRF Protection Token
+ * CSRF Protection Token
  */
 if (empty($_SESSION['token'])) {
     $_SESSION['token'] = new Token();
 }
 
 /**
- * Create Templating Engine (Twig)
+ * Templating Engine (Twig)
  */
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/resources/views');
+$loader = new Twig_Loader_Filesystem($configuration->getTwigTemplatePath());
 $twig = new Twig_Environment($loader, ['cache' => false]);
 
 /**
- * HTTP relevant files
+ * HTTP relevant Objects
  */
 $session = new Session($_SESSION);
 $request = new Request($_REQUEST, $_SERVER);
 $response = new Response();
 
 /**
- * Create Database Handler and the Factory
+ * Database Handler and the Factory
  */
-//$pdoFactory = new PDOFactory('localhost', 'Cart', 'addressuser', '1234');
-$pdoFactory = new PDOFactory('localhost', 'Cart', 'root', '1234', 'utf8');
-$factory  = new Factory($session, $pdoFactory, $errorLogPath);
+$pdoFactory = new PDOFactory(
+    $configuration->getDatabaseHost(),
+    $configuration->getDatabaseName(),
+    $configuration->getDatabaseUser(),
+    $configuration->getDatabasePassword(),
+    $configuration->getDatabaseCharset()
+);
+
+$factory  = new Factory($session, $pdoFactory, $configuration->getErrorLogPath());
 
 /**
- * Get the Router and Controller for execution
+ * Router and Controller for execution
  */
 $routers = $factory->getRouters();
 foreach ($routers as $router) {
     /** @var $router Address\Routers\RouterInterface */
     $controller = $router->route($request);
-    if ($controller != null) {
+    if ($controller !== null) {
         break;
     }
 }
 
 /**
- * Get the View and execute
+ * View
  * @var $controller Address\Controllers\ControllerInterface
  */
 $view = $controller->execute($request, $response);
@@ -71,7 +81,8 @@ $view = $controller->execute($request, $response);
 if ($response->hasRedirect()) {
     $_SESSION = $session->getSessionData();
     header('Location: ' . $response->getRedirect(), 302);
-} else {
-    echo $twig->render($view, array('request' => $request, 'session' => $session, 'response' => $response));
-    $_SESSION = $session->getSessionData();
+    exit();
 }
+echo $twig->render($view, array('request' => $request, 'session' => $session, 'response' => $response));
+$_SESSION = $session->getSessionData();
+

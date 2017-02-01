@@ -8,7 +8,7 @@ namespace Address\Controllers
 
     class AboutController implements ControllerInterface
     {
-        public function execute(Request $request, Response $response)
+        public function execute(Request $request, Response $response): string
         {
             return 'about.twig';
         }

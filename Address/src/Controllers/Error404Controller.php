@@ -6,9 +6,9 @@ namespace Address\Controllers
     use Address\Http\Request;
     use Address\Http\Response;
 
-        class Error404Controller implements ControllerInterface
+    class Error404Controller implements ControllerInterface
     {
-        public function execute(Request $request, Response $response)
+        public function execute(Request $request, Response $response): string
         {
             return '/templates/errors/404.twig';
         }
