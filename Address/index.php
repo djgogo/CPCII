@@ -17,10 +17,12 @@ require __DIR__ . '/vendor/autoload.php';
 $configuration = new Configuration(__DIR__ . '/conf/config.php');
 
 /**
- * only for development/debugging - delete following two lines in production version
+ * only for development/debugging
  */
-error_reporting(E_ALL | E_STRICT);
-ini_set('display_errors', 1);
+if (!$configuration->isProduction()) {
+    error_reporting(E_ALL | E_STRICT);
+    ini_set('display_errors', 1);
+}
 
 session_start();
 
