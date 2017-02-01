@@ -8,12 +8,10 @@ namespace Address\Commands
     use Address\Gateways\TextTableDataGateway;
     use Address\Http\Session;
     use Address\Http\Request;
+    use Address\ValueObjects\Id;
 
     class UpdateTextFormCommand extends AbstractFormCommand
     {
-        /** @var Session */
-        private $session;
-
         /** @var TextTableDataGateway */
         private $dataGateway;
 
@@ -33,37 +31,33 @@ namespace Address\Commands
         private $text2;
 
         public function __construct(
-            TextTableDataGateway $dataGateway,
             Session $session,
+            TextTableDataGateway $dataGateway,
             FormPopulate $formPopulate,
             FormError $error)
         {
+            parent::__construct($session);
+
             $this->dataGateway = $dataGateway;
-            $this->session = $session;
             $this->populate = $formPopulate;
             $this->error = $error;
         }
 
-        public function execute(Request $request)
+        protected function setFormValues(Request $request)
         {
-            if ($this->session->isset('error')) {
-                $this->session->deleteValue('error');
-            }
-
             $this->id = $request->getValue('id');
             $this->text1 = $request->getValue('text1');
             $this->text2 = $request->getValue('text2');
-
-            $this->validateRequest();
-            if (!$this->hasErrors()) {
-                $this->performAction();
-                return true;
-            }
-            return false;
         }
 
-        public function validateRequest()
+        protected function validateRequest()
         {
+            try {
+                new Id($this->id);
+            } catch (\InvalidArgumentException $e) {
+                $this->error->set('postalCode', 'Die Address-Id ist ungültig.');
+            }
+
             if ($this->text1 === '') {
                 $this->error->set('text1', 'Bitte geben Sie einen Text ein.');
             }
@@ -91,18 +85,10 @@ namespace Address\Commands
             ];
 
             if ($this->dataGateway->update($row)) {
-                $this->session->setValue('message', 'Datensatz wurde geändert');
+                $this->getSession()->setValue('message', 'Datensatz wurde geändert');
             } else {
-                $this->session->setValue('warning', 'Aenderung fehlgeschlagen!');
+                $this->getSession()->setValue('warning', 'Aenderung fehlgeschlagen!');
             }
-        }
-
-        public function hasErrors(): bool
-        {
-            if ($this->session->isset('error')) {
-                return true;
-            }
-            return false;
         }
 
         public function repopulateForm()

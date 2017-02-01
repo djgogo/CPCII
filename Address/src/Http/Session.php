@@ -6,7 +6,7 @@ namespace Address\Http {
 
     class Session
     {
-        /** @var array  */
+        /** @var array */
         public $data;
 
         public function __construct(array $session)

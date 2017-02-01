@@ -5,6 +5,7 @@ namespace Address\Gateways {
     use Address\Entities\Address;
     use Address\Exceptions\AddressTableGatewayException;
     use Address\Loggers\ErrorLogger;
+    use Address\ParameterObjects\AddressParameterObject;
 
     class AddressTableDataGateway
     {
@@ -92,19 +93,19 @@ namespace Address\Gateways {
             }
         }
 
-        public function update(array $row): bool
+        public function update(AddressParameterObject $address): bool
         {
             try {
                 $stmt = $this->pdo->prepare(
                     'UPDATE addresses SET address1=:address1, address2=:address2, city=:city, postalCode=:postalCode, updated=:updated WHERE id=:id'
                 );
 
-                $stmt->bindParam(':id', $row['id'], \PDO::PARAM_INT);
-                $stmt->bindParam(':address1', $row['address1'], \PDO::PARAM_STR);
-                $stmt->bindParam(':address2', $row['address2'], \PDO::PARAM_STR);
-                $stmt->bindParam(':city', $row['city'], \PDO::PARAM_STR);
-                $stmt->bindParam(':postalCode', $row['postalCode'], \PDO::PARAM_INT);
-                $stmt->bindParam(':updated', $row['updated'], \PDO::PARAM_STR);
+                $stmt->bindParam(':id', $address->getId(), \PDO::PARAM_INT);
+                $stmt->bindParam(':address1', $address->getAddress1(), \PDO::PARAM_STR);
+                $stmt->bindParam(':address2', $address->getAddress2(), \PDO::PARAM_STR);
+                $stmt->bindParam(':city', $address->getCity(), \PDO::PARAM_STR);
+                $stmt->bindParam(':postalCode', $address->getPostalCode(), \PDO::PARAM_INT);
+                $stmt->bindParam(':updated', $address->getUpdated(), \PDO::PARAM_STR);
 
                 $stmt->execute();
                 return true;

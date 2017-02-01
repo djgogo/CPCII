@@ -131,12 +131,12 @@ namespace Address\Factories
          */
         public function getUpdateAddressFormCommand(): UpdateAddressFormCommand
         {
-            return new UpdateAddressFormCommand($this->getAddressTableGateway(), $this->session, $this->getFormPopulate(), $this->getFormError());
+            return new UpdateAddressFormCommand($this->session, $this->getAddressTableGateway(), $this->getFormPopulate(), $this->getFormError());
         }
 
         public function getUpdateTextFormCommand(): UpdateTextFormCommand
         {
-            return new UpdateTextFormCommand($this->getTextTableGateway(), $this->session, $this->getFormPopulate(), $this->getFormError());
+            return new UpdateTextFormCommand($this->session, $this->getTextTableGateway(), $this->getFormPopulate(), $this->getFormError());
         }
 
         /**

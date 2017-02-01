@@ -3,18 +3,18 @@
 namespace Address\Commands
 {
 
+    use Address\Entities\Address;
     use Address\Forms\FormError;
     use Address\Forms\FormPopulate;
     use Address\Gateways\AddressTableDataGateway;
     use Address\Http\Session;
     use Address\Http\Request;
+    use Address\ParameterObjects\AddressParameterObject;
+    use Address\ValueObjects\Id;
     use Address\ValueObjects\Zip;
 
     class UpdateAddressFormCommand extends AbstractFormCommand
     {
-        /** @var Session */
-        private $session;
-
         /** @var AddressTableDataGateway */
         private $dataGateway;
 
@@ -40,39 +40,35 @@ namespace Address\Commands
         private $postalCode;
 
         public function __construct(
-            AddressTableDataGateway $dataGateway,
             Session $session,
+            AddressTableDataGateway $dataGateway,
             FormPopulate $formPopulate,
             FormError $error)
         {
+            parent::__construct($session);
+
             $this->dataGateway = $dataGateway;
-            $this->session = $session;
             $this->populate = $formPopulate;
             $this->error = $error;
         }
 
-        public function execute(Request $request)
+        protected function setFormValues(Request $request)
         {
-            if ($this->session->isset('error')) {
-                $this->session->deleteValue('error');
-            }
-
             $this->id = $request->getValue('id');
             $this->address1 = $request->getValue('address1');
             $this->address2 = $request->getValue('address2');
             $this->city = $request->getValue('city');
             $this->postalCode = $request->getValue('postalCode');
-
-            $this->validateRequest();
-            if (!$this->hasErrors()) {
-                $this->performAction();
-                return true;
-            }
-            return false;
         }
 
-        public function validateRequest()
+        protected function validateRequest()
         {
+            try {
+                new Id($this->id);
+            } catch (\InvalidArgumentException $e) {
+            $this->error->set('postalCode', 'Die Address-Id ist ungültig.');
+            }
+
             if ($this->address1 === '') {
                 $this->error->set('address1', 'Bitte geben Sie einen Namen ein.');
             }
@@ -94,28 +90,29 @@ namespace Address\Commands
 
         public function performAction()
         {
-            $row = [
-                'id' => $this->id,
-                'address1' => $this->address1,
-                'address2' => $this->address2,
-                'city' => $this->city,
-                'postalCode' => $this->postalCode,
-                'updated' => date("Y-m-d H:i:s")
-            ];
+            $address = new AddressParameterObject(
+                $this->id,
+                $this->address1,
+                $this->address2,
+                $this->city,
+                $this->postalCode,
+                date("Y-m-d H:i:s")
+            );
 
-            if ($this->dataGateway->update($row)) {
-                $this->session->setValue('message', 'Datensatz wurde geändert');
+//            $row = [
+//                'id' => $this->id,
+//                'address1' => $this->address1,
+//                'address2' => $this->address2,
+//                'city' => $this->city,
+//                'postalCode' => $this->postalCode,
+//                'updated' => date("Y-m-d H:i:s")
+//            ];
+
+            if ($this->dataGateway->update($address)) {
+                $this->getSession()->setValue('message', 'Datensatz wurde geändert');
             } else {
-                $this->session->setValue('warning', 'Aenderung fehlgeschlagen!');
+                $this->getSession()->setValue('warning', 'Aenderung fehlgeschlagen!');
             }
-        }
-
-        public function hasErrors(): bool
-        {
-            if ($this->session->isset('error')) {
-                return true;
-            }
-            return false;
         }
 
         public function repopulateForm()
