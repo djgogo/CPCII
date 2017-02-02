@@ -3,6 +3,7 @@
 namespace Address\Gateways {
 
     use Address\Entities\Text;
+    use Address\Entities\TextParameterObject;
     use Address\Exceptions\TextTableGatewayException;
     use Address\Loggers\ErrorLogger;
 
@@ -23,9 +24,16 @@ namespace Address\Gateways {
         public function getAllTexts(): array
         {
             try {
-                $stmt = $this->pdo->prepare("SELECT * FROM texts");
-                $stmt->execute();
+                $stmt = $this->pdo->prepare(
+                    'SELECT id, text1, text2, created, updated 
+                     FROM texts'
+                );
+
+                if (!$stmt->execute()) {
+                    throw new \PDOException();
+                }
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Text::class);
+
             } catch (\PDOException $e) {
                 $message = 'Fehler beim lesen aller Datensätze der Text Tabelle.';
                 $this->logger->log($message, $e);
@@ -36,9 +44,18 @@ namespace Address\Gateways {
         public function getAllTextsOrderedByUpdatedAscending(): array
         {
             try {
-                $stmt = $this->pdo->prepare("SELECT * FROM texts ORDER BY updated ASC");
-                $stmt->execute();
+                $stmt = $this->pdo->prepare(
+                    'SELECT id, text1, text2, created, updated 
+                     FROM texts 
+                     ORDER BY updated ASC'
+                );
+
+                if (!$stmt->execute()) {
+                    throw new \PDOException();
+                }
+
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Text::class);
+
             } catch (\PDOException $e) {
                 $message = 'Fehler beim lesen aller Datensätze der Text Tabelle aufsteigend sortiert.';
                 $this->logger->log($message, $e);
@@ -49,9 +66,17 @@ namespace Address\Gateways {
         public function getAllTextsOrderedByUpdatedDescending(): array
         {
             try {
-                $stmt = $this->pdo->prepare("SELECT * FROM texts ORDER BY updated DESC");
-                $stmt->execute();
+                $stmt = $this->pdo->prepare(
+                    'SELECT id, text1, text2, created, updated 
+                     FROM texts 
+                     ORDER BY updated DESC'
+                );
+
+                if (!$stmt->execute()) {
+                    throw new \PDOException();
+                }
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Text::class);
+
             } catch (\PDOException $e) {
                 $message = 'Fehler beim lesen aller Datensätze der Text Tabelle absteigend sortiert.';
                 $this->logger->log($message, $e);
@@ -62,11 +87,20 @@ namespace Address\Gateways {
         public function getSearchedText(string $searchString): array
         {
             try {
-                $stmt = $this->pdo->prepare('SELECT * FROM texts WHERE text1 LIKE :search OR text2 LIKE :search ');
+                $stmt = $this->pdo->prepare(
+                    'SELECT id, text1, text2, created, updated 
+                     FROM texts 
+                     WHERE text1 LIKE :search OR text2 LIKE :search'
+                );
+
                 $search = '%' . $searchString . '%';
                 $stmt->bindParam(':search', $search, \PDO::PARAM_STR);
-                $stmt->execute();
+
+                if (!$stmt->execute()) {
+                    throw new \PDOException();
+                }
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Text::class);
+
             } catch (\PDOException $e) {
                 $message = 'Fehler beim lesen der Text Tabelle mit Search-Parameter.';
                 $this->logger->log($message, $e);
@@ -77,14 +111,23 @@ namespace Address\Gateways {
         public function findTextById(int $id): Text
         {
             try {
-                $stmt = $this->pdo->prepare("SELECT * FROM texts WHERE id=:id LIMIT 1");
+                $stmt = $this->pdo->prepare(
+                    'SELECT id, text1, text2, created, updated 
+                     FROM texts WHERE id=:id 
+                     LIMIT 1'
+                );
                 $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-                $stmt->execute();
+
+                if (!$stmt->execute()) {
+                    throw new \PDOException();
+                }
+
                 $result = $stmt->fetchObject(Text::class);
                 if ($result == false) {
                     throw new \PDOException();
                 }
                 return $result;
+
             } catch (\PDOException $e) {
                 $message = 'Fehler beim lesen der Text Tabelle mit Id-Parameter.';
                 $this->logger->log($message, $e);
@@ -92,20 +135,23 @@ namespace Address\Gateways {
             }
         }
 
-        public function update(array $row): bool
+        public function update(TextParameterObject $text)
         {
             try {
                 $stmt = $this->pdo->prepare(
-                    'UPDATE texts SET text1=:text1, text2=:text2, updated=:updated WHERE id=:id'
+                    'UPDATE texts 
+                     SET text1=:text1, text2=:text2, updated=:updated 
+                     WHERE id=:id'
                 );
 
-                $stmt->bindParam(':id', $row['id'], \PDO::PARAM_INT);
-                $stmt->bindParam(':text1', $row['text1'], \PDO::PARAM_STR);
-                $stmt->bindParam(':text2', $row['text2'], \PDO::PARAM_STR);
-                $stmt->bindParam(':updated', $row['updated'], \PDO::PARAM_STR);
+                $stmt->bindValue(':id', $text->getId(), \PDO::PARAM_INT);
+                $stmt->bindValue(':text1', $text->getText1(), \PDO::PARAM_STR);
+                $stmt->bindValue(':text2', $text->getText2(), \PDO::PARAM_STR);
+                $stmt->bindValue(':updated', $text->getUpdated(), \PDO::PARAM_STR);
 
-                $stmt->execute();
-                return true;
+                if (!$stmt->execute()) {
+                    throw new \PDOException();
+                }
 
             } catch (\PDOException $e) {
                 $message = 'Fehler beim ändern eines Datensatzes der Text Tabelle.';

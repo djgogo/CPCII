@@ -3,7 +3,7 @@
 namespace Address\Commands
 {
 
-    use Address\Entities\Address;
+    use Address\Exceptions\AddressTableGatewayException;
     use Address\Forms\FormError;
     use Address\Forms\FormPopulate;
     use Address\Gateways\AddressTableDataGateway;
@@ -39,17 +39,22 @@ namespace Address\Commands
         /** @var int */
         private $postalCode;
 
+        /** @var \DateTime */
+        private $dateTime;
+
         public function __construct(
             Session $session,
             AddressTableDataGateway $dataGateway,
             FormPopulate $formPopulate,
-            FormError $error)
+            FormError $error,
+            \DateTime $dateTime)
         {
             parent::__construct($session);
 
             $this->dataGateway = $dataGateway;
             $this->populate = $formPopulate;
             $this->error = $error;
+            $this->dateTime = $dateTime;
         }
 
         protected function setFormValues(Request $request)
@@ -88,7 +93,7 @@ namespace Address\Commands
             }
         }
 
-        public function performAction()
+        protected function performAction()
         {
             $address = new AddressParameterObject(
                 $this->id,
@@ -96,26 +101,18 @@ namespace Address\Commands
                 $this->address2,
                 $this->city,
                 $this->postalCode,
-                date("Y-m-d H:i:s")
+                $this->dateTime->format('Y-m-d H:i:s')
             );
 
-//            $row = [
-//                'id' => $this->id,
-//                'address1' => $this->address1,
-//                'address2' => $this->address2,
-//                'city' => $this->city,
-//                'postalCode' => $this->postalCode,
-//                'updated' => date("Y-m-d H:i:s")
-//            ];
-
-            if ($this->dataGateway->update($address)) {
+            try {
+                $this->dataGateway->update($address);
                 $this->getSession()->setValue('message', 'Datensatz wurde geändert');
-            } else {
+            } catch (AddressTableGatewayException $e) {
                 $this->getSession()->setValue('warning', 'Aenderung fehlgeschlagen!');
             }
         }
 
-        public function repopulateForm()
+        protected function repopulateForm()
         {
             if ($this->address1 !== '') {
                 $this->populate->set('address1', $this->address1);

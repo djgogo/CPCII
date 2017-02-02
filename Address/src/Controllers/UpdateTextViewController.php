@@ -3,6 +3,7 @@
 namespace Address\Controllers
 {
 
+    use Address\Exceptions\TextTableGatewayException;
     use Address\Forms\FormPopulate;
     use Address\Gateways\TextTableDataGateway;
     use Address\Http\Request;
@@ -27,15 +28,18 @@ namespace Address\Controllers
             $this->populate = $formPopulate;
         }
 
-        public function execute(Request $request, Response $response)
+        public function execute(Request $request, Response $response): string
         {
-            if ($request->hasValue('id')) {
-                if ($request->getValue('id') === '') {
-                    return 'templates/errors/404.twig';
-                }
+            if ($request->hasValue('id') && $request->getValue('id') === '') {
+                return 'templates/errors/404.twig';
             }
 
-            $response->setText($this->textDataGateway->findTextById($request->getValue('id')));
+            try {
+                $response->setText($this->textDataGateway->findTextById($request->getValue('id')));
+            } catch (TextTableGatewayException $e) {
+                return 'templates/errors/500.twig';
+            }
+
             $this->populate->set('text1', $response->getText()->getText1());
             $this->populate->set('text2', $response->getText()->getText2());
 

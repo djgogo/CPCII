@@ -29,6 +29,7 @@ namespace Address\Commands
                 $this->performAction();
                 return true;
             }
+            $this->repopulateForm();
             return false;
         }
 

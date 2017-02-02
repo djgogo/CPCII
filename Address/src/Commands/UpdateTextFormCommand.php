@@ -3,6 +3,8 @@
 namespace Address\Commands
 {
 
+    use Address\Entities\TextParameterObject;
+    use Address\Exceptions\TextTableGatewayException;
     use Address\Forms\FormError;
     use Address\Forms\FormPopulate;
     use Address\Gateways\TextTableDataGateway;
@@ -30,17 +32,22 @@ namespace Address\Commands
         /** @var string */
         private $text2;
 
+        /** @var \DateTime */
+        private $dateTime;
+
         public function __construct(
             Session $session,
             TextTableDataGateway $dataGateway,
             FormPopulate $formPopulate,
-            FormError $error)
+            FormError $error,
+            \DateTime $dateTime)
         {
             parent::__construct($session);
 
             $this->dataGateway = $dataGateway;
             $this->populate = $formPopulate;
             $this->error = $error;
+            $this->dateTime = $dateTime;
         }
 
         protected function setFormValues(Request $request)
@@ -77,21 +84,22 @@ namespace Address\Commands
 
         public function performAction()
         {
-            $row = [
-                'id' => $this->id,
-                'text1' => $this->text1,
-                'text2' => $this->text2,
-                'updated' => date("Y-m-d H:i:s")
-            ];
+            $text = new TextParameterObject(
+                $this->id,
+                $this->text1,
+                $this->text2,
+                $this->dateTime->format('Y-m-d H:i:s')
+            );
 
-            if ($this->dataGateway->update($row)) {
+            try {
+                $this->dataGateway->update($text);
                 $this->getSession()->setValue('message', 'Datensatz wurde geändert');
-            } else {
+            } catch (TextTableGatewayException $e) {
                 $this->getSession()->setValue('warning', 'Aenderung fehlgeschlagen!');
             }
         }
 
-        public function repopulateForm()
+        protected function repopulateForm()
         {
             if ($this->text1 !== '') {
                 $this->populate->set('text1', $this->text1);

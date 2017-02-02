@@ -24,11 +24,8 @@ namespace Address\Controllers
 
         public function execute(Request $request, Response $response)
         {
-            $result = $this->updateAddressFormCommand->execute($request);
-
-            if ($result === false) {
+            if (!$this->updateAddressFormCommand->execute($request)) {
                 $response->setAddress($this->addressDataGateway->findAddressById($request->getValue('id')));
-                $this->updateAddressFormCommand->repopulateForm();
                 return 'addresses/updateaddress.twig';
             }
 

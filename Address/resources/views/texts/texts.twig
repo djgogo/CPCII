@@ -14,12 +14,16 @@
         <th>Text 1</th>
         <th>Text 2</th>
         <th>Created</th>
-        <th><a href="?sort={% if session.getValue('sort') == 'ASC' %}DESC{% else %}ASC{% endif %}"
-               title="{% if session.getValue('sort') == 'ASC' %}
+        {% if request.hasValue('sort') %}
+            <th><a href="?sort={% if request.getValue('sort') == 'ASC' %}DESC{% else %}ASC{% endif %}"
+                   title="{% if request.getValue('sort') == 'ASC' %}
                            Click für Sortierung Absteigend
                            {% else %}
                            Click für Sortierung Aufsteigend
                            {% endif %}">Updated</a></th>
+        {% else %}
+            <th><a href="?sort=ASC" title="Click für Sortierung Aufsteigend">Updated</a></th>
+        {% endif %}
     </tr>
     </thead>
     <tbody>

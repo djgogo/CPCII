@@ -22,19 +22,17 @@ namespace Address\Controllers
             $this->dataGateway = $dataGateway;
         }
 
-        public function execute(Request $request, Response $response)
+        public function execute(Request $request, Response $response): string
         {
             if ($request->hasValue('sort')) {
                 if ($request->getValue('sort') === 'ASC') {
+                    // TODO only one Method - besser lösen!
                     $response->setAddresses($this->dataGateway->getAllAddressesOrderedByUpdatedAscending());
-                    $this->session->setValue('sort', 'ASC');
                 } elseif ($request->getValue('sort') === 'DESC') {
                     $response->setAddresses($this->dataGateway->getAllAddressesOrderedByUpdatedDescending());
-                    $this->session->setValue('sort', 'DESC');
                 }
             } else {
                 $response->setAddresses($this->dataGateway->getAllAddresses());
-                $this->session->setValue('sort', '');
             }
 
             if ($request->hasValue('search')) {

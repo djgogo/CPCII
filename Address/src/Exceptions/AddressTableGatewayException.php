@@ -1,7 +1,7 @@
 <?php
 
-namespace Address\Exceptions {
-
+namespace Address\Exceptions
+{
     class AddressTableGatewayException extends \Exception
     {
     }

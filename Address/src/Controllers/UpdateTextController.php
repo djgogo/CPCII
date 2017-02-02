@@ -24,11 +24,8 @@ namespace Address\Controllers
 
         public function execute(Request $request, Response $response)
         {
-            $result = $this->updateTextFormCommand->execute($request);
-
-            if ($result === false) {
+            if (!$this->updateTextFormCommand->execute($request)) {
                 $response->setText($this->textDataGateway->findTextById($request->getValue('id')));
-                $this->updateTextFormCommand->repopulateForm();
                 return 'texts/updatetext.twig';
             }
 

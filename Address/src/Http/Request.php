@@ -7,14 +7,14 @@ namespace Address\Http {
     class Request
     {
         /** @var array */
-        private $input;
+        private $request;
 
         /** @var array */
         private $server;
 
         public function __construct(array $request, array $server)
         {
-            $this->input = $request;
+            $this->request = $request;
             $this->server = $server;
         }
 
@@ -30,12 +30,12 @@ namespace Address\Http {
 
         public function isPostRequest(): bool
         {
-            return ($this->getRequestMethod() == 'POST');
+            return ($this->getRequestMethod() === 'POST');
         }
 
         public function isGetRequest(): bool
         {
-            return ($this->getRequestMethod() == 'GET');
+            return ($this->getRequestMethod() === 'GET');
         }
 
         public function isLoggedIn(): bool
@@ -45,7 +45,7 @@ namespace Address\Http {
 
         public function hasValue($key): bool
         {
-            return isset($this->input[$key]);
+            return isset($this->request[$key]);
         }
 
         public function getValue($key): string
@@ -53,7 +53,7 @@ namespace Address\Http {
             if (!$this->hasValue($key)) {
                 throw new RequestValueNotFoundException('Value ' . $key . ' not found.');
             }
-            return $this->input[$key];
+            return $this->request[$key];
         }
     }
 }

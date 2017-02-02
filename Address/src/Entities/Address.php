@@ -1,6 +1,7 @@
 <?php
 
-namespace Address\Entities {
+namespace Address\Entities
+{
 
     class Address
     {

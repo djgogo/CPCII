@@ -36,6 +36,9 @@ namespace Address\Factories
         /** @var string */
         private $errorLogPath;
 
+        /** @var bool */
+        private $loggerInstance = null;
+
         public function __construct(Session $session, PDOFactory $pdoFactory, string $errorLogPath)
         {
             $this->session = $session;
@@ -131,12 +134,24 @@ namespace Address\Factories
          */
         public function getUpdateAddressFormCommand(): UpdateAddressFormCommand
         {
-            return new UpdateAddressFormCommand($this->session, $this->getAddressTableGateway(), $this->getFormPopulate(), $this->getFormError());
+            return new UpdateAddressFormCommand(
+                $this->session,
+                $this->getAddressTableGateway(),
+                $this->getFormPopulate(),
+                $this->getFormError(),
+                $this->getDateTime()
+            );
         }
 
         public function getUpdateTextFormCommand(): UpdateTextFormCommand
         {
-            return new UpdateTextFormCommand($this->session, $this->getTextTableGateway(), $this->getFormPopulate(), $this->getFormError());
+            return new UpdateTextFormCommand(
+                $this->session,
+                $this->getTextTableGateway(),
+                $this->getFormPopulate(),
+                $this->getFormError(),
+                $this->getDateTime()
+            );
         }
 
         /**
@@ -157,10 +172,17 @@ namespace Address\Factories
          */
         public function getErrorLogger(): ErrorLogger
         {
+            if ($this->loggerInstance === null) {
+                $this->loggerInstance = new ErrorLogger($this->getDateTime(), $this->errorLogPath);
+            }
+            return $this->loggerInstance;
+        }
+
+        private function getDateTime(): \DateTime
+        {
             $datetime = new \DateTime();
             $datetime->setTimezone(new \DateTimeZone('Europe/Zurich'));
-
-            return new ErrorLogger($datetime, $this->errorLogPath);
+            return $datetime;
         }
     }
 }

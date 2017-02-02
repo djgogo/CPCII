@@ -3,6 +3,7 @@
 namespace Address\Controllers
 {
 
+    use Address\Exceptions\AddressTableGatewayException;
     use Address\Forms\FormPopulate;
     use Address\Gateways\AddressTableDataGateway;
     use Address\Http\Request;
@@ -29,13 +30,16 @@ namespace Address\Controllers
 
         public function execute(Request $request, Response $response)
         {
-            if ($request->hasValue('id')) {
-                if ($request->getValue('id') === '') {
-                    return 'templates/errors/404.twig';
-                }
+            if ($request->hasValue('id') && $request->getValue('id') === '') {
+                return 'templates/errors/404.twig';
             }
 
-            $response->setAddress($this->addressDataGateway->findAddressById((int) $request->getValue('id')));
+            try {
+                $response->setAddress($this->addressDataGateway->findAddressById((int) $request->getValue('id')));
+            } catch (AddressTableGatewayException $e) {
+                return 'templates/errors/500.twig';
+            }
+
             $this->populate->set('address1', $response->getAddress()->getAddress1());
             $this->populate->set('address2', $response->getAddress()->getAddress2());
             $this->populate->set('city', $response->getAddress()->getCity());
