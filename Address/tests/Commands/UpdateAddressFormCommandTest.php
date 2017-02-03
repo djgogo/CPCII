@@ -43,7 +43,13 @@ namespace Address\Commands {
             $this->session = new Session(array());
             $this->populate = new FormPopulate($this->session);
             $this->error = new FormError($this->session);
-            $this->updateAddressFormCommand = new UpdateAddressFormCommand($this->dataGateway, $this->session, $this->populate, $this->error);
+            $this->updateAddressFormCommand = new UpdateAddressFormCommand(
+                $this->session,
+                $this->dataGateway,
+                $this->populate,
+                $this->error,
+                new \DateTime()
+            );
         }
 
         /**
@@ -62,15 +68,15 @@ namespace Address\Commands {
             ];
             $request[$field] = '';
             $request = new Request($request, array());
-            $this->assertFalse($this->updateAddressFormCommand->execute($request));
 
-            $this->updateAddressFormCommand->repopulateForm();
+            $this->assertFalse($this->updateAddressFormCommand->execute($request));
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($field));
         }
 
         public function formFieldProvider()
         {
             return [
+                ['id', 'Bitte geben Sie einen Namen ein.'],
                 ['address1', 'Bitte geben Sie einen Namen ein.'],
                 ['address2', 'Bitte geben Sie eine Addresse ein.'],
                 ['city', 'Bitte geben Sie einen Wohnort ein.'],
