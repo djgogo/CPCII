@@ -5,11 +5,13 @@ namespace Address\Gateways {
     use Address\Entities\Address;
     use Address\Exceptions\AddressTableGatewayException;
     use Address\Loggers\ErrorLogger;
+    use Address\ParameterObjects\AddressParameterObject;
 
     /**
      * @covers Address\Gateways\AddressTableDataGateway
      * @uses Address\Loggers\ErrorLogger
      * @uses Address\Entities\Address
+     * @uses Address\ParameterObjects\AddressParameterObject
      */
     class AddressTableDataGatewayTest extends \PHPUnit_Framework_TestCase
     {
@@ -50,27 +52,27 @@ namespace Address\Gateways {
 
         public function testAddressesCanBeSortedAscendingByUpdated()
         {
-            $addresses = $this->gateway->getAllAddressesOrderedByUpdatedAscending();
+            $addresses = $this->gateway->getAllAddressesOrderedByUpdated('ASC');
             $this->assertEquals(1, $addresses[0]->getId());
         }
 
         public function testAddressesCanBeSortedDescendingByUpdated()
         {
-            $addresses = $this->gateway->getAllAddressesOrderedByUpdatedDescending();
+            $addresses = $this->gateway->getAllAddressesOrderedByUpdated('DESC');
             $this->assertEquals(2, $addresses[0]->getId());
         }
 
         public function testAddressCanBeUpdated()
         {
-            $row = [
-                'id' => 1,
-                'address1' => 'changed Name',
-                'address2' => 'changed address',
-                'city' => 'Galaxy',
-                'postalCode' => 1234,
-                'updated' => date("Y-m-d H:i:s")
-            ];
-            $this->assertTrue($this->gateway->update($row));
+            $requestFormValues = new AddressParameterObject(
+                1,
+                'changed Name',
+                'changed address',
+                'Galaxy',
+                1234,
+                date("Y-m-d H:i:s")
+            );
+            $this->gateway->update($requestFormValues);
 
             $address = $this->gateway->findAddressById(1);
             $this->assertEquals('changed Name', $address->getAddress1());

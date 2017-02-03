@@ -3,7 +3,6 @@
 namespace Address\Http {
 
     use Address\Entities\Address;
-    use Address\Entities\Text;
 
     class Response
     {
@@ -15,12 +14,6 @@ namespace Address\Http {
 
         /** @var Address */
         private $address;
-
-        /** @var array */
-        private $texts;
-
-        /** @var Text */
-        private $text;
 
         public function setRedirect(string $path)
         {
@@ -55,26 +48,6 @@ namespace Address\Http {
         public function getAddresses(): array
         {
             return $this->addresses;
-        }
-
-        public function setText(Text $text)
-        {
-            $this->text = $text;
-        }
-
-        public function getText(): Text
-        {
-            return $this->text;
-        }
-
-        public function setTexts(Text ...$texts)
-        {
-            $this->texts = $texts;
-        }
-
-        public function getTexts(): array
-        {
-            return $this->texts;
         }
     }
 }

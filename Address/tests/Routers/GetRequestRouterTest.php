@@ -43,10 +43,8 @@ namespace Address\Routers {
         {
             return [
                 ['/', \Address\Controllers\HomeController::class],
-                ['/text', \Address\Controllers\TextController::class],
                 ['/about', \Address\Controllers\AboutController::class],
                 ['/updateaddressview', \Address\Controllers\UpdateAddressViewController::class],
-                ['/updatetextview', \Address\Controllers\UpdateTextViewController::class],
                 ['/deleteaddress', \Address\Controllers\DeleteAddressController::class],
             ];
         }

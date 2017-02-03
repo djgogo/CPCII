@@ -4,7 +4,15 @@ namespace Address\Gateways {
 
     use Address\Exceptions\AddressTableGatewayException;
     use Address\Loggers\ErrorLogger;
+    use Address\ParameterObjects\AddressParameterObject;
+    use Doctrine\DBAL\Driver\PDOStatement;
 
+    /**
+     * @covers Address\Gateways\AddressTableDataGateway
+     * @uses Address\Exceptions\AddressTableGatewayException
+     * @uses Address\Loggers\ErrorLogger
+     * @uses Address\ParameterObjects\AddressParameterObject
+     */
     class AddressesDatabaseText extends \PHPUnit_Framework_TestCase
     {
         /** @var \PDO | \PHPUnit_Framework_MockObject_MockObject */
@@ -19,15 +27,19 @@ namespace Address\Gateways {
         /** @var \PDOException */
         private $exception;
 
+        /** @var AddressParameterObject */
+        private $parameterObject;
+
         protected function setUp()
         {
             $this->pdo = $this->getMockBuilder(\PDO::class)->disableOriginalConstructor()->getMock();
             $this->logger = $this->getMockBuilder(ErrorLogger::class)->disableOriginalConstructor()->getMock();
+            $this->parameterObject = $this->getMockBuilder(AddressParameterObject::class)->disableOriginalConstructor()->getMock();
             $this->dataGateway = new AddressTableDataGateway($this->pdo, $this->logger);
             $this->exception = new \PDOException();
         }
 
-        public function testPdoExceptionIsLoggedAndRethrownInGetAllAddresses()
+        public function testPdoExceptionIsLoggedAndRethrownIfGetAllAddressesFails()
         {
             $this->expectException(AddressTableGatewayException::class);
 
@@ -44,7 +56,7 @@ namespace Address\Gateways {
             $this->dataGateway->getAllAddresses();
         }
 
-        public function testPdoExceptionIsLoggedAndRethrownInGetAllAddressesOrderedByUpdatedAscending()
+        public function testPdoExceptionIsLoggedAndRethrownIfGetAllAddressesOrderedByUpdatedFails()
         {
             $this->expectException(AddressTableGatewayException::class);
 
@@ -58,24 +70,7 @@ namespace Address\Gateways {
                 ->method('log')
                 ->with('Fehler beim lesen aller Datensätze der Address Tabelle aufsteigend sortiert.', $this->exception);
 
-            $this->dataGateway->getAllAddressesOrderedByUpdatedAscending();
-        }
-
-        public function testPdoExceptionIsLoggedAndRethrownInGetAllAddressesOrderedByUpdatedDescending()
-        {
-            $this->expectException(AddressTableGatewayException::class);
-
-            $this->pdo
-                ->expects($this->once())
-                ->method('prepare')
-                ->willThrowException($this->exception);
-
-            $this->logger
-                ->expects($this->once())
-                ->method('log')
-                ->with('Fehler beim lesen aller Datensätze der Address Tabelle absteigend sortiert.', $this->exception);
-
-            $this->dataGateway->getAllAddressesOrderedByUpdatedDescending();
+            $this->dataGateway->getAllAddressesOrderedByUpdated('ASC');
         }
 
         public function testPdoExceptionIsLoggedAndRethrownInGetSearchedAddress()
@@ -126,7 +121,7 @@ namespace Address\Gateways {
                 ->method('log')
                 ->with('Fehler beim ändern eines Datensatzes der Adress Tabelle.', $this->exception);
 
-            $this->dataGateway->update(array());
+            $this->dataGateway->update($this->parameterObject);
         }
 
         public function testPdoExceptionIsLoggedAndRethrownInDelete()
@@ -145,5 +140,23 @@ namespace Address\Gateways {
 
             $this->dataGateway->delete(9999);
         }
+            //todo --->
+//        public function testGetAllAddressesThrowsExceptionIfExecutionFails()
+//        {
+//            $statement = $this->getMockBuilder(PDOStatement::class)->disableOriginalConstructor()->getMock();
+//            $this->expectException(AddressTableGatewayException::class);
+//
+//            $this->pdo
+//                ->expects($this->once())
+//                ->method('prepare')
+//                ->willReturn($statement);
+//
+//            $statement
+//                ->expects($this->once())
+//                ->method('execute')
+//                ->willReturn(false);
+//
+//            $this->dataGateway->getAllAddresses();
+//        }
     }
 }

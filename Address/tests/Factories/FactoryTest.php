@@ -8,25 +8,21 @@ namespace Address\Factories {
      * @covers Address\Factories\Factory
      * @uses Address\Http\Session
      * @uses Address\Controllers\HomeController
-     * @uses Address\Controllers\TextController
      * @uses Address\Controllers\AboutController
      * @uses Address\Controllers\UpdateAddressViewController
      * @uses Address\Controllers\UpdateAddressController
      * @uses Address\Controllers\DeleteAddressController
-     * @uses Address\Controllers\UpdateTextViewController
-     * @uses Address\Controllers\UpdateTextController
      * @uses Address\Controllers\Error404Controller
      * @uses Address\Controllers\Error500Controller
      * @uses Address\Gateways\AddressTableDataGateway
-     * @uses Address\Gateways\TextTableDataGateway
      * @uses Address\Commands\UpdateAddressFormCommand
-     * @uses Address\Commands\UpdateTextFormCommand
      * @uses Address\Forms\FormError
      * @uses Address\Forms\FormPopulate
      * @uses Address\Loggers\ErrorLogger
      * @uses Address\Routers\GetRequestRouter
      * @uses Address\Routers\PostRequestRouter
      * @uses Address\Routers\Error404Router
+     * @uses Address\Commands\AbstractFormCommand
      */
     class FactoryTest extends \PHPUnit_Framework_TestCase
     {
@@ -91,19 +87,14 @@ namespace Address\Factories {
         {
             return [
                 ['getHomeController', \Address\Controllers\HomeController::class],
-                ['getTextController', \Address\Controllers\TextController::class],
                 ['getAboutController', \Address\Controllers\AboutController::class],
                 ['getUpdateAddressViewController', \Address\Controllers\UpdateAddressViewController::class],
                 ['getUpdateAddressController', \Address\Controllers\UpdateAddressController::class],
                 ['getDeleteAddressController', \Address\Controllers\DeleteAddressController::class],
-                ['getUpdateTextViewController', \Address\Controllers\UpdateTextViewController::class],
-                ['getUpdateTextController', \Address\Controllers\UpdateTextController::class],
                 ['getError404Controller', \Address\Controllers\Error404Controller::class],
                 ['getError500Controller', \Address\Controllers\Error500Controller::class],
                 ['getAddressTableGateway', \Address\Gateways\AddressTableDataGateway::class],
-                ['getTextTableGateway', \Address\Gateways\TextTableDataGateway::class],
                 ['getUpdateAddressFormCommand', \Address\Commands\UpdateAddressFormCommand::class],
-                ['getUpdateTextFormCommand', \Address\Commands\UpdateTextFormCommand::class],
                 ['getFormError', \Address\Forms\FormError::class],
                 ['getFormPopulate', \Address\Forms\FormPopulate::class],
                 ['getErrorLogger', \Address\Loggers\ErrorLogger::class],

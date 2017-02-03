@@ -3,6 +3,7 @@
 namespace Address\Controllers {
 
     use Address\Entities\Address;
+    use Address\Exceptions\AddressTableGatewayException;
     use Address\Forms\FormPopulate;
     use Address\Gateways\AddressTableDataGateway;
     use Address\Http\Request;
@@ -205,7 +206,7 @@ namespace Address\Controllers {
         }
 
 
-        public function testIfRequestHasValueIdButItsEmptyReturnsErrorTemplate ()
+        public function testIfRequestHasValueIdButItsEmptyReturns404ErrorTemplate ()
         {
             $this->request
                 ->expects($this->once())
@@ -220,6 +221,16 @@ namespace Address\Controllers {
                 ->willReturn('');
 
             $this->assertEquals('templates/errors/404.twig', $this->updateAddressViewController->execute($this->request, $this->response));
+        }
+
+        public function testSetAddressWithInvalidIdCatchesExceptionAndReturns500ErrorTemplate()
+        {
+            $this->response
+                ->expects($this->once())
+                ->method('setAddress')
+                ->willThrowException(new AddressTableGatewayException());
+
+            $this->assertEquals('templates/errors/500.twig', $this->updateAddressViewController->execute($this->request, $this->response));
         }
     }
 }

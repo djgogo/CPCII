@@ -41,8 +41,6 @@ namespace Address\Routers
             switch ($path) {
                 case '/updateaddress';
                     return $this->factory->getUpdateAddressController();
-                case '/updatetext';
-                    return $this->factory->getUpdateTextController();
                 default:
                     return null;
             }

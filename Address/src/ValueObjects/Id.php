@@ -10,9 +10,6 @@ namespace Address\ValueObjects
         public function __construct(int $id)
         {
             $this->ensureIdNumberIsBiggerThanZero($id);
-            $this->ensureIdIsIntegral($id);
-            $this->ensureIdIsOnlyDigits($id);
-
             $this->id = $id;
         }
 
@@ -20,20 +17,6 @@ namespace Address\ValueObjects
         {
             if ($id < 0) {
                 throw new \InvalidArgumentException('Id: "' . $id . '" was lower than zero.');
-            }
-        }
-
-        private function ensureIdIsIntegral(int $id)
-        {
-            if ($id === round($id, 0)) {
-                throw new \InvalidArgumentException('Id: "' . $id . '" was not Integral.');
-            }
-        }
-
-        private function ensureIdIsOnlyDigits(int $id)
-        {
-            if (!ctype_digit((string) $id)) {
-                throw new \InvalidArgumentException('Id should have only digits: ' . $id);
             }
         }
 

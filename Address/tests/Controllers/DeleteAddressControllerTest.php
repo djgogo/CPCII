@@ -3,6 +3,7 @@
 namespace Address\Controllers {
 
     use Address\Entities\Address;
+    use Address\Exceptions\AddressTableGatewayException;
     use Address\Gateways\AddressTableDataGateway;
     use Address\Http\Request;
     use Address\Http\Response;
@@ -69,12 +70,12 @@ namespace Address\Controllers {
             $this->response
                 ->expects($this->once())
                 ->method('setAddresses')
-                ->with(array($this->address));
+                ->with(...[$this->address]);
 
             $this->dataGateway
                 ->expects($this->once())
                 ->method('getAllAddresses')
-                ->willReturn(array($this->address));
+                ->willReturn([$this->address]);
 
             $this->response
                 ->expects($this->once())
@@ -89,14 +90,7 @@ namespace Address\Controllers {
             $this->dataGateway
                 ->expects($this->once())
                 ->method('delete')
-                ->with(0)
-                ->willReturn(false);
-
-            $this->request
-                ->expects($this->once())
-                ->method('getValue')
-                ->with('id')
-                ->willReturn(0);
+                ->willThrowException(new AddressTableGatewayException);
 
             $this->session
                 ->expects($this->once())
@@ -106,12 +100,12 @@ namespace Address\Controllers {
             $this->response
                 ->expects($this->once())
                 ->method('setAddresses')
-                ->with(array($this->address));
+                ->with(...[$this->address]);
 
             $this->dataGateway
                 ->expects($this->once())
                 ->method('getAllAddresses')
-                ->willReturn(array($this->address));
+                ->willReturn([$this->address]);
 
             $this->response
                 ->expects($this->once())

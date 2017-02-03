@@ -7,12 +7,12 @@ namespace Address\ValueObjects {
         /** @var int */
         private $zip;
 
-        public function __construct(int $zip)
+        public function __construct(string $zip)
         {
             $this->setZip($zip);
         }
 
-        private function setZip(int $zip)
+        private function setZip(string $zip)
         {
             $zip = trim($zip);
 

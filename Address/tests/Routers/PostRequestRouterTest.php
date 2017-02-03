@@ -61,7 +61,6 @@ namespace Address\Routers {
         public function provideData()
         {
             return [
-                ['/updatetext', \Address\Controllers\UpdateTextController::class],
                 ['/updateaddress', \Address\Controllers\UpdateAddressController::class],
             ];
         }

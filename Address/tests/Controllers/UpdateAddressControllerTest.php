@@ -58,12 +58,12 @@ namespace Address\Controllers {
             $this->response
                 ->expects($this->once())
                 ->method('setAddresses')
-                ->with(array($this->address));
+                ->with(...[$this->address]);
 
             $this->dataGateway
                 ->expects($this->once())
                 ->method('getAllAddresses')
-                ->willReturn(array($this->address));
+                ->willReturn([$this->address]);
 
             $this->response
                 ->expects($this->once())
@@ -97,10 +97,6 @@ namespace Address\Controllers {
                 ->method('getValue')
                 ->with('id')
                 ->willReturn(1);
-
-            $this->updateAddressFormCommand
-                ->expects($this->once())
-                ->method('repopulateForm');
 
             $this->assertEquals('addresses/updateaddress.twig', $this->updateAddressController->execute($this->request, $this->response));
         }

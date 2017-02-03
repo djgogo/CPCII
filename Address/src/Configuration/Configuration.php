@@ -21,7 +21,7 @@ namespace Address\Configuration
             $this->file = $file;
         }
 
-        protected function getValueFromConfig(string $key): string
+        public function getValueFromConfig(string $key): string
         {
             $this->loadConfig();
 
@@ -34,16 +34,15 @@ namespace Address\Configuration
 
         private function loadConfig()
         {
-            if ($this->isLoaded) {
-                return;
-            }
+            if (!$this->isLoaded) {
 
-            if (!is_readable($this->file)) {
-                throw new ConfigurationException('Cannot read configuration file "' . $this->file . '"');
-            }
+                if (!is_readable($this->file)) {
+                    throw new ConfigurationException('Cannot read configuration file "' . $this->file . '"');
+                }
 
-            $this->isLoaded = true;
-            $this->settings = require $this->file;
+                $this->isLoaded = true;
+                $this->settings = require $this->file;
+            }
         }
 
         public function isProduction(): bool

@@ -2,12 +2,10 @@
 namespace Address\Http {
 
     use Address\Entities\Address;
-    use Address\Entities\Text;
 
     /**
      * @covers Address\Http\Response
      * @uses   Address\Entities\Address
-     * @uses   Address\Entities\Text
      */
     class ResponseTest extends \PHPUnit_Framework_TestCase
     {
@@ -16,12 +14,6 @@ namespace Address\Http {
 
        /** @var Address */
         private $address;
-
-        /** @var array */
-        private $texts;
-
-        /** @var Text */
-        private $text;
 
         /** @var String */
         private $redirect;
@@ -56,31 +48,6 @@ namespace Address\Http {
                 ]
             );
 
-            $this->texts = [
-                new Text(
-                    [
-                        'id' => 1,
-                        'text1' => 'Lorem Ipsum',
-                        'text2' => 'Lorem Ipsum Dolor'
-                    ]
-                ),
-                new Text(
-                    [
-                        'id' => 2,
-                        'text1' => 'Lorem Ipsum Dolor',
-                        'text2' => 'Lorem Ipsum Dolor Sit Amet'
-                    ]
-                )
-            ];
-
-            $this->text = new Text(
-                [
-                    'id' => 1,
-                    'text1' => 'Lorem Ipsum',
-                    'text2' => 'Lorem Ipsum Dolor'
-                ]
-            );
-
             $this->redirect = '/goSomeWhere';
             $this->response = new Response();
         }
@@ -93,20 +60,8 @@ namespace Address\Http {
 
         public function testAddressesCanBeSetAndRetrieved()
         {
-            $this->response->setAddresses($this->addresses);
+            $this->response->setAddresses(...$this->addresses);
             $this->assertEquals($this->addresses, $this->response->getAddresses());
-        }
-
-        public function testTextCanBeSetAndRetrieved()
-        {
-            $this->response->setText($this->text);
-            $this->assertEquals($this->text, $this->response->getText());
-        }
-
-        public function testTextsCanBeSetAndRetrieved()
-        {
-            $this->response->setTexts($this->texts);
-            $this->assertEquals($this->texts, $this->response->getTexts());
         }
 
         public function testRedirectCanBeSetAndRetrieved()

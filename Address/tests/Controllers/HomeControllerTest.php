@@ -2,6 +2,7 @@
 
 namespace Address\Controllers {
 
+    use Address\Entities\Address;
     use Address\Gateways\AddressTableDataGateway;
     use Address\Http\Request;
     use Address\Http\Response;
@@ -31,12 +32,16 @@ namespace Address\Controllers {
         /** @var HomeController */
         private $homeController;
 
+        /** @var Address */
+        private $address;
+
         protected function setUp()
         {
             $this->request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
             $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
             $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
             $this->dataGateway = $this->getMockBuilder(AddressTableDataGateway::class)->disableOriginalConstructor()->getMock();
+            $this->address = $this->getMockBuilder(Address::class)->disableOriginalConstructor()->getMock();
 
             $this->homeController = new HomeController($this->session, $this->dataGateway);
         }
@@ -57,17 +62,18 @@ namespace Address\Controllers {
 
             $this->response
                 ->expects($this->once())
-                ->method('setAddresses');
+                ->method('setAddresses')
+                ->with(...[$this->address]);
+
+            $this->dataGateway
+                ->expects($this->once())
+                ->method('getAllAddresses')
+                ->willReturn([$this->address]);
 
             $this->dataGateway
                 ->expects($this->once())
                 ->method('getAllAddresses')
                 ->willReturn(array());
-
-            $this->session
-                ->expects($this->once())
-                ->method('setValue')
-                ->with('sort', '');
 
             $this->assertEquals('home.twig', $this->homeController->execute($this->request, $this->response));
         }
@@ -88,17 +94,13 @@ namespace Address\Controllers {
 
             $this->response
                 ->expects($this->once())
-                ->method('setAddresses');
+                ->method('setAddresses')
+                ->with(...[$this->address]);
 
             $this->dataGateway
                 ->expects($this->once())
-                ->method('getAllAddressesOrderedByUpdatedAscending')
-                ->willReturn(array());
-
-            $this->session
-                ->expects($this->once())
-                ->method('setValue')
-                ->with('sort', 'ASC');
+                ->method('getAllAddressesOrderedByUpdated')
+                ->willReturn([$this->address]);
 
             $this->assertEquals('home.twig', $this->homeController->execute($this->request, $this->response));
         }
@@ -119,17 +121,13 @@ namespace Address\Controllers {
 
             $this->response
                 ->expects($this->once())
-                ->method('setAddresses');
+                ->method('setAddresses')
+                ->with(...[$this->address]);
 
             $this->dataGateway
                 ->expects($this->once())
-                ->method('getAllAddressesOrderedByUpdatedDescending')
-                ->willReturn(array());
-
-            $this->session
-                ->expects($this->once())
-                ->method('setValue')
-                ->with('sort', 'DESC');
+                ->method('getAllAddressesOrderedByUpdated')
+                ->willReturn([$this->address]);
 
             $this->assertEquals('home.twig', $this->homeController->execute($this->request, $this->response));
         }
@@ -144,17 +142,13 @@ namespace Address\Controllers {
 
             $this->response
                 ->expects($this->at(0))
-                ->method('setAddresses');
+                ->method('setAddresses')
+                ->with(...[$this->address]);
 
             $this->dataGateway
                 ->expects($this->once())
                 ->method('getAllAddresses')
-                ->willReturn(array());
-
-            $this->session
-                ->expects($this->once())
-                ->method('setValue')
-                ->with('sort', '');
+                ->willReturn([$this->address]);
 
             $this->request
                 ->expects($this->at(1))
@@ -164,12 +158,13 @@ namespace Address\Controllers {
 
             $this->response
                 ->expects($this->at(1))
-                ->method('setAddresses');
+                ->method('setAddresses')
+                ->with(...[$this->address]);
 
             $this->dataGateway
                 ->expects($this->once())
                 ->method('getSearchedAddress')
-                ->willReturn(array());
+                ->willReturn([$this->address]);
 
             $this->request
                 ->expects($this->at(2))
