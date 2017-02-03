@@ -47,7 +47,7 @@ namespace Address\Http {
             return $this->address;
         }
 
-        public function setAddresses(array $addresses)
+        public function setAddresses(Address ...$addresses)
         {
             $this->addresses = $addresses;
         }
@@ -67,7 +67,7 @@ namespace Address\Http {
             return $this->text;
         }
 
-        public function setTexts(array $texts)
+        public function setTexts(Text ...$texts)
         {
             $this->texts = $texts;
         }

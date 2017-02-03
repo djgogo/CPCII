@@ -3,6 +3,7 @@
 namespace Address\Controllers
 {
 
+    use Address\Exceptions\AddressTableGatewayException;
     use Address\Gateways\AddressTableDataGateway;
     use Address\Http\Request;
     use Address\Http\Response;
@@ -24,13 +25,14 @@ namespace Address\Controllers
 
         public function execute(Request $request, Response $response)
         {
-            if ($this->addressDataGateway->delete($request->getValue('id'))) {
+            try {
+                $this->addressDataGateway->delete($request->getValue('id'));
                 $this->session->setValue('message', 'Datensatz wurde gelöscht');
-            } else {
+            } catch (AddressTableGatewayException $e) {
                 $this->session->setValue('warning', 'Löschen des Datensatzes fehlgeschlagen!');
             }
 
-            $response->setAddresses($this->addressDataGateway->getAllAddresses());
+            $response->setAddresses(...$this->addressDataGateway->getAllAddresses());
             $response->setRedirect('/');
         }
     }

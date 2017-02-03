@@ -41,13 +41,13 @@ namespace Address\Gateways {
             }
         }
 
-        public function getAllTextsOrderedByUpdatedAscending(): array
+        public function getAllTextsOrderedByUpdated(string $sort): array
         {
             try {
                 $stmt = $this->pdo->prepare(
-                    'SELECT id, text1, text2, created, updated 
+                    "SELECT id, text1, text2, created, updated 
                      FROM texts 
-                     ORDER BY updated ASC'
+                     ORDER BY updated $sort"
                 );
 
                 if (!$stmt->execute()) {
@@ -58,27 +58,6 @@ namespace Address\Gateways {
 
             } catch (\PDOException $e) {
                 $message = 'Fehler beim lesen aller Datensätze der Text Tabelle aufsteigend sortiert.';
-                $this->logger->log($message, $e);
-                throw new TextTableGatewayException($message);
-            }
-        }
-
-        public function getAllTextsOrderedByUpdatedDescending(): array
-        {
-            try {
-                $stmt = $this->pdo->prepare(
-                    'SELECT id, text1, text2, created, updated 
-                     FROM texts 
-                     ORDER BY updated DESC'
-                );
-
-                if (!$stmt->execute()) {
-                    throw new \PDOException();
-                }
-                return $stmt->fetchAll(\PDO::FETCH_CLASS, Text::class);
-
-            } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen aller Datensätze der Text Tabelle absteigend sortiert.';
                 $this->logger->log($message, $e);
                 throw new TextTableGatewayException($message);
             }

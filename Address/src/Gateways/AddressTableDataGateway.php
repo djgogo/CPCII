@@ -41,13 +41,13 @@ namespace Address\Gateways {
             }
         }
 
-        public function getAllAddressesOrderedByUpdatedAscending(): array
+        public function getAllAddressesOrderedByUpdated(string $sort): array
         {
             try {
                 $stmt = $this->pdo->prepare(
-                    'SELECT id, address1, address2, city, postalCode, created, updated 
+                    "SELECT id, address1, address2, city, postalCode, created, updated 
                      FROM addresses 
-                     ORDER BY updated ASC'
+                     ORDER BY updated $sort"
                 );
 
                 if (!$stmt->execute()) {
@@ -57,27 +57,6 @@ namespace Address\Gateways {
 
             } catch (\PDOException $e) {
                 $message = 'Fehler beim lesen aller Datensätze der Address Tabelle aufsteigend sortiert.';
-                $this->logger->log($message, $e);
-                throw new AddressTableGatewayException($message);
-            }
-        }
-
-        public function getAllAddressesOrderedByUpdatedDescending(): array
-        {
-            try {
-                $stmt = $this->pdo->prepare(
-                    'SELECT id, address1, address2, city, postalCode, created, updated 
-                     FROM addresses 
-                     ORDER BY updated DESC'
-                );
-
-                if (!$stmt->execute()) {
-                    throw new \PDOException();
-                }
-                return $stmt->fetchAll(\PDO::FETCH_CLASS, Address::class);
-
-            } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen aller Datensätze der Address Tabelle absteigend sortiert.';
                 $this->logger->log($message, $e);
                 throw new AddressTableGatewayException($message);
             }
@@ -162,7 +141,7 @@ namespace Address\Gateways {
             }
         }
 
-        public function delete(string $id): bool
+        public function delete(string $id)
         {
             try {
                 $stmt = $this->pdo->prepare(

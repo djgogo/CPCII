@@ -29,7 +29,7 @@ namespace Address\Controllers
                 return 'texts/updatetext.twig';
             }
 
-            $response->setTexts($this->textDataGateway->getAllTexts());
+            $response->setTexts(...$this->textDataGateway->getAllTexts());
             $response->setRedirect('/text');
         }
     }

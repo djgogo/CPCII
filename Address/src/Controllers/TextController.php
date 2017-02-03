@@ -26,16 +26,16 @@ namespace Address\Controllers
         {
             if ($request->hasValue('sort')) {
                 if ($request->getValue('sort') === 'ASC') {
-                    $response->setTexts($this->dataGateway->getAllTextsOrderedByUpdatedAscending());
+                    $response->setTexts(...$this->dataGateway->getAllTextsOrderedByUpdated('ASC'));
                 } elseif ($request->getValue('sort') === 'DESC') {
-                    $response->setTexts($this->dataGateway->getAllTextsOrderedByUpdatedDescending());
+                    $response->setTexts(...$this->dataGateway->getAllTextsOrderedByUpdated('DESC'));
                 }
             } else {
-                $response->setTexts($this->dataGateway->getAllTexts());
+                $response->setTexts(...$this->dataGateway->getAllTexts());
             }
 
             if ($request->hasValue('searchText')) {
-                $response->setTexts($this->dataGateway->getSearchedText($request->getValue('searchText')));
+                $response->setTexts(...$this->dataGateway->getSearchedText($request->getValue('searchText')));
             }
 
             return 'text.twig';

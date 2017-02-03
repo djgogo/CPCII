@@ -26,17 +26,16 @@ namespace Address\Controllers
         {
             if ($request->hasValue('sort')) {
                 if ($request->getValue('sort') === 'ASC') {
-                    // TODO only one Method - besser lösen!
-                    $response->setAddresses($this->dataGateway->getAllAddressesOrderedByUpdatedAscending());
+                    $response->setAddresses(...$this->dataGateway->getAllAddressesOrderedByUpdated('ASC'));
                 } elseif ($request->getValue('sort') === 'DESC') {
-                    $response->setAddresses($this->dataGateway->getAllAddressesOrderedByUpdatedDescending());
+                    $response->setAddresses(...$this->dataGateway->getAllAddressesOrderedByUpdated('DESC'));
                 }
             } else {
-                $response->setAddresses($this->dataGateway->getAllAddresses());
+                $response->setAddresses(...$this->dataGateway->getAllAddresses());
             }
 
             if ($request->hasValue('search')) {
-                $response->setAddresses($this->dataGateway->getSearchedAddress($request->getValue('search')));
+                $response->setAddresses(...$this->dataGateway->getSearchedAddress($request->getValue('search')));
             }
 
             return 'home.twig';

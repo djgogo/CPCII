@@ -51,7 +51,7 @@ namespace Address\Commands {
          * @param $field
          * @param $expectedErrorMessage
          */
-        public function testEmptyFormFieldsTriggersError($field, $expectedErrorMessage)
+        public function testEmptyFormFieldsTriggersError(string $field, string $expectedErrorMessage)
         {
             $request = [
                 'id' => 1,

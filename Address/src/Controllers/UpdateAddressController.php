@@ -29,7 +29,7 @@ namespace Address\Controllers
                 return 'addresses/updateaddress.twig';
             }
 
-            $response->setAddresses($this->addressDataGateway->getAllAddresses());
+            $response->setAddresses(...$this->addressDataGateway->getAllAddresses());
             $response->setRedirect('/');
         }
     }
