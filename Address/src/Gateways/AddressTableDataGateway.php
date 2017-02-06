@@ -29,9 +29,15 @@ namespace Address\Gateways {
                      FROM addresses'
                 );
 
-                if (!$stmt->execute()) {
-                    throw new \PDOException();
-                }
+                /**
+                 * Setting the PDO::ATTR_ERRMODE to PDO::ERRMODE_EXCEPTION applies to both PDO and PDO::PDOStatement
+                 * objects. Also, exceptions are thrown by: PDO::beginTransaction(), PDO::prepare(),
+                 * PDOStatement::execute(), PDO::commit(), PDOStatement::fetch(),  PDOStatement::fetchAll()
+                 * and so on... Some of these are specified in their respective documentations as to return 'false'
+                 * in case of an error. That means that the following execute Method will not return false if it fails!
+                 * It will throw a PDOException instead which is already caught
+                 */
+                $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Address::class);
 
             } catch (\PDOException $e) {
@@ -49,10 +55,7 @@ namespace Address\Gateways {
                      FROM addresses 
                      ORDER BY updated $sort"
                 );
-
-                if (!$stmt->execute()) {
-                    throw new \PDOException();
-                }
+                $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Address::class);
 
             } catch (\PDOException $e) {
@@ -73,10 +76,7 @@ namespace Address\Gateways {
 
                 $search = '%' . $searchString . '%';
                 $stmt->bindParam(':search', $search, \PDO::PARAM_STR);
-
-                if (!$stmt->execute()) {
-                    throw new \PDOException();
-                }
+                $stmt->execute();
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, Address::class);
 
             } catch (\PDOException $e) {
@@ -96,10 +96,7 @@ namespace Address\Gateways {
                      LIMIT 1'
                 );
                 $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-
-                if (!$stmt->execute()) {
-                    throw new \PDOException();
-                }
+                $stmt->execute();
 
                 $result = $stmt->fetchObject(Address::class);
                 if ($result == false) {
@@ -130,9 +127,7 @@ namespace Address\Gateways {
                 $stmt->bindValue(':postalCode', $address->getPostalCode(), \PDO::PARAM_INT);
                 $stmt->bindValue(':updated', $address->getUpdated(), \PDO::PARAM_STR);
 
-                if (!$stmt->execute()) {
-                    throw new \PDOException();
-                }
+                $stmt->execute();
 
             } catch (\PDOException $e) {
                 $message = 'Fehler beim ändern eines Datensatzes der Adress Tabelle.';
@@ -148,10 +143,7 @@ namespace Address\Gateways {
                     'DELETE FROM addresses WHERE id=:id'
                 );
                 $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-
-                if (!$stmt->execute()) {
-                    throw new \PDOException();
-                }
+                $stmt->execute();
                 return true;
 
             } catch (\PDOException $e) {

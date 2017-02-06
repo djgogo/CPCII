@@ -140,23 +140,5 @@ namespace Address\Gateways {
 
             $this->dataGateway->delete(9999);
         }
-            //todo --->
-//        public function testGetAllAddressesThrowsExceptionIfExecutionFails()
-//        {
-//            $statement = $this->getMockBuilder(PDOStatement::class)->disableOriginalConstructor()->getMock();
-//            $this->expectException(AddressTableGatewayException::class);
-//
-//            $this->pdo
-//                ->expects($this->once())
-//                ->method('prepare')
-//                ->willReturn($statement);
-//
-//            $statement
-//                ->expects($this->once())
-//                ->method('execute')
-//                ->willReturn(false);
-//
-//            $this->dataGateway->getAllAddresses();
-//        }
     }
 }
