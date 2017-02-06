@@ -3,19 +3,30 @@
 namespace Address\Factories
 {
 
+    use Address\Authentication\Authenticator;
+    use Address\Authentication\Registrator;
+    use Address\Commands\AuthenticationFormCommand;
+    use Address\Commands\RegistrationFormCommand;
     use Address\Commands\UpdateAddressFormCommand;
     use Address\Controllers\AboutController;
     use Address\Controllers\DeleteAddressController;
     use Address\Controllers\Error404Controller;
     use Address\Controllers\Error500Controller;
     use Address\Controllers\HomeController;
+    use Address\Controllers\LoginController;
+    use Address\Controllers\LoginViewController;
+    use Address\Controllers\LogoutController;
+    use Address\Controllers\RegisterController;
+    use Address\Controllers\RegisterViewController;
     use Address\Controllers\UpdateAddressController;
     use Address\Controllers\UpdateAddressViewController;
     use Address\Forms\FormError;
     use Address\Forms\FormPopulate;
     use Address\Gateways\AddressTableDataGateway;
+    use Address\Gateways\UserTableDataGateway;
     use Address\Http\Session;
     use Address\Loggers\ErrorLogger;
+    use Address\Routers\AuthenticationRouter;
     use Address\Routers\Error404Router;
     use Address\Routers\GetRequestRouter;
     use Address\Routers\PostRequestRouter;
@@ -54,6 +65,7 @@ namespace Address\Factories
             return [
                 new GetRequestRouter($this),
                 new PostRequestRouter($this, $this->session, $this->getErrorLogger()),
+                new AuthenticationRouter($this, $this->session, $this->getErrorLogger()),
                 new Error404Router($this),
             ];
         }
@@ -96,12 +108,42 @@ namespace Address\Factories
             return new Error500Controller();
         }
 
+        public function getLoginViewController(): LoginViewController
+        {
+            return new LoginViewController($this->session);
+        }
+
+        public function getLoginController(): LoginController
+        {
+            return new LoginController($this->getAuthenticationFormCommand());
+        }
+
+        public function getRegisterViewController(): RegisterViewController
+        {
+            return new RegisterViewController($this->session);
+        }
+
+        public function getRegisterController(): RegisterController
+        {
+            return new RegisterController($this->getRegistrationFormCommand(), $this->getAddressTableGateway());
+        }
+
+        public function getLogoutController(): LogoutController
+        {
+            return new LogoutController();
+        }
+
         /**
          * TableDataGateways
          */
         public function getAddressTableGateway(): AddressTableDataGateway
         {
             return new AddressTableDataGateway($this->getDatabase(), $this->getErrorLogger());
+        }
+
+        public function getUserTableGateway(): UserTableDataGateway
+        {
+            return new UserTableDataGateway($this->getDatabase(), $this->getErrorLogger());
         }
 
         /**
@@ -118,6 +160,26 @@ namespace Address\Factories
             );
         }
 
+        public function getAuthenticationFormCommand(): AuthenticationFormCommand
+        {
+            return new AuthenticationFormCommand(
+                $this->getAuthenticator(),
+                $this->session,
+                $this->getFormPopulate(),
+                $this->getFormError()
+            );
+        }
+
+        public function getRegistrationFormCommand()
+        {
+            return new RegistrationFormCommand(
+                $this->getRegistrator(),
+                $this->session,
+                $this->getFormPopulate(),
+                $this->getFormError()
+            );
+        }
+
         /**
          * Forms Error Handling and Re-Population
          */
@@ -129,6 +191,19 @@ namespace Address\Factories
         public function getFormPopulate(): FormPopulate
         {
             return new FormPopulate($this->session);
+        }
+
+        /**
+         * Authentication
+         */
+        public function getAuthenticator(): Authenticator
+        {
+            return new Authenticator($this->getUserTableGateway());
+        }
+
+        public function getRegistrator(): Registrator
+        {
+            return new Registrator($this->getUserTableGateway());
         }
 
         /**

@@ -71,7 +71,7 @@ namespace Address\Commands
             try {
                 new Id($this->id);
             } catch (\InvalidArgumentException $e) {
-            $this->error->set('id', 'Die Address-Id ist ungültig.');
+                $this->error->set('id', 'Die Address-Id ist ungültig.');
             }
 
             if ($this->address1 === '') {

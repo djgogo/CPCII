@@ -25,11 +25,15 @@ namespace Address\Controllers
 
         public function execute(Request $request, Response $response)
         {
-            try {
-                $this->addressDataGateway->delete($request->getValue('id'));
-                $this->session->setValue('message', 'Datensatz wurde gelöscht');
-            } catch (AddressTableGatewayException $e) {
-                $this->session->setValue('warning', 'Löschen des Datensatzes fehlgeschlagen!');
+            if ($this->session->isLoggedIn() && $request->isLoggedIn()) {
+                try {
+                    $this->addressDataGateway->delete($request->getValue('id'));
+                    $this->session->setValue('message', 'Datensatz wurde gelöscht');
+                } catch (AddressTableGatewayException $e) {
+                    $this->session->setValue('warning', 'Löschen des Datensatzes fehlgeschlagen!');
+                }
+            } else {
+                $this->session->setValue('warning', 'Um Adressen zu löschen müssen Sie sich anmelden.');
             }
 
             $response->setAddresses(...$this->addressDataGateway->getAllAddresses());

@@ -1,12 +1,9 @@
 {% block stylesheets %}
-
     <!-- Custom styles for this template -->
-    <link href="/css/navigation.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
 {% endblock %}
 
 {% block content %}
-
     <!-- Static navbar -->
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
@@ -23,8 +20,8 @@
                     <li{% if active == "info" %} class="active"{% endif %}><a href="#" data-target="#info" data-toggle="modal">?</a></li>
                 </ul>
 
-                <div class="col-sm-3 col-md-3 pull-right">
-                    <form class="navbar-form " role="search" action="{% if active == "text" %}../text{% else %}/{% endif %}" method="get">
+                <div class="col-md-4">
+                    <form class="navbar-form " role="search" action="/" method="get">
                         <div class="input-group">
                             <input type="text" id="search" name="search" class="form-control" placeholder="Search">
                             <div class="input-group-btn">
@@ -34,11 +31,19 @@
                     </form>
                 </div>
 
+                <ul class="nav navbar-nav navbar-right">
+                    {% if session.getValue('user') %}
+                        <li><a href="../logout">Logout</a></li>
+                    {% else %}
+                        <li><a href="../loginview">Login</a></li>
+                        <li><a href="../registerview">Register</a></li>
+                    {% endif %}
+                </ul>
+
             </div><!--/.nav-collapse -->
 
         </div><!--/.container-fluid -->
     </nav>
-
 {% endblock %}
 
 <!-- Modal HTML -->

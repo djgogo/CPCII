@@ -52,5 +52,10 @@ namespace Address\Http {
             }
             return array();
         }
+
+        public function isLoggedIn(): bool
+        {
+            return isset($this->data['user']);
+        }
     }
 }

@@ -3,11 +3,11 @@
 namespace Address\Routers
 {
     use Address\Factories\Factory;
-    use Address\Http\Request;
     use Address\Http\Session;
+    use Address\Http\Request;
     use Address\Loggers\ErrorLogger;
 
-    class PostRequestRouter
+    class AuthenticationRouter
     {
         /** @var Factory */
         private $factory;
@@ -39,12 +39,8 @@ namespace Address\Routers
             }
 
             switch ($path) {
-                case '/updateaddress';
-                    return $this->factory->getUpdateAddressController();
                 case '/login';
                     return $this->factory->getLoginController();
-                case '/register';
-                    return $this->factory->getRegisterController();
                 default:
                     return null;
             }

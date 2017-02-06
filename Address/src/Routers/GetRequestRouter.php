@@ -29,10 +29,16 @@ namespace Address\Routers
                     return $this->factory->getHomeController();
                 case '/about':
                     return $this->factory->getAboutController();
+                case '/loginview':
+                    return $this->factory->getLoginViewController();
+                case '/registerview':
+                    return $this->factory->getRegisterViewController();
                 case '/updateaddressview':
                     return $this->factory->getUpdateAddressViewController();
                 case '/deleteaddress':
                     return $this->factory->getDeleteAddressController();
+                case '/logout';
+                    return $this->factory->getLogoutController();
                 default:
                     return null;
             }
