@@ -14,15 +14,12 @@
             </div>
 
             <div id="navbar" class="navbar-collapse collapse">
-
-                <!-- The navbar menu -->
                 <ul class="nav navbar-nav">
                     <li{% if active == "home" %} class="active"{% endif %}><a href="/">Home</a></li>
                     <li{% if active == "about" %} class="active"{% endif %}><a href="../about">About</a></li>
                     <li{% if active == "info" %} class="active"{% endif %}><a href="#" data-target="#info" data-toggle="modal">?</a></li>
                 </ul>
 
-                <!-- The search input -->
                 <div class="col-md-4">
                     <form class="navbar-form " role="search" action="/" method="get">
                         <div class="input-group">
@@ -34,23 +31,14 @@
                     </form>
                 </div>
 
-                <!-- The drop down menu -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            {% if session.isLoggedIn() %}
-                                Welcome, {{ session.getValue('user') }} <b class="caret"></b>
-                            {% else %}
-                                Sign In <b class="caret"></b>
-                            {% endif %}</a>
-                        <ul class="dropdown-menu">
-                            {% if session.isLoggedIn() %}
-                                <li><a href="../logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
-                            {% else %}
-                                <li><a href="../loginview"><i class="glyphicon glyphicon-user"></i> Sign In</a></li>
-                                <li><a href="../registerview"><i class="glyphicon glyphicon-cog"></i> Register</a></li>
-                            {% endif %}
-                        </ul>
-                    </li>
+                    {% if session.isLoggedIn() %}
+                        <p class="form-control-static">{{ session.getValue('user') }}</p>
+                        <li><a href="../logout">Logout</a></li>
+                    {% else %}
+                        <li><a href="../loginview">Login</a></li>
+                        <li><a href="../registerview">Register</a></li>
+                    {% endif %}
                 </ul>
 
             </div><!--/.nav-collapse -->
