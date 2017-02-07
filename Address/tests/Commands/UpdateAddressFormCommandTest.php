@@ -63,8 +63,8 @@ namespace Address\Commands {
 
         /**
          * @dataProvider formFieldProvider
-         * @param $field
-         * @param $expectedErrorMessage
+         * @param string $field
+         * @param string $expectedErrorMessage
          */
         public function testEmptyFormFieldsTriggersError(string $field, string $expectedErrorMessage)
         {
@@ -76,7 +76,7 @@ namespace Address\Commands {
             $this->assertEquals($expectedErrorMessage, $this->session->getValue('error')->get($field));
         }
 
-        public function formFieldProvider()
+        public function formFieldProvider(): array
         {
             return [
                 ['address1', 'Bitte geben Sie einen Namen ein.'],
@@ -184,16 +184,16 @@ namespace Address\Commands {
 
         /**
          * @dataProvider formFieldValuesProvider
-         * @param $fieldName
-         * @param $fieldValue
+         * @param string $fieldName
+         * @param string $fieldValue
          */
-        public function testFormFieldsCanBeRepopulated($fieldName, $fieldValue)
+        public function testFormFieldsCanBeRepopulated(string $fieldName, string $fieldValue)
         {
             $this->populate->set($fieldName, $fieldValue);
             $this->assertSame($fieldValue, $this->session->getValue('populate')->get($fieldName));
         }
 
-        public function formFieldValuesProvider()
+        public function formFieldValuesProvider(): array
         {
             return [
                 ['address1', 'Luke Skywalker'],

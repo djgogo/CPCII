@@ -50,6 +50,16 @@ namespace Address\Controllers {
 
         public function testAddressCanBeDeletedAndControllerSetsRightRedirect()
         {
+            $this->session
+                ->expects($this->once())
+                ->method('isLoggedIn')
+                ->willReturn(true);
+
+            $this->request
+                ->expects($this->once())
+                ->method('isLoggedIn')
+                ->willReturn(true);
+
             $this->dataGateway
                 ->expects($this->once())
                 ->method('delete')
@@ -85,8 +95,18 @@ namespace Address\Controllers {
             $this->deleteAddressController->execute($this->request, $this->response);
         }
 
-        public function testAddressDeletionFailsAndControllerSetsRightRedirect()
+        public function testControllerCatchesExceptionIfDeletionFails()
         {
+            $this->session
+                ->expects($this->once())
+                ->method('isLoggedIn')
+                ->willReturn(true);
+
+            $this->request
+                ->expects($this->once())
+                ->method('isLoggedIn')
+                ->willReturn(true);
+
             $this->dataGateway
                 ->expects($this->once())
                 ->method('delete')
@@ -96,6 +116,36 @@ namespace Address\Controllers {
                 ->expects($this->once())
                 ->method('setValue')
                 ->with('warning', 'Löschen des Datensatzes fehlgeschlagen!');
+
+            $this->response
+                ->expects($this->once())
+                ->method('setAddresses')
+                ->with(...[$this->address]);
+
+            $this->dataGateway
+                ->expects($this->once())
+                ->method('getAllAddresses')
+                ->willReturn([$this->address]);
+
+            $this->response
+                ->expects($this->once())
+                ->method('setRedirect')
+                ->with('/');
+
+            $this->deleteAddressController->execute($this->request, $this->response);
+        }
+
+        public function testAddressCanNotBeDeletedIfUserNotLoggedIn()
+        {
+            $this->session
+                ->expects($this->once())
+                ->method('isLoggedIn')
+                ->willReturn(false);
+
+            $this->session
+                ->expects($this->once())
+                ->method('setValue')
+                ->with('warning', 'Um Adressen zu löschen müssen Sie sich anmelden.');
 
             $this->response
                 ->expects($this->once())

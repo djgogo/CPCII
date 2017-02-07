@@ -6,18 +6,14 @@ namespace Address\Forms {
 
     /**
      * @covers Address\Forms\FormPopulate
-     * @uses   Address\Http\Session
+     * @uses Address\Http\Session
      */
     class FormPopulateTest extends \PHPUnit_Framework_TestCase
     {
-        /**
-         * @var Session | \PHPUnit_Framework_MockObject_MockObject
-         */
+        /** @var Session | \PHPUnit_Framework_MockObject_MockObject */
         private $session;
 
-        /**
-         * @var FormPopulate
-         */
+        /** @var FormPopulate */
         private $formPopulate;
 
         protected function setUp()

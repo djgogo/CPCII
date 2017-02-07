@@ -41,10 +41,6 @@ namespace Address\Routers
             switch ($path) {
                 case '/updateaddress';
                     return $this->factory->getUpdateAddressController();
-                case '/login';
-                    return $this->factory->getLoginController();
-                case '/register';
-                    return $this->factory->getRegisterController();
                 default:
                     return null;
             }

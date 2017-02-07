@@ -6,7 +6,7 @@ namespace Address\Forms {
 
     /**
      * @covers Address\Forms\FormError
-     * @uses   Address\Http\Session
+     * @uses Address\Http\Session
      */
     class FormErrorTest extends \PHPUnit_Framework_TestCase
     {

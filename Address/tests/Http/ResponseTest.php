@@ -5,7 +5,7 @@ namespace Address\Http {
 
     /**
      * @covers Address\Http\Response
-     * @uses   Address\Entities\Address
+     * @uses Address\Entities\Address
      */
     class ResponseTest extends \PHPUnit_Framework_TestCase
     {

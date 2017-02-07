@@ -5,14 +5,12 @@ namespace Address\Factories {
     use Address\Exceptions\InvalidPdoAttributeException;
 
     /**
-     * Class PDOFactoryTest
-     * @package Address\Factories
+     * @covers Address\Factories\PDOFactory
+     * @uses Address\Exceptions\InvalidPdoAttributeException
      */
     class PDOFactoryTest extends \PHPUnit_Framework_TestCase
     {
-        /**
-         * @var PDOFactory
-         */
+        /** @var PDOFactory */
         private $pdoFactory;
 
         protected function setUp()

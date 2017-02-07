@@ -21,11 +21,11 @@ namespace Address\Entities {
 
         /**
          * @dataProvider provideAddressValues
-         * @param $property
-         * @param $value
-         * @param $method
+         * @param string $property
+         * @param string $value
+         * @param string $method
          */
-        public function testAddressTableValuesCanBeRetrieved($property, $value, $method)
+        public function testAddressTableValuesCanBeRetrieved(string $property, string $value, string $method)
         {
             $reflectionProperty = $this->reflection->getProperty($property);
             $reflectionProperty->setAccessible(true);
@@ -34,7 +34,7 @@ namespace Address\Entities {
             $this->assertEquals($value, $this->address->{$method}());
         }
 
-        public function provideAddressValues()
+        public function provideAddressValues(): array
         {
             return [
                 ['id', '123', 'getId'],

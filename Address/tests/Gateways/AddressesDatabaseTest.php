@@ -5,7 +5,6 @@ namespace Address\Gateways {
     use Address\Exceptions\AddressTableGatewayException;
     use Address\Loggers\ErrorLogger;
     use Address\ParameterObjects\AddressParameterObject;
-    use Doctrine\DBAL\Driver\PDOStatement;
 
     /**
      * @covers Address\Gateways\AddressTableDataGateway
@@ -34,7 +33,9 @@ namespace Address\Gateways {
         {
             $this->pdo = $this->getMockBuilder(\PDO::class)->disableOriginalConstructor()->getMock();
             $this->logger = $this->getMockBuilder(ErrorLogger::class)->disableOriginalConstructor()->getMock();
-            $this->parameterObject = $this->getMockBuilder(AddressParameterObject::class)->disableOriginalConstructor()->getMock();
+            $this->parameterObject = $this->getMockBuilder(AddressParameterObject::class)
+                ->disableOriginalConstructor()
+                ->getMock();
             $this->dataGateway = new AddressTableDataGateway($this->pdo, $this->logger);
             $this->exception = new \PDOException();
         }
@@ -102,7 +103,7 @@ namespace Address\Gateways {
             $this->logger
                 ->expects($this->once())
                 ->method('log')
-                ->with('Fehler beim lesen der Address Tabelle mit Id-Parameter.', $this->exception);
+                ->with('Fehler beim lesen der Address Tabelle mit Id: 9999', $this->exception);
 
             $this->dataGateway->findAddressById(9999);
         }
@@ -136,7 +137,7 @@ namespace Address\Gateways {
             $this->logger
                 ->expects($this->once())
                 ->method('log')
-                ->with('Fehler beim löschen eines Datensatzes der Adress Tabelle.', $this->exception);
+                ->with('Fehler beim löschen eines Datensatzes der Adress Tabelle mit der Id: 9999', $this->exception);
 
             $this->dataGateway->delete(9999);
         }

@@ -105,7 +105,7 @@ namespace Address\Gateways {
                 return $result;
 
             } catch (\PDOException $e) {
-                $message = 'Fehler beim lesen der Address Tabelle mit Id-Parameter.';
+                $message = 'Fehler beim lesen der Address Tabelle mit Id: ' . $id;
                 $this->logger->log($message, $e);
                 throw new AddressTableGatewayException($message);
             }
@@ -147,7 +147,7 @@ namespace Address\Gateways {
                 return true;
 
             } catch (\PDOException $e) {
-                $message = 'Fehler beim löschen eines Datensatzes der Adress Tabelle.';
+                $message = 'Fehler beim löschen eines Datensatzes der Adress Tabelle mit der Id: ' . $id;
                 $this->logger->log($message, $e);
                 throw new AddressTableGatewayException($message);
             }

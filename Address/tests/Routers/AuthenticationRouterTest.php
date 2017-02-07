@@ -9,13 +9,13 @@ namespace Address\Routers {
     use Address\Loggers\ErrorLogger;
 
     /**
-     * @covers  Address\Routers\PostRequestRouter
+     * @covers  Address\Routers\AuthenticationRouter
      * @uses    Address\Factories\Factory
      * @uses    Address\Http\Session
      * @uses    Address\Http\Request
      * @uses    Address\Loggers\ErrorLogger
      */
-    class PostRequestRouterTest extends \PHPUnit_Framework_TestCase
+    class AuthenticationRouterTest extends \PHPUnit_Framework_TestCase
     {
         /** @var Factory | \PHPUnit_Framework_MockObject_MockObject */
         private $factory;
@@ -23,8 +23,8 @@ namespace Address\Routers {
         /** @var Session | \PHPUnit_Framework_MockObject_MockObject */
         private $session;
 
-        /** @var PostRequestRouter */
-        private $postRequestRouter;
+        /** @var AuthenticationRouter */
+        private $authenticationRouter;
 
         /** @var ErrorLogger | \PHPUnit_Framework_MockObject_MockObject */
         private $errorLogger;
@@ -34,7 +34,7 @@ namespace Address\Routers {
             $this->factory = $this->getMockBuilder(Factory::class)->disableOriginalConstructor()->getMock();
             $this->session = $this->getMockBuilder(Session::class)->disableOriginalConstructor()->getMock();
             $this->errorLogger = $this->getMockBuilder(ErrorLogger::class)->disableOriginalConstructor()->getMock();
-            $this->postRequestRouter = new PostRequestRouter($this->factory, $this->session, $this->errorLogger);
+            $this->authenticationRouter = new AuthenticationRouter($this->factory, $this->session, $this->errorLogger);
         }
 
         /**
@@ -55,13 +55,14 @@ namespace Address\Routers {
                 ->with('token')
                 ->willReturn('1234567890');
 
-            $this->assertInstanceOf($instance, $this->postRequestRouter->route($request));
+            $this->assertInstanceOf($instance, $this->authenticationRouter->route($request));
         }
 
         public function provideData(): array
         {
             return [
-                ['/updateaddress', \Address\Controllers\UpdateAddressController::class],
+                ['/login', \Address\Controllers\LoginController::class],
+                ['/register', \Address\Controllers\RegisterController::class],
             ];
         }
 
@@ -72,7 +73,7 @@ namespace Address\Routers {
                 ['REQUEST_URI' => '/Address', 'REQUEST_METHOD' => 'GET']
             );
 
-            $this->assertEquals(null, $this->postRequestRouter->route($request));
+            $this->assertEquals(null, $this->authenticationRouter->route($request));
         }
 
         public function testInvalidCsrfTokenReturnsError500Controller()
@@ -82,10 +83,10 @@ namespace Address\Routers {
                 ['REQUEST_URI' => '/Address', 'REQUEST_METHOD' => 'POST']
             );
 
-            $this->assertInstanceOf(Error500Controller::class, $this->postRequestRouter->route($request));
+            $this->assertInstanceOf(Error500Controller::class, $this->authenticationRouter->route($request));
         }
 
-        public function testRouterReturnsNullIfInvalidRequestUri()
+        public function testRouterReturnsNullOnInvalidRequestUri()
         {
             $request = new Request(
                 ['csrf' => '1234567890'],
@@ -98,7 +99,7 @@ namespace Address\Routers {
                 ->with('token')
                 ->willReturn('1234567890');
 
-            $this->assertEquals(null, $this->postRequestRouter->route($request));
+            $this->assertEquals(null, $this->authenticationRouter->route($request));
         }
     }
 }

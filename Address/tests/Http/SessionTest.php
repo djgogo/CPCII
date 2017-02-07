@@ -55,5 +55,13 @@ namespace Address\Http {
             $this->session->setValue('user', 'Harry Potter');
             $this->assertTrue($this->session->isset('user'));
         }
+
+        public function testSessionReturnsIfUserIsLoggedInOrNot()
+        {
+            $this->session->setValue('user', 'Harry Potter');
+            $this->assertTrue($this->session->isLoggedIn());
+            $this->session->deleteValue('user');
+            $this->assertFalse($this->session->isLoggedIn());
+        }
     }
 }

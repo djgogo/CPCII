@@ -17,7 +17,7 @@ namespace Address\ValueObjects {
             $zip = trim($zip);
 
             if (strlen($zip) !== 4 || (int) $zip < 1000 || (int) $zip > 9999) {
-                throw new \InvalidArgumentException('invalid ZIP Code "' . $zip . '"');
+                throw new \InvalidArgumentException('invalid ZIP Code: "' . $zip . '"');
             }
 
             $this->zip = $zip;

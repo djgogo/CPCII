@@ -26,10 +26,10 @@ namespace Address\Routers {
 
         /**
          * @dataProvider provideData
-         * @param $path
-         * @param $instance
+         * @param string $path
+         * @param string $instance
          */
-        public function testHappyPath($path, $instance)
+        public function testHappyPath(string $path, string $instance)
         {
             $request = new Request(
                 ['csrf' => '1234567890'],
@@ -39,17 +39,20 @@ namespace Address\Routers {
             $this->assertInstanceOf($instance, $this->getRequestRouter->route($request));
         }
 
-        public function provideData()
+        public function provideData(): array
         {
             return [
                 ['/', \Address\Controllers\HomeController::class],
                 ['/about', \Address\Controllers\AboutController::class],
                 ['/updateaddressview', \Address\Controllers\UpdateAddressViewController::class],
                 ['/deleteaddress', \Address\Controllers\DeleteAddressController::class],
+                ['/loginview', \Address\Controllers\LoginViewController::class],
+                ['/registerview', \Address\Controllers\RegisterViewController::class],
+                ['/logout', \Address\Controllers\LogoutController::class],
             ];
         }
 
-        public function testRouterReturnsNullIfRequestIsNotAGetRequest()
+        public function testRouterReturnsNullIfRequestIsNotGetRequest()
         {
             $request = new Request(
                 ['csrf' => '1234567890'],

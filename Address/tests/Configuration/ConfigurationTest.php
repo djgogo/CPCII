@@ -20,10 +20,10 @@ namespace Address\Configuration
 
         /**
          * @dataProvider provideTestData
-         * @param $method
+         * @param string $method
          * @param $result
          */
-        public function testConfigurationEntriesCanBeRetrieved($method, $result)
+        public function testConfigurationEntriesCanBeRetrieved(string $method, $result)
         {
             $this->assertEquals($result, call_user_func_array([$this->configuration, $method], []));
         }

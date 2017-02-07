@@ -2,16 +2,12 @@
 
 namespace Address\ParameterObjects
 {
-
-    use Address\Entities\Address;
-
     /**
      * @covers Address\ParameterObjects\AddressParameterObject
-     * @uses Address\Entities\Address
      */
     class AddressParameterObjectTest extends \PHPUnit_Framework_TestCase
     {
-        /** @var Address */
+        /** @var AddressParameterObject */
         private $addressParameter;
 
         protected function setUp()
@@ -31,12 +27,12 @@ namespace Address\ParameterObjects
          * @param $value
          * @param $method
          */
-        public function testIdCanBeRetrieved($value, $method)
+        public function testValuesCanBeRetrieved(string $value, string $method)
         {
             $this->assertEquals($value, $this->addressParameter->$method());
         }
 
-        public function provideAddressValues()
+        public function provideAddressValues(): array
         {
             return [
                 ['123', 'getId'],

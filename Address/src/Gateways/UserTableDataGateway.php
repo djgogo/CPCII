@@ -37,7 +37,7 @@ namespace Address\Gateways
                 $stmt->execute();
 
             } catch (\PDOException $e) {
-                $message = 'Benutzer konnte nicht eingefügt werden.';
+                $message = 'Benutzer "' . $row->getUsername() . '" konnte nicht eingefügt werden.';
                 $this->logger->log($message, $e);
                 throw new UserTableGatewayException($message);
             }
@@ -51,17 +51,13 @@ namespace Address\Gateways
                 $stmt->execute();
                 $userRow = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-                if ($userRow !== false) {
-                    if (password_verify($password, $userRow['password'])) {
-                        //setcookie($username, 'logged in', time() + 60 * 60 * 24 * 31, '/');
-                        return true;
-                    } else {
-                        return false;
-                    }
+                if ($userRow !== false && (password_verify($password, $userRow['password']))) {
+                    return true;
                 }
+                return false;
 
             } catch (\PDOException $e) {
-                $message = 'Benutzer konnte nicht gefunden werden.';
+                $message = 'Benutzer "' . $username . '" konnte nicht gefunden werden.';
                 $this->logger->log($message, $e);
                 throw new UserTableGatewayException($message);
             }
@@ -81,7 +77,7 @@ namespace Address\Gateways
                 return false;
 
             } catch (\PDOException $e) {
-                $message = 'Benutzer konnte nicht gefunden werden.';
+                $message = 'Benutzer "' . $username . '" konnte nicht gefunden werden.';
                 $this->logger->log($message, $e);
                 throw new UserTableGatewayException($message);
             }

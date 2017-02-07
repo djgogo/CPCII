@@ -17,8 +17,8 @@ namespace Address\ValueObjects
 
         private function ensureIsValid(string $email)
         {
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                throw new InvalidEmailException;
+            if (strlen($email) > 50 || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new InvalidEmailException('email "' . $email . '" is not valid');
             }
         }
 

@@ -63,7 +63,7 @@ namespace Address\Http {
             $this->assertEquals('10', $this->request->getValue('id'));
         }
 
-        public function testIfValueNotFoundThrowsException()
+        public function testRequestThrowsExceptionIfValueNotFound()
         {
             $this->expectException(RequestValueNotFoundException::class);
             $this->assertEquals('', $this->request->getValue('Wrong Key'));
