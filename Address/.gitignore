@@ -1,0 +1,5 @@
+**/autoload.php
+bootstrap
+vendor
+build
+logs

@@ -1,0 +1,67 @@
+{% extends "templates/app.twig" %}
+
+{% block content %}
+
+    {{ include('templates/partials/message.twig') }}
+
+    <h2>Update Address No {{ response.address.id }} - {{ response.address.address1 }}</h2>
+
+    {% if request.isLoggedIn() and session.isLoggedIn() %}
+        <form class="form-horizontal" method="post" action="/updateaddress">
+
+            {# CSRF Protection Token #}
+            <input type="hidden" name="csrf" value="{{ session.getValue('token') }}">
+            <input type="hidden" name="id" value="{{ response.address.id }}">
+
+            <div class="form-group {% if session.getValue('error').get('address1') %}has-error{% endif %}">
+                <label for="address1" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="address1" name="address1" value="{{ session.getValue('populate').get('address1')|e('html_attr') }}">
+                    {% if session.getValue('error').get('address1') %}
+                        <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('address1') }}</small></span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group {% if session.getValue('error').get('address2') %}has-error{% endif %}">
+                <label for="address2" class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="address2" name="address2" value="{{ session.getValue('populate').get('address2')|e('html_attr') }}">
+                    {% if session.getValue('error').get('address2') %}
+                        <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('address2') }}</small></span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group {% if session.getValue('error').get('city') %}has-error{% endif %}">
+                <label for="city" class="col-sm-2 control-label">City</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="city" name="city" value="{{ session.getValue('populate').get('city')|e('html_attr') }}">
+                    {% if session.getValue('error').get('city') %}
+                        <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('city') }}</small></span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group {% if session.getValue('error').get('postalCode') %}has-error{% endif %}">
+                <label for="postalCode" class="col-sm-2 control-label">Postal-Code</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" id="postalCode" name="postalCode" value="{{ session.getValue('populate').get('postalCode')|e('html_attr') }}">
+                    {% if session.getValue('error').get('postalCode') %}
+                        <span id="errorBlock" class="help-block"><small>{{ session.getValue('error').get('postalCode') }}</small></span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-4">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+
+        </form>
+    {% else %}
+        <a href="../loginview" class="btn btn-primary btn-lg active" role="button">You have to login to update an address</a>
+    {% endif %}
+
+{% endblock %}
