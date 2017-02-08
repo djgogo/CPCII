@@ -10,6 +10,7 @@ namespace Address\ValueObjects
         public function __construct(int $id)
         {
             $this->ensureIdNumberIsBiggerThanZero($id);
+            $this->ensureIdIsNotExceedingMaxLength($id);
             $this->id = $id;
         }
 
@@ -17,6 +18,13 @@ namespace Address\ValueObjects
         {
             if ($id < 0) {
                 throw new \InvalidArgumentException('Id: "' . $id . '" was lower than zero.');
+            }
+        }
+
+        private function ensureIdIsNotExceedingMaxLength(int $id)
+        {
+            if ($id > 4294967295) {
+                throw new \InvalidArgumentException('Id: "' . $id . '" was to big.');
             }
         }
 

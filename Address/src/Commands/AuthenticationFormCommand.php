@@ -7,7 +7,8 @@ namespace Address\Commands {
     use Address\Forms\FormPopulate;
     use Address\Http\Request;
     use Address\Http\Session;
-    use Address\ValueObjects\Id;
+    use Address\ValueObjects\Password;
+    use Address\ValueObjects\Username;
 
     class AuthenticationFormCommand extends AbstractFormCommand
     {
@@ -47,9 +48,22 @@ namespace Address\Commands {
 
         protected function validateRequest()
         {
+            try {
+                new Username($this->username);
+            } catch (\InvalidArgumentException $e) {
+                $this->error->set('username', 'Bitte geben Sie einen gültigen Benutzernamen ein.');
+            }
+
             if ($this->username === '') {
                 $this->error->set('username', 'Bitte geben Sie einen Usernamen ein.');
             }
+
+            try {
+                new Password($this->password);
+            } catch (\InvalidArgumentException $e) {
+                $this->error->set('password', 'Bitte geben Sie ein gültiges Passwort ein.');
+            }
+
 
             if ($this->password === '') {
                 $this->error->set('password', 'Bitte geben Sie ein Passwort ein.');

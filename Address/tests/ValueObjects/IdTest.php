@@ -19,5 +19,11 @@ namespace Address\ValueObjects
             $this->expectException(\InvalidArgumentException::class);
             new Id(-1);
         }
+
+        public function testIdThrowsExceptionIfToBig()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            new Id(PHP_INT_MAX);
+        }
     }
 }

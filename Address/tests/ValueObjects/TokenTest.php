@@ -7,9 +7,7 @@ namespace Address\ValueObjects {
      */
     class TokenTest extends \PHPUnit_Framework_TestCase
     {
-        /**
-         * @var Token
-         */
+        /** @var Token */
         private $token;
 
         protected function setUp()

@@ -10,6 +10,8 @@ namespace Address\Commands {
     use Address\Http\Session;
     use Address\ParameterObjects\UserParameterObject;
     use Address\ValueObjects\Email;
+    use Address\ValueObjects\Password;
+    use Address\ValueObjects\Username;
 
     class RegistrationFormCommand extends AbstractFormCommand
     {
@@ -53,12 +55,20 @@ namespace Address\Commands {
 
         protected function validateRequest()
         {
-            if ($this->username === '') {
-                $this->error->set('username', 'Bitte geben Sie einen Usernamen ein.');
+            try {
+                new Username($this->username);
+            } catch (\InvalidArgumentException $e) {
+                $this->error->set('username', 'Der Benutzername darf maximal 50 Zeichen lang sein.');
             }
 
-            if (strlen($this->password) < 6) {
-                $this->error->set('password', 'Das Passwort muss mindestens 6 Zeichen lang sein.');
+            if ($this->username === '') {
+                $this->error->set('username', 'Bitte geben Sie einen Benutzernamen ein.');
+            }
+
+            try {
+                new Password($this->password);
+            } catch (\InvalidArgumentException $e) {
+                $this->error->set('password', 'Das Passwort muss mindestens 6 und darf maximal 255 Zeichen lang sein.');
             }
 
             if ($this->password === '') {
@@ -74,6 +84,10 @@ namespace Address\Commands {
             if ($this->email === '') {
                 $this->error->set('email', 'Bitte geben Sie eine Email Adresse ein.');
             }
+
+            if ($this->username !== '' && $this->registrator->usernameExists($this->username)) {
+                $this->error->set('username', 'Der gewählte Benutzername ist bereits vergeben!');
+            }
         }
 
         protected function performAction()
@@ -85,7 +99,7 @@ namespace Address\Commands {
             );
 
             if ($this->registrator->register($userParameter)) {
-                $this->getSession()->setValue('message', 'Vielen Dank für die Anmeldung - Loggen Sie sich bitte ein');
+                $this->getSession()->setValue('message', 'Vielen Dank für die Anmeldung - Loggen Sie sich bitte ein.');
             } else {
                 $this->getSession()->setValue('warning', 'Anmeldung fehlgeschlagen!');
             }

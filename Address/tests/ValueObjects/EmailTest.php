@@ -34,7 +34,7 @@ namespace Address\ValueObjects {
                 ['invalid@invalid'],
                 ['invalid@.invalid'],
                 ['@invalid.ch'],
-                [str_repeat('x', 50) . '@unittest.ch']
+                [str_repeat('x', 80) . '@unittest.ch']
             ];
         }
     }
