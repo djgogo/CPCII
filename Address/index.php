@@ -24,7 +24,13 @@ if (!$configuration->isProduction()) {
     ini_set('display_errors', 1);
 }
 
+/**
+ * Session Security - Session Hi-Jacking Prevention
+ */
+ini_set('session.cookie_httponly', 1); // not accessible anymore with browser script languages like javascript
+ini_set('session.cookie_secure', 1); // The Cookie will be only sent via secure connection
 session_start();
+session_regenerate_id(true); // Regenerate regularly and delete the old one - makes it even more difficult to hijack
 
 /**
  * CSRF Protection Token
