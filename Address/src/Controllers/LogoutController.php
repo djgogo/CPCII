@@ -21,7 +21,9 @@ namespace Address\Controllers {
              * Delete Session-Cookie (PHPSESSID)
              */
             if (isset($_COOKIE[session_name()])) {
-                setcookie(session_name(), '', time() - 7000000, '/');
+                setcookie(session_name(), "", 1); // Ensures that cookie expires in browser
+                setcookie(session_name(), false); // Removes the cookie
+                unset($_COOKIE[session_name()]); // Removes the cookie from the application
             }
 
             $response->setRedirect('/');
