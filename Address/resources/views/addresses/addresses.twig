@@ -8,13 +8,15 @@
         <th>Created</th>
         {% if request.hasValue('sort') %}
         <th><a href="?sort={% if request.getValue('sort') == 'ASC' %}DESC{% else %}ASC{% endif %}"
-               title="{% if request.getValue('sort') == 'ASC' %}
-                           Click für Sortierung Absteigend
-                           {% else %}
-                           Click für Sortierung Aufsteigend
-                           {% endif %}">Updated</a></th>
+                {% if request.getValue('sort') == 'ASC' %}
+                    title="Click für Sortierung Absteigend">Updated<span class="glyphicon glyphicon-sort-by-attributes btn-xs"></span>
+                {% else %}
+                    title="Click für Sortierung Aufsteigend">Updated<span class="glyphicon glyphicon-sort-by-attributes-alt btn-xs"></span>
+                {% endif %}
+            </a>
+        </th>
         {% else %}
-        <th><a href="?sort=ASC" title="Click für Sortierung Aufsteigend">Updated</a></th>
+        <th><a href="?sort=ASC" title="Click für Sortierung Aufsteigend">Updated<i class="glyphicon glyphicon-sort btn-xs"></i></a></th>
         {% endif %}
     </tr>
     </thead>
