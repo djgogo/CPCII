@@ -44,9 +44,9 @@
                             {% endif %}</a>
                         <ul class="dropdown-menu">
                             {% if session.isLoggedIn() %}
-                                <li><a href="../logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                                <li><a href="../logout"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
                             {% else %}
-                                <li><a href="../loginview"><i class="glyphicon glyphicon-user"></i> Sign In</a></li>
+                                <li><a href="../loginview"><i class="glyphicon glyphicon-log-in"></i> Sign In</a></li>
                                 <li><a href="../registerview"><i class="glyphicon glyphicon-cog"></i> Register</a></li>
                             {% endif %}
                         </ul>
