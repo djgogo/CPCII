@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test Documentation</title>
+        <style>
+            body {
+                text-rendering: optimizeLegibility;
+                font-variant-ligatures: common-ligatures;
+                font-kerning: normal;
+                margin-left: 2em;
+            }
+
+            body > ul > li {
+                font-family: Source Serif Pro, PT Sans, Trebuchet MS, Helvetica, Arial;
+                font-size: 2em;
+            }
+
+            h2 {
+                font-family: Tahoma, Helvetica, Arial;
+                font-size: 3em;
+            }
+
+            ul {
+                list-style: none;
+                margin-bottom: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="Address\Authentication\AuthenticatorTest">Address\Authentication\Authenticator</h2>
+        <ul>
+            <li style="color: #555753;">✓ User can be authenticated</li>
+        </ul>
+        <h2 id="Address\Authentication\RegistratorTest">Address\Authentication\Registrator</h2>
+        <ul>
+            <li style="color: #555753;">✓ User can be registered</li>
+            <li style="color: #555753;">✓ Registrator catches exception if user registration fails</li>
+            <li style="color: #555753;">✓ Username can be found</li>
+        </ul>
+        <h2 id="Address\Commands\AuthenticationFormCommandTest">Address\Commands\AuthenticationFormCommand</h2>
+        <ul>
+            <li style="color: #555753;">✓ Empty form fields triggers error </li>
+            <li style="color: #555753;">✓ Happy path</li>
+            <li style="color: #555753;">✓ Execution can delete session error if set</li>
+            <li style="color: #555753;">✓ Authentication fails with wrong credentials</li>
+            <li style="color: #555753;">✓ Form fields can be repopulated </li>
+        </ul>
+        <h2 id="Address\Commands\RegistrationFormCommandTest">Address\Commands\RegistrationFormCommand</h2>
+        <ul>
+            <li style="color: #555753;">✓ Happy path</li>
+            <li style="color: #555753;">✓ Execution can delete session error if set</li>
+            <li style="color: #555753;">✓ Empty form field triggers error </li>
+            <li style="color: #555753;">✓ Invalid username triggers error</li>
+            <li style="color: #555753;">✓ Invalid password triggers error</li>
+            <li style="color: #555753;">✓ Invalid email triggers error</li>
+            <li style="color: #555753;">✓ Already existing username triggers error</li>
+            <li style="color: #555753;">✓ If registration fails triggers error message</li>
+            <li style="color: #555753;">✓ Form fields can be repopulated </li>
+        </ul>
+        <h2 id="Address\Commands\UpdateAddressFormCommandTest">Address\Commands\UpdateAddressFormCommand</h2>
+        <ul>
+            <li style="color: #555753;">✓ Empty form fields triggers error </li>
+            <li style="color: #555753;">✓ Invalid id catches exception</li>
+            <li style="color: #555753;">✓ Invalid zip code catches exception</li>
+            <li style="color: #555753;">✓ Happy path</li>
+            <li style="color: #555753;">✓ Execution can delete session error if set</li>
+            <li style="color: #555753;">✓ If update address fails triggers warning message</li>
+            <li style="color: #555753;">✓ Form fields can be repopulated </li>
+        </ul>
+        <h2 id="Address\Configuration\ConfigurationTest">Address\Configuration\Configuration</h2>
+        <ul>
+            <li style="color: #555753;">✓ Configuration entries can be retrieved </li>
+            <li style="color: #555753;">✓ Get value from config throws exception if value not found</li>
+            <li style="color: #555753;">✓ Load config throws exception if file is not readable</li>
+        </ul>
+        <h2 id="Address\Controllers\AboutControllerTest">Address\Controllers\AboutController</h2>
+        <ul>
+            <li style="color: #555753;">✓ Execution returns about template</li>
+        </ul>
+        <h2 id="Address\Controllers\DeleteAddressControllerTest">Address\Controllers\DeleteAddressController</h2>
+        <ul>
+            <li style="color: #555753;">✓ Address can be deleted and controller sets right redirect</li>
+            <li style="color: #555753;">✓ Controller catches exception if deletion fails</li>
+            <li style="color: #555753;">✓ Address can not be deleted if user not logged in</li>
+        </ul>
+        <h2 id="Address\Controllers\Error404ControllerTest">Address\Controllers\Error404Controller</h2>
+        <ul>
+            <li style="color: #555753;">✓ Execution returns 404template</li>
+        </ul>
+        <h2 id="Address\Controllers\Error500ControllerTest">Address\Controllers\Error500Controller</h2>
+        <ul>
+            <li style="color: #555753;">✓ Execution returns 404template</li>
+        </ul>
+        <h2 id="Address\Controllers\HomeControllerTest">Address\Controllers\HomeController</h2>
+        <ul>
+            <li style="color: #555753;">✓ Default case can be executed and returns home template</li>
+            <li style="color: #555753;">✓ Sort ascending can be executed</li>
+            <li style="color: #555753;">✓ Sort descending can be executed</li>
+            <li style="color: #555753;">✓ Execution with search value works</li>
+        </ul>
+        <h2 id="Address\Controllers\LoginControllerTest">Address\Controllers\LoginController</h2>
+        <ul>
+            <li style="color: #555753;">✓ Controller can be executed and sets right redirect</li>
+            <li style="color: #555753;">✓ Controller returns right template if execution fails</li>
+        </ul>
+        <h2 id="Address\Controllers\LoginViewControllerTest">Address\Controllers\LoginViewController</h2>
+        <ul>
+            <li style="color: #555753;">✓ Controller can be executed and returns right template</li>
+            <li style="color: #555753;">✓ Controller returns right template if execution has an error</li>
+        </ul>
+        <h2 id="Address\Controllers\RegisterControllerTest">Address\Controllers\RegisterController</h2>
+        <ul>
+            <li style="color: #555753;">✓ Controller can be executed and returns right template</li>
+            <li style="color: #555753;">✓ Controller returns right template if execution fails</li>
+        </ul>
+        <h2 id="Address\Controllers\RegisterViewControllerTest">Address\Controllers\RegisterViewController</h2>
+        <ul>
+            <li style="color: #555753;">✓ Controller can be executed and returns right template</li>
+            <li style="color: #555753;">✓ Controller returns right template if execution has an error</li>
+        </ul>
+        <h2 id="Address\Controllers\UpdateAddressControllerTest">Address\Controllers\UpdateAddressController</h2>
+        <ul>
+            <li style="color: #555753;">✓ Controller can be executed and sets right redirect</li>
+            <li style="color: #555753;">✓ Controller repopulate form fields and returns right template on error</li>
+        </ul>
+        <h2 id="Address\Controllers\UpdateAddressViewControllerTest">Address\Controllers\UpdateAddressViewController</h2>
+        <ul>
+            <li style="color: #555753;">✓ Controller can be executed and returns right template</li>
+            <li style="color: #555753;">✓ Session error can be deleted</li>
+            <li style="color: #555753;">✓ If request has value id but its empty returns 404 error template</li>
+            <li style="color: #555753;">✓ Set address with invalid id catches exception and returns 500 error template</li>
+        </ul>
+        <h2 id="Address\Entities\AddressTest">Address\Entities\Address</h2>
+        <ul>
+            <li style="color: #555753;">✓ Address table values can be retrieved </li>
+        </ul>
+        <h2 id="Address\Factories\FactoryTest">Address\Factories\Factory</h2>
+        <ul>
+            <li style="color: #555753;">✓ Database can be retrieved</li>
+            <li style="color: #555753;">✓ Routers can be retrieved </li>
+            <li style="color: #555753;">✓ Instances can be created </li>
+        </ul>
+        <h2 id="Address\Factories\PDOFactoryTest">Address\Factories\PDOFactory</h2>
+        <ul>
+            <li style="color: #555753;">✓ Pdo database handler can be retrieved</li>
+            <li style="color: #555753;">✓ Pdo is always the same object</li>
+            <li style="color: #555753;">✓ Get db handler with wrong credentials throws exception</li>
+        </ul>
+        <h2 id="Address\Forms\FormErrorTest">Address\Forms\FormError</h2>
+        <ul>
+            <li style="color: #555753;">✓ Form data can be set and retrieved</li>
+            <li style="color: #555753;">✓ Has returns right boolean</li>
+            <li style="color: #555753;">✓ Form data can be removed</li>
+            <li style="color: #555753;">✓ Get form data returns empty string if not found</li>
+        </ul>
+        <h2 id="Address\Forms\FormPopulateTest">Address\Forms\FormPopulate</h2>
+        <ul>
+            <li style="color: #555753;">✓ Form data can be set and retrieved</li>
+            <li style="color: #555753;">✓ Has returns right boolean</li>
+            <li style="color: #555753;">✓ Form data can be removed</li>
+            <li style="color: #555753;">✓ Get form data returns empty string if not found</li>
+        </ul>
+        <h2 id="Address\Gateways\AddressTableDataGatewayTest">Address\Gateways\AddressTableDataGateway</h2>
+        <ul>
+            <li style="color: #555753;">✓ All addresses can be retrieved</li>
+            <li style="color: #555753;">✓ Searched address can be found</li>
+            <li style="color: #555753;">✓ Address can be found by id</li>
+            <li style="color: #555753;">✓ Addresses can be sorted ascending by updated</li>
+            <li style="color: #555753;">✓ Addresses can be sorted descending by updated</li>
+            <li style="color: #555753;">✓ Address can be updated</li>
+            <li style="color: #555753;">✓ Address can be deleted</li>
+        </ul>
+        <h2 id="Address\Gateways\AddressesDatabaseText">Address\Gateways\AddressesDatabaseText</h2>
+        <ul>
+            <li style="color: #555753;">✓ Pdo exception is logged and rethrown if get all addresses fails</li>
+            <li style="color: #555753;">✓ Pdo exception is logged and rethrown if get all addresses ordered by updated fails</li>
+            <li style="color: #555753;">✓ Pdo exception is logged and rethrown in get searched address</li>
+            <li style="color: #555753;">✓ Pdo exception is logged and rethrown in find address by id</li>
+            <li style="color: #555753;">✓ Pdo exception is logged and rethrown in update</li>
+            <li style="color: #555753;">✓ Pdo exception is logged and rethrown in delete</li>
+        </ul>
+        <h2 id="Address\Gateways\UserTableDataGatewayTest">Address\Gateways\UserTableDataGateway</h2>
+        <ul>
+            <li style="color: #555753;">✓ User can be inserted</li>
+            <li style="color: #555753;">✓ User can be found by credentials</li>
+            <li style="color: #555753;">✓ Gateway returns false if user not found with credentials</li>
+            <li style="color: #555753;">✓ Gateway returns false if user not found with username</li>
+        </ul>
+        <h2 id="Address\Gateways\UsersDatabaseText">Address\Gateways\UsersDatabaseText</h2>
+        <ul>
+            <li style="color: #555753;">✓ Pdo exception is logged and rethrown at insert</li>
+            <li style="color: #555753;">✓ Pdo exception is logged and rethrown at find user by credentials</li>
+            <li style="color: #555753;">✓ Pdo exception is logged and rethrown at find user by username</li>
+        </ul>
+        <h2 id="Address\Http\RequestTest">Address\Http\Request</h2>
+        <ul>
+            <li style="color: #555753;">✓ Request uri can be retrieved</li>
+            <li style="color: #555753;">✓ Request method can be retrieved</li>
+            <li style="color: #555753;">✓ Is post request returns right boolean</li>
+            <li style="color: #555753;">✓ Is get request returns right boolean</li>
+            <li style="color: #555753;">✓ Http auth user can be checked if logged in</li>
+            <li style="color: #555753;">✓ Value can be retrieved</li>
+            <li style="color: #555753;">✓ Request throws exception if value not found</li>
+        </ul>
+        <h2 id="Address\Http\ResponseTest">Address\Http\Response</h2>
+        <ul>
+            <li style="color: #555753;">✓ Address can be set and retrieved</li>
+            <li style="color: #555753;">✓ Addresses can be set and retrieved</li>
+            <li style="color: #555753;">✓ Redirect can be set and retrieved</li>
+            <li style="color: #555753;">✓ Has redirect returns right boolean</li>
+        </ul>
+        <h2 id="Address\Http\SessionTest">Address\Http\Session</h2>
+        <ul>
+            <li style="color: #555753;">✓ Value can be set and retrieved</li>
+            <li style="color: #555753;">✓ Value can be deleted</li>
+            <li style="color: #555753;">✓ Delete value throws exception if not found</li>
+            <li style="color: #555753;">✓ Session data can be retrieved</li>
+            <li style="color: #555753;">✓ Get session returns array if null</li>
+            <li style="color: #555753;">✓ Isset returns right boolean</li>
+            <li style="color: #555753;">✓ Session returns if user is logged in or not</li>
+        </ul>
+        <h2 id="Address\Loggers\ErrorLoggerTest">Address\Loggers\ErrorLogger</h2>
+        <ul>
+            <li style="color: #555753;">✓ Logging exception works</li>
+            <li style="color: #555753;">✓ Logging message works</li>
+        </ul>
+        <h2 id="Address\ParameterObjects\AddressParameterObjectTest">Address\ParameterObjects\AddressParameterObject</h2>
+        <ul>
+            <li style="color: #555753;">✓ Values can be retrieved </li>
+        </ul>
+        <h2 id="Address\ParameterObjects\UserParameterObjectTest">Address\ParameterObjects\UserParameterObject</h2>
+        <ul>
+            <li style="color: #555753;">✓ Values can be retrieved </li>
+        </ul>
+        <h2 id="Address\Routers\AuthenticationRouterTest">Address\Routers\AuthenticationRouter</h2>
+        <ul>
+            <li style="color: #555753;">✓ Happy path </li>
+            <li style="color: #555753;">✓ Router returns null if request is not post request</li>
+            <li style="color: #555753;">✓ Invalid csrf token returns error 500 controller</li>
+            <li style="color: #555753;">✓ Router returns null on invalid request uri</li>
+        </ul>
+        <h2 id="Address\Routers\Error404RouterTest">Address\Routers\Error404Router</h2>
+        <ul>
+            <li style="color: #555753;">✓ Error router returns right controller</li>
+        </ul>
+        <h2 id="Address\Routers\GetRequestRouterTest">Address\Routers\GetRequestRouter</h2>
+        <ul>
+            <li style="color: #555753;">✓ Happy path </li>
+            <li style="color: #555753;">✓ Router returns null if request is not get request</li>
+            <li style="color: #555753;">✓ Router returns null if invalid request uri</li>
+        </ul>
+        <h2 id="Address\Routers\PostRequestRouterTest">Address\Routers\PostRequestRouter</h2>
+        <ul>
+            <li style="color: #555753;">✓ Happy path </li>
+            <li style="color: #555753;">✓ Router returns null if request is not post request</li>
+            <li style="color: #555753;">✓ Invalid csrf token returns error 500 controller</li>
+            <li style="color: #555753;">✓ Router returns null if invalid request uri</li>
+        </ul>
+        <h2 id="Address\ValueObjects\EmailTest">Address\ValueObjects\Email</h2>
+        <ul>
+            <li style="color: #555753;">✓ Happy path</li>
+            <li style="color: #555753;">✓ Throws exception on email </li>
+        </ul>
+        <h2 id="Address\ValueObjects\IdTest">Address\ValueObjects\Id</h2>
+        <ul>
+            <li style="color: #555753;">✓ Happy path</li>
+            <li style="color: #555753;">✓ Id throws exception if its negative</li>
+            <li style="color: #555753;">✓ Id throws exception if to big</li>
+        </ul>
+        <h2 id="Address\ValueObjects\PasswordTest">Address\ValueObjects\Password</h2>
+        <ul>
+            <li style="color: #555753;">✓ Happy path</li>
+            <li style="color: #555753;">✓ If password is to big throws exception</li>
+            <li style="color: #555753;">✓ If password is not big enough throws exception</li>
+        </ul>
+        <h2 id="Address\ValueObjects\TokenTest">Address\ValueObjects\Token</h2>
+        <ul>
+            <li style="color: #555753;">✓ Length</li>
+            <li style="color: #555753;">✓ Token can be compared if is equal to another</li>
+        </ul>
+        <h2 id="Address\ValueObjects\UsernameTest">Address\ValueObjects\Username</h2>
+        <ul>
+            <li style="color: #555753;">✓ Happy path</li>
+            <li style="color: #555753;">✓ If username is too long throws exception</li>
+        </ul>
+        <h2 id="Address\ValueObjects\ZipTest">Address\ValueObjects\Zip</h2>
+        <ul>
+            <li style="color: #555753;">✓ Happy path</li>
+            <li style="color: #555753;">✓ Zip with leading space is ok</li>
+            <li style="color: #555753;">✓ Throws exception on zip out of swiss zip range</li>
+            <li style="color: #555753;">✓ Throws exception on too short zip</li>
+        </ul>
+    </body>
+</html>
