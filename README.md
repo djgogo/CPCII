@@ -11,8 +11,7 @@ ca. 60 Programming Tasks
 TheSuxxStore - Vollumfänglich funktionstüchtige Web-Applikation mit allen Security Features. Ohne Framework.
 Address - AddressApp, vollumfänglich fuktionsfähige Web-Applikation mit allen Security Features. Ohne Framework. Templating mit Twig und Bootstrap.
 
-Der CPC II kann eine Aufgabe mit OOP wirtschaftlich, nachhaltig und wartbar lösen. Ausgehend von einer vorhandenen Architektur kann er 
-Softwarekomponenten entwickeln, vermitteln und umsetzen. Er versteht es, eine den Anforderungen entsprechende Arbeitsumgebung aufzubauen 
+Der CPC II kann eine Aufgabe mit OOP wirtschaftlich, nachhaltig und wartbar lösen. Er versteht es, eine den Anforderungen entsprechende Arbeitsumgebung aufzubauen 
 und zu verwalten. Der CPC II kann Code und Konzepte wiederholt verwenden. Seine Programm-Code ist nach dem Paradigma „Secure by Design“ 
 erstellt und wird regelmäßig automatisiert getestet. Seine Arbeit folgt den Prinzipien (SOLID) der Lean, Agile und Craftsmanship Software-
 Entwicklung. Er kann ITAufgaben im Kontext der Firma einordnen und hat verstanden, dass interne Qualität nicht verhandelbar ist. 
