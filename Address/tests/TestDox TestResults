@@ -1,0 +1,221 @@
+Address\Authentication\Authenticator
+ [x] User can be authenticated
+
+Address\Authentication\Registrator
+ [x] User can be registered
+ [x] Registrator catches exception if user registration fails
+ [x] Username can be found
+
+Address\Commands\AuthenticationFormCommand
+ [x] Empty form fields triggers error 
+ [x] Happy path
+ [x] Execution can delete session error if set
+ [x] Authentication fails with wrong credentials
+ [x] Form fields can be repopulated 
+
+Address\Commands\RegistrationFormCommand
+ [x] Happy path
+ [x] Execution can delete session error if set
+ [x] Empty form field triggers error 
+ [x] Invalid username triggers error
+ [x] Invalid password triggers error
+ [x] Invalid email triggers error
+ [x] Already existing username triggers error
+ [x] If registration fails triggers error message
+ [x] Form fields can be repopulated 
+
+Address\Commands\UpdateAddressFormCommand
+ [x] Empty form fields triggers error 
+ [x] Invalid id catches exception
+ [x] Invalid zip code catches exception
+ [x] Happy path
+ [x] Execution can delete session error if set
+ [x] If update address fails triggers warning message
+ [x] Form fields can be repopulated 
+
+Address\Configuration\Configuration
+ [x] Configuration entries can be retrieved 
+ [x] Get value from config throws exception if value not found
+ [x] Load config throws exception if file is not readable
+
+Address\Controllers\AboutController
+ [x] Execution returns about template
+
+Address\Controllers\DeleteAddressController
+ [x] Address can be deleted and controller sets right redirect
+ [x] Controller catches exception if deletion fails
+ [x] Address can not be deleted if user not logged in
+
+Address\Controllers\Error404Controller
+ [x] Execution returns 404template
+
+Address\Controllers\Error500Controller
+ [x] Execution returns 404template
+
+Address\Controllers\HomeController
+ [x] Default case can be executed and returns home template
+ [x] Sort ascending can be executed
+ [x] Sort descending can be executed
+ [x] Execution with search value works
+
+Address\Controllers\LoginController
+ [x] Controller can be executed and sets right redirect
+ [x] Controller returns right template if execution fails
+
+Address\Controllers\LoginViewController
+ [x] Controller can be executed and returns right template
+ [x] Controller returns right template if execution has an error
+
+Address\Controllers\RegisterController
+ [x] Controller can be executed and returns right template
+ [x] Controller returns right template if execution fails
+
+Address\Controllers\RegisterViewController
+ [x] Controller can be executed and returns right template
+ [x] Controller returns right template if execution has an error
+
+Address\Controllers\UpdateAddressController
+ [x] Controller can be executed and sets right redirect
+ [x] Controller repopulate form fields and returns right template on error
+
+Address\Controllers\UpdateAddressViewController
+ [x] Controller can be executed and returns right template
+ [x] Session error can be deleted
+ [x] If request has value id but its empty returns 404 error template
+ [x] Set address with invalid id catches exception and returns 500 error template
+
+Address\Entities\Address
+ [x] Address table values can be retrieved 
+
+Address\Factories\Factory
+ [x] Database can be retrieved
+ [x] Routers can be retrieved 
+ [x] Instances can be created 
+
+Address\Factories\PDOFactory
+ [x] Pdo database handler can be retrieved
+ [x] Pdo is always the same object
+ [x] Get db handler with wrong credentials throws exception
+
+Address\Forms\FormError
+ [x] Form data can be set and retrieved
+ [x] Has returns right boolean
+ [x] Form data can be removed
+ [x] Get form data returns empty string if not found
+
+Address\Forms\FormPopulate
+ [x] Form data can be set and retrieved
+ [x] Has returns right boolean
+ [x] Form data can be removed
+ [x] Get form data returns empty string if not found
+
+Address\Gateways\AddressTableDataGateway
+ [x] All addresses can be retrieved
+ [x] Searched address can be found
+ [x] Address can be found by id
+ [x] Addresses can be sorted ascending by updated
+ [x] Addresses can be sorted descending by updated
+ [x] Address can be updated
+ [x] Address can be deleted
+
+Address\Gateways\AddressesDatabaseText
+ [x] Pdo exception is logged and rethrown if get all addresses fails
+ [x] Pdo exception is logged and rethrown if get all addresses ordered by updated fails
+ [x] Pdo exception is logged and rethrown in get searched address
+ [x] Pdo exception is logged and rethrown in find address by id
+ [x] Pdo exception is logged and rethrown in update
+ [x] Pdo exception is logged and rethrown in delete
+
+Address\Gateways\UserTableDataGateway
+ [x] User can be inserted
+ [x] User can be found by credentials
+ [x] Gateway returns false if user not found with credentials
+ [x] Gateway returns false if user not found with username
+
+Address\Gateways\UsersDatabaseText
+ [x] Pdo exception is logged and rethrown at insert
+ [x] Pdo exception is logged and rethrown at find user by credentials
+ [x] Pdo exception is logged and rethrown at find user by username
+
+Address\Http\Request
+ [x] Request uri can be retrieved
+ [x] Request method can be retrieved
+ [x] Is post request returns right boolean
+ [x] Is get request returns right boolean
+ [x] Http auth user can be checked if logged in
+ [x] Value can be retrieved
+ [x] Request throws exception if value not found
+
+Address\Http\Response
+ [x] Address can be set and retrieved
+ [x] Addresses can be set and retrieved
+ [x] Redirect can be set and retrieved
+ [x] Has redirect returns right boolean
+
+Address\Http\Session
+ [x] Value can be set and retrieved
+ [x] Value can be deleted
+ [x] Delete value throws exception if not found
+ [x] Session data can be retrieved
+ [x] Get session returns array if null
+ [x] Isset returns right boolean
+ [x] Session returns if user is logged in or not
+
+Address\Loggers\ErrorLogger
+ [x] Logging exception works
+ [x] Logging message works
+
+Address\ParameterObjects\AddressParameterObject
+ [x] Values can be retrieved 
+
+Address\ParameterObjects\UserParameterObject
+ [x] Values can be retrieved 
+
+Address\Routers\AuthenticationRouter
+ [x] Happy path 
+ [x] Router returns null if request is not post request
+ [x] Invalid csrf token returns error 500 controller
+ [x] Router returns null on invalid request uri
+
+Address\Routers\Error404Router
+ [x] Error router returns right controller
+
+Address\Routers\GetRequestRouter
+ [x] Happy path 
+ [x] Router returns null if request is not get request
+ [x] Router returns null if invalid request uri
+
+Address\Routers\PostRequestRouter
+ [x] Happy path 
+ [x] Router returns null if request is not post request
+ [x] Invalid csrf token returns error 500 controller
+ [x] Router returns null if invalid request uri
+
+Address\ValueObjects\Email
+ [x] Happy path
+ [x] Throws exception on email 
+
+Address\ValueObjects\Id
+ [x] Happy path
+ [x] Id throws exception if its negative
+ [x] Id throws exception if to big
+
+Address\ValueObjects\Password
+ [x] Happy path
+ [x] If password is to big throws exception
+ [x] If password is not big enough throws exception
+
+Address\ValueObjects\Token
+ [x] Length
+ [x] Token can be compared if is equal to another
+
+Address\ValueObjects\Username
+ [x] Happy path
+ [x] If username is too long throws exception
+
+Address\ValueObjects\Zip
+ [x] Happy path
+ [x] Zip with leading space is ok
+ [x] Throws exception on zip out of swiss zip range
+ [x] Throws exception on too short zip
+
