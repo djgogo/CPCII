@@ -16,7 +16,9 @@ namespace Address\Controllers
         /** @var UpdateAddressFormCommand */
         private $updateAddressFormCommand;
 
-        public function __construct(UpdateAddressFormCommand $updateAddressFormCommand, AddressTableDataGateway $addressDataGateway)
+        public function __construct(
+            UpdateAddressFormCommand $updateAddressFormCommand,
+            AddressTableDataGateway $addressDataGateway)
         {
             $this->addressDataGateway = $addressDataGateway;
             $this->updateAddressFormCommand = $updateAddressFormCommand;

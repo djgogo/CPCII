@@ -7,7 +7,7 @@ namespace Address\Routers
     use Address\Http\Session;
     use Address\Loggers\ErrorLogger;
 
-    class PostRequestRouter
+    class PostRequestRouter implements RouterInterface
     {
         /** @var Factory */
         private $factory;
